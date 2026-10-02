@@ -1,6 +1,7 @@
 import random
 from typing import Any, List, Protocol, Tuple, cast
 from .clients import get_llm
+from .output_language import user_output_language_instruction
 from .usage_tracker import track_usage, Features
 from database._client import db as firestore_db
 from utils.executors import db_executor, run_blocking
@@ -106,9 +107,13 @@ async def generate_notification_message(uid: str, name: str, plan_type: str = "b
     
     Return only the notification body text - make it personal, warm and engaging."""
 
+    language_instruction = await run_blocking(db_executor, user_output_language_instruction, uid)
+
     try:
         with track_usage(uid, Features.SUBSCRIPTION_NOTIFICATION):
-            response = await cast(AsyncLlm, get_llm('notifications')).ainvoke(system_prompt + "\n" + user_prompt)
+            response = await cast(AsyncLlm, get_llm('notifications')).ainvoke(
+                system_prompt + "\n" + user_prompt + language_instruction
+            )
         body = _response_text(response)
         # Return placeholder title and generated body
         return "omi", body.strip()
@@ -165,9 +170,13 @@ async def generate_credit_limit_notification(uid: str, name: str) -> Tuple[str, 
     
     Return only the notification body text."""
 
+    language_instruction = await run_blocking(db_executor, user_output_language_instruction, uid)
+
     try:
         with track_usage(uid, Features.SUBSCRIPTION_NOTIFICATION):
-            response = await cast(AsyncLlm, get_llm('notifications')).ainvoke(system_prompt + "\n" + user_prompt)
+            response = await cast(AsyncLlm, get_llm('notifications')).ainvoke(
+                system_prompt + "\n" + user_prompt + language_instruction
+            )
         body = _response_text(response)
         return "omi", body.strip()
 

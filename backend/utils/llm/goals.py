@@ -15,6 +15,7 @@ import database.chat as chat_db
 from database._client import db as firestore_db
 from database.vector_db import query_vectors as vector_search
 from utils.llm.clients import get_llm
+from utils.llm.output_language import user_output_language_instruction
 from utils.llm.usage_tracker import track_usage, Features
 from utils.memory.memory_service import MemoryService
 import logging
@@ -150,7 +151,7 @@ Choose a goal type:
 - "scale" for rating goals (e.g., 0-10 satisfaction)
 - "numeric" for countable goals (e.g., books read, money saved, users acquired)
 
-Make the goal specific, measurable, and relevant to their interests."""
+Make the goal specific, measurable, and relevant to their interests.""" + user_output_language_instruction(uid)
 
         with track_usage(uid, Features.GOALS):
             response = cast(str, cast(Any, get_llm('goals').invoke(prompt)).content)
@@ -224,7 +225,9 @@ RECENT CHAT (what they're currently thinking about):
 USER FACTS:
 {context['memory_context'][:600] if context['memory_context'] else 'No facts available'}
 
-Give ONE specific action in 1-2 sentences. Be concise but complete. No generic advice."""
+Give ONE specific action in 1-2 sentences. Be concise but complete. No generic advice.""" + user_output_language_instruction(
+            uid
+        )
 
         logger.info(
             f"[GOAL-ADVICE] Generating advice for '{goal_title}' with {len(context['conversation_context'])} chars conv, {len(context['chat_context'])} chars chat"
