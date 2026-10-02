@@ -6,6 +6,7 @@ import { X, Loader2, Pencil, Trash2, Plus, Check, User } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { usePeople } from '@/hooks/usePeople';
 import type { Person } from '@/types/user';
+import { t } from '@/lib/i18n';
 
 interface ManagePeopleModalProps {
   isOpen: boolean;
@@ -124,7 +125,7 @@ export function ManagePeopleModal({ isOpen, onClose }: ManagePeopleModalProps) {
             <div className="flex items-center justify-between p-4 border-b border-bg-tertiary">
               <div className="flex items-center gap-2">
                 <User className="w-5 h-5 text-text-primary" />
-                <h2 className="text-lg font-semibold text-text-primary">Manage People</h2>
+                <h2 className="text-lg font-semibold text-text-primary">{t('Manage People')}</h2>
               </div>
               <button
                 onClick={onClose}
@@ -147,14 +148,13 @@ export function ManagePeopleModal({ isOpen, onClose }: ManagePeopleModalProps) {
               {showAddForm ? (
                 <div className="mb-4 p-3 rounded-lg bg-bg-tertiary border border-bg-quaternary">
                   <p className="text-sm font-medium text-text-primary mb-2">
-                    Add New Person
-                  </p>
+                    {t('Add New Person')}</p>
                   <div className="flex gap-2">
                     <input
                       type="text"
                       value={newPersonName}
                       onChange={(e) => setNewPersonName(e.target.value)}
-                      placeholder="Enter name..."
+                      placeholder={t('Enter name...')}
                       autoFocus
                       className={cn(
                         'flex-1 px-3 py-2 rounded-lg',
@@ -183,7 +183,7 @@ export function ManagePeopleModal({ isOpen, onClose }: ManagePeopleModalProps) {
                       {actionLoading === 'new' ? (
                         <Loader2 className="w-4 h-4 animate-spin" />
                       ) : (
-                        'Add'
+                        t('Add')
                       )}
                     </button>
                     <button
@@ -193,8 +193,7 @@ export function ManagePeopleModal({ isOpen, onClose }: ManagePeopleModalProps) {
                       }}
                       className="px-3 py-2 rounded-lg text-sm text-text-secondary hover:bg-bg-quaternary transition-colors"
                     >
-                      Cancel
-                    </button>
+                      {t('Cancel')}</button>
                   </div>
                 </div>
               ) : (
@@ -209,7 +208,7 @@ export function ManagePeopleModal({ isOpen, onClose }: ManagePeopleModalProps) {
                   )}
                 >
                   <Plus className="w-4 h-4" />
-                  <span>Add Person</span>
+                  <span>{t('Add Person')}</span>
                 </button>
               )}
 
@@ -217,7 +216,7 @@ export function ManagePeopleModal({ isOpen, onClose }: ManagePeopleModalProps) {
               {loading && (
                 <div className="flex items-center justify-center gap-2 py-8 text-text-tertiary">
                   <Loader2 className="w-5 h-5 animate-spin" />
-                  <span className="text-sm">Loading people...</span>
+                  <span className="text-sm">{t('Loading people...')}</span>
                 </div>
               )}
 
@@ -225,10 +224,9 @@ export function ManagePeopleModal({ isOpen, onClose }: ManagePeopleModalProps) {
               {!loading && people.length === 0 && (
                 <div className="text-center py-8 text-text-tertiary">
                   <User className="w-12 h-12 mx-auto mb-3 opacity-50" />
-                  <p className="text-sm">No people added yet</p>
+                  <p className="text-sm">{t('No people added yet')}</p>
                   <p className="text-xs mt-1">
-                    Add people to tag speakers in transcripts
-                  </p>
+                    {t('Add people to tag speakers in transcripts')}</p>
                 </div>
               )}
 
@@ -272,8 +270,7 @@ export function ManagePeopleModal({ isOpen, onClose }: ManagePeopleModalProps) {
                           </p>
                           {person.speech_samples_count > 0 && (
                             <p className="text-xs text-text-tertiary">
-                              {person.speech_samples_count} speech sample
-                              {person.speech_samples_count !== 1 ? 's' : ''}
+                              {person.speech_samples_count} {t('speech sample')}{person.speech_samples_count !== 1 ? 's' : ''}
                             </p>
                           )}
                         </div>
@@ -318,15 +315,14 @@ export function ManagePeopleModal({ isOpen, onClose }: ManagePeopleModalProps) {
                             {actionLoading === person.id ? (
                               <Loader2 className="w-3 h-3 animate-spin" />
                             ) : (
-                              'Delete'
+                              t('Delete')
                             )}
                           </button>
                           <button
                             onClick={() => setDeleteConfirmId(null)}
                             className="px-3 py-1.5 rounded-lg text-xs text-text-secondary hover:bg-bg-quaternary transition-colors"
                           >
-                            Cancel
-                          </button>
+                            {t('Cancel')}</button>
                         </div>
                       ) : (
                         <div className="flex items-center gap-1">
@@ -361,8 +357,7 @@ export function ManagePeopleModal({ isOpen, onClose }: ManagePeopleModalProps) {
                   'transition-colors',
                 )}
               >
-                Done
-              </button>
+                {t('Done')}</button>
             </div>
           </motion.div>
         </>

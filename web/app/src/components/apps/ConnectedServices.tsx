@@ -10,6 +10,7 @@ import {
 } from '@/lib/api';
 import { summarizeIntegrations } from '@/lib/connectors';
 import type { Integration } from '@/types/user';
+import { t } from '@/lib/i18n';
 
 function Toggle({
   enabled,
@@ -207,10 +208,9 @@ export function ConnectedServices() {
   return (
     <div className="space-y-6">
       <div>
-        <h2 className="text-text-primary text-lg font-medium">External services</h2>
+        <h2 className="text-text-primary text-lg font-medium">{t('External services')}</h2>
         <p className="text-sm text-text-tertiary mt-1">
-          {summary.connected} of {summary.available} connected
-        </p>
+          {summary.connected} {t('of')}{' '}{summary.available} {t('connected')}</p>
       </div>
       {error && <p className="text-sm text-error">{error}</p>}
       {isLoading ? (
@@ -241,13 +241,11 @@ export function ConnectedServices() {
                     <h3 className="text-text-primary font-medium">{integration.name}</h3>
                     {integration.coming_soon && (
                       <span className="px-2 py-0.5 rounded-chip text-xs bg-bg-quaternary text-text-tertiary">
-                        Soon
-                      </span>
+                        {t('Soon')}</span>
                     )}
                     {integration.connected && !integration.coming_soon && (
                       <span className="px-2 py-0.5 rounded-chip text-xs bg-white/10 text-text-primary">
-                        Connected
-                      </span>
+                        {t('Connected')}</span>
                     )}
                   </div>
                   <p className="text-sm text-text-tertiary truncate">
@@ -274,18 +272,16 @@ export function ConnectedServices() {
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
           <div className="bg-bg-secondary rounded-card p-6 max-w-md mx-4 shadow-xl border border-stroke">
             <h3 className="text-lg font-semibold text-text-primary mb-2">
-              Disconnect {integrations.find((i) => i.id === showDisconnectConfirm)?.name}?
+              {t('Disconnect')}{' '}{integrations.find((i) => i.id === showDisconnectConfirm)?.name}?
             </h3>
             <p className="text-text-secondary mb-6">
-              This will remove the connection. You can reconnect anytime.
-            </p>
+              {t('This will remove the connection. You can reconnect anytime.')}</p>
             <div className="flex gap-3 justify-end">
               <button
                 onClick={() => setShowDisconnectConfirm(null)}
                 className="px-4 py-2 rounded-control bg-bg-tertiary text-text-primary hover:bg-bg-quaternary transition-colors"
               >
-                Cancel
-              </button>
+                {t('Cancel')}</button>
               <button
                 onClick={() => {
                   const integration = integrations.find(
@@ -295,8 +291,7 @@ export function ConnectedServices() {
                 }}
                 className="px-4 py-2 rounded-control bg-red-500 text-white hover:bg-red-600 transition-colors"
               >
-                Disconnect
-              </button>
+                {t('Disconnect')}</button>
             </div>
           </div>
         </div>

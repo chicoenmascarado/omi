@@ -4,6 +4,7 @@ import Link from '@tschk/moonshine-next/link';
 import Image from '@tschk/moonshine-next/image';
 import { useAuth } from '@/components/auth/AuthProvider';
 import { cn } from '@/lib/utils';
+import { t } from '@/lib/i18n';
 
 export function MarketplaceHeader() {
   const { user, loading, openLoginPanel } = useAuth();
@@ -16,7 +17,7 @@ export function MarketplaceHeader() {
           <Link href="/apps" className="flex items-center gap-2">
             <Image
               src="/omi-white.webp"
-              alt="Omi"
+              alt={t('Omi')}
               width={80}
               height={32}
               className="h-6 w-auto"
@@ -37,8 +38,7 @@ export function MarketplaceHeader() {
                     'hover:bg-text-primary/90 transition-colors',
                   )}
                 >
-                  Dashboard
-                </Link>
+                  {t('Dashboard')}</Link>
               </>
             ) : (
               <button
@@ -49,8 +49,7 @@ export function MarketplaceHeader() {
                   'hover:bg-gray-100 transition-colors',
                 )}
               >
-                Sign In
-              </button>
+                {t('Sign In')}</button>
             )}
           </div>
         </div>

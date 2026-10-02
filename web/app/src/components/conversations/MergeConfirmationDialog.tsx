@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { AlertTriangle, Merge, X, Loader2 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import type { Conversation } from '@/types/conversation';
+import { t } from '@/lib/i18n';
 
 interface MergeConfirmationDialogProps {
   isOpen: boolean;
@@ -111,14 +112,11 @@ export function MergeConfirmationDialog({
 
             {/* Title */}
             <h2 className="text-lg font-semibold text-text-primary mb-2">
-              Merge {conversations.length} conversations?
-            </h2>
+              {t('Merge')}{' '}{conversations.length} {t('conversations?')}</h2>
 
             {/* Description */}
             <p className="text-sm text-text-secondary mb-4">
-              The selected conversations will be combined into a single conversation. This
-              action is processed in the background.
-            </p>
+              {t('The selected conversations will be combined into a single conversation. This action is processed in the background.')}</p>
 
             {/* Time gap warning */}
             {timeGapWarning && (
@@ -145,7 +143,7 @@ export function MergeConfirmationDialog({
                 >
                   <span className="text-lg">{conv.structured.emoji || '💬'}</span>
                   <span className="text-sm text-text-primary truncate flex-1">
-                    {conv.structured.title || 'Untitled'}
+                    {conv.structured.title || t('Untitled')}
                   </span>
                 </div>
               ))}
@@ -164,8 +162,7 @@ export function MergeConfirmationDialog({
                   'disabled:opacity-50 disabled:cursor-not-allowed',
                 )}
               >
-                Cancel
-              </button>
+                {t('Cancel')}</button>
               <button
                 onClick={onConfirm}
                 disabled={isLoading}
@@ -183,7 +180,7 @@ export function MergeConfirmationDialog({
                 ) : (
                   <Merge className="w-4 h-4" />
                 )}
-                <span>{isLoading ? 'Merging...' : 'Merge'}</span>
+                <span>{isLoading ? t('Merging...') : t('Merge')}</span>
               </button>
             </div>
           </motion.div>

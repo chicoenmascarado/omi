@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { X, Loader2, FolderInput, Plus } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import type { Folder } from '@/types/folder';
+import { t } from '@/lib/i18n';
 
 interface MoveFolderDialogProps {
   isOpen: boolean;
@@ -78,15 +79,13 @@ export function MoveFolderDialog({
 
             {/* Title */}
             <h2 className="text-lg font-semibold text-text-primary mb-2">
-              Move {selectedCount} conversation{selectedCount !== 1 ? 's' : ''} to
-            </h2>
+              {t('Move')}{' '}{selectedCount} {t('conversation')}{selectedCount !== 1 ? 's' : ''} {t('to')}</h2>
 
             {/* Folder list */}
             <div className="space-y-2 mb-4 max-h-64 overflow-y-auto">
               {folders.length === 0 ? (
                 <p className="text-sm text-text-tertiary py-4 text-center">
-                  No folders yet. Create one to organize your conversations.
-                </p>
+                  {t('No folders yet. Create one to organize your conversations.')}</p>
               ) : (
                 folders.map((folder) => (
                   <button
@@ -133,7 +132,7 @@ export function MoveFolderDialog({
               )}
             >
               <Plus className="w-5 h-5" />
-              <span className="text-sm font-medium">Create new folder</span>
+              <span className="text-sm font-medium">{t('Create new folder')}</span>
             </button>
 
             {/* Cancel button */}
@@ -148,8 +147,7 @@ export function MoveFolderDialog({
                 'disabled:opacity-50 disabled:cursor-not-allowed',
               )}
             >
-              Cancel
-            </button>
+              {t('Cancel')}</button>
           </motion.div>
         </>
       )}

@@ -5,6 +5,7 @@ import { ChevronDown, ChevronRight } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { TaskCard, TaskCardSkeleton } from './TaskCard';
 import type { ActionItem } from '@/types/conversation';
+import { t } from '@/lib/i18n';
 
 interface TaskGroupProps {
   title: string;
@@ -102,8 +103,7 @@ export function TaskGroup({
                 'text-center',
               )}
             >
-              Show {tasks.length - maxVisible} more
-            </button>
+              {t('Show')}{' '}{tasks.length - maxVisible} {t('more')}</button>
           )}
         </div>
       )}

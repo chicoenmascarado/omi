@@ -29,6 +29,7 @@ import {
 import { auth } from '@/lib/firebase';
 import type { App } from '@/types/apps';
 import type { Conversation, AppResponse } from '@/types/conversation';
+import { t } from '@/lib/i18n';
 
 interface GenerateSummaryButtonProps {
   conversationId: string;
@@ -335,11 +336,11 @@ export function GenerateSummaryButton({
         {generating || testingPrompt ? (
           <>
             <Loader2 className="w-4 h-4 animate-spin" />
-            <span>{generating ? 'Generating...' : 'Running...'}</span>
+            <span>{generating ? t('Generating...') : t('Running...')}</span>
           </>
         ) : (
           <>
-            <span>Templates</span>
+            <span>{t('Templates')}</span>
             <ChevronDown
               className={cn('w-4 h-4 transition-transform', isOpen && 'rotate-180')}
             />
@@ -369,7 +370,7 @@ export function GenerateSummaryButton({
               <>
                 {/* Header */}
                 <div className="flex items-center justify-between p-3 border-b border-bg-tertiary">
-                  <span className="text-sm font-medium text-text-primary">Generate</span>
+                  <span className="text-sm font-medium text-text-primary">{t('Generate')}</span>
                   <button
                     onClick={handleClose}
                     className="p-1 rounded-md hover:bg-bg-tertiary transition-colors"
@@ -404,11 +405,9 @@ export function GenerateSummaryButton({
                     </div>
                     <div className="flex-1 min-w-0">
                       <p className="text-sm font-medium text-text-primary">
-                        Create Custom Template
-                      </p>
+                        {t('Create Custom Template')}</p>
                       <p className="text-xs text-text-tertiary">
-                        Create a reusable summary template
-                      </p>
+                        {t('Create a reusable summary template')}</p>
                     </div>
                   </button>
 
@@ -426,11 +425,9 @@ export function GenerateSummaryButton({
                     </div>
                     <div className="flex-1 min-w-0">
                       <p className="text-sm font-medium text-text-primary">
-                        Test Custom Prompt
-                      </p>
+                        {t('Test Custom Prompt')}</p>
                       <p className="text-xs text-text-tertiary">
-                        Try a prompt before saving as template
-                      </p>
+                        {t('Try a prompt before saving as template')}</p>
                     </div>
                   </button>
                 </div>
@@ -439,7 +436,7 @@ export function GenerateSummaryButton({
                 {loading && (
                   <div className="p-4 flex items-center justify-center gap-2 text-text-tertiary">
                     <Loader2 className="w-4 h-4 animate-spin" />
-                    <span className="text-sm">Loading templates...</span>
+                    <span className="text-sm">{t('Loading templates...')}</span>
                   </div>
                 )}
 
@@ -447,8 +444,7 @@ export function GenerateSummaryButton({
                 {!loading && apps.length > 0 && (
                   <div className="p-2">
                     <p className="px-3 py-1.5 text-xs font-medium text-text-tertiary uppercase tracking-wide">
-                      Suggested Templates
-                    </p>
+                      {t('Suggested Templates')}</p>
                     {apps.map((app) => (
                       <button
                         key={app.id}
@@ -487,8 +483,7 @@ export function GenerateSummaryButton({
                           <Loader2 className="w-4 h-4 animate-spin text-text-primary flex-shrink-0" />
                         ) : existingAppIds.has(app.id) ? (
                           <span className="text-xs text-text-quaternary flex-shrink-0">
-                            Generated
-                          </span>
+                            {t('Generated')}</span>
                         ) : null}
                       </button>
                     ))}
@@ -499,8 +494,7 @@ export function GenerateSummaryButton({
                 {!loading && userTemplates.length > 0 && (
                   <div className="p-2 border-t border-bg-tertiary">
                     <p className="px-3 py-1.5 text-xs font-medium text-text-tertiary uppercase tracking-wide">
-                      Your Templates
-                    </p>
+                      {t('Your Templates')}</p>
                     {userTemplates.map((app) => (
                       <button
                         key={app.id}
@@ -539,8 +533,7 @@ export function GenerateSummaryButton({
                           <Loader2 className="w-4 h-4 animate-spin text-text-primary flex-shrink-0" />
                         ) : existingAppIds.has(app.id) ? (
                           <span className="text-xs text-text-quaternary flex-shrink-0">
-                            Generated
-                          </span>
+                            {t('Generated')}</span>
                         ) : null}
                       </button>
                     ))}
@@ -550,8 +543,7 @@ export function GenerateSummaryButton({
                 {/* Empty state for templates */}
                 {!loading && !hasApps && userTemplates.length === 0 && (
                   <div className="p-4 text-center text-text-tertiary text-sm">
-                    No templates available. Create one above!
-                  </div>
+                    {t('No templates available. Create one above!')}</div>
                 )}
               </>
             )}
@@ -568,8 +560,7 @@ export function GenerateSummaryButton({
                     <ArrowLeft className="w-4 h-4 text-text-tertiary" />
                   </button>
                   <span className="text-sm font-medium text-text-primary flex-1">
-                    Test Custom Prompt
-                  </span>
+                    {t('Test Custom Prompt')}</span>
                   <button
                     onClick={handleClose}
                     className="p-1 rounded-md hover:bg-bg-tertiary transition-colors"
@@ -591,7 +582,7 @@ export function GenerateSummaryButton({
                     ref={promptInputRef}
                     value={customPrompt}
                     onChange={(e) => setCustomPrompt(e.target.value)}
-                    placeholder="Enter your custom prompt to extract insights, summaries, action items, or any other information from this conversation..."
+                    placeholder={t('Enter your custom prompt to extract insights, summaries, action items, or any other information from this conversation...')}
                     rows={8}
                     className={cn(
                       'w-full p-3 rounded-lg resize-none',
@@ -606,8 +597,7 @@ export function GenerateSummaryButton({
                     }}
                   />
                   <p className="mt-2 text-xs text-text-quaternary">
-                    Press {isMac ? '⌘' : 'Ctrl'}+Enter to run
-                  </p>
+                    {t('Press')}{' '}{isMac ? '⌘' : t('Ctrl')}{t('+Enter to run')}</p>
                   <button
                     onClick={handleTestPrompt}
                     disabled={!customPrompt.trim() || testingPrompt}
@@ -621,12 +611,12 @@ export function GenerateSummaryButton({
                     {testingPrompt ? (
                       <>
                         <Loader2 className="w-4 h-4 animate-spin" />
-                        <span>Running...</span>
+                        <span>{t('Running...')}</span>
                       </>
                     ) : (
                       <>
                         <Send className="w-4 h-4" />
-                        <span>Run Prompt</span>
+                        <span>{t('Run Prompt')}</span>
                       </>
                     )}
                   </button>
@@ -649,8 +639,7 @@ export function GenerateSummaryButton({
                     <ArrowLeft className="w-4 h-4 text-text-tertiary" />
                   </button>
                   <span className="text-sm font-medium text-text-primary flex-1">
-                    Result
-                  </span>
+                    {t('Result')}</span>
                   <button
                     onClick={handleClose}
                     className="p-1 rounded-md hover:bg-bg-tertiary transition-colors"
@@ -681,8 +670,7 @@ export function GenerateSummaryButton({
                         'bg-bg-tertiary hover:bg-bg-quaternary text-text-secondary hover:text-text-primary',
                       )}
                     >
-                      Copy Result
-                    </button>
+                      {t('Copy Result')}</button>
                     <button
                       onClick={() => {
                         setViewMode('prompt');
@@ -694,8 +682,7 @@ export function GenerateSummaryButton({
                         'bg-bg-tertiary hover:bg-bg-quaternary text-text-secondary hover:text-text-primary',
                       )}
                     >
-                      Try Another
-                    </button>
+                      {t('Try Another')}</button>
                   </div>
                   <button
                     onClick={handleSaveAsTemplate}
@@ -706,8 +693,7 @@ export function GenerateSummaryButton({
                     )}
                   >
                     <Star className="w-4 h-4" />
-                    Save as Template
-                  </button>
+                    {t('Save as Template')}</button>
                 </div>
               </>
             )}
@@ -724,8 +710,7 @@ export function GenerateSummaryButton({
                     <ArrowLeft className="w-4 h-4 text-text-tertiary" />
                   </button>
                   <span className="text-sm font-medium text-text-primary flex-1">
-                    Create Template
-                  </span>
+                    {t('Create Template')}</span>
                   <button
                     onClick={handleClose}
                     className="p-1 rounded-md hover:bg-bg-tertiary transition-colors"
@@ -746,14 +731,13 @@ export function GenerateSummaryButton({
                   {/* Template Name */}
                   <div>
                     <label className="block text-xs font-medium text-text-tertiary mb-1.5">
-                      Template Name
-                    </label>
+                      {t('Template Name')}</label>
                     <input
                       ref={templateNameInputRef}
                       type="text"
                       value={templateName}
                       onChange={(e) => setTemplateName(e.target.value)}
-                      placeholder="e.g., Meeting Action Items"
+                      placeholder={t('e.g., Meeting Action Items')}
                       className={cn(
                         'w-full p-3 rounded-lg',
                         'bg-bg-tertiary border border-bg-quaternary',
@@ -766,12 +750,11 @@ export function GenerateSummaryButton({
                   {/* Prompt */}
                   <div>
                     <label className="block text-xs font-medium text-text-tertiary mb-1.5">
-                      Prompt
-                    </label>
+                      {t('Prompt')}</label>
                     <textarea
                       value={templatePrompt}
                       onChange={(e) => setTemplatePrompt(e.target.value)}
-                      placeholder="e.g., Extract all action items, decisions made, and key takeaways from this conversation..."
+                      placeholder={t('e.g., Extract all action items, decisions made, and key takeaways from this conversation...')}
                       rows={4}
                       className={cn(
                         'w-full p-3 rounded-lg resize-none',
@@ -805,12 +788,12 @@ export function GenerateSummaryButton({
                     </div>
                     <div className="flex-1 min-w-0">
                       <p className="text-sm font-medium text-text-primary">
-                        {isPublic ? 'Public' : 'Private'}
+                        {isPublic ? t('Public') : t('Private')}
                       </p>
                       <p className="text-xs text-text-tertiary">
                         {isPublic
-                          ? 'Anyone can discover your template'
-                          : 'Only you can use this template'}
+                          ? t('Anyone can discover your template')
+                          : t('Only you can use this template')}
                       </p>
                     </div>
                   </button>
@@ -831,12 +814,12 @@ export function GenerateSummaryButton({
                     {creatingTemplate ? (
                       <>
                         <Loader2 className="w-4 h-4 animate-spin" />
-                        <span>Creating...</span>
+                        <span>{t('Creating...')}</span>
                       </>
                     ) : (
                       <>
                         <Plus className="w-4 h-4" />
-                        <span>Create Template</span>
+                        <span>{t('Create Template')}</span>
                       </>
                     )}
                   </button>
@@ -856,8 +839,7 @@ export function GenerateSummaryButton({
                     <ArrowLeft className="w-4 h-4 text-text-tertiary" />
                   </button>
                   <span className="text-sm font-medium text-text-primary flex-1">
-                    Save as Template
-                  </span>
+                    {t('Save as Template')}</span>
                   <button
                     onClick={handleClose}
                     className="p-1 rounded-md hover:bg-bg-tertiary transition-colors"
@@ -878,14 +860,13 @@ export function GenerateSummaryButton({
                   {/* Template Name */}
                   <div>
                     <label className="block text-xs font-medium text-text-tertiary mb-1.5">
-                      Template Name
-                    </label>
+                      {t('Template Name')}</label>
                     <input
                       ref={templateNameInputRef}
                       type="text"
                       value={templateName}
                       onChange={(e) => setTemplateName(e.target.value)}
-                      placeholder="e.g., Meeting Action Items"
+                      placeholder={t('e.g., Meeting Action Items')}
                       className={cn(
                         'w-full p-3 rounded-lg',
                         'bg-bg-tertiary border border-bg-quaternary',
@@ -898,8 +879,7 @@ export function GenerateSummaryButton({
                   {/* Prompt (pre-filled, editable) */}
                   <div>
                     <label className="block text-xs font-medium text-text-tertiary mb-1.5">
-                      Prompt
-                    </label>
+                      {t('Prompt')}</label>
                     <textarea
                       value={templatePrompt}
                       onChange={(e) => setTemplatePrompt(e.target.value)}
@@ -936,12 +916,12 @@ export function GenerateSummaryButton({
                     </div>
                     <div className="flex-1 min-w-0">
                       <p className="text-sm font-medium text-text-primary">
-                        {isPublic ? 'Public' : 'Private'}
+                        {isPublic ? t('Public') : t('Private')}
                       </p>
                       <p className="text-xs text-text-tertiary">
                         {isPublic
-                          ? 'Anyone can discover your template'
-                          : 'Only you can use this template'}
+                          ? t('Anyone can discover your template')
+                          : t('Only you can use this template')}
                       </p>
                     </div>
                   </button>
@@ -962,12 +942,12 @@ export function GenerateSummaryButton({
                     {creatingTemplate ? (
                       <>
                         <Loader2 className="w-4 h-4 animate-spin" />
-                        <span>Creating...</span>
+                        <span>{t('Creating...')}</span>
                       </>
                     ) : (
                       <>
                         <Plus className="w-4 h-4" />
-                        <span>Create Template</span>
+                        <span>{t('Create Template')}</span>
                       </>
                     )}
                   </button>

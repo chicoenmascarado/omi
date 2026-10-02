@@ -4,6 +4,7 @@ import { useState, useEffect, useRef } from 'react';
 import { usePathname } from '@tschk/moonshine-next/navigation';
 import Image from '@tschk/moonshine-next/image';
 import { X } from 'lucide-react';
+import { t } from '@/lib/i18n';
 
 type Platform = 'ios' | 'android' | 'other';
 
@@ -115,7 +116,7 @@ export function MobileBlockOverlay() {
       <button
         onClick={handleDismiss}
         className="absolute top-4 right-4 z-20 p-2 bg-white/5 hover:bg-white/10 rounded-lg transition-colors"
-        aria-label="Continue to web"
+        aria-label={t('Continue to web')}
       >
         <X className="w-5 h-5 text-gray-400" />
       </button>
@@ -136,7 +137,7 @@ export function MobileBlockOverlay() {
           <div className="w-28 h-28 relative">
             <Image
               src="/logo.png"
-              alt="Omi"
+              alt={t('Omi')}
               fill
               className="object-contain relative z-10 drop-shadow-[0_0_15px_rgba(139,92,246,0.3)]"
               priority
@@ -146,11 +147,9 @@ export function MobileBlockOverlay() {
 
         {/* Message */}
         <h1 className="text-2xl font-semibold text-text-primary mb-3">
-          Omi Web is optimized for desktop.
-        </h1>
+          {t('Omi Web is optimized for desktop.')}</h1>
         <p className="text-text-tertiary mb-8">
-          For the best mobile experience, download the Omi app.
-        </p>
+          {t('For the best mobile experience, download the Omi app.')}</p>
 
         {/* App Store Button */}
         <a
@@ -160,7 +159,7 @@ export function MobileBlockOverlay() {
           className="inline-flex items-center gap-3 bg-white text-black px-6 py-3 rounded-xl font-medium hover:bg-gray-100 transition-colors mb-4"
         >
           <StoreIcon className="w-6 h-6" />
-          <span>Download on {storeName}</span>
+          <span>{t('Download on')}{' '}{storeName}</span>
         </a>
 
         {/* Continue to web button */}
@@ -168,15 +167,14 @@ export function MobileBlockOverlay() {
           onClick={handleDismiss}
           className="text-text-tertiary hover:text-text-secondary transition-colors text-sm"
         >
-          Continue to web anyway
-        </button>
+          {t('Continue to web anyway')}</button>
       </div>
 
       {/* Bottom section with logo and links */}
       <div className="relative z-10 pb-8 flex flex-col items-center gap-4">
         <Image
           src="/omi-white.webp"
-          alt="Omi"
+          alt={t('Omi')}
           width={60}
           height={24}
           priority
@@ -188,8 +186,7 @@ export function MobileBlockOverlay() {
             rel="noopener noreferrer"
             className="hover:text-text-tertiary transition-colors"
           >
-            About
-          </a>
+            {t('About')}</a>
           <span>·</span>
           <a
             href="https://www.omi.me/pages/privacy"
@@ -197,8 +194,7 @@ export function MobileBlockOverlay() {
             rel="noopener noreferrer"
             className="hover:text-text-tertiary transition-colors"
           >
-            Privacy
-          </a>
+            {t('Privacy')}</a>
           <span>·</span>
           <a
             href="https://help.omi.me/"
@@ -206,8 +202,7 @@ export function MobileBlockOverlay() {
             rel="noopener noreferrer"
             className="hover:text-text-tertiary transition-colors"
           >
-            Help
-          </a>
+            {t('Help')}</a>
         </div>
       </div>
     </div>
