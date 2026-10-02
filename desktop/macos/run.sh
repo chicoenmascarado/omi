@@ -1435,6 +1435,9 @@ if [ -d "$RESOURCE_BUNDLE" ]; then
         "$APP_BUNDLE/Contents/Resources/$(basename "$RESOURCE_BUNDLE")"
 fi
 
+substep "Installing localizations"
+scripts/l10n/install-localizations.sh "$APP_BUNDLE" >/dev/null
+
 substep "Copying agent"
 if [ ! -d "$AGENT_DIR/dist" ]; then
     echo "ERROR: built agent runtime missing at $AGENT_DIR/dist"

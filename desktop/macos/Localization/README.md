@@ -1,17 +1,25 @@
 # macOS app localization
 
-Translation tables for the Omi macOS app. The app is currently English-only; this folder
-holds work-in-progress translations that are **not yet wired into the build**.
+Translation tables for the Omi macOS app.
 
 ## Layout
 
 - `es.lproj/Localizable.strings` — Spanish. Keys are the English SwiftUI string literals
-  from `Desktop/Sources` (SwiftUI looks up `Text("Save")` by the key `"Save"`).
+  from `Desktop/Sources` (SwiftUI looks up `Text("Save")` by the key `"Save"`), plus
+  format keys for interpolated text (`Text("\(n) tasks")` → `"%lld tasks"`).
 
-These files deliberately live outside `Desktop/Sources/Resources`: SwiftPM rejects a
-`.lproj` resource unless `Package.swift` declares `defaultLocalization`, and resources
-processed by SwiftPM land in the nested `Omi Computer_Omi Computer.bundle`, which SwiftUI
-does not consult for `Text("…")` lookups (those use `Bundle.main`).
+## How it ships
+
+`scripts/l10n/install-localizations.sh` copies `Localization/*.lproj` into the assembled
+app's `Contents/Resources/`. `run.sh` and the Codemagic release build both call it, and
+`Desktop/Info.plist` lists the languages in `CFBundleLocalizations`. macOS then shows the
+app in Spanish when Spanish is the user's preferred language (System Settings → General →
+Language & Region, or per app).
+
+The tables live outside `Desktop/Sources/Resources` on purpose: SwiftPM would compile them
+into the nested `Omi Computer_Omi Computer.bundle`, which SwiftUI does not consult for
+`Text("…")` (it uses `Bundle.main`), and it rejects `.lproj` resources unless
+`Package.swift` declares `defaultLocalization`.
 
 ## Checking coverage
 
@@ -22,12 +30,12 @@ scripts/l10n/extract_strings.py --json     # all keys with source locations
 
 ## Remaining work
 
-1. **Wiring** (needs a Mac to verify): copy `Localization/*.lproj` into
-   `Omi.app/Contents/Resources/` in `run.sh` and the Codemagic release build, and add
-   `CFBundleLocalizations` (`en`, `es`) to `Desktop/Info.plist`.
-2. **Interpolated strings** (~136): `Text("\(count) tasks")` becomes a format key such as
-   `"%lld tasks"`; the specifier depends on the interpolated type, so these need
-   per-call-site review.
+1. **Verify on a Mac**: build with `./run.sh`, set Omi's language to Spanish in System
+   Settings → General → Language & Region → Applications, and check the main window.
+2. **Interpolated strings**: 62 of ~136 are translated. Format specifiers were inferred
+   from each source expression; a wrong guess falls back to English, never crashes.
+   Remaining ones are numeric-only, use `Date` styles, or build plurals inline
+   (`"session\(n == 1 ? "" : "s")"`) and need a source change first.
 3. **Non-literal strings**: text built as `String` values (view models, enums, alerts) is
    not localized by SwiftUI automatically and needs `String(localized:)`.
 
