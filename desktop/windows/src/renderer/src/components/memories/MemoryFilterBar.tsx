@@ -9,6 +9,7 @@ import {
   type MemoryLayerFilter
 } from '../../lib/memoryFilters'
 import type { MemoryReadView } from '../../lib/memoriesCache'
+import { t } from '../../lib/i18n'
 
 // The layer filter renders Default / Short-term / Long-term only. "Archive" is a
 // server-side explicit-archive scope on Mac; the default /v3/memories read never
@@ -40,9 +41,9 @@ type MemoryFilterBarProps = {
 }
 
 function categoryButtonLabel(categories: Set<MemoryCategory>): string {
-  if (categories.size === 0) return 'All categories'
+  if (categories.size === 0) return t('All categories')
   if (categories.size === 1) return CATEGORY_LABEL[[...categories][0]]
-  return `${categories.size} selected`
+  return t('{count} selected', { count: categories.size })
 }
 
 export function MemoryFilterBar({
@@ -67,14 +68,14 @@ export function MemoryFilterBar({
         <input
           value={search}
           onChange={(e) => onSearchChange(e.target.value)}
-          placeholder="Search memories…"
+          placeholder={t('Search memories…')}
           className="input-field w-full py-2 pl-9 pr-9 text-sm"
         />
         {search && (
           <button
             onClick={() => onSearchChange('')}
             className="absolute right-2.5 top-1/2 -translate-y-1/2 rounded-md p-0.5 text-white/40 hover:text-white/80"
-            aria-label="Clear search"
+            aria-label={t('Clear search')}
           >
             <X className="h-4 w-4" />
           </button>
@@ -128,7 +129,7 @@ export function MemoryFilterBar({
                   onSelect={onClearCategories}
                   className="cursor-pointer rounded-lg px-2.5 py-1.5 text-[13px] text-white/60 outline-none data-[highlighted]:bg-white/5"
                 >
-                  Clear
+                  {t('Clear')}
                 </DropdownMenu.Item>
               </>
             )}

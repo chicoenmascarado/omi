@@ -1,4 +1,5 @@
 import { readPersistedCache, writePersistedCache } from './persistentCache'
+import { uiLocale } from './i18n'
 
 export type ConversationRow = {
   id: string
@@ -55,10 +56,7 @@ export function publishConversationsCache(rows: ConversationRow[]): void {
   // the next launch paints it instantly (see hydrateConversationsFromDisk).
   // Optimistic "pending" placeholders are transient, so they're excluded.
   // Best-effort and bounded.
-  writePersistedCache(
-    CONV_SURFACE,
-    rows.filter((r) => !r.pending).slice(0, CONV_PERSIST_CAP)
-  )
+  writePersistedCache(CONV_SURFACE, rows.filter((r) => !r.pending).slice(0, CONV_PERSIST_CAP))
   cacheSubscribers.forEach((cb) => cb(rows))
 }
 
@@ -151,7 +149,7 @@ export function addPendingConversation(transcript: string): string {
       id,
       title: '',
       emoji: undefined,
-      subtitle: new Date(now).toLocaleString(),
+      subtitle: new Date(now).toLocaleString(uiLocale()),
       preview: transcript.slice(0, 200) || '(no transcript)',
       source: 'cloud',
       pending: true,

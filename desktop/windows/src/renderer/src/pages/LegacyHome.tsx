@@ -12,6 +12,7 @@ import omiMark from '../assets/omi-mark.png'
 import { BrandImage } from '../components/ui/BrandImage'
 import { VoiceSessionSurface } from '../components/voice/VoiceSessionSurface'
 import { nextOverflowing } from './homeScroll'
+import { t as i18n } from '../lib/i18n'
 
 function firstName(u: User | null): string {
   const display = u?.displayName?.trim().split(/\s+/)[0]
@@ -53,12 +54,12 @@ function ChatBar(props: {
         onKeyDown={(e) => {
           if (e.key === 'Enter') props.onSend()
         }}
-        placeholder="Ask Omi…"
+        placeholder={i18n('Ask Omi…')}
         className="flex-1 border-0 bg-transparent py-2 pr-2 text-[15px] text-white placeholder:text-white/35 focus:outline-none focus:ring-0"
       />
       <button
         onClick={props.onToggleVoice}
-        aria-label={props.voiceOpen ? 'Hide voice session' : 'Talk with Omi'}
+        aria-label={props.voiceOpen ? i18n('Hide voice session') : i18n('Talk with Omi')}
         className={cn(
           'shrink-0 rounded-full p-2.5 transition-colors duration-150',
           props.voiceOpen
@@ -73,7 +74,7 @@ function ChatBar(props: {
       <button
         disabled={!canSend}
         onClick={props.onSend}
-        aria-label="Send"
+        aria-label={i18n('Send')}
         className={cn(
           'shrink-0 rounded-full p-2.5 transition-all duration-150',
           canSend
@@ -490,7 +491,11 @@ export function LegacyHome(): React.JSX.Element {
                           badge (h-14 in an h-11 badge) to offset the asset's
                           ~23% built-in padding, so the dot-ring reads at ~30px. */}
                       <div className="mt-0.5 flex h-11 w-11 shrink-0 items-center justify-center overflow-hidden rounded-full bg-white">
-                        <BrandImage src={omiMark} alt="Omi" className="h-14 w-14 object-contain" />
+                        <BrandImage
+                          src={omiMark}
+                          alt={i18n('Omi')}
+                          className="h-14 w-14 object-contain"
+                        />
                       </div>
                       {/* pt-3 (12px) optically centers the first reply line on
                           the 44px badge: Inter 15px/24.75px puts the first line's
@@ -506,7 +511,7 @@ export function LegacyHome(): React.JSX.Element {
                             startRevealed={!(isLast && chat.sending)}
                           />
                         ) : chat.sending && isLast ? (
-                          <span className="typing-dots" aria-label="Omi is replying">
+                          <span className="typing-dots" aria-label={i18n('Omi is replying')}>
                             <span />
                             <span />
                             <span />
@@ -518,7 +523,7 @@ export function LegacyHome(): React.JSX.Element {
                 })
               ) : !started ? (
                 <h1 className="fade-in-slow pb-2 text-center font-display text-4xl font-semibold tracking-tight text-white">
-                  Hi, {firstName(user)}
+                  {i18n('Hi,')} {firstName(user)}
                 </h1>
               ) : null}
             </div>
@@ -527,12 +532,12 @@ export function LegacyHome(): React.JSX.Element {
         {scrollMode === 'freeScrolling' && started ? (
           <button
             type="button"
-            aria-label="Jump to latest message"
+            aria-label={i18n('Jump to latest message')}
             onClick={() => resumeFollowing(true)}
             className="absolute bottom-4 left-1/2 inline-flex -translate-x-1/2 items-center gap-1.5 rounded-full border border-line-strong bg-[color:var(--bg-raised)] px-3.5 py-2 text-sm font-medium text-white shadow-[0_8px_24px_rgba(0,0,0,0.35)] transition-colors hover:bg-[color:var(--bg-tertiary)]"
           >
             <ArrowDown className="h-4 w-4" />
-            Latest
+            {i18n('Latest')}
           </button>
         ) : null}
       </div>

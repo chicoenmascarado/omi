@@ -1,5 +1,6 @@
 import { AlertCircle, Bot, CheckCircle2, CircleSlash, Loader2 } from 'lucide-react'
 import type { AgentThreadCardBlock } from '../../../../shared/types'
+import { t } from '../../lib/i18n'
 
 // Shared-thread agent cards (B4, INV-CHAT-1). The two durable artifacts a
 // background agent leaves in the shared thread: a spawn card at launch and one
@@ -9,9 +10,27 @@ type CompletionStatus = 'succeeded' | 'stopped' | 'failed'
 
 const STATUS: Record<CompletionStatus, { label: string; dot: string; Icon: typeof CheckCircle2 }> =
   {
-    succeeded: { label: 'Done', dot: 'text-emerald-400', Icon: CheckCircle2 },
-    stopped: { label: 'Stopped', dot: 'text-white/50', Icon: CircleSlash },
-    failed: { label: 'Failed', dot: 'text-red-400', Icon: AlertCircle }
+    succeeded: {
+      get label() {
+        return t('Done')
+      },
+      dot: 'text-emerald-400',
+      Icon: CheckCircle2
+    },
+    stopped: {
+      get label() {
+        return t('Stopped')
+      },
+      dot: 'text-white/50',
+      Icon: CircleSlash
+    },
+    failed: {
+      get label() {
+        return t('Failed')
+      },
+      dot: 'text-red-400',
+      Icon: AlertCircle
+    }
   }
 
 function coerceStatus(status: string): CompletionStatus {
@@ -43,7 +62,7 @@ export function AgentThreadCard({
           <span className={titleCls}>{block.title}</span>
           <span className="ml-1 flex shrink-0 items-center gap-1 text-white/45">
             <Loader2 className="h-3 w-3 animate-spin" />
-            <span className="text-[11px]">Running</span>
+            <span className="text-[11px]">{t('Running')}</span>
           </span>
         </div>
         {block.objective ? (

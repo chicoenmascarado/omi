@@ -1,5 +1,6 @@
 import type { ReactNode } from 'react'
 import type { XStatus, XRunState } from '../../../../../../shared/types'
+import { t } from '../../../../lib/i18n'
 
 // Pure view derivation for the X (Twitter) connector row — kept out of XConnector.tsx
 // so that component file only exports a component (React Fast Refresh requirement),
@@ -20,12 +21,21 @@ export function deriveView(status: XStatus | null, run: XRunState): XView {
   if (run.phase === 'connecting')
     return {
       state: 'busy',
-      description: 'Waiting for X sign-in… you can close this panel; Omi keeps importing.'
+      description: t('Waiting for X sign-in… you can close this panel; Omi keeps importing.')
     }
   if (run.phase === 'syncing')
     return {
       state: 'busy',
-      description: `Saved ${run.postCount} post${run.postCount === 1 ? '' : 's'} · ${run.memoryCount} memor${run.memoryCount === 1 ? 'y' : 'ies'} so far…`
+      description: t('Saved {posts} · {memories} so far…', {
+        posts:
+          run.postCount === 1
+            ? t('{count} post', { count: run.postCount })
+            : t('{count} posts', { count: run.postCount }),
+        memories:
+          run.memoryCount === 1
+            ? t('{count} memory', { count: run.memoryCount })
+            : t('{count} memories', { count: run.memoryCount })
+      })
     }
   const connected = status?.connected || run.phase === 'succeeded'
   if (connected) {
@@ -40,6 +50,6 @@ export function deriveView(status: XStatus | null, run: XRunState): XView {
   if (run.phase === 'failed') return { state: 'idle', description: friendlyError(run.error) }
   return {
     state: 'idle',
-    description: 'Connect your X account so Omi learns from your tweets and bookmarks.'
+    description: t('Connect your X account so Omi learns from your tweets and bookmarks.')
   }
 }

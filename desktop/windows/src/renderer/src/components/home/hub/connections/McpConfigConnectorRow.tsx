@@ -9,6 +9,7 @@ import type {
 } from '../../../../../../shared/mcpExports'
 import { ConnectorRow, PillButton } from './ConnectorRow'
 import { ConnectorBrandMark } from './ConnectorBrandMark'
+import { t } from '../../../../lib/i18n'
 
 // One config-write export connector row (Claude Code, Codex, OpenClaw, Hermes).
 // Every state resolves to a real affordance — never a dead button:
@@ -54,7 +55,7 @@ function SetupCardBlock({ card }: { card: McpSetupCard }): React.JSX.Element {
   return (
     <div className="space-y-2 rounded-xl border border-home-hairline bg-white/[0.02] p-3">
       <p className="text-[12.5px] text-home-muted">
-        Couldn’t finish automatically — run this yourself to connect:
+        {t('Couldn’t finish automatically — run this yourself to connect:')}
       </p>
       <ol className="ml-4 list-decimal space-y-0.5 text-[12.5px] text-home-muted">
         {card.steps.map((s) => (
@@ -105,7 +106,7 @@ export function McpConfigConnectorRow({
       else setCard(undefined)
       onChanged()
     } catch (e) {
-      toast('Could not connect', { tone: 'error', body: (e as Error).message })
+      toast(t('Could not connect'), { tone: 'error', body: (e as Error).message })
     } finally {
       setBusy(false)
     }
@@ -119,7 +120,7 @@ export function McpConfigConnectorRow({
       setCard(undefined)
       onChanged()
     } catch (e) {
-      toast('Could not disconnect', { tone: 'error', body: (e as Error).message })
+      toast(t('Could not disconnect'), { tone: 'error', body: (e as Error).message })
     } finally {
       setBusy(false)
     }
@@ -131,20 +132,20 @@ export function McpConfigConnectorRow({
       case 'connected':
         return (
           <PillButton tone="ghost" disabled={busy} onClick={doDisconnect}>
-            {busy ? '…' : 'Disconnect'}
+            {busy ? '…' : t('Disconnect')}
           </PillButton>
         )
       case 'needsUpdate':
         // Same write path as Connect — it rewrites the legacy /sse entry in place.
         return (
           <PillButton tone="primary" disabled={busy} onClick={doConnect}>
-            {busy ? 'Updating…' : 'Update'}
+            {busy ? t('Updating…') : t('Update')}
           </PillButton>
         )
       case 'available':
         return (
           <PillButton tone="primary" disabled={busy} onClick={doConnect}>
-            {busy ? 'Connecting…' : 'Connect'}
+            {busy ? t('Connecting…') : t('Connect')}
           </PillButton>
         )
       case 'requiresTool':

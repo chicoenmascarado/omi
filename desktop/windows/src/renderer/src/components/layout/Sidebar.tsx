@@ -8,6 +8,7 @@ import { Orb } from '../orb/Orb'
 import { navRoutes, isNavActive } from '../../routes/manifest'
 import type { User } from 'firebase/auth'
 import type { RewindSettings } from '../../../../shared/types'
+import { t } from '../../lib/i18n'
 
 // The nav rail is driven off the shared route manifest (routes/manifest.ts) — the
 // same source MainViews renders from — so adding a page is one manifest entry, not
@@ -174,13 +175,13 @@ export function Sidebar(): React.JSX.Element {
               collapsed ? 'pointer-events-none w-0 opacity-0' : 'w-auto opacity-100'
             )}
           >
-            omi
+            {t('omi')}
           </span>
         </div>
         <button
           onClick={() => setCollapsed((c) => !c)}
-          title={collapsed ? 'Expand sidebar' : 'Collapse sidebar'}
-          aria-label={collapsed ? 'Expand sidebar' : 'Collapse sidebar'}
+          title={collapsed ? t('Expand sidebar') : t('Collapse sidebar')}
+          aria-label={collapsed ? t('Expand sidebar') : t('Collapse sidebar')}
           className={cn(
             'shrink-0 rounded-lg p-1.5 text-white/40 transition-colors hover:text-white/80',
             HOVER

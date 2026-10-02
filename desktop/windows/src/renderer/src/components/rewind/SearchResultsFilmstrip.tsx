@@ -4,6 +4,7 @@ import type { RewindSearchGroup } from '../../../../shared/types'
 import { parseWindowTitle } from '../../lib/windowTitle'
 import { highlightTerms } from '../../lib/rewindOverlay'
 import { highlightSegments } from '../../lib/rewindHighlight'
+import { t as i18n, uiLocale } from '../../lib/i18n'
 
 // macOS parity: search results are a vertical list of grouped hits
 // (RewindPage.fullScreenResultsView) — representative thumbnail, app + window, the
@@ -18,9 +19,9 @@ const THUMB_H = 80
  *  one-frame / instantaneous group). */
 function timeRange(startTs: number, endTs: number): string {
   const d = new Date(startTs)
-  const date = d.toLocaleDateString([], { month: 'short', day: 'numeric' })
+  const date = d.toLocaleDateString(uiLocale(), { month: 'short', day: 'numeric' })
   const t = (ms: number): string =>
-    new Date(ms).toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' })
+    new Date(ms).toLocaleTimeString(uiLocale(), { hour: 'numeric', minute: '2-digit' })
   return startTs === endTs ? `${date} · ${t(startTs)}` : `${date} · ${t(startTs)}–${t(endTs)}`
 }
 
@@ -95,8 +96,12 @@ export function SearchResultsFilmstrip({
   if (groups.length === 0) {
     return (
       <div className="py-10 text-center">
-        <p className="text-sm text-white/60">{loading ? 'Searching…' : 'No results found'}</p>
-        {!loading && <p className="mt-1 text-xs text-white/35">Try a different search term</p>}
+        <p className="text-sm text-white/60">
+          {loading ? i18n('Searching…') : i18n('No results found')}
+        </p>
+        {!loading && (
+          <p className="mt-1 text-xs text-white/35">{i18n('Try a different search term')}</p>
+        )}
       </div>
     )
   }
@@ -104,7 +109,7 @@ export function SearchResultsFilmstrip({
   return (
     <div className="flex flex-col gap-2">
       {groups.map((g) => {
-        const { app, title } = parseWindowTitle(g.windowTitle, g.app || 'Unknown app')
+        const { app, title } = parseWindowTitle(g.windowTitle, g.app || i18n('Unknown app'))
         return (
           <button
             key={g.id}
@@ -122,10 +127,10 @@ export function SearchResultsFilmstrip({
                     // a literal keyword match. Mac renders no purple here, so neither do we.
                     <span
                       className="inline-flex shrink-0 items-center gap-1 rounded-full border border-white/15 px-1.5 py-0.5 text-[10px] text-white/55"
-                      title="Matched by meaning, not an exact keyword"
+                      title={i18n('Matched by meaning, not an exact keyword')}
                     >
                       <Sparkles className="h-2.5 w-2.5" />
-                      Related
+                      {i18n('Related')}
                     </span>
                   )}
                 </span>
@@ -138,7 +143,7 @@ export function SearchResultsFilmstrip({
               {g.frames.length > 1 && (
                 <span className="mt-0.5 inline-flex w-fit items-center gap-1 rounded-full bg-white/[0.06] px-2 py-0.5 text-[10px] text-white/50">
                   <Images className="h-3 w-3" />
-                  {g.frames.length} screenshots
+                  {g.frames.length} {i18n('screenshots')}
                 </span>
               )}
             </div>

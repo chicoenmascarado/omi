@@ -3,6 +3,7 @@ import { createPortal } from 'react-dom'
 import { FolderInput } from 'lucide-react'
 import type { ConversationFolder } from '../../../../shared/types'
 import { FolderPickerList } from './FolderPickerList'
+import { t } from '../../lib/i18n'
 
 const MENU_WIDTH = 208 // px — must match the w-52 below
 const GAP = 6 // px between the trigger and the panel
@@ -85,7 +86,7 @@ export function MoveToFolderMenu({
           setPos(null)
           setOpen((o) => !o)
         }}
-        aria-label="Move to folder"
+        aria-label={t('Move to folder')}
         aria-expanded={open}
         className="rounded-md p-1.5 text-white/45 transition-colors hover:bg-white/10 hover:text-white"
       >
@@ -106,7 +107,7 @@ export function MoveToFolderMenu({
             <div
               ref={panelRef}
               role="menu"
-              aria-label="Move to folder"
+              aria-label={t('Move to folder')}
               // Opaque raised panel (surface-panel = --bg-tertiary, no alpha) so
               // nothing behind it shows through.
               className="surface-panel fixed z-[200] max-h-72 w-52 overflow-y-auto p-1.5"

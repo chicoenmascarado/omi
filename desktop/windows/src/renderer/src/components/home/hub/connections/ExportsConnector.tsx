@@ -7,6 +7,7 @@ import type { ExportMemory } from '../../../../../../shared/types'
 import { ConnectorRow, PillButton } from './ConnectorRow'
 import { ConnectorBrandMark } from './ConnectorBrandMark'
 import { MemoryPackRow } from './MemoryPackRow'
+import { t } from '../../../../lib/i18n'
 
 // Memory export destinations — Obsidian, a plain Markdown file, or Notion. These
 // are Windows' shipped one-shot writers (main/memoryExport/*), reused verbatim via
@@ -31,11 +32,11 @@ export function ExportsConnector(): React.JSX.Element {
   const runExport = async (target: 'obsidian' | 'file' | 'notion'): Promise<void> => {
     if (exporting) return
     if (memories.length === 0) {
-      toast('No memories to export yet', { tone: 'warn' })
+      toast(t('No memories to export yet'), { tone: 'warn' })
       return
     }
     if (target === 'notion' && (!notionToken.trim() || !notionPage.trim())) {
-      toast('Enter your Notion token and parent page ID', { tone: 'warn' })
+      toast(t('Enter your Notion token and parent page ID'), { tone: 'warn' })
       return
     }
     setExporting(true)
@@ -48,13 +49,18 @@ export function ExportsConnector(): React.JSX.Element {
           : undefined
       )
       if (!r.canceled) {
-        toast(`Exported ${r.count} memor${r.count === 1 ? 'y' : 'ies'}`, {
-          tone: 'success',
-          body: r.location
-        })
+        toast(
+          r.count === 1
+            ? t('Exported {count} memory', { count: r.count })
+            : t('Exported {count} memories', { count: r.count }),
+          {
+            tone: 'success',
+            body: r.location
+          }
+        )
       }
     } catch (e) {
-      toast('Export failed', { tone: 'error', body: (e as Error).message })
+      toast(t('Export failed'), { tone: 'error', body: (e as Error).message })
     } finally {
       setExporting(false)
     }
@@ -64,36 +70,36 @@ export function ExportsConnector(): React.JSX.Element {
     <>
       <ConnectorRow
         iconNode={<ConnectorBrandMark brand="notion" />}
-        title="Notion"
-        description="Write your memories into a Notion page."
+        title={t('Notion')}
+        description={t('Write your memories into a Notion page.')}
         action={
           <PillButton
             tone={notionOpen ? 'ghost' : 'primary'}
             onClick={() => setNotionOpen((v) => !v)}
           >
-            {notionOpen ? 'Close' : 'Export'}
+            {notionOpen ? t('Close') : t('Export')}
           </PillButton>
         }
       >
         {notionOpen && (
           <div className="space-y-2">
             <p className="text-[12.5px] text-home-muted">
-              Paste an internal-integration token and a page ID it can access.
+              {t('Paste an internal-integration token and a page ID it can access.')}
             </p>
             <input
               value={notionToken}
               onChange={(e) => setNotionToken(e.target.value)}
-              placeholder="Notion integration token (secret_…)"
+              placeholder={t('Notion integration token (secret_…)')}
               className="input-field text-[13px]"
             />
             <input
               value={notionPage}
               onChange={(e) => setNotionPage(e.target.value)}
-              placeholder="Parent page ID"
+              placeholder={t('Parent page ID')}
               className="input-field text-[13px]"
             />
             <PillButton tone="primary" onClick={() => runExport('notion')} disabled={exporting}>
-              {exporting ? 'Exporting…' : 'Export to Notion'}
+              {exporting ? t('Exporting…') : t('Export to Notion')}
             </PillButton>
           </div>
         )}
@@ -101,22 +107,22 @@ export function ExportsConnector(): React.JSX.Element {
 
       <ConnectorRow
         iconNode={<ConnectorBrandMark brand="obsidian" />}
-        title="Obsidian"
-        description="Write your memories into your Obsidian vault."
+        title={t('Obsidian')}
+        description={t('Write your memories into your Obsidian vault.')}
         action={
           <PillButton tone="primary" onClick={() => runExport('obsidian')} disabled={exporting}>
-            Export
+            {t('Export')}
           </PillButton>
         }
       />
 
       <ConnectorRow
         icon={FileText}
-        title="Markdown file"
-        description="Save your memories as a single Markdown file."
+        title={t('Markdown file')}
+        description={t('Save your memories as a single Markdown file.')}
         action={
           <PillButton tone="primary" onClick={() => runExport('file')} disabled={exporting}>
-            Export
+            {t('Export')}
           </PillButton>
         }
       />

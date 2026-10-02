@@ -6,6 +6,7 @@ import type { ExportMemory } from '../../../../../../shared/types'
 import type { ConnectorBrand } from './ConnectorBrandMark'
 import { ConnectorRow, PillButton } from './ConnectorRow'
 import { ConnectorBrandMark } from './ConnectorBrandMark'
+import { t } from '../../../../lib/i18n'
 
 // The memory-PACK variant (Phase 2b): copy a prompt + your Markdown memory export
 // to the clipboard and open the provider's chat, so you can paste it into a fresh
@@ -15,9 +16,24 @@ import { ConnectorBrandMark } from './ConnectorBrandMark'
 // Each provider renders its real brand mark (the same marks the macOS app shows):
 // Gemini ships the true four-colour spark, ChatGPT/Claude their logomarks.
 const LABEL: Record<'gemini' | 'chatgpt' | 'claude', { title: string; brand: ConnectorBrand }> = {
-  gemini: { title: 'Gemini', brand: 'gemini' },
-  chatgpt: { title: 'ChatGPT', brand: 'chatgpt' },
-  claude: { title: 'Claude', brand: 'claude' }
+  gemini: {
+    get title() {
+      return t('Gemini')
+    },
+    brand: 'gemini'
+  },
+  chatgpt: {
+    get title() {
+      return t('ChatGPT')
+    },
+    brand: 'chatgpt'
+  },
+  claude: {
+    get title() {
+      return t('Claude')
+    },
+    brand: 'claude'
+  }
 }
 
 export function MemoryPackRow({
@@ -32,7 +48,7 @@ export function MemoryPackRow({
   const run = async (): Promise<void> => {
     if (busy) return
     if (memories.length === 0) {
-      toast('No memories to export yet', { tone: 'warn' })
+      toast(t('No memories to export yet'), { tone: 'warn' })
       return
     }
     setBusy(true)
@@ -43,9 +59,9 @@ export function MemoryPackRow({
         createdAt: m.created_at
       }))
       await runMemoryPack(provider, toExport)
-      toast(`Copied — paste into ${title}`, { tone: 'success' })
+      toast(t('Copied — paste into {title}', { title }), { tone: 'success' })
     } catch (e) {
-      toast('Could not build the pack', { tone: 'error', body: (e as Error).message })
+      toast(t('Could not build the pack'), { tone: 'error', body: (e as Error).message })
     } finally {
       setBusy(false)
     }
@@ -54,11 +70,11 @@ export function MemoryPackRow({
   return (
     <ConnectorRow
       iconNode={<ConnectorBrandMark brand={brand} />}
-      title={`Memory pack for ${title}`}
-      description="Copy a prompt + your memories, then paste into a new chat"
+      title={t('Memory pack for {title}', { title })}
+      description={t('Copy a prompt + your memories, then paste into a new chat')}
       action={
         <PillButton tone="neutral" onClick={run} disabled={busy}>
-          {busy ? 'Copying…' : 'Copy & open'}
+          {busy ? t('Copying…') : t('Copy & open')}
         </PillButton>
       }
     />

@@ -4,6 +4,7 @@ import type { ChatSession } from '../../../../shared/chatSessions'
 import { toEpochMs } from '../../lib/chatSessionsView'
 import { macPurple } from '../../lib/macPalette'
 import { cn } from '../../lib/utils'
+import { t, uiLocale } from '../../lib/i18n'
 
 // One row in the chat-history popover: star, title (double-click to rename in
 // place), preview + relative-date subtitle, and hover actions (rename/star/
@@ -25,7 +26,7 @@ function formatRelativeDate(value: number | string, now = Date.now()): string {
   if (diff < HOUR) return `${Math.floor(diff / MINUTE)}m`
   if (diff < DAY) return `${Math.floor(diff / HOUR)}h`
   if (diff < 7 * DAY) return `${Math.floor(diff / DAY)}d`
-  return new Date(ms).toLocaleDateString(undefined, { month: 'short', day: 'numeric' })
+  return new Date(ms).toLocaleDateString(uiLocale(), { month: 'short', day: 'numeric' })
 }
 
 export function HistorySessionRow(props: {
@@ -79,7 +80,7 @@ export function HistorySessionRow(props: {
           'focus-ring mt-0.5 shrink-0 rounded p-0.5 transition-colors',
           session.starred ? 'text-amber-300' : 'text-white/30 hover:text-white/60'
         )}
-        title={session.starred ? 'Unstar' : 'Star'}
+        title={session.starred ? t('Unstar') : t('Star')}
         onClick={(e) => {
           e.stopPropagation()
           onToggleStar()
@@ -128,11 +129,11 @@ export function HistorySessionRow(props: {
           Kept in-row (not a Modal) so it never fights the Popover's dismiss. */}
       {!renaming && confirmingDelete && (
         <div className="flex shrink-0 items-center gap-0.5">
-          <span className="mr-1 text-[11px] text-white/50">Delete?</span>
+          <span className="mr-1 text-[11px] text-white/50">{t('Delete?')}</span>
           <button
             type="button"
             className="focus-ring rounded p-1 text-[var(--error)] hover:bg-[var(--error)]/20"
-            title="Confirm delete"
+            title={t('Confirm delete')}
             onClick={(e) => {
               e.stopPropagation()
               setConfirmingDelete(false)
@@ -144,7 +145,7 @@ export function HistorySessionRow(props: {
           <button
             type="button"
             className="focus-ring rounded p-1 text-white/40 hover:bg-white/10 hover:text-white/80"
-            title="Cancel"
+            title={t('Cancel')}
             onClick={(e) => {
               e.stopPropagation()
               setConfirmingDelete(false)
@@ -161,7 +162,7 @@ export function HistorySessionRow(props: {
           <button
             type="button"
             className="focus-ring rounded p-1 text-white/40 hover:bg-white/10 hover:text-white/80"
-            title="Rename"
+            title={t('Rename')}
             onClick={(e) => {
               e.stopPropagation()
               beginRename()
@@ -172,7 +173,7 @@ export function HistorySessionRow(props: {
           <button
             type="button"
             className="focus-ring rounded p-1 text-white/40 hover:bg-[var(--error)]/20 hover:text-[var(--error)]"
-            title="Delete"
+            title={t('Delete')}
             onClick={(e) => {
               e.stopPropagation()
               setConfirmingDelete(true)

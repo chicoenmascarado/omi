@@ -11,6 +11,7 @@ import {
   getVoiceOutputDevice
 } from '../../lib/voice/voiceController'
 import type { VoiceSessionState } from '../../lib/voice/sessionMachine'
+import { t } from '../../lib/i18n'
 
 // The realtime voice-session surface (Phase 6). A self-contained component with
 // no positional assumptions, so BOTH the Home chat area (today) and the Phase 4
@@ -85,12 +86,12 @@ export function VoiceSessionSurface(props: { onClose?: () => void }): React.JSX.
       {/* Status text + controls */}
       {state.status === 'idle' && (
         <>
-          <div className="flex-1 text-sm text-white/70">Talk with Omi, hands-free</div>
+          <div className="flex-1 text-sm text-white/70">{t('Talk with Omi, hands-free')}</div>
           <button
             onClick={() => void startVoiceSession()}
             className="rounded-xl bg-white/[0.08] px-3 py-1.5 text-sm font-medium text-white transition-colors hover:bg-white/[0.14]"
           >
-            Start voice chat
+            {t('Start voice chat')}
           </button>
         </>
       )}
@@ -98,13 +99,13 @@ export function VoiceSessionSurface(props: { onClose?: () => void }): React.JSX.
       {state.status === 'connecting' && (
         <>
           <div className="flex-1 text-sm text-white/70">
-            Connecting · {PROVIDER_LABEL[state.provider]}…
+            {t('Connecting ·')} {PROVIDER_LABEL[state.provider]}…
           </div>
           <button
             onClick={close}
             className="rounded-xl px-3 py-1.5 text-sm text-white/60 transition-colors hover:bg-white/[0.08] hover:text-white"
           >
-            Cancel
+            {t('Cancel')}
           </button>
         </>
       )}
@@ -112,12 +113,12 @@ export function VoiceSessionSurface(props: { onClose?: () => void }): React.JSX.
       {state.status === 'live' && (
         <>
           <div className="min-w-0 flex-1 text-sm text-white">
-            {state.muted ? 'Muted' : 'Listening'}
+            {state.muted ? t('Muted') : t('Listening')}
             <span className="ml-2 text-xs text-white/40">{PROVIDER_LABEL[state.provider]}</span>
           </div>
           {devices.length > 1 && (
             <select
-              aria-label="Voice output device"
+              aria-label={t('Voice output device')}
               value={sink}
               onChange={(e) => {
                 setSink(e.target.value)
@@ -125,7 +126,7 @@ export function VoiceSessionSurface(props: { onClose?: () => void }): React.JSX.
               }}
               className="max-w-[180px] truncate rounded-lg border border-white/10 bg-transparent px-2 py-1 text-xs text-white/70 focus:outline-none [&>option]:bg-neutral-900"
             >
-              <option value="">Default output</option>
+              <option value="">{t('Default output')}</option>
               {devices.map((d) => (
                 <option key={d.deviceId} value={d.deviceId}>
                   {d.label}
@@ -135,7 +136,7 @@ export function VoiceSessionSurface(props: { onClose?: () => void }): React.JSX.
           )}
           <button
             onClick={() => setVoiceMuted(!state.muted)}
-            aria-label={state.muted ? 'Unmute microphone' : 'Mute microphone'}
+            aria-label={state.muted ? t('Unmute microphone') : t('Mute microphone')}
             className="rounded-xl bg-white/[0.06] p-2 text-white/80 transition-colors hover:bg-white/[0.12] hover:text-white"
           >
             {state.muted ? <MicOff className="h-4 w-4" /> : <Mic className="h-4 w-4" />}
@@ -144,7 +145,7 @@ export function VoiceSessionSurface(props: { onClose?: () => void }): React.JSX.
             onClick={close}
             className="rounded-xl bg-white/[0.08] px-3 py-1.5 text-sm font-medium text-white transition-colors hover:bg-white/[0.14]"
           >
-            End
+            {t('End')}
           </button>
         </>
       )}
@@ -157,16 +158,16 @@ export function VoiceSessionSurface(props: { onClose?: () => void }): React.JSX.
           {state.retryable && (
             <button
               onClick={() => void startVoiceSession()}
-              aria-label="Try again"
+              aria-label={t('Try again')}
               className="inline-flex items-center gap-1.5 rounded-xl bg-white/[0.08] px-3 py-1.5 text-sm font-medium text-white transition-colors hover:bg-white/[0.14]"
             >
               <RefreshCw className="h-3.5 w-3.5" />
-              Try again
+              {t('Try again')}
             </button>
           )}
           <button
             onClick={close}
-            aria-label="Dismiss voice session"
+            aria-label={t('Dismiss voice session')}
             className="rounded-xl p-2 text-white/60 transition-colors hover:bg-white/[0.08] hover:text-white"
           >
             <X className="h-4 w-4" />

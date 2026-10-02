@@ -19,6 +19,7 @@ import {
 import { memorySourceLabel } from '../../lib/memoryProvenance'
 import { Badge } from '../ui/Badge'
 import { NewBadge } from './NewBadge'
+import { t as i18n } from '../../lib/i18n'
 
 // A compact "whichever apply" metadata row list for the hover info tooltip —
 // the quick-peek surface, distinct from the full detail sheet a card tap opens.
@@ -114,7 +115,7 @@ function MemoryCardImpl({
     >
       <div className="flex items-start justify-between gap-3">
         {protectedMem ? (
-          <p className="italic text-white/40">Protected memory</p>
+          <p className="italic text-white/40">{i18n('Protected memory')}</p>
         ) : (
           <p className="line-clamp-2 text-sm leading-relaxed text-text-primary">{memory.content}</p>
         )}
@@ -155,13 +156,13 @@ function MemoryCardImpl({
         )}
 
         {evidenceDate && (
-          <span className="text-text-quaternary" title="Server evidence time">
-            Evidence {evidenceDate}
+          <span className="text-text-quaternary" title={i18n('Server evidence time')}>
+            {i18n('Evidence')} {evidenceDate}
           </span>
         )}
         {assessmentDate && (
-          <span className="text-text-quaternary" title="Server evidence assessment time">
-            Assessed {assessmentDate}
+          <span className="text-text-quaternary" title={i18n('Server evidence assessment time')}>
+            {i18n('Assessed')} {assessmentDate}
           </span>
         )}
 
@@ -179,17 +180,19 @@ function MemoryCardImpl({
               disabled={useActionBusy}
               onClick={() => onUseAction(memory.id, suppressed ? 'allow' : 'suppress')}
               className="rounded-md px-1.5 py-0.5 text-[10px] text-white/45 transition-colors hover:bg-white/5 hover:text-white/80 disabled:opacity-40"
-              aria-label={suppressed ? 'Allow this memory to be used' : 'Do not use this memory'}
+              aria-label={
+                suppressed ? i18n('Allow this memory to be used') : i18n('Do not use this memory')
+              }
             >
-              {suppressed ? 'Allow use' : "Don't use"}
+              {suppressed ? i18n('Allow use') : i18n("Don't use")}
             </button>
             <button
               type="button"
               disabled={useActionBusy}
               onClick={() => onUseAction(memory.id, 'useful')}
               className="rounded-md p-1 text-white/35 transition-colors hover:bg-white/5 hover:text-white/80 disabled:opacity-40"
-              aria-label="Mark this memory useful"
-              title="Mark useful"
+              aria-label={i18n('Mark this memory useful')}
+              title={i18n('Mark useful')}
             >
               <ThumbsUp className="h-3 w-3" />
             </button>
@@ -204,7 +207,7 @@ function MemoryCardImpl({
                   type="button"
                   onClick={(e) => e.stopPropagation()}
                   className="rounded-md p-1 text-white/30 transition-colors hover:bg-white/5 hover:text-white/70"
-                  aria-label="Memory details"
+                  aria-label={i18n('Memory details')}
                 >
                   <Info className="h-3.5 w-3.5" />
                 </button>

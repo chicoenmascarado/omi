@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { X } from 'lucide-react'
 import type { CaptureSource } from '../../../shared/types'
+import { t } from '../lib/i18n'
 
 export function SourcePicker(props: {
   open: boolean
@@ -11,7 +12,10 @@ export function SourcePicker(props: {
 
   useEffect(() => {
     if (!props.open) return
-    window.omi.getCaptureSources().then(setSources).catch(() => setSources([]))
+    window.omi
+      .getCaptureSources()
+      .then(setSources)
+      .catch(() => setSources([]))
   }, [props.open])
 
   if (!props.open) return null
@@ -27,7 +31,7 @@ export function SourcePicker(props: {
       >
         <div className="mb-5 flex items-center justify-between">
           <h3 className="font-display text-xl font-bold text-text-primary">
-            Choose a window or screen
+            {t('Choose a window or screen')}
           </h3>
           <button
             onClick={props.onClose}
@@ -37,7 +41,9 @@ export function SourcePicker(props: {
           </button>
         </div>
         {sources.length === 0 && (
-          <div className="py-12 text-center text-sm text-text-tertiary">Loading sources…</div>
+          <div className="py-12 text-center text-sm text-text-tertiary">
+            {t('Loading sources…')}
+          </div>
         )}
         <div className="grid grid-cols-3 gap-3">
           {sources.map((s) => (

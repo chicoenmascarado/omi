@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { MonitorX, X } from 'lucide-react'
 import type { RewindCaptureDiagnostics } from '../../../../shared/types'
+import { t } from '../../lib/i18n'
 
 // Shown once, at the top of the main window, when Rewind is enabled but can't
 // actually get a screen source. Before this, the failure (desktopCapturer's
@@ -58,13 +59,15 @@ export function RewindCaptureNotice(): React.JSX.Element | null {
     >
       <MonitorX className="mt-0.5 h-4 w-4 shrink-0 text-white/85" />
       <div className="min-w-0 flex-1">
-        <div className="text-sm font-medium text-white/95">Screen recording isn&apos;t working</div>
+        <div className="text-sm font-medium text-white/95">
+          {t("Screen recording isn't working")}
+        </div>
         <div className="mt-0.5 break-words text-xs leading-relaxed text-white/65">{body}</div>
       </div>
       <button
         onClick={() => setDismissed(true)}
         className="-mr-1 -mt-1 rounded-md p-1 text-white/45 hover:bg-white/10 hover:text-white"
-        aria-label="Dismiss"
+        aria-label={t('Dismiss')}
       >
         <X className="h-3.5 w-3.5" />
       </button>

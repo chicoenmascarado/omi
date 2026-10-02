@@ -26,13 +26,18 @@ function normalizeFontScale(p: Preferences): void {
   p.fontScale = Math.min(FONT_SCALE_MAX, Math.max(FONT_SCALE_MIN, p.fontScale))
 }
 
+// Interface language. 'system' (the default when unset) follows the OS language.
+export type UiLanguagePreference = 'system' | 'en' | 'es' | 'pt-BR'
+
 export type Preferences = {
   captionIntervalMs: number
   showRecordingBadge: boolean
   reduceMotion: boolean
   // Set during the startup wizard.
   displayName?: string
+  // Spoken language for transcription (not the interface language — see uiLanguage).
   language: string
+  uiLanguage?: UiLanguagePreference
   // Spoken-language candidates for push-to-talk (A3). Empty/undefined (default)
   // ⇒ INERT: PTT transcribes with the static `language` above, exactly as
   // before. Non-empty ⇒ per-turn feed-forward — the last provider-detected

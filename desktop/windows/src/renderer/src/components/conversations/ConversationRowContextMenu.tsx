@@ -8,6 +8,7 @@ import { getConversationShareLink } from '../../lib/conversations/mutations'
 import { loadRowTranscript } from '../../lib/conversations/transcript'
 import { toast } from '../../lib/toast'
 import { FolderPickerList } from './FolderPickerList'
+import { t } from '../../lib/i18n'
 
 const EDGE = 8 // px minimum distance from the viewport edge
 const GAP = 4 // px between the parent item and the folder submenu
@@ -96,9 +97,9 @@ export function ConversationRowContextMenu({
     void (async (): Promise<void> => {
       try {
         await navigator.clipboard.writeText(await load())
-        toast(`${label} copied`, { tone: 'success' })
+        toast(t('{label} copied', { label }), { tone: 'success' })
       } catch (e) {
-        toast(`Could not copy ${label.toLowerCase()}`, {
+        toast(t('Could not copy {value}', { value: label.toLowerCase() }), {
           tone: 'error',
           body: (e as Error).message
         })
@@ -138,7 +139,7 @@ export function ConversationRowContextMenu({
       <div
         ref={panelRef}
         role="menu"
-        aria-label="Conversation actions"
+        aria-label={t('Conversation actions')}
         className="surface-panel fixed z-[200] w-56 p-1.5"
         style={{
           top: pos?.top ?? 0,
@@ -157,7 +158,7 @@ export function ConversationRowContextMenu({
           className={itemClass()}
         >
           <Copy className="h-4 w-4 shrink-0 text-white/55" />
-          Copy Transcript
+          {t('Copy Transcript')}
         </button>
 
         {cloud && (
@@ -168,7 +169,7 @@ export function ConversationRowContextMenu({
             className={itemClass()}
           >
             <Link2 className="h-4 w-4 shrink-0 text-white/55" />
-            Copy Link
+            {t('Copy Link')}
           </button>
         )}
 
@@ -184,7 +185,7 @@ export function ConversationRowContextMenu({
           className={itemClass()}
         >
           <Pencil className="h-4 w-4 shrink-0 text-white/55" />
-          Edit Title
+          {t('Edit Title')}
         </button>
 
         {cloud && (
@@ -198,7 +199,7 @@ export function ConversationRowContextMenu({
             className={itemClass()}
           >
             <FolderInput className="h-4 w-4 shrink-0 text-white/55" />
-            <span className="flex-1">Move to Folder</span>
+            <span className="flex-1">{t('Move to Folder')}</span>
             <ChevronRight className="h-4 w-4 shrink-0 text-white/45" />
           </button>
         )}
@@ -215,7 +216,7 @@ export function ConversationRowContextMenu({
           className={itemClass('danger')}
         >
           <Trash2 className="h-4 w-4 shrink-0 text-white/55" />
-          Delete
+          {t('Delete')}
         </button>
       </div>
 
@@ -225,7 +226,7 @@ export function ConversationRowContextMenu({
       {cloud && submenuOpen && (
         <div
           role="menu"
-          aria-label="Move to folder"
+          aria-label={t('Move to folder')}
           className="surface-panel fixed z-[200] max-h-72 w-52 overflow-y-auto p-1.5"
           style={{
             top: subPos?.top ?? 0,

@@ -7,6 +7,7 @@
 import { extractMemories, normalize, type MemorySource } from './memoryExtract'
 import { postMemoriesBatched, type BatchImportTally } from './memoriesBulk'
 import { toast } from './toast'
+import { t } from './i18n'
 
 // Sanity cap for the no-AI line-split fallback: an enormous paste (a multi-thousand
 // line export dump) would otherwise turn one extract into a single absurd import
@@ -75,7 +76,11 @@ export function toastForExtractResult(r: PasteExtractResult): void {
     toast('AI extraction unavailable — used a basic line split', {
       tone: 'warn',
       body: r.truncated
-        ? `${r.fallbackReason} · showing first ${r.memories.length} of ${r.totalBeforeCap} lines`
+        ? t('{fallbackReason} · showing first {length} of {totalBeforeCap} lines', {
+            fallbackReason: r.fallbackReason,
+            length: r.memories.length,
+            totalBeforeCap: r.totalBeforeCap
+          })
         : r.fallbackReason
     })
   }

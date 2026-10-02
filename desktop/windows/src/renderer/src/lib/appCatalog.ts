@@ -1,5 +1,6 @@
 import type { AppCatalogGroup, AppCatalogItem } from './omiApi.generated'
 import { rankSearchResults } from './appRanking'
+import { t } from './i18n'
 
 // Number of apps shown in a capability section before the "See more" affordance.
 // Matches macOS AppsPage (`Array(...prefix(6))`).
@@ -21,9 +22,24 @@ export interface CatalogSectionDef {
 }
 
 export const CATALOG_SECTIONS: CatalogSectionDef[] = [
-  { capabilityId: 'popular', title: 'Other' },
-  { capabilityId: 'external_integration', title: 'Integrations' },
-  { capabilityId: 'proactive_notification', title: 'Realtime Notifications' }
+  {
+    capabilityId: 'popular',
+    get title() {
+      return t('Other')
+    }
+  },
+  {
+    capabilityId: 'external_integration',
+    get title() {
+      return t('Integrations')
+    }
+  },
+  {
+    capabilityId: 'proactive_notification',
+    get title() {
+      return t('Realtime Notifications')
+    }
+  }
 ]
 
 export interface CatalogSection extends CatalogSectionDef {

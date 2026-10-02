@@ -12,6 +12,7 @@ import { useEffect, useState } from 'react'
 import { UserRound } from 'lucide-react'
 import { SettingRow } from '../SettingRow'
 import type { AiUserProfileRecord } from '../../../../../shared/types'
+import { t, uiLocale } from '../../../lib/i18n'
 
 export function AiProfileCard(): React.JSX.Element {
   const [record, setRecord] = useState<AiUserProfileRecord | null>(null)
@@ -93,23 +94,25 @@ export function AiProfileCard(): React.JSX.Element {
   return (
     <SettingRow
       icon={UserRound}
-      title="AI profile"
-      subtitle="A synthesized “about you” summary Omi builds from your memories, tasks, goals, and conversations — used to personalize proactive help."
+      title={t('AI profile')}
+      subtitle={t(
+        'A synthesized “about you” summary Omi builds from your memories, tasks, goals, and conversations — used to personalize proactive help.'
+      )}
       keywords="ai profile about you dossier synthesized personalize regenerate"
     >
       <div className="space-y-3">
         {loading ? (
-          <p className="text-sm text-text-tertiary">Loading…</p>
+          <p className="text-sm text-text-tertiary">{t('Loading…')}</p>
         ) : !record ? (
           // Empty state.
           <div className="space-y-3">
-            <p className="text-sm text-text-tertiary">No profile yet.</p>
+            <p className="text-sm text-text-tertiary">{t('No profile yet.')}</p>
             <button
               onClick={regenerate}
               disabled={generating}
               className="btn-primary px-4 py-2 disabled:opacity-40"
             >
-              {generating ? 'Generating…' : 'Generate Now'}
+              {generating ? t('Generating…') : t('Generate Now')}
             </button>
           </div>
         ) : editing ? (
@@ -127,7 +130,7 @@ export function AiProfileCard(): React.JSX.Element {
                 disabled={saving}
                 className="btn-primary px-4 py-2 disabled:opacity-40"
               >
-                {saving ? 'Saving…' : 'Save'}
+                {saving ? t('Saving…') : t('Save')}
               </button>
               <button
                 onClick={() => {
@@ -137,7 +140,7 @@ export function AiProfileCard(): React.JSX.Element {
                 disabled={saving}
                 className="btn-ghost disabled:opacity-40"
               >
-                Cancel
+                {t('Cancel')}
               </button>
             </div>
           </div>
@@ -148,8 +151,8 @@ export function AiProfileCard(): React.JSX.Element {
               {record.profileText}
             </div>
             <p className="text-xs text-text-tertiary">
-              Last updated: {new Date(record.generatedAt).toLocaleDateString()} · Data sources:{' '}
-              {record.dataSourcesUsed.length}{' '}
+              {t('Last updated:')} {new Date(record.generatedAt).toLocaleDateString(uiLocale())}{' '}
+              {t('· Data sources:')} {record.dataSourcesUsed.length}{' '}
               {record.dataSourcesUsed.length === 1 ? 'item' : 'items'}
             </p>
             <div className="flex flex-wrap items-center gap-2">
@@ -158,14 +161,14 @@ export function AiProfileCard(): React.JSX.Element {
                 disabled={generating}
                 className="btn-ghost disabled:opacity-40"
               >
-                {generating ? 'Regenerating…' : 'Regenerate'}
+                {generating ? t('Regenerating…') : t('Regenerate')}
               </button>
               <button
                 onClick={startEdit}
                 disabled={generating}
                 className="btn-ghost disabled:opacity-40"
               >
-                Edit
+                {t('Edit')}
               </button>
               {confirmingDelete ? (
                 <>
@@ -173,13 +176,13 @@ export function AiProfileCard(): React.JSX.Element {
                     onClick={remove}
                     className="text-sm font-medium text-red-400 hover:text-red-300"
                   >
-                    Confirm delete
+                    {t('Confirm delete')}
                   </button>
                   <button
                     onClick={() => setConfirmingDelete(false)}
                     className="btn-ghost disabled:opacity-40"
                   >
-                    Cancel
+                    {t('Cancel')}
                   </button>
                 </>
               ) : (
@@ -188,7 +191,7 @@ export function AiProfileCard(): React.JSX.Element {
                   disabled={generating}
                   className="text-sm font-medium text-red-400 hover:text-red-300 disabled:opacity-40"
                 >
-                  Delete
+                  {t('Delete')}
                 </button>
               )}
             </div>

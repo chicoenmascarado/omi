@@ -1,12 +1,12 @@
 import { ArrowUpRight, Sparkles } from 'lucide-react'
 import { cn } from '../../../lib/utils'
-import { HUB_SUGGESTIONS } from './hubPrompts'
+import { hubSuggestions } from './hubPrompts'
 
 export function HubSuggestions({ onPick }: { onPick: (text: string) => void }): React.JSX.Element {
   return (
     // VStack(spacing: 8) on Mac (DashboardPage.swift:961).
     <div className="flex w-full flex-col gap-2">
-      {HUB_SUGGESTIONS.map((text) => (
+      {hubSuggestions().map((text) => (
         <button
           key={text}
           type="button"

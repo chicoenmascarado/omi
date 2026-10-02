@@ -10,6 +10,7 @@ import { RewindThumbnailStrip } from '../components/rewind/RewindThumbnailStrip'
 import { RewindDatePicker } from '../components/rewind/RewindDatePicker'
 import { SearchResultsFilmstrip } from '../components/rewind/SearchResultsFilmstrip'
 import { highlightTerms, lineTextMatches } from '../lib/rewindOverlay'
+import { t } from '../lib/i18n'
 
 // macOS parity: typing is debounced before the search runs (RewindViewModel 300ms).
 const SEARCH_DEBOUNCE_MS = 300
@@ -119,15 +120,15 @@ export function Rewind(): React.JSX.Element {
   return (
     <div ref={pageRef} data-testid="rewind-page" className="flex h-full min-h-0 flex-col gap-3 p-4">
       <div className="flex items-center justify-between gap-3">
-        <h1 className="shrink-0 text-lg font-semibold text-white">Rewind</h1>
+        <h1 className="shrink-0 text-lg font-semibold text-white">{t('Rewind')}</h1>
         {frameStatus?.id === requestedFrameId && frameStatus.state === 'unavailable' && (
           <div role="status" className="text-xs text-white/55">
-            This Rewind frame is unavailable.
+            {t('This Rewind frame is unavailable.')}
           </div>
         )}
         {frameStatus?.id === requestedFrameId && frameStatus.state === 'pruned' && (
           <div role="status" className="text-xs text-white/55">
-            This Rewind frame was pruned.
+            {t('This Rewind frame was pruned.')}
           </div>
         )}
         <div className="flex min-w-0 flex-1 items-center justify-end gap-2">
@@ -137,14 +138,14 @@ export function Rewind(): React.JSX.Element {
               ref={inputRef}
               value={query}
               onChange={(e) => changeQuery(e.target.value)}
-              placeholder="Search what was on screen…"
+              placeholder={t('Search what was on screen…')}
               className="w-full rounded-control border border-line bg-white/[0.07] py-1.5 pl-8 pr-8 text-sm text-white outline-none transition-colors placeholder:text-white/35 focus:border-line-strong"
             />
             {searching && (
               <button
                 onClick={clearSearch}
                 className="absolute right-2 top-1/2 -translate-y-1/2 text-white/40 transition-colors hover:text-white"
-                title="Clear search (Esc)"
+                title={t('Clear search (Esc)')}
               >
                 <X className="h-4 w-4" />
               </button>
@@ -156,10 +157,10 @@ export function Rewind(): React.JSX.Element {
             <button
               onClick={() => r.setPlaying(!r.playing)}
               className={CTRL}
-              title={r.playing ? 'Pause' : 'Play'}
+              title={r.playing ? t('Pause') : t('Play')}
             >
               {r.playing ? <Pause className="h-4 w-4" /> : <Play className="h-4 w-4" />}
-              {r.playing ? 'Pause' : 'Play'}
+              {r.playing ? t('Pause') : t('Play')}
             </button>
           )}
         </div>
@@ -188,7 +189,7 @@ export function Rewind(): React.JSX.Element {
             className="inline-flex w-fit items-center gap-1 text-sm text-white/55 transition-colors hover:text-white"
           >
             <ChevronLeft className="h-4 w-4" />
-            Back to results
+            {t('Back to results')}
           </button>
           <RewindPlayer frames={group.frames} cursorTs={r.cursorTs} highlightQuery={query} />
           <RewindTimelineBar
@@ -229,13 +230,13 @@ function ViewModeToggle({
       <button
         onClick={onList}
         className={`${seg} ${!drilldown ? 'bg-white/[0.12] text-white' : 'text-white/55 hover:text-white'}`}
-        title="Results list"
+        title={t('Results list')}
       >
         <List className="h-4 w-4" />
       </button>
       <span
         className={`${seg} ${drilldown ? 'bg-white/[0.12] text-white' : 'text-white/30'}`}
-        title="Timeline (open a result to drill in)"
+        title={t('Timeline (open a result to drill in)')}
       >
         <Clock className="h-4 w-4" />
       </span>

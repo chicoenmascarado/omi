@@ -17,6 +17,7 @@ import { toast } from '../../lib/toast'
 import { startSetupPolling, worksExternally } from '../../lib/appInstall'
 import type { App, AppCatalogItem, AppReview } from '../../lib/omiApi.generated'
 import { AddReviewDialog } from './AddReviewDialog'
+import { t, uiLocale } from '../../lib/i18n'
 
 // GET the app's reviews. Returns the list, or null on any failure so the caller can
 // leave the current reviews on screen (macOS fails silently the same way).
@@ -68,13 +69,15 @@ function ReviewCard({
       }`}
     >
       <div className="mb-1.5 flex items-center justify-between gap-2">
-        <span className="truncate text-xs text-white/55">{review.username || 'Anonymous'}</span>
+        <span className="truncate text-xs text-white/55">{review.username || t('Anonymous')}</span>
         <StarRow score={review.score} />
       </div>
       {review.review && <p className="text-sm leading-relaxed text-white/80">{review.review}</p>}
       {review.response && (
         <div className="mt-2 rounded-lg border border-white/10 bg-white/[0.03] px-3 py-2">
-          <div className="mb-0.5 text-[11px] font-medium text-white/45">Developer response</div>
+          <div className="mb-0.5 text-[11px] font-medium text-white/45">
+            {t('Developer response')}
+          </div>
           <p className="text-xs leading-relaxed text-white/70">{review.response}</p>
         </div>
       )}
@@ -276,9 +279,9 @@ export function AppDetailSheet({
       void window.omi.openExternalUrl(paymentLink)
       startPurchasePoll()
     } else {
-      toast(`${name} is a paid app`, {
+      toast(t('{name} is a paid app', { name }), {
         tone: 'info',
-        body: 'Purchase it in the Omi mobile app to unlock it here.'
+        body: t('Purchase it in the Omi mobile app to unlock it here.')
       })
     }
   }
@@ -293,7 +296,7 @@ export function AppDetailSheet({
       homeUrl || (currentUid && authSteps[0]?.url ? `${authSteps[0].url}?uid=${currentUid}` : null)
     if (!target) return
     void window.omi.openExternalUrl(target).then((ok) => {
-      if (!ok) toast("This app's link is unavailable.", { tone: 'warn' })
+      if (!ok) toast(t("This app's link is unavailable."), { tone: 'warn' })
     })
   }
 
@@ -313,13 +316,15 @@ export function AppDetailSheet({
               aria-describedby={undefined}
               className="pointer-events-auto flex max-h-[85vh] w-full max-w-[520px] flex-col rounded-[var(--radius-card)] border border-white/10 bg-[var(--bg-secondary)] shadow-[0_16px_48px_rgba(0,0,0,0.5)] data-[state=open]:animate-modal-in"
             >
-              <Dialog.Title className="sr-only">{name} details</Dialog.Title>
+              <Dialog.Title className="sr-only">
+                {name} {t('details')}
+              </Dialog.Title>
 
               {/* Close affordance pinned top-right over the scroll body. */}
               <div className="flex justify-end px-3 pt-3">
                 <Dialog.Close
                   className="rounded-md p-1.5 text-white/40 transition-colors hover:bg-white/5 hover:text-white/80"
-                  aria-label="Close"
+                  aria-label={t('Close')}
                 >
                   <X className="h-4 w-4" />
                 </Dialog.Close>
@@ -355,7 +360,11 @@ export function AppDetailSheet({
                           <span className="text-white/35">({ratingCount})</span>
                         </span>
                       )}
-                      {installs > 0 && <span>{installs.toLocaleString()} installs</span>}
+                      {installs > 0 && (
+                        <span>
+                          {installs.toLocaleString(uiLocale())} {t('installs')}
+                        </span>
+                      )}
                     </div>
                   </div>
                   <div className="flex shrink-0 items-center gap-2">
@@ -365,7 +374,7 @@ export function AppDetailSheet({
                         className="inline-flex items-center gap-1.5 rounded-xl border border-white/15 bg-transparent px-4 py-2 text-sm font-medium text-white/80 opacity-60"
                       >
                         <Loader2 className="h-4 w-4 animate-spin" />
-                        Setting up…
+                        {t('Setting up…')}
                       </button>
                     ) : enabled ? (
                       external ? (
@@ -374,7 +383,7 @@ export function AppDetailSheet({
                           className="inline-flex items-center gap-1.5 rounded-xl border border-white/20 bg-white/10 px-4 py-2 text-sm font-medium text-white transition-all duration-200 hover:bg-white/15"
                         >
                           <ArrowUpRight className="h-4 w-4" />
-                          Open
+                          {t('Open')}
                         </button>
                       ) : (
                         <button
@@ -382,7 +391,7 @@ export function AppDetailSheet({
                           className="inline-flex cursor-default items-center gap-1.5 rounded-xl border border-white/20 bg-white/10 px-4 py-2 text-sm font-medium text-white"
                         >
                           <Check className="h-4 w-4" />
-                          Installed
+                          {t('Installed')}
                         </button>
                       )
                     ) : needsPurchase ? (
@@ -413,7 +422,7 @@ export function AppDetailSheet({
                         ) : (
                           <Plus className="h-4 w-4" />
                         )}
-                        Install
+                        {t('Install')}
                       </button>
                     )}
                     {enabled && !settingUp && (
@@ -421,8 +430,8 @@ export function AppDetailSheet({
                         onClick={() => onToggle(app)}
                         disabled={busy}
                         className="rounded-xl border border-white/10 p-2 text-white/40 transition-colors hover:bg-white/5 hover:text-error disabled:opacity-50"
-                        aria-label="Disable app"
-                        title="Disable app"
+                        aria-label={t('Disable app')}
+                        title={t('Disable app')}
                       >
                         <Trash2 className="h-4 w-4" />
                       </button>
@@ -434,7 +443,7 @@ export function AppDetailSheet({
 
                 {/* 3. About. */}
                 {description && (
-                  <Section title="About">
+                  <Section title={t('About')}>
                     <p className="whitespace-pre-wrap text-sm leading-relaxed text-white/75">
                       {description}
                     </p>
@@ -443,7 +452,7 @@ export function AppDetailSheet({
 
                 {/* 4. Setup steps — only when the integration defines auth steps. */}
                 {authSteps.length > 0 && (
-                  <Section title="Setup">
+                  <Section title={t('Setup')}>
                     <div className="space-y-2">
                       {authSteps.map((step, i) => (
                         <button
@@ -464,10 +473,10 @@ export function AppDetailSheet({
                           </span>
                           <span className="min-w-0 flex-1">
                             <span className="block truncate text-sm text-white/85">
-                              {step.name || `Step ${i + 1}`}
+                              {step.name || t('Step {value}', { value: i + 1 })}
                             </span>
                             <span className="block text-xs text-white/45">
-                              {enabled ? 'Completed' : 'Click to complete'}
+                              {enabled ? t('Completed') : t('Click to complete')}
                             </span>
                           </span>
                           <ArrowUpRight className="h-4 w-4 shrink-0 text-white/40" />
@@ -479,7 +488,7 @@ export function AppDetailSheet({
 
                 {/* 5. Capabilities. */}
                 {capabilities.length > 0 && (
-                  <Section title="Capabilities">
+                  <Section title={t('Capabilities')}>
                     <div className="flex flex-wrap gap-2">
                       {capabilities.map((c) => (
                         <span
@@ -495,7 +504,7 @@ export function AppDetailSheet({
 
                 {/* 6. Category. */}
                 {category && (
-                  <Section title="Category">
+                  <Section title={t('Category')}>
                     <span className="rounded-full bg-white/10 px-3 py-1 text-xs text-white/70">
                       {titleize(category)}
                     </span>
@@ -508,19 +517,21 @@ export function AppDetailSheet({
                 <div className="space-y-3">
                   <div className="flex items-center justify-between">
                     <h3 className="text-xs font-semibold uppercase tracking-wide text-white/45">
-                      Reviews
+                      {t('Reviews')}
                     </h3>
                     <button
                       onClick={() => setShowAddReview(true)}
                       className="rounded-lg border border-white/15 px-3 py-1.5 text-xs font-medium text-white/80 transition-colors hover:bg-white/5 hover:text-white"
                     >
-                      {userReview ? 'Edit your review' : 'Add review'}
+                      {userReview ? t('Edit your review') : t('Add review')}
                     </button>
                   </div>
 
                   {userReview && (
                     <div className="space-y-1.5">
-                      <div className="text-[11px] font-medium text-white/40">Your review</div>
+                      <div className="text-[11px] font-medium text-white/40">
+                        {t('Your review')}
+                      </div>
                       <ReviewCard review={userReview} highlight />
                     </div>
                   )}
@@ -534,7 +545,7 @@ export function AppDetailSheet({
                   ) : (
                     !userReview && (
                       <p className="text-sm text-white/45">
-                        No reviews yet. Be the first to review this app.
+                        {t('No reviews yet. Be the first to review this app.')}
                       </p>
                     )
                   )}

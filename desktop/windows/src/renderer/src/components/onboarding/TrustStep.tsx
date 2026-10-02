@@ -1,5 +1,6 @@
 import { Monitor, Mic, Sparkles, type LucideIcon } from 'lucide-react'
 import { StepScaffold } from './StepScaffold'
+import { t } from '../../lib/i18n'
 
 type TrustStepProps = {
   stepIndex: number
@@ -14,18 +15,30 @@ const SOURCE_URL = 'https://github.com/BasedHardware/omi'
 const PERMISSIONS: { icon: LucideIcon; title: string; detail: string }[] = [
   {
     icon: Monitor,
-    title: 'Screen + recording',
-    detail: 'Build context for what you’re working on.'
+    get title() {
+      return t('Screen + recording')
+    },
+    get detail() {
+      return t('Build context for what you’re working on.')
+    }
   },
   {
     icon: Mic,
-    title: 'Microphone',
-    detail: 'Capture voice notes and meeting context.'
+    get title() {
+      return t('Microphone')
+    },
+    get detail() {
+      return t('Capture voice notes and meeting context.')
+    }
   },
   {
     icon: Sparkles,
-    title: 'Take actions in your apps',
-    detail: 'See the active window and, with your approval each time, click and type for you.'
+    get title() {
+      return t('Take actions in your apps')
+    },
+    get detail() {
+      return t('See the active window and, with your approval each time, click and type for you.')
+    }
   }
 ]
 
@@ -39,13 +52,14 @@ export function TrustStep({
     <StepScaffold
       stepIndex={stepIndex}
       totalSteps={totalSteps}
-      eyebrow="BEFORE WE CONTINUE"
-      title="I'm going to ask you for a few permissions"
+      eyebrow={t('BEFORE WE CONTINUE')}
+      title={t("I'm going to ask you for a few permissions")}
     >
       <div className="w-full">
         <p className="text-center text-sm leading-relaxed text-white">
-          Omi is open source and private by design. During setup, we’ll ask you for these
-          permissions to understand your work and help in the right places.
+          {t(
+            'Omi is open source and private by design. During setup, we’ll ask you for these permissions to understand your work and help in the right places.'
+          )}
         </p>
 
         <div className="mt-6 flex flex-col gap-3">
@@ -69,21 +83,21 @@ export function TrustStep({
             onClick={onBack}
             className="rounded-lg bg-black px-5 py-2 text-sm font-medium text-white ring-1 ring-white/15 transition-colors hover:bg-white/5"
           >
-            Back
+            {t('Back')}
           </button>
           <button
             type="button"
             onClick={onContinue}
             className="rounded-lg bg-white px-5 py-2 text-sm font-medium text-black transition-opacity hover:opacity-90"
           >
-            Continue
+            {t('Continue')}
           </button>
           <button
             type="button"
             onClick={() => window.open(SOURCE_URL)}
             className="rounded-lg bg-black px-5 py-2 text-sm font-medium text-white ring-1 ring-white/15 transition-colors hover:bg-white/5"
           >
-            Read the source code
+            {t('Read the source code')}
           </button>
         </div>
       </div>

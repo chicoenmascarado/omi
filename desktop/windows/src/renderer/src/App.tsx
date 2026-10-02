@@ -51,6 +51,7 @@ import { refreshIfStale } from './lib/voice/autoModelSelector'
 import { refreshAboutUserCard, resetAboutUserCard } from './lib/voice/aboutUser'
 import { refreshUserVocabulary, resetUserVocabulary } from './lib/ptt/userVocabulary'
 import { trackEvent } from './lib/analytics'
+import { t } from './lib/i18n'
 
 // The overlay, insight-toast, and hidden capture windows load this same bundle at
 // their own hash routes. Window-singleton hosts (tray state, auth-change fan-out)
@@ -314,7 +315,7 @@ function App(): React.JSX.Element {
       <div className="app-canvas flex h-full items-center justify-center">
         {!IS_SECONDARY_WINDOW && <TitleBar variant="overlay" />}
         <SandboxBadge />
-        <Spinner label="Loading Omi…" />
+        <Spinner label={t('Loading Omi…')} />
       </div>
     )
   }

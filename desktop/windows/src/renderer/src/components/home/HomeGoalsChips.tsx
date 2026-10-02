@@ -9,6 +9,7 @@ import { getCacheUid } from '../../lib/persistentCache'
 import { useThrottledWindowFocus } from '../../lib/focusRefetch'
 import type { GoalResponse as Goal } from '../../lib/omiApi.generated'
 import type { HubHomeWidgetsProps } from './hub/hubHomeWidgetsSlot'
+import { t } from '../../lib/i18n'
 
 // The resting Hub's focused-goals chip row — the compact, single-line surface
 // ported from macOS `FocusedGoalsSection` (WhatMattersNowSection.swift): a row of
@@ -153,7 +154,7 @@ export function HomeGoalsChips({ onShowAll, onOpenGoal }: HubHomeWidgetsProps): 
           <span aria-hidden className="shrink-0 text-[12px] leading-none">
             {DEFAULT_GOAL_EMOJI}
           </span>
-          Set a goal
+          {t('Set a goal')}
         </button>
       </div>
     )
@@ -197,7 +198,7 @@ export function HomeGoalsChips({ onShowAll, onOpenGoal }: HubHomeWidgetsProps): 
         onClick={showAll}
         className="focus-ring ml-auto shrink-0 rounded-full px-2 py-1 text-[11px] font-medium text-home-muted transition-colors duration-150 hover:text-home-ink"
       >
-        All goals
+        {t('All goals')}
       </button>
     </div>
   )

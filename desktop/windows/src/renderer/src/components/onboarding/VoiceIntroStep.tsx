@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import { StepScaffold } from './StepScaffold'
 import { getPreferences } from '../../lib/preferences'
 import { DEFAULT_OVERLAY_ACCELERATOR, acceleratorToTokens } from '../../lib/overlayShortcut'
+import { t as i18n } from '../../lib/i18n'
 
 type VoiceIntroStepProps = {
   stepIndex: number
@@ -123,7 +124,7 @@ export function VoiceIntroStep({
     <StepScaffold
       stepIndex={stepIndex}
       totalSteps={totalSteps}
-      title="Talk to Omi"
+      title={i18n('Talk to Omi')}
       subtitle={subtitle}
       subtitleClassName="text-white"
       align="center"
@@ -132,7 +133,7 @@ export function VoiceIntroStep({
     >
       <div className="mt-2 flex w-full max-w-[420px] flex-col items-center gap-4 rounded-2xl border border-white/5 bg-white/[0.03] px-6 py-9">
         <div className="flex items-center gap-2">
-          <span className="mr-1 text-sm font-medium text-white/50">Hold</span>
+          <span className="mr-1 text-sm font-medium text-white/50">{i18n('Hold')}</span>
           {hotkeyTokens.map((t, i) => (
             <kbd
               key={`${t}-${i}`}
@@ -150,7 +151,8 @@ export function VoiceIntroStep({
           ))}
         </div>
         <p className="text-sm text-white/55">
-          Try asking: <span className="text-white/80">“What’s on my screen?”</span>
+          {i18n('Try asking:')}{' '}
+          <span className="text-white/80">{i18n('“What’s on my screen?”')}</span>
         </p>
       </div>
 
@@ -160,12 +162,13 @@ export function VoiceIntroStep({
         <p className="mt-4 max-w-[420px] text-sm text-amber-400">{problem}</p>
       ) : nudge && !captured ? (
         <p className="mt-4 max-w-[420px] text-sm text-white/55">
-          Keep the keys held down while you speak — a quick press just opens Omi. Let go when you’re
-          done.
+          {i18n(
+            'Keep the keys held down while you speak — a quick press just opens Omi. Let go when you’re done.'
+          )}
         </p>
       ) : waited && !captured ? (
         <p className="mt-4 max-w-[420px] text-sm text-white/55">
-          Can’t get it to work? Continue — you can try this any time from the bar.
+          {i18n('Can’t get it to work? Continue — you can try this any time from the bar.')}
         </p>
       ) : null}
     </StepScaffold>

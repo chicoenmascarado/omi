@@ -3,6 +3,7 @@ import { BillingCard } from './BillingCard'
 import { UsageBar } from './UsageBar'
 import { chatQuotaView, quotaResetText } from '../../../lib/billing'
 import type { ChatUsageQuota } from '../../../lib/omiApi.generated'
+import { t } from '../../../lib/i18n'
 
 /**
  * Chat-usage card (AccountBilling): "Usage this month" with the used/limit
@@ -20,7 +21,7 @@ export function ChatUsageCard(props: {
     <BillingCard
       icon={MessageSquare}
       iconTone={vm.warning ? 'amber' : 'neutral'}
-      title="Usage this month"
+      title={t('Usage this month')}
       subtitle={vm.description}
       trailing={
         <span className="tnum text-sm font-semibold text-text-primary">{vm.valueText}</span>

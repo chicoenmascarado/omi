@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { Sparkles } from 'lucide-react'
 import { StepScaffold } from './StepScaffold'
 import { generateGoal } from '../../lib/goals'
+import { t } from '../../lib/i18n'
 
 type GoalStepProps = {
   stepIndex: number
@@ -102,9 +103,11 @@ export function GoalStep({
     <StepScaffold
       stepIndex={stepIndex}
       totalSteps={totalSteps}
-      eyebrow="GOAL"
-      title="Pick one goal."
-      subtitle="Selecting a correct and detailed goal is very important - Omi will optimize all advice to achieve that goal. Make sure your goal contains a number to measure progress."
+      eyebrow={t('GOAL')}
+      title={t('Pick one goal.')}
+      subtitle={t(
+        'Selecting a correct and detailed goal is very important - Omi will optimize all advice to achieve that goal. Make sure your goal contains a number to measure progress.'
+      )}
       align="left"
       aside={aside}
       onSkip={onSkip}
@@ -122,7 +125,7 @@ export function GoalStep({
             ))}
           </div>
           <GoalCard
-            label="Type my own"
+            label={t('Type my own')}
             selected={false}
             onClick={() => {
               setDraft('')
@@ -142,7 +145,7 @@ export function GoalStep({
             }
           >
             <Sparkles className="h-4 w-4" />
-            {generating ? 'Generating…' : 'Let AI generate it'}
+            {generating ? t('Generating…') : t('Let AI generate it')}
           </button>
         </div>
       ) : (
@@ -152,7 +155,7 @@ export function GoalStep({
             value={draft}
             onChange={(e) => setDraft(e.target.value)}
             rows={3}
-            placeholder="e.g. Ship 2 product features every week"
+            placeholder={t('e.g. Ship 2 product features every week')}
             className="w-full resize-none rounded-xl bg-white/[0.06] px-5 py-4 text-sm text-white/90 placeholder:text-white/30 focus:bg-white/[0.1] focus:outline-none"
           />
           <div className="flex items-center gap-3">
@@ -161,7 +164,7 @@ export function GoalStep({
               onClick={() => setMode('choose')}
               className="rounded-xl bg-white/[0.06] px-5 py-3 text-sm font-medium text-white/70 transition-colors hover:bg-white/[0.1]"
             >
-              Back
+              {t('Back')}
             </button>
             <button
               type="button"
@@ -169,7 +172,7 @@ export function GoalStep({
               disabled={!draft.trim()}
               className="rounded-xl bg-white px-8 py-3 text-sm font-medium text-black transition-opacity hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-50"
             >
-              Continue
+              {t('Continue')}
             </button>
           </div>
         </div>

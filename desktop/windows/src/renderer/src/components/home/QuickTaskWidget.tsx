@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { ListChecks, ChevronRight } from 'lucide-react'
 import type { ActionItemRecord } from '../../../../shared/types'
+import { t as i18n, uiLocale } from '../../lib/i18n'
 
 // Compact dashboard surface for the idle Home screen: a preview of the next
 // couple of open tasks (soonest due first), mirroring the Goals widget. Reads the
@@ -24,11 +25,11 @@ function dueChip(t: ActionItemRecord): { label: string; overdue: boolean } | nul
   const due = startOfDay(t.dueAt)
   const today = startOfDay(Date.now())
   const days = Math.round((due - today) / 86_400_000)
-  if (days < 0) return { label: 'Overdue', overdue: true }
-  if (days === 0) return { label: 'Today', overdue: false }
-  if (days === 1) return { label: 'Tomorrow', overdue: false }
+  if (days < 0) return { label: i18n('Overdue'), overdue: true }
+  if (days === 0) return { label: i18n('Today'), overdue: false }
+  if (days === 1) return { label: i18n('Tomorrow'), overdue: false }
   return {
-    label: new Date(t.dueAt).toLocaleDateString(undefined, { month: 'short', day: 'numeric' }),
+    label: new Date(t.dueAt).toLocaleDateString(uiLocale(), { month: 'short', day: 'numeric' }),
     overdue: false
   }
 }
@@ -93,7 +94,7 @@ export function QuickTaskWidget({ onReady }: { onReady?: () => void }): React.JS
           <ListChecks className="h-4 w-4 text-white/70" />
         </div>
         <div className="flex flex-1 items-center gap-1.5 text-sm font-medium text-white/85">
-          Tasks
+          {i18n('Tasks')}
           <span className="text-white/35">{items.length}</span>
         </div>
         <ChevronRight className="h-4 w-4 shrink-0 text-white/25 transition-colors group-hover:text-white/50" />
@@ -115,7 +116,9 @@ export function QuickTaskWidget({ onReady }: { onReady?: () => void }): React.JS
           )
         })}
         {items.length > MAX_SHOWN && (
-          <p className="text-[11px] text-white/35">+{items.length - MAX_SHOWN} more</p>
+          <p className="text-[11px] text-white/35">
+            +{items.length - MAX_SHOWN} {i18n('more')}
+          </p>
         )}
       </div>
     </Link>

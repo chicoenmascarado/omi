@@ -3,6 +3,7 @@
 // (react-refresh/only-export-components).
 
 import type { Conversation } from '../omiApi.generated'
+import { uiLocale } from '../i18n'
 
 /** "5m 30s" — Mac's duration chip. Under a minute drops the minutes part. */
 export function formatDuration(seconds: number): string {
@@ -32,9 +33,9 @@ export function formatWhen(c: Conversation): string {
   const start = c.started_at ?? c.created_at
   if (!start) return ''
   const s = new Date(start)
-  const date = s.toLocaleDateString(undefined, { month: 'short', day: 'numeric', year: 'numeric' })
+  const date = s.toLocaleDateString(uiLocale(), { month: 'short', day: 'numeric', year: 'numeric' })
   const time = (d: Date): string =>
-    d.toLocaleTimeString(undefined, { hour: 'numeric', minute: '2-digit' })
+    d.toLocaleTimeString(uiLocale(), { hour: 'numeric', minute: '2-digit' })
   if (!c.finished_at) return `${date} · ${time(s)}`
   return `${date} · ${time(s)} – ${time(new Date(c.finished_at))}`
 }

@@ -6,6 +6,7 @@
 import { useEffect, useState } from 'react'
 import type { InsightPayload, MeetingToastPayload, WhatsNewPayload } from '../../../../shared/types'
 import './insight-toast.css'
+import { t } from '../../lib/i18n'
 
 type ToastContent =
   | { type: 'insight'; p: InsightPayload }
@@ -22,16 +23,18 @@ function WhatsNewCard({ p }: { p: WhatsNewPayload }): React.JSX.Element {
       onMouseLeave={() => window.omi.insightHoverEnd()}
     >
       <div className="insight-head">
-        <span className="insight-cat">What&apos;s new</span>
+        <span className="insight-cat">{t("What's new")}</span>
         <button
           className="insight-x"
           onClick={() => window.omi.insightDismiss()}
-          aria-label="Dismiss"
+          aria-label={t('Dismiss')}
         >
           ✕
         </button>
       </div>
-      <div className="insight-headline">New in Omi {p.version}</div>
+      <div className="insight-headline">
+        {t('New in Omi')} {p.version}
+      </div>
       <ul className="whatsnew-list">
         {p.changes.slice(0, 3).map((c, i) => (
           <li key={i}>{c}</li>
@@ -42,7 +45,7 @@ function WhatsNewCard({ p }: { p: WhatsNewPayload }): React.JSX.Element {
           className="meeting-btn meeting-btn-primary"
           onClick={() => window.omi.whatsNewOpenNotes()}
         >
-          View release notes
+          {t('View release notes')}
         </button>
       </div>
     </div>
@@ -61,41 +64,43 @@ function MeetingCard({ p }: { p: MeetingToastPayload }): React.JSX.Element {
       onMouseLeave={() => window.omi.insightHoverEnd()}
     >
       <div className="insight-head">
-        <span className="insight-cat">Meeting detected</span>
+        <span className="insight-cat">{t('Meeting detected')}</span>
         <button
           className="insight-x"
           onClick={() => window.omi.meetingAction(p.meetingId, 'dismiss')}
-          aria-label="Dismiss"
+          aria-label={t('Dismiss')}
         >
           ✕
         </button>
       </div>
       <div className="insight-headline">
         {capturing
-          ? `Omi is capturing — ${p.appName}`
+          ? t('Omi is capturing — {appName}', { appName: p.appName })
           : starting
-            ? `Starting capture — ${p.appName}`
+            ? t('Starting capture — {appName}', { appName: p.appName })
             : failed
               ? errorKind === 'runtime'
-                ? `Capture stopped — ${p.appName}`
+                ? t('Capture stopped — {appName}', { appName: p.appName })
                 : errorKind === 'save'
-                  ? `Capture couldn't be saved — ${p.appName}`
-                  : `Capture didn't start — ${p.appName}`
-              : `${p.appName} looks like a meeting`}
+                  ? t("Capture couldn't be saved — {appName}", { appName: p.appName })
+                  : t("Capture didn't start — {appName}", { appName: p.appName })
+              : t('{appName} looks like a meeting', { appName: p.appName })}
       </div>
       <div className="insight-advice">
         {capturing
-          ? 'Audio is being transcribed into a conversation.'
+          ? t('Audio is being transcribed into a conversation.')
           : starting
-            ? 'Connecting audio and transcription…'
+            ? t('Connecting audio and transcription…')
             : failed
               ? errorKind === 'save'
-                ? 'The recording ended, but Omi could not save the local meeting transcript.'
-                : 'Check your sign-in, internet connection, and Windows microphone access, then retry.'
-              : 'Capture and transcribe this meeting?'}
+                ? t('The recording ended, but Omi could not save the local meeting transcript.')
+                : t(
+                    'Check your sign-in, internet connection, and Windows microphone access, then retry.'
+                  )
+              : t('Capture and transcribe this meeting?')}
       </div>
       {p.firstRun ? (
-        <div className="insight-foot">First run — change this in Settings → General.</div>
+        <div className="insight-foot">{t('First run — change this in Settings → General.')}</div>
       ) : null}
       <div className="meeting-actions">
         {capturing || starting ? (
@@ -103,14 +108,14 @@ function MeetingCard({ p }: { p: MeetingToastPayload }): React.JSX.Element {
             className="meeting-btn"
             onClick={() => window.omi.meetingAction(p.meetingId, 'stop')}
           >
-            {starting ? 'Cancel' : 'Stop'}
+            {starting ? t('Cancel') : t('Stop')}
           </button>
         ) : failed && errorKind === 'save' ? (
           <button
             className="meeting-btn"
             onClick={() => window.omi.meetingAction(p.meetingId, 'dismiss')}
           >
-            Dismiss
+            {t('Dismiss')}
           </button>
         ) : (
           <>
@@ -118,13 +123,13 @@ function MeetingCard({ p }: { p: MeetingToastPayload }): React.JSX.Element {
               className="meeting-btn meeting-btn-primary"
               onClick={() => window.omi.meetingAction(p.meetingId, 'start')}
             >
-              {failed ? 'Retry' : 'Start capturing'}
+              {failed ? t('Retry') : t('Start capturing')}
             </button>
             <button
               className="meeting-btn"
               onClick={() => window.omi.meetingAction(p.meetingId, 'dismiss')}
             >
-              Not now
+              {t('Not now')}
             </button>
           </>
         )}
@@ -196,7 +201,7 @@ export function InsightToast(): React.JSX.Element {
         <button
           className="insight-x"
           onClick={() => window.omi.insightDismiss()}
-          aria-label="Dismiss"
+          aria-label={t('Dismiss')}
         >
           ✕
         </button>
@@ -208,35 +213,35 @@ export function InsightToast(): React.JSX.Element {
           className="insight-foot"
           onClick={() => void window.omi.rewindFocusFrame(jitFeedback.rewindFrameId!)}
         >
-          Open keyframe in Rewind
+          {t('Open keyframe in Rewind')}
         </button>
       ) : null}
       <div className="insight-foot">{insight.sourceApp}</div>
       {jitFeedback ? (
-        <div className="meeting-actions" aria-label="JIT feedback">
+        <div className="meeting-actions" aria-label={t('JIT feedback')}>
           <button
             className="meeting-btn meeting-btn-primary"
             onClick={() => submitJitFeedback('useful')}
           >
-            Useful
+            {t('Useful')}
           </button>
           <button className="meeting-btn" onClick={() => submitJitFeedback('false_positive')}>
-            Not relevant
+            {t('Not relevant')}
           </button>
           <button className="meeting-btn" onClick={() => submitJitFeedback('snooze')}>
-            Snooze
+            {t('Snooze')}
           </button>
           <button className="meeting-btn" onClick={() => submitJitFeedback('disable')}>
-            Disable trigger
+            {t('Disable trigger')}
           </button>
           <button className="meeting-btn" onClick={() => submitJitFeedback('missed_or_late')}>
-            Missed / late
+            {t('Missed / late')}
           </button>
         </div>
       ) : null}
       {feedbackError ? (
         <div role="alert" className="insight-foot">
-          Couldn&apos;t save feedback; it will stay available to retry.
+          {t("Couldn't save feedback; it will stay available to retry.")}
         </div>
       ) : null}
     </div>

@@ -1,5 +1,6 @@
 import * as Dialog from '@radix-ui/react-dialog'
 import { cn } from '../../lib/utils'
+import { t } from '../../lib/i18n'
 
 type ModalSize = 'sm' | 'md' | 'lg'
 
@@ -56,7 +57,7 @@ export function Modal({
           >
             {/* Radix requires a Title for a11y; hide it visually when none is set. */}
             <Dialog.Title className={cn(title ? 'text-lg font-semibold text-white' : 'sr-only')}>
-              {title ?? 'Dialog'}
+              {title ?? t('Dialog')}
             </Dialog.Title>
             <div className={cn('text-sm text-white/70', title && 'mt-2')}>{children}</div>
             {footer && <div className="mt-6 flex items-center justify-end gap-2">{footer}</div>}

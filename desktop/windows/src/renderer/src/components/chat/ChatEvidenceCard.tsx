@@ -11,6 +11,7 @@ import {
   type ChatEvidenceReference,
   type ChatEvidenceReferenceEnvelope
 } from '../../../../shared/knowledgeLedger'
+import { t } from '../../lib/i18n'
 
 type EvidenceStatus = {
   label: string
@@ -30,17 +31,17 @@ const KIND_LABELS: Record<ChatEvidenceReference['kind'], string> = {
 function statusFor(reference: ChatEvidenceReference): EvidenceStatus {
   switch (reference.state) {
     case 'available':
-      return { label: 'Available', Icon: CheckCircle2, className: 'text-emerald-300' }
+      return { label: t('Available'), Icon: CheckCircle2, className: 'text-emerald-300' }
     case 'loading':
-      return { label: 'Loading', Icon: Loader2, className: 'text-white/60' }
+      return { label: t('Loading'), Icon: Loader2, className: 'text-white/60' }
     case 'offline':
-      return { label: 'Unavailable offline', Icon: CloudOff, className: 'text-amber-300' }
+      return { label: t('Unavailable offline'), Icon: CloudOff, className: 'text-amber-300' }
     case 'pruned':
-      return { label: 'No longer available', Icon: CircleSlash, className: 'text-white/50' }
+      return { label: t('No longer available'), Icon: CircleSlash, className: 'text-white/50' }
     case 'failed':
-      return { label: 'Failed to load', Icon: AlertCircle, className: 'text-red-300' }
+      return { label: t('Failed to load'), Icon: AlertCircle, className: 'text-red-300' }
     case 'unknown':
-      return { label: 'Unavailable', Icon: FileWarning, className: 'text-white/50' }
+      return { label: t('Unavailable'), Icon: FileWarning, className: 'text-white/50' }
   }
 }
 
@@ -84,7 +85,7 @@ export function ChatEvidenceReferenceCard({
       ) : null}
       {reference.state === 'unknown' ? (
         <p className="text-[11px] leading-snug text-white/45">
-          This evidence is from an unsupported version and cannot be opened here.
+          {t('This evidence is from an unsupported version and cannot be opened here.')}
         </p>
       ) : null}
     </article>
@@ -101,7 +102,7 @@ export function ChatEvidenceReferenceList({
 }): React.JSX.Element | null {
   if (envelope.references.length === 0) return null
   return (
-    <section aria-label="Supporting evidence" className="flex flex-col gap-1.5">
+    <section aria-label={t('Supporting evidence')} className="flex flex-col gap-1.5">
       {envelope.references.map((reference, index) => (
         <ChatEvidenceReferenceCard
           key={`${reference.id || 'unknown'}-${index}`}

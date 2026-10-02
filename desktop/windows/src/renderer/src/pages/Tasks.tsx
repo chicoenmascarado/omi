@@ -10,6 +10,7 @@ import { toast } from '../lib/toast'
 import { bucketOf, formatDue, startOfDay, startOfDayOffset, type Bucket } from '../lib/taskBuckets'
 import type { ActionItemRecord } from '../../../shared/types'
 import type { Conversation as CloudConversation } from '../lib/omiApi.generated'
+import { t as i18n, tc } from '../lib/i18n'
 
 type ConvMeta = { title: string; emoji?: string }
 
@@ -218,7 +219,7 @@ export function Tasks(): React.JSX.Element {
     try {
       await window.omi.tasksToggle({ backendId: t.backendId, completed: !t.completed })
     } catch (e) {
-      toast('Could not update task', { tone: 'error', body: apiError(e) })
+      toast(i18n('Could not update task'), { tone: 'error', body: apiError(e) })
     } finally {
       markBusy(t.id, false)
     }
@@ -233,7 +234,7 @@ export function Tasks(): React.JSX.Element {
     try {
       await window.omi.tasksUpdate({ backendId: t.backendId, fields })
     } catch (e) {
-      toast('Could not update task', { tone: 'error', body: apiError(e) })
+      toast(i18n('Could not update task'), { tone: 'error', body: apiError(e) })
     } finally {
       markBusy(t.id, false)
     }
@@ -245,7 +246,7 @@ export function Tasks(): React.JSX.Element {
     try {
       await window.omi.tasksDelete({ backendId: t.backendId })
     } catch (e) {
-      toast('Could not delete task', { tone: 'error', body: apiError(e) })
+      toast(i18n('Could not delete task'), { tone: 'error', body: apiError(e) })
     } finally {
       markBusy(t.id, false)
     }
@@ -263,7 +264,7 @@ export function Tasks(): React.JSX.Element {
       setDraft('')
       setDraftDue('')
     } catch (e) {
-      toast('Could not create task', { tone: 'error', body: apiError(e) })
+      toast(i18n('Could not create task'), { tone: 'error', body: apiError(e) })
     } finally {
       setSaving(false)
     }
@@ -520,7 +521,7 @@ export function Tasks(): React.JSX.Element {
         <button
           onClick={() => void toggleItem(t)}
           disabled={isBusy}
-          aria-label={t.completed ? 'Mark as not done' : 'Mark as done'}
+          aria-label={t.completed ? i18n('Mark as not done') : i18n('Mark as done')}
           className={`mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-md border transition-all duration-200 ${
             t.completed
               ? 'border-white/30 bg-white/15 text-white'
@@ -549,7 +550,7 @@ export function Tasks(): React.JSX.Element {
                 if (isBusy) return
                 startEdit(t)
               }}
-              title="Click to edit"
+              title={i18n('Click to edit')}
               className={`block w-full text-left text-sm leading-relaxed ${
                 t.completed ? 'text-white/40 line-through' : 'text-white/90'
               }`}
@@ -581,7 +582,7 @@ export function Tasks(): React.JSX.Element {
                       setDueEditingId(null)
                     }}
                     className="text-white/40 hover:text-white/70"
-                    title="Clear due date"
+                    title={i18n('Clear due date')}
                   >
                     <X className="h-3 w-3" />
                   </button>
@@ -599,10 +600,10 @@ export function Tasks(): React.JSX.Element {
                       : 'text-white/65'
                     : 'text-white/35'
                 }`}
-                title="Set due date"
+                title={i18n('Set due date')}
               >
                 <Calendar className="h-3 w-3" />
-                {t.dueAt != null ? formatDue(t.dueAt) : 'Set date'}
+                {t.dueAt != null ? formatDue(t.dueAt) : i18n('Set date')}
               </button>
             )}
 
@@ -622,8 +623,8 @@ export function Tasks(): React.JSX.Element {
           onClick={() => void deleteItem(t)}
           disabled={isBusy}
           className="mt-0.5 shrink-0 rounded-md p-1 text-white/30 opacity-0 transition-all hover:bg-white/5 hover:text-rose-300/80 group-hover:opacity-100 disabled:opacity-0"
-          title="Delete task"
-          aria-label="Delete task"
+          title={i18n('Delete task')}
+          aria-label={i18n('Delete task')}
         >
           <Trash2 className="h-4 w-4" />
         </button>
@@ -634,9 +635,13 @@ export function Tasks(): React.JSX.Element {
   return (
     <div className="flex h-full flex-col">
       <PageHeader
-        title="Tasks"
+        title={i18n('Tasks')}
         titleSlot={<TasksGoalsToggle />}
-        subtitle={loading ? 'Loading…' : `${openCount} open · ${doneCount} done`}
+        subtitle={
+          loading
+            ? i18n('Loading…')
+            : i18n('{openCount} open · {doneCount} done', { openCount, doneCount })
+        }
         actions={
           <div className="flex items-center gap-2">
             <div className="flex items-center gap-1 rounded-2xl border border-white/10 bg-black/20 p-1">
@@ -650,23 +655,23 @@ export function Tasks(): React.JSX.Element {
                       : 'text-white/55 hover:bg-white/5 hover:text-white/80'
                   }`}
                 >
-                  {f}
+                  {tc('task-filter', f)}
                 </button>
               ))}
             </div>
             <button
               onClick={() => setComposing((c) => !c)}
               className="btn-primary px-3 py-2"
-              title="Add a task"
+              title={i18n('Add a task')}
             >
               <Plus className="h-4 w-4" />
-              New
+              {i18n('New')}
             </button>
             <button
               onClick={onRefresh}
               disabled={refreshing || loading}
               className="btn-ghost px-3 py-2 disabled:opacity-50"
-              title="Refresh"
+              title={i18n('Refresh')}
             >
               <RefreshCw className={`h-4 w-4 ${refreshing ? 'animate-spin' : ''}`} />
             </button>
@@ -691,7 +696,7 @@ export function Tasks(): React.JSX.Element {
                     setDraftDue('')
                   }
                 }}
-                placeholder="What needs to get done?"
+                placeholder={i18n('What needs to get done?')}
                 className="input-field"
               />
               <div className="mt-3 flex items-center gap-2">
@@ -713,14 +718,14 @@ export function Tasks(): React.JSX.Element {
                   className="btn-ghost ml-auto px-3 py-2"
                   disabled={saving}
                 >
-                  Cancel
+                  {i18n('Cancel')}
                 </button>
                 <button
                   onClick={saveNew}
                   disabled={saving || !draft.trim()}
                   className="btn-primary px-4 py-2 disabled:opacity-40"
                 >
-                  {saving ? <Loader2 className="h-4 w-4 animate-spin" /> : 'Add task'}
+                  {saving ? <Loader2 className="h-4 w-4 animate-spin" /> : i18n('Add task')}
                 </button>
               </div>
             </div>
@@ -743,7 +748,7 @@ export function Tasks(): React.JSX.Element {
 
         {error && (
           <div className="surface-panel mb-5 px-4 py-3 text-sm text-white/60">
-            <p className="text-white/80">Couldn’t load your tasks.</p>
+            <p className="text-white/80">{i18n('Couldn’t load your tasks.')}</p>
             <div className="mt-2 flex items-center gap-3">
               <button
                 onClick={() => {
@@ -754,7 +759,7 @@ export function Tasks(): React.JSX.Element {
                 className="btn-ghost px-3 py-1.5 text-xs"
               >
                 <RefreshCw className="h-3.5 w-3.5" />
-                Try again
+                {i18n('Try again')}
               </button>
               <span className="text-xs text-white/35">{error}</span>
             </div>
@@ -764,15 +769,17 @@ export function Tasks(): React.JSX.Element {
         {!loading && !error && items.length === 0 && !composing && (
           <EmptyState
             icon={ListChecks}
-            title="No tasks yet"
-            description="Action items from your conversations show up here, alongside any tasks you add. Click New to create one."
+            title={i18n('No tasks yet')}
+            description={i18n(
+              'Action items from your conversations show up here, alongside any tasks you add. Click New to create one.'
+            )}
           />
         )}
 
         {!loading && items.length > 0 && visible.length === 0 && (
           <div className="flex flex-col items-center justify-center pt-16 text-center text-white/55">
             <Check className="mb-3 h-10 w-10 opacity-40" />
-            <p className="text-sm">All caught up.</p>
+            <p className="text-sm">{i18n('All caught up.')}</p>
           </div>
         )}
 
@@ -790,7 +797,7 @@ export function Tasks(): React.JSX.Element {
             {doneItems.length > 0 && (
               <section>
                 <h2 className="mb-2 flex items-center gap-2 px-1 text-xs font-semibold uppercase tracking-wide text-white/40">
-                  Completed
+                  {i18n('Completed')}
                   <span className="text-white/25">{doneItems.length}</span>
                 </h2>
                 <ul className="space-y-2">{doneItems.map(renderRow)}</ul>

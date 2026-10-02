@@ -5,6 +5,7 @@ import { getPreferences, setPreferences } from '../../../lib/preferences'
 import { setDisplayName } from '../../../lib/userProfile'
 import { toast } from '../../../lib/toast'
 import { SettingRow } from '../SettingRow'
+import { t } from '../../../lib/i18n'
 
 export function AccountTab(): React.JSX.Element {
   const prefs = getPreferences()
@@ -14,38 +15,38 @@ export function AccountTab(): React.JSX.Element {
   // row now owns only the display name.
   const saveProfile = (): void => {
     setPreferences({ displayName: name.trim() })
-    void setDisplayName(name.trim()).catch(() => toast('Name sync failed', { tone: 'warn' }))
-    toast('Profile saved', { tone: 'success' })
+    void setDisplayName(name.trim()).catch(() => toast(t('Name sync failed'), { tone: 'warn' }))
+    toast(t('Profile saved'), { tone: 'success' })
   }
 
   return (
     <>
       <SettingRow
         icon={User}
-        title="Profile"
-        subtitle="Your display name."
+        title={t('Profile')}
+        subtitle={t('Your display name.')}
         keywords="name profile display"
       >
         <div className="space-y-3">
           <input
             value={name}
             onChange={(e) => setName(e.target.value)}
-            placeholder="Your name"
+            placeholder={t('Your name')}
             className="glass-subtle w-full rounded-lg px-4 py-3 text-sm text-text-secondary focus:outline-none"
           />
           <button onClick={saveProfile} className="btn-ghost">
-            Save
+            {t('Save')}
           </button>
         </div>
       </SettingRow>
       <SettingRow
         icon={LogOut}
-        title="Signed in"
-        subtitle={auth.currentUser?.email ?? '(not signed in)'}
+        title={t('Signed in')}
+        subtitle={auth.currentUser?.email ?? t('(not signed in)')}
         keywords="account email sign out logout"
         control={
           <button onClick={signOutUser} className="btn-ghost">
-            Sign out
+            {t('Sign out')}
           </button>
         }
       />

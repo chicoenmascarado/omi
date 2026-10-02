@@ -1,6 +1,7 @@
 import { ChevronRight, Plus } from 'lucide-react'
 import { ConnectorBrandMark, type ConnectorBrand } from './ConnectorBrandMark'
 import { slugify } from '../../../../lib/kgTech'
+import { t } from '../../../../lib/i18n'
 
 // A single tile in the Connections tray — the faithful port of macOS's
 // HomeAIChoiceButton (DashboardPage.swift). A 48px rounded row: a brand icon in a
@@ -47,7 +48,7 @@ export function TrayTile(props: {
         {title}
       </span>
       {connected && (
-        <span className="shrink-0 text-[11px] font-medium text-home-faint">Connected</span>
+        <span className="shrink-0 text-[11px] font-medium text-home-faint">{t('Connected')}</span>
       )}
       <ChevronRight className="h-3.5 w-3.5 shrink-0 text-home-faint" strokeWidth={2.25} />
     </button>

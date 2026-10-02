@@ -1,4 +1,5 @@
 import { cn } from '../../lib/utils'
+import { t } from '../../lib/i18n'
 
 type ToggleProps = {
   checked: boolean
@@ -26,7 +27,7 @@ export function Toggle({
       type="button"
       role="switch"
       aria-checked={checked}
-      aria-label={label ?? ariaLabel ?? 'Toggle'}
+      aria-label={label ?? ariaLabel ?? t('Toggle')}
       disabled={disabled}
       onClick={() => onChange(!checked)}
       className={cn(

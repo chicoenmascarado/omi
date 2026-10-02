@@ -2,6 +2,7 @@ import { createElement, Suspense } from 'react'
 import { Loader2 } from 'lucide-react'
 import { getHubConnectContent } from './hubConnectSlot'
 import { ErrorBoundary } from '../../ui/ErrorBoundary'
+import { t } from '../../../lib/i18n'
 
 // The Connect stage — the slide-down panel the ask bar's "Connect" toggle reveals.
 //
@@ -26,7 +27,7 @@ import { ErrorBoundary } from '../../ui/ErrorBoundary'
 function RestingState(): React.JSX.Element {
   return (
     <div className="flex flex-1 items-center justify-center">
-      <p className="text-[13px] font-medium text-home-muted">Connections are coming soon.</p>
+      <p className="text-[13px] font-medium text-home-muted">{t('Connections are coming soon.')}</p>
     </div>
   )
 }
@@ -43,7 +44,7 @@ function LoadingState(): React.JSX.Element {
       <Loader2
         className="h-5 w-5 animate-spin text-home-faint"
         strokeWidth={2}
-        aria-label="Loading connections"
+        aria-label={t('Loading connections')}
       />
     </div>
   )

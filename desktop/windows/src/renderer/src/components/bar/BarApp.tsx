@@ -43,6 +43,7 @@ import type {
   VoiceHubBarState
 } from '../../../../shared/types'
 import './bar.css'
+import { t } from '../../lib/i18n'
 
 const PILL = { width: 148, height: 36 }
 const PANEL_WIDTH = 336
@@ -71,12 +72,12 @@ const HUB_ORB_IDLE: VoiceHubBarState = {
 function SignedOutContent(): React.JSX.Element {
   return (
     <div className="flex flex-col items-center gap-3 px-6 pb-5 pt-6 text-center text-neutral-100">
-      <div className="text-sm text-neutral-300">Sign in to Omi to chat.</div>
+      <div className="text-sm text-neutral-300">{t('Sign in to Omi to chat.')}</div>
       <button
         onClick={() => window.omiOverlay.focusMain()}
         className="rounded-xl bg-neutral-200 px-4 py-2 text-sm font-medium text-neutral-900"
       >
-        Open Omi to sign in
+        {t('Open Omi to sign in')}
       </button>
     </div>
   )
@@ -635,7 +636,7 @@ export function BarApp(): React.JSX.Element {
           <div
             className={`bar-content ${!expanded ? 'bar-content-active' : ''}`}
             role="button"
-            aria-label="Open Omi"
+            aria-label={t('Open Omi')}
             tabIndex={-1}
             onClick={() => window.omiBar.expand()}
           >
@@ -643,7 +644,7 @@ export function BarApp(): React.JSX.Element {
               {/* Slot reserving the pill orb's footprint; the real orb is the ONE
                   persistent mount below, overlaid here so the label stays put. */}
               <div className="h-[26px] w-[26px] shrink-0" aria-hidden />
-              <span className="bar-pill-label">{pillText}</span>
+              <span className="bar-pill-label">{t(pillText)}</span>
             </div>
           </div>
 
@@ -658,7 +659,7 @@ export function BarApp(): React.JSX.Element {
               </div>
               <div className="bar-zoom">
                 {!ready ? (
-                  <div className="px-4 pb-4 pt-2 text-sm text-neutral-400">Loading…</div>
+                  <div className="px-4 pb-4 pt-2 text-sm text-neutral-400">{t('Loading…')}</div>
                 ) : !user ? (
                   <SignedOutContent />
                 ) : view === 'agent' && activePill ? (

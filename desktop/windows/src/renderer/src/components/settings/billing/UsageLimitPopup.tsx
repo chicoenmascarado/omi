@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { AlertTriangle, X } from 'lucide-react'
 import { onUsageLimit, dismissUsageLimit, type UsageLimitReason } from '../../../lib/usageLimit'
 import { requestSettingsTab } from '../../../lib/settingsNav'
+import { t } from '../../../lib/i18n'
 
 // Fixed headline + per-reason body (UsageLimitPopupView parity). Mac's Upgrade
 // button is purple; Windows uses the app's neutral white primary (INV-UI-1: no
@@ -55,7 +56,7 @@ export function UsageLimitPopup(): React.JSX.Element | null {
         <button
           onClick={dismissUsageLimit}
           className="absolute right-3 top-3 rounded-md p-1 text-white/40 hover:bg-white/10 hover:text-white"
-          aria-label="Dismiss"
+          aria-label={t('Dismiss')}
         >
           <X className="h-4 w-4" />
         </button>
@@ -68,13 +69,13 @@ export function UsageLimitPopup(): React.JSX.Element | null {
           onClick={onUpgrade}
           className="mt-6 w-full rounded-2xl bg-white px-4 py-2.5 text-sm font-semibold text-black transition hover:opacity-90"
         >
-          Upgrade
+          {t('Upgrade')}
         </button>
         <button
           onClick={onBringYourOwnKeys}
           className="mt-2 w-full rounded-2xl px-4 py-2.5 text-sm font-medium text-text-tertiary transition hover:text-text-primary"
         >
-          Bring your own keys
+          {t('Bring your own keys')}
         </button>
       </div>
     </div>

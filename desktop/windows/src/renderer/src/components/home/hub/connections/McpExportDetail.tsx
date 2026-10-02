@@ -11,6 +11,7 @@ import {
 import { McpConfigConnectorRow } from './McpConfigConnectorRow'
 import { McpCloudConnectorCard } from './McpCloudConnectorCard'
 import { MemoryPackRow } from './MemoryPackRow'
+import { t } from '../../../../lib/i18n'
 
 // The detail body for one export destination in the "Use omi memory anywhere"
 // column. Each destination shows its config-write connector(s) — the row that
@@ -56,9 +57,9 @@ export function McpExportDetail({ exportId }: { exportId: string }): React.JSX.E
     try {
       await rotateMcpKey()
       await refresh()
-      toast('Rotated your Omi memory key', { tone: 'success' })
+      toast(t('Rotated your Omi memory key'), { tone: 'success' })
     } catch (e) {
-      toast('Could not rotate key', { tone: 'error', body: (e as Error).message })
+      toast(t('Could not rotate key'), { tone: 'error', body: (e as Error).message })
     } finally {
       setRotating(false)
     }
@@ -89,7 +90,7 @@ export function McpExportDetail({ exportId }: { exportId: string }): React.JSX.E
           className="focus-ring mt-4 inline-flex items-center gap-1.5 self-start rounded-lg py-1 pl-1 pr-2 text-[12px] font-medium text-home-muted transition-colors hover:text-home-ink disabled:opacity-50"
         >
           <RefreshCw className={`h-3.5 w-3.5 ${rotating ? 'animate-spin' : ''}`} strokeWidth={2} />
-          {rotating ? 'Rotating…' : 'Rotate memory key'}
+          {rotating ? t('Rotating…') : t('Rotate memory key')}
         </button>
       )}
     </div>

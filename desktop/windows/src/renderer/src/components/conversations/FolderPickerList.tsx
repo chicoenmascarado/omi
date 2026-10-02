@@ -1,6 +1,7 @@
 import { Check, FolderMinus } from 'lucide-react'
 import type { ConversationFolder } from '../../../../shared/types'
 import { DEFAULT_FOLDER_COLOR } from './folderColors'
+import { t } from '../../lib/i18n'
 
 // The folder-list body shared by the two move-to-folder surfaces: the row's
 // hover MoveToFolderMenu dropdown and the row context menu's "Move to Folder"
@@ -22,7 +23,7 @@ export function FolderPickerList({
   return (
     <>
       {folders.length === 0 && (
-        <div className="px-2.5 py-2 text-xs text-white/45">No folders yet</div>
+        <div className="px-2.5 py-2 text-xs text-white/45">{t('No folders yet')}</div>
       )}
       {folders.map((f) => (
         <button
@@ -53,7 +54,7 @@ export function FolderPickerList({
             className="flex w-full items-center gap-2 rounded-lg px-2.5 py-2 text-left text-sm text-white/60 transition-colors hover:bg-white/10 hover:text-white"
           >
             <FolderMinus className="h-3.5 w-3.5 shrink-0" />
-            Remove from folder
+            {t('Remove from folder')}
           </button>
         </div>
       )}

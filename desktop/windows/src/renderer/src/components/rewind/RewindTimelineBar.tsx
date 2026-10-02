@@ -13,11 +13,12 @@ import {
 } from '../../../../shared/timelineGeometry'
 import { useElementWidth } from '../../hooks/useElementWidth'
 import { isSameDay } from '../../../../shared/relativeTime'
+import { t as i18n, uiLocale } from '../../lib/i18n'
 
 const clockLabel = (ts: number): string =>
-  new Date(ts).toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' })
+  new Date(ts).toLocaleTimeString(uiLocale(), { hour: 'numeric', minute: '2-digit' })
 const dateLabel = (ts: number): string =>
-  new Date(ts).toLocaleDateString([], { month: 'short', day: 'numeric' })
+  new Date(ts).toLocaleDateString(uiLocale(), { month: 'short', day: 'numeric' })
 
 // Fixed horizontal time scale for the ACTIVITY portions, so the bar is a broad
 // scrollable timeline you can pan across — not a squished fit-to-width overview.
@@ -129,7 +130,7 @@ export function RewindTimelineBar({
   return (
     <div className="w-full">
       <div className="mb-1 text-[10px] uppercase tracking-wide text-white/40">
-        Activity · click to jump · scroll to pan
+        {i18n('Activity · click to jump · scroll to pan')}
       </div>
       <div
         ref={outerRef}

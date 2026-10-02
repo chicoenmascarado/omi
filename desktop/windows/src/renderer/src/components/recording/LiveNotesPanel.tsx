@@ -3,6 +3,7 @@ import { Sparkles, Pencil, Trash2, Loader2, Plus, X, Check, NotebookPen } from '
 import { liveNotesMonitor } from '../../lib/liveNotes/liveNotesMonitor'
 import { Toggle } from '../settings/Toggle'
 import type { LiveNote } from '../../../../shared/types'
+import { t, uiLocale } from '../../lib/i18n'
 
 // PR8 LiveNotes panel — the right pane of the live-conversation split. Renders the
 // running list of AI-generated + user-typed notes and lets the user add/edit/
@@ -19,7 +20,7 @@ import type { LiveNote } from '../../../../shared/types'
 const AI_ACCENT = 'text-purple-400'
 
 function formatTime(ms: number): string {
-  return new Date(ms).toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' })
+  return new Date(ms).toLocaleTimeString(uiLocale(), { hour: 'numeric', minute: '2-digit' })
 }
 
 function NoteRow({ note }: { note: LiveNote }): React.JSX.Element {
@@ -76,23 +77,31 @@ function NoteRow({ note }: { note: LiveNote }): React.JSX.Element {
           <>
             <button
               onClick={commit}
-              title="Save"
+              title={t('Save')}
               className="text-emerald-400 hover:text-emerald-300"
             >
               <Check className="h-3.5 w-3.5" />
             </button>
-            <button onClick={cancel} title="Cancel" className="text-white/40 hover:text-white/70">
+            <button
+              onClick={cancel}
+              title={t('Cancel')}
+              className="text-white/40 hover:text-white/70"
+            >
               <X className="h-3.5 w-3.5" />
             </button>
           </>
         ) : (
           <div className="flex gap-1 opacity-0 transition-opacity group-hover:opacity-100">
-            <button onClick={startEdit} title="Edit" className="text-white/40 hover:text-white/80">
+            <button
+              onClick={startEdit}
+              title={t('Edit')}
+              className="text-white/40 hover:text-white/80"
+            >
               <Pencil className="h-3.5 w-3.5" />
             </button>
             <button
               onClick={() => void liveNotesMonitor.deleteNote(note.id)}
-              title="Delete"
+              title={t('Delete')}
               className="text-white/40 hover:text-red-400"
             >
               <Trash2 className="h-3.5 w-3.5" />
@@ -134,13 +143,13 @@ export function LiveNotesPanel(): React.JSX.Element {
   return (
     <div className="surface-card flex h-full min-h-[24rem] flex-col p-0">
       <div className="flex items-center justify-between px-4 py-3">
-        <h2 className="section-label">Notes</h2>
+        <h2 className="section-label">{t('Notes')}</h2>
         <div className="flex items-center gap-2.5">
           <Sparkles className={`h-3.5 w-3.5 ${aiEnabled ? AI_ACCENT : 'text-white/30'}`} />
           <Toggle
             on={aiEnabled}
             onChange={(v) => liveNotesMonitor.setAiEnabled(v)}
-            label="AI notes"
+            label={t('AI notes')}
           />
           {generating && <Loader2 className="h-3.5 w-3.5 animate-spin text-white/45" />}
         </div>
@@ -158,8 +167,10 @@ export function LiveNotesPanel(): React.JSX.Element {
         ) : (
           <div className="flex h-full flex-col items-center justify-center gap-2 px-4 text-center">
             <NotebookPen className="h-7 w-7 text-white/25" />
-            <p className="text-sm text-white/45">Notes will appear here</p>
-            {aiEnabled && <p className="text-xs text-white/30">AI generates notes as you speak</p>}
+            <p className="text-sm text-white/45">{t('Notes will appear here')}</p>
+            {aiEnabled && (
+              <p className="text-xs text-white/30">{t('AI generates notes as you speak')}</p>
+            )}
           </div>
         )}
       </div>
@@ -172,13 +183,13 @@ export function LiveNotesPanel(): React.JSX.Element {
           onKeyDown={(e) => {
             if (e.key === 'Enter') addNote()
           }}
-          placeholder="Add a note…"
+          placeholder={t('Add a note…')}
           className="min-w-0 flex-1 bg-transparent text-sm text-white/85 placeholder:text-white/35 outline-none"
         />
         <button
           onClick={addNote}
           disabled={!draft.trim()}
-          title="Add note"
+          title={t('Add note')}
           className={`shrink-0 transition-colors ${draft.trim() ? `${AI_ACCENT} hover:brightness-125` : 'text-white/25'}`}
         >
           <Plus className="h-5 w-5" />

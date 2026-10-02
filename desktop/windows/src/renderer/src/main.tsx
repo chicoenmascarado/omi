@@ -38,6 +38,7 @@ import { AppCrashScreen } from './components/ui/AppCrashScreen'
 import { scrubEventPii } from '../../shared/sentryScrub'
 import { isSecondaryWindow } from './lib/windowRole'
 import { initFontScale } from './lib/fontScale'
+import { installUiLanguageReload, loadUiCatalog, uiLanguage } from './lib/i18n'
 
 // Renderer-side crash reporting. Only initializes when a DSN is configured, so
 // dev builds (and any build without the env var) stay entirely offline. Emails
@@ -66,24 +67,36 @@ if (IS_PRIMARY_WINDOW) window.omi?.perfMark('renderer:eval')
 // first render — main window only (secondary windows are visually exempt).
 if (IS_PRIMARY_WINDOW) initFontScale()
 
-createRoot(document.getElementById('root')!).render(
-  <StrictMode>
-    {/* App-wide net: a render throw anywhere below <App /> degrades to the recovery
-        card instead of a blank window. Inert on the success path — ErrorBoundary
-        renders its children directly (no wrapper element), so this is byte-identical
-        until something throws. SandboxBadge stays its own sibling.
-        The crash card is PRIMARY-WINDOW ONLY: the secondary overlay windows (bar,
-        glow, capture, insight-toast) share this entry but are normally transparent,
-        and the glow window is permanently click-through — an opaque always-on-top
-        card there would be unreachable. `null` reproduces today's exact overlay
-        behavior (a throw unmounts to transparent) while keeping the white-screen
-        net where the C1 bug actually lives (the main window). */}
-    <ErrorBoundary label="app-root" fallback={IS_PRIMARY_WINDOW ? <AppCrashScreen /> : null}>
-      <App />
-    </ErrorBoundary>
-    <SandboxBadge />
-  </StrictMode>
-)
+// Interface language is fixed per window load; a change in Settings (from any
+// window) reloads the main window and the bar so every string switches together.
+document.documentElement.lang = uiLanguage()
+installUiLanguageReload()
+
+function renderApp(): void {
+  createRoot(document.getElementById('root')!).render(
+    <StrictMode>
+      {/* App-wide net: a render throw anywhere below <App /> degrades to the recovery
+          card instead of a blank window. Inert on the success path — ErrorBoundary
+          renders its children directly (no wrapper element), so this is byte-identical
+          until something throws. SandboxBadge stays its own sibling.
+          The crash card is PRIMARY-WINDOW ONLY: the secondary overlay windows (bar,
+          glow, capture, insight-toast) share this entry but are normally transparent,
+          and the glow window is permanently click-through — an opaque always-on-top
+          card there would be unreachable. `null` reproduces today's exact overlay
+          behavior (a throw unmounts to transparent) while keeping the white-screen
+          net where the C1 bug actually lives (the main window). */}
+      <ErrorBoundary label="app-root" fallback={IS_PRIMARY_WINDOW ? <AppCrashScreen /> : null}>
+        <App />
+      </ErrorBoundary>
+      <SandboxBadge />
+    </StrictMode>
+  )
+}
+
+// English needs no catalog, so it renders synchronously exactly as before; other
+// languages fetch their (lazy) catalog first and render English if that fails.
+if (uiLanguage() === 'en') renderApp()
+else void loadUiCatalog().then(renderApp, renderApp)
 
 // Report the first painted frame to the main process for the startup benchmark.
 // Two rAFs: the first fires before paint, the second after the first frame is on

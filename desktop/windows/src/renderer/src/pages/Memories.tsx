@@ -24,6 +24,7 @@ import { UndoDeleteToast } from '../components/memories/UndoDeleteToast'
 import { auth } from '../lib/firebase'
 import { useThrottledWindowFocus } from '../lib/focusRefetch'
 import type { MemoryReadView } from '../lib/memoriesCache'
+import { t as i18n, uiLocale } from '../lib/i18n'
 
 // Cap how many cards render at once so a multi-thousand list stays responsive;
 // filtering/selection still operate on the full (filtered) set, not just what's
@@ -52,8 +53,7 @@ export function Memories(): React.JSX.Element {
   // Keep the view safe during the synchronous render in which a response clears
   // the beta capability. The state retains the user's prior selection so it can
   // be restored if the capability is advertised again later.
-  const effectiveMemoryView: MemoryReadView =
-    beliefEnabled === false ? 'useful_now' : memoryView
+  const effectiveMemoryView: MemoryReadView = beliefEnabled === false ? 'useful_now' : memoryView
   // Pass the live memories so the brain map scopes the server KG to entities
   // that reference a memory you actually have (no account-wide bloat / phantoms),
   // drops the layer when empty, and refetches on add/delete.
@@ -213,10 +213,10 @@ export function Memories(): React.JSX.Element {
     setSaving(true)
     try {
       await createMemory(text, { category: 'manual' })
-      toast('Memory created', { tone: 'info' })
+      toast(i18n('Memory created'), { tone: 'info' })
       closeCompose()
     } catch (e) {
-      toast('Could not create memory', { tone: 'error', body: (e as Error).message })
+      toast(i18n('Could not create memory'), { tone: 'error', body: (e as Error).message })
     } finally {
       setSaving(false)
     }
@@ -230,7 +230,7 @@ export function Memories(): React.JSX.Element {
       // like it reverted. Mirrors onToggleVisibility below.
       setDetailMemory((cur) => (cur && cur.id === id ? { ...cur, content } : cur))
     } catch (e) {
-      toast('Could not update memory', { tone: 'error', body: (e as Error).message })
+      toast(i18n('Could not update memory'), { tone: 'error', body: (e as Error).message })
       throw e
     }
   }
@@ -247,7 +247,7 @@ export function Memories(): React.JSX.Element {
           : cur
       )
     } catch (e) {
-      toast('Could not change visibility', { tone: 'error', body: (e as Error).message })
+      toast(i18n('Could not change visibility'), { tone: 'error', body: (e as Error).message })
     } finally {
       setTogglingVis(false)
     }
@@ -279,7 +279,7 @@ export function Memories(): React.JSX.Element {
         tone: 'info'
       })
     } catch (e) {
-      toast('Could not update memory use', { tone: 'error', body: (e as Error).message })
+      toast(i18n('Could not update memory use'), { tone: 'error', body: (e as Error).message })
     } finally {
       setUseActionId(null)
     }
@@ -308,7 +308,7 @@ export function Memories(): React.JSX.Element {
       await deleteMemory(m.id)
     } catch (e) {
       committedDeleteIds.current.delete(m.id)
-      toast('Could not delete memory', { tone: 'error', body: (e as Error).message })
+      toast(i18n('Could not delete memory'), { tone: 'error', body: (e as Error).message })
     }
   }
 
@@ -330,7 +330,7 @@ export function Memories(): React.JSX.Element {
       try {
         setAll(await fetchAllMemories(beliefEnabled ? { view: 'all' } : undefined))
       } catch (e) {
-        toast('Could not load all memories', { tone: 'error', body: (e as Error).message })
+        toast(i18n('Could not load all memories'), { tone: 'error', body: (e as Error).message })
       } finally {
         setLoadingAll(false)
       }
@@ -436,7 +436,7 @@ export function Memories(): React.JSX.Element {
       () => stopRef.stop
     )
     setDeleting(false)
-    toast(`Deleted ${res.deleted} of ${ids.length}`, {
+    toast(i18n('Deleted {deleted} of {count}', { deleted: res.deleted, count: ids.length }), {
       tone: res.failed ? 'warn' : 'success',
       body: res.failed
         ? `${res.failed} failed${res.firstError ? ` — ${res.firstError}` : ''}.`
@@ -451,36 +451,38 @@ export function Memories(): React.JSX.Element {
       : `${manageFiltered.length} shown${selected.size ? ` · ${selected.size} selected` : ''}`
     : loading
       ? 'Loading…'
-      : `${memories.length} memor${memories.length === 1 ? 'y' : 'ies'}`
+      : memories.length === 1
+        ? i18n('{count} memory', { count: memories.length })
+        : i18n('{count} memories', { count: memories.length })
 
   return (
     <div className="flex h-full flex-col">
       <PageHeader
-        title="Memories"
+        title={i18n('Memories')}
         subtitle={headerCount}
         actions={
           manage ? (
             <button onClick={exitManage} className="btn-ghost px-3 py-2" disabled={deleting}>
               <X className="h-4 w-4" />
-              Done
+              {i18n('Done')}
             </button>
           ) : (
             <div className="flex items-center gap-2">
               <button
                 onClick={enterManage}
                 className="btn-ghost px-3 py-2"
-                title="Select & delete memories"
+                title={i18n('Select & delete memories')}
               >
                 <CheckSquare className="h-4 w-4" />
-                Select
+                {i18n('Select')}
               </button>
               <button
                 onClick={() => setComposing((c) => !c)}
                 className="btn-primary px-3 py-2"
-                title="Add a memory"
+                title={i18n('Add a memory')}
               >
                 <Plus className="h-4 w-4" />
-                New
+                {i18n('New')}
               </button>
             </div>
           )
@@ -513,7 +515,7 @@ export function Memories(): React.JSX.Element {
           <input
             value={manageFilter}
             onChange={(e) => setManageFilter(e.target.value)}
-            placeholder="Filter by text (e.g. local projects include)…"
+            placeholder={i18n('Filter by text (e.g. local projects include)…')}
             className="input-field max-w-xs flex-1 py-1.5 text-sm"
           />
           <button
@@ -521,33 +523,33 @@ export function Memories(): React.JSX.Element {
             className="btn-ghost px-3 py-1.5 text-sm"
             disabled={deleting}
           >
-            Select file-index junk
+            {i18n('Select file-index junk')}
           </button>
           <button
             onClick={selectAllFiltered}
             className="btn-ghost px-3 py-1.5 text-sm"
             disabled={deleting}
           >
-            Select all {mq ? 'matching' : ''} ({manageFiltered.length})
+            {i18n('Select all')} {mq ? 'matching' : ''} ({manageFiltered.length})
           </button>
           <button
             onClick={clearSel}
             className="btn-ghost px-3 py-1.5 text-sm"
             disabled={deleting || !selected.size}
           >
-            Clear
+            {i18n('Clear')}
           </button>
           <div className="ml-auto flex items-center gap-2">
             {deleting && (
               <>
                 <span className="text-sm text-text-tertiary">
-                  Deleting {tally.deleted}/{selected.size + tally.deleted}…
+                  {i18n('Deleting')} {tally.deleted}/{selected.size + tally.deleted}…
                 </span>
                 <button
                   onClick={() => (stopRef.stop = true)}
                   className="btn-ghost px-3 py-1.5 text-sm"
                 >
-                  Stop
+                  {i18n('Stop')}
                 </button>
               </>
             )}
@@ -561,7 +563,8 @@ export function Memories(): React.JSX.Element {
               ) : (
                 <Trash2 className="h-4 w-4" />
               )}
-              Delete selected ({selected.size})
+              {i18n('Delete selected (')}
+              {selected.size})
             </button>
           </div>
         </div>
@@ -573,7 +576,7 @@ export function Memories(): React.JSX.Element {
             cold start) stays quiet — the last-known list is on screen. */}
         {error && memories.length === 0 && (
           <div className="glass-subtle mb-5 px-4 py-3 text-sm text-white/60">
-            Failed to load memories: {error}
+            {i18n('Failed to load memories:')} {error}
           </div>
         )}
 
@@ -599,7 +602,7 @@ export function Memories(): React.JSX.Element {
                     />
                   ))}
                 </div>
-                <p className="text-xs text-white/30">Building your memory map…</p>
+                <p className="text-xs text-white/30">{i18n('Building your memory map…')}</p>
               </div>
               <div
                 className={`h-full w-full transition-opacity duration-500 ${graphReady ? 'opacity-100' : 'opacity-0'}`}
@@ -640,8 +643,8 @@ export function Memories(): React.JSX.Element {
               <button
                 onClick={() => navigate('/knowledge-graph')}
                 className="btn-ghost absolute right-3 top-3 z-10 p-2"
-                title="Open the full-screen brain map"
-                aria-label="Open the full-screen brain map"
+                title={i18n('Open the full-screen brain map')}
+                aria-label={i18n('Open the full-screen brain map')}
               >
                 <Maximize2 className="h-4 w-4" />
               </button>
@@ -665,20 +668,22 @@ export function Memories(): React.JSX.Element {
                   }
                 }}
                 rows={3}
-                placeholder="Something Omi should remember about you…"
+                placeholder={i18n('Something Omi should remember about you…')}
                 className="input-field resize-none"
               />
               <div className="mt-3 flex items-center justify-end gap-2">
-                <span className="mr-auto text-xs text-white/35">⌘/Ctrl + Enter to save</span>
+                <span className="mr-auto text-xs text-white/35">
+                  {i18n('⌘/Ctrl + Enter to save')}
+                </span>
                 <button onClick={closeCompose} className="btn-ghost px-3 py-2" disabled={saving}>
-                  Cancel
+                  {i18n('Cancel')}
                 </button>
                 <button
                   onClick={save}
                   disabled={saving || !draft.trim()}
                   className="btn-primary px-4 py-2 disabled:opacity-40"
                 >
-                  {saving ? <Loader2 className="h-4 w-4 animate-spin" /> : 'Save'}
+                  {saving ? <Loader2 className="h-4 w-4 animate-spin" /> : i18n('Save')}
                 </button>
               </div>
             </div>
@@ -689,8 +694,10 @@ export function Memories(): React.JSX.Element {
         {!loading && !error && memories.length === 0 && !composing && (
           <EmptyState
             icon={Brain}
-            title="No memories yet"
-            description="Memories are distilled insights from your conversations. They will show up here as Omi learns about you."
+            title={i18n('No memories yet')}
+            description={i18n(
+              'Memories are distilled insights from your conversations. They will show up here as Omi learns about you.'
+            )}
           />
         )}
 
@@ -698,11 +705,13 @@ export function Memories(): React.JSX.Element {
         {!manage && !loading && memories.length > 0 && filtered.length === 0 && (
           <div className="flex flex-col items-center justify-center pt-12 text-center text-white/55">
             <Search className="mb-3 h-9 w-9 opacity-40" />
-            <p className="text-sm">No results</p>
-            <p className="mt-1 text-xs text-white/40">Try a different search or filter.</p>
+            <p className="text-sm">{i18n('No results')}</p>
+            <p className="mt-1 text-xs text-white/40">
+              {i18n('Try a different search or filter.')}
+            </p>
             {hasActiveFilters && (
               <button onClick={clearFilters} className="btn-ghost mt-4 px-3 py-1.5 text-sm">
-                Clear filters
+                {i18n('Clear filters')}
               </button>
             )}
           </div>
@@ -724,7 +733,7 @@ export function Memories(): React.JSX.Element {
         )}
         {!manage && filtered.length > RENDER_CAP && (
           <p className="mx-auto mt-4 max-w-4xl text-center text-sm text-text-tertiary">
-            Showing first {RENDER_CAP} of {filtered.length}.
+            {i18n('Showing first')} {RENDER_CAP} {i18n('of')} {filtered.length}.
           </p>
         )}
 
@@ -754,7 +763,7 @@ export function Memories(): React.JSX.Element {
                         {m.content}
                       </p>
                       <div className="mt-3 flex flex-wrap items-center gap-2 text-xs text-text-quaternary">
-                        <time>{new Date(m.created_at).toLocaleString()}</time>
+                        <time>{new Date(m.created_at).toLocaleString(uiLocale())}</time>
                         {m.category && (
                           <span className="badge text-text-tertiary">{m.category}</span>
                         )}
@@ -768,8 +777,9 @@ export function Memories(): React.JSX.Element {
         )}
         {manage && manageFiltered.length > RENDER_CAP && (
           <p className="mx-auto mt-4 max-w-4xl text-center text-sm text-text-tertiary">
-            Showing first {RENDER_CAP} of {manageFiltered.length}. Selection and delete still apply
-            to all {mq ? 'matching' : ''} {manageFiltered.length}.
+            {i18n('Showing first')} {RENDER_CAP} {i18n('of')} {manageFiltered.length}
+            {i18n('. Selection and delete still apply to all')} {mq ? 'matching' : ''}{' '}
+            {manageFiltered.length}.
           </p>
         )}
       </div>

@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Loader2, Merge } from 'lucide-react'
 import { ModalShell } from './ModalShell'
+import { t } from '../../lib/i18n'
 
 // Confirm a multi-select merge. Copy matches the Mac alert verbatim. Merge is
 // fire-and-forget on the backend (returns {status:'merging'}, no new id) — the
@@ -32,20 +33,21 @@ export function MergeConfirmDialog({
   return (
     <ModalShell onClose={onCancel} labelledBy="merge-title">
       <h2 id="merge-title" className="text-lg font-semibold text-text-primary">
-        Merge {count} conversations?
+        {t('Merge')} {count} {t('conversations?')}
       </h2>
       <p className="mt-2 text-sm leading-relaxed text-text-tertiary">
-        This will combine them into a single conversation and delete the originals. This action
-        cannot be undone.
+        {t(
+          'This will combine them into a single conversation and delete the originals. This action cannot be undone.'
+        )}
       </p>
       {error && <p className="mt-3 text-sm text-red-400">{error}</p>}
       <div className="mt-6 flex justify-end gap-2">
         <button onClick={onCancel} disabled={busy} className="btn-ghost">
-          Cancel
+          {t('Cancel')}
         </button>
         <button onClick={() => void confirm()} disabled={busy} className="btn-primary">
           {busy ? <Loader2 className="h-4 w-4 animate-spin" /> : <Merge className="h-4 w-4" />}
-          Merge
+          {t('Merge')}
         </button>
       </div>
     </ModalShell>

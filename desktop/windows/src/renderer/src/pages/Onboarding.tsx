@@ -38,6 +38,7 @@ import {
   addLanguageNode,
   useOnboardingGraph
 } from '../lib/onboardingGraph'
+import { t } from '../lib/i18n'
 
 const TOTAL_STEPS = 15
 
@@ -79,7 +80,7 @@ export function Onboarding(): React.JSX.Element {
     void addUserNode(name)
     // Best-effort: also set the Firebase displayName (no backend name endpoint).
     void setDisplayName(name).catch(() => {
-      toast('Could not sync your name', { tone: 'warn' })
+      toast(t('Could not sync your name'), { tone: 'warn' })
     })
     next()
   }
@@ -91,7 +92,7 @@ export function Onboarding(): React.JSX.Element {
     setPreferences({ language: code })
     void addLanguageNode(code, languageLabel(code))
     void syncLanguage(code).catch(() => {
-      toast('Saved locally — language sync will retry later', { tone: 'warn' })
+      toast(t('Saved locally — language sync will retry later'), { tone: 'warn' })
     })
     next()
   }
@@ -111,7 +112,7 @@ export function Onboarding(): React.JSX.Element {
     // Best-effort sync to the Omi goals backend — never block onboarding on the
     // network or delay the transition into Chat.
     void createGoal(goal).catch(() => {
-      toast('Saved locally — goal sync will retry later', { tone: 'warn' })
+      toast(t('Saved locally — goal sync will retry later'), { tone: 'warn' })
     })
     next()
   }

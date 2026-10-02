@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Mic, AppWindow, Power, type LucideIcon } from 'lucide-react'
 import { Toggle } from '../settings/Toggle'
+import { t } from '../../lib/i18n'
 
 // The three items every background/privacy consent surface shows. Shared by the
 // onboarding step (BackgroundPrivacyStep) and the one-time interstitial for
@@ -52,36 +53,42 @@ export function BackgroundConsentControls({
     <div className="flex w-full flex-col gap-3">
       <Row
         icon={Mic}
-        title="Continuous listening"
-        detail="Omi listens through your microphone and turns what you hear into conversations automatically. Turn this off to listen only when you ask."
+        title={t('Continuous listening')}
+        detail={t(
+          'Omi listens through your microphone and turns what you hear into conversations automatically. Turn this off to listen only when you ask.'
+        )}
         control={
-          <Toggle on={listening} onChange={onListeningChange} label="Continuous listening" />
+          <Toggle on={listening} onChange={onListeningChange} label={t('Continuous listening')} />
         }
       />
       <Row
         icon={AppWindow}
-        title="Runs in the background"
-        detail="Omi stays in your system tray after you close the window, so it's ready the moment you need it. Quit any time from the tray."
+        title={t('Runs in the background')}
+        detail={t(
+          "Omi stays in your system tray after you close the window, so it's ready the moment you need it. Quit any time from the tray."
+        )}
         control={
           <span className="rounded-full bg-white/10 px-2.5 py-1 text-xs font-medium text-white/70">
-            Always on
+            {t('Always on')}
           </span>
         }
       />
       <Row
         icon={Power}
-        title="Launch at login"
+        title={t('Launch at login')}
         detail={
           launchSupported
-            ? 'Start Omi automatically when you sign in to Windows.'
-            : 'Start Omi automatically when you sign in to Windows. Available in installed builds only.'
+            ? t('Start Omi automatically when you sign in to Windows.')
+            : t(
+                'Start Omi automatically when you sign in to Windows. Available in installed builds only.'
+              )
         }
         control={
           <Toggle
             on={launchAtLogin}
             onChange={onLaunchAtLoginChange}
             disabled={!launchSupported}
-            label="Launch at login"
+            label={t('Launch at login')}
           />
         }
       />

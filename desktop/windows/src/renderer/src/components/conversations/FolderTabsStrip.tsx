@@ -3,6 +3,7 @@ import type { ConversationFolder } from '../../../../shared/types'
 import type { FolderFilter } from '../../lib/conversations/filtering'
 import { DEFAULT_FOLDER_COLOR } from './folderColors'
 import { macPurple } from '../../lib/macPalette'
+import { t } from '../../lib/i18n'
 
 // Horizontal folder strip: fixed "All" + "Starred" chips, one chip per folder,
 // then a "+" create button. Selected chip = textPrimary@0.12 fill + @0.3 stroke
@@ -51,14 +52,14 @@ export function FolderTabsStrip({
         onClick={() => onSelect({ kind: 'all' })}
         className={chipClass(selected.kind === 'all')}
       >
-        All
+        {t('All')}
       </button>
       <button
         onClick={() => onSelect({ kind: 'starred' })}
         className={chipClass(selected.kind === 'starred')}
       >
         <Star className="h-3.5 w-3.5" />
-        Starred
+        {t('Starred')}
       </button>
 
       {folders.map((f) => {
@@ -83,7 +84,7 @@ export function FolderTabsStrip({
                   e.stopPropagation()
                   onEditFolder(f)
                 }}
-                aria-label={`Edit ${f.name}`}
+                aria-label={t('Edit {name}', { name: f.name })}
                 className="absolute right-1.5 top-1/2 hidden -translate-y-1/2 rounded-md p-1 text-white/50 hover:text-white group-hover:block"
               >
                 <Pencil className="h-3 w-3" />
@@ -95,7 +96,7 @@ export function FolderTabsStrip({
 
       <button
         onClick={onCreate}
-        aria-label="New folder"
+        aria-label={t('New folder')}
         className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-white/10 text-white/60 transition-colors hover:border-white/20 hover:bg-white/5 hover:text-white"
       >
         <Plus className="h-4 w-4" />

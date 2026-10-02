@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { Check, Copy } from 'lucide-react'
+import { t } from '../lib/i18n'
 
 // Minimal, dependency-free markdown for chat bubbles. Supports the subset the
 // Omi chat actually emits — headings, bullet/numbered lists, fenced + inline
@@ -81,8 +82,8 @@ function CodeBlock({ code }: { code: string }): React.JSX.Element {
       <button
         type="button"
         onClick={() => void onCopy()}
-        title={copied ? 'Copied' : 'Copy code'}
-        aria-label={copied ? 'Copied' : 'Copy code'}
+        title={copied ? t('Copied') : t('Copy code')}
+        aria-label={copied ? t('Copied') : t('Copy code')}
         className="absolute right-2 top-2 rounded-md border border-line bg-black/40 p-1.5 text-white/60 opacity-0 backdrop-blur transition hover:text-white focus-visible:opacity-100 group-hover/codeblock:opacity-100"
       >
         {copied ? <Check className="h-3.5 w-3.5" /> : <Copy className="h-3.5 w-3.5" />}

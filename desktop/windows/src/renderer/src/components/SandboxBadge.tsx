@@ -1,4 +1,4 @@
-// Dev-only visual marker so multiple sandbox app windows are instantly
+import { t } from '../lib/i18n' // Dev-only visual marker so multiple sandbox app windows are instantly
 // distinguishable. Renders nothing unless VITE_SANDBOX_NAME is set, so it is
 // inert in real builds. Fixed to the bottom-left corner, pointer-events-none so
 // it never intercepts clicks.
@@ -26,7 +26,7 @@ export function SandboxBadge(): React.JSX.Element | null {
     <div
       className="pointer-events-none fixed bottom-2.5 left-2.5 z-[9999] select-none rounded-full px-2.5 py-1 font-display text-[11px] font-semibold tracking-tight shadow-lg ring-1 ring-black/20"
       style={{ backgroundColor: color, color: contrastText(color) }}
-      title={`Sandbox: ${name}`}
+      title={t('Sandbox: {name}', { name })}
     >
       {name}
     </div>

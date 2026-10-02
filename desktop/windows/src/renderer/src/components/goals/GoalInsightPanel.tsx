@@ -5,6 +5,7 @@ import { Modal } from '../ui/Modal'
 import { goalEmoji } from '../../lib/goalEmoji'
 import { progressLabel, progressPct } from '../../lib/goalVisuals'
 import type { GoalResponse as Goal } from '../../lib/omiApi.generated'
+import { t } from '../../lib/i18n'
 
 // Per-goal "Goal Insight" sheet, ported from the macOS `GoalInsightSheet`
 // (frozen v0.12.72) but wired to the RICHER backend endpoint rather than Mac's
@@ -126,12 +127,12 @@ export function GoalInsightPanel({
         <div className="glass-subtle flex h-8 w-8 shrink-0 items-center justify-center rounded-xl">
           <Lightbulb className="h-4 w-4 text-white/80" />
         </div>
-        <h2 className="flex-1 text-base font-semibold text-white">Goal Insight</h2>
+        <h2 className="flex-1 text-base font-semibold text-white">{t('Goal Insight')}</h2>
         <button
           onClick={onClose}
           className="shrink-0 rounded-md p-1 text-white/40 transition-colors hover:bg-white/5 hover:text-white/80"
-          title="Close"
-          aria-label="Close"
+          title={t('Close')}
+          aria-label={t('Close')}
         >
           <X className="h-4 w-4" />
         </button>
@@ -159,7 +160,7 @@ export function GoalInsightPanel({
         {status === 'loading' && (
           <div className="flex flex-col items-center justify-center gap-3 py-6 text-white/55">
             <Loader2 className="h-5 w-5 animate-spin" />
-            <p className="text-sm">Getting personalized insight…</p>
+            <p className="text-sm">{t('Getting personalized insight…')}</p>
           </div>
         )}
 
@@ -174,7 +175,7 @@ export function GoalInsightPanel({
                 className="btn-ghost px-3 py-1.5 text-xs disabled:opacity-40"
               >
                 <RefreshCw className="h-3.5 w-3.5" />
-                Retry
+                {t('Retry')}
               </button>
             )}
           </div>
@@ -183,10 +184,10 @@ export function GoalInsightPanel({
         {status === 'loaded' && (
           <div className="animate-fade-in">
             <p className="text-[11px] font-semibold uppercase tracking-wide text-white/40">
-              This week&apos;s action
+              {t("This week's action")}
             </p>
             <p className="mt-2 whitespace-pre-wrap text-sm leading-relaxed text-white/85">
-              {advice || 'No insight yet. Add a few more conversations and check back.'}
+              {advice || t('No insight yet. Add a few more conversations and check back.')}
             </p>
           </div>
         )}
@@ -200,14 +201,14 @@ export function GoalInsightPanel({
             onClick={refresh}
             disabled={refreshDisabled}
             className="btn-ghost px-4 py-2 disabled:opacity-40"
-            title="Get a fresh insight"
+            title={t('Get a fresh insight')}
           >
             <RefreshCw className={`h-4 w-4 ${status === 'loading' ? 'animate-spin' : ''}`} />
-            Refresh
+            {t('Refresh')}
           </button>
         )}
         <button onClick={onClose} className="btn-primary px-4 py-2">
-          Done
+          {t('Done')}
         </button>
       </div>
     </Modal>

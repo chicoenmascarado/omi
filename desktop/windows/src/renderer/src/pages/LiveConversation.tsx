@@ -5,12 +5,13 @@ import { PageHeader } from '../components/layout/PageHeader'
 import { liveConversation, requestFinalize, type LiveStatus } from '../lib/liveConversation'
 import { LiveNotesPanel } from '../components/recording/LiveNotesPanel'
 import type { TranscriptLine } from '../../../shared/types'
+import { t } from '../lib/i18n'
 
 function statusLabel(status: LiveStatus): string {
-  if (status === 'connecting') return 'Connecting…'
-  if (status === 'live') return 'Listening'
-  if (status === 'error') return 'Microphone unavailable'
-  return 'Idle'
+  if (status === 'connecting') return t('Connecting…')
+  if (status === 'live') return t('Listening')
+  if (status === 'error') return t('Microphone unavailable')
+  return t('Idle')
 }
 
 // Live in-progress transcript of the mic capture (the "New" view). It does not
@@ -59,12 +60,12 @@ export function LiveConversation(): React.JSX.Element {
   return (
     <div className="flex h-full flex-col">
       <PageHeader
-        title={saved ? topic.title || 'Conversation' : 'Live conversation'}
+        title={saved ? topic.title || t('Conversation') : t('Live conversation')}
         titleSlot={
           saved ? (
             <h1 className="truncate font-display text-2xl font-bold tracking-tight text-white">
               {topic.emoji && <span className="mr-1.5">{topic.emoji}</span>}
-              {topic.title || <span className="italic text-white/45">loading…</span>}
+              {topic.title || <span className="italic text-white/45">{t('loading…')}</span>}
             </h1>
           ) : undefined
         }
@@ -76,10 +77,12 @@ export function LiveConversation(): React.JSX.Element {
               onClick={() => requestFinalize()}
               disabled={segments.length === 0 || saved}
               className="btn-record flex items-center gap-2 disabled:opacity-40"
-              title="Finalize this conversation now instead of waiting for the silence boundary"
+              title={t(
+                'Finalize this conversation now instead of waiting for the silence boundary'
+              )}
             >
               <Check className="h-4 w-4" />
-              Save now
+              {t('Save now')}
             </button>
             <span className="badge flex items-center gap-1.5">
               <Loader2 className={`h-3 w-3 ${status === 'live' ? 'animate-spin' : ''}`} />
@@ -94,7 +97,7 @@ export function LiveConversation(): React.JSX.Element {
         <div className="mx-auto flex h-full max-w-6xl flex-col gap-4 lg:flex-row">
           <div className="surface-card flex min-w-0 flex-1 flex-col p-6">
             <div className="mb-4 flex items-center justify-between">
-              <h2 className="section-label">Transcript</h2>
+              <h2 className="section-label">{t('Transcript')}</h2>
             </div>
             <div className="min-h-0 flex-1 overflow-y-auto">
               {segments.length > 0 ? (
@@ -113,8 +116,13 @@ export function LiveConversation(): React.JSX.Element {
               ) : (
                 <p className="text-sm text-white/45">
                   {status === 'error'
-                    ? `Couldn't start listening: ${errorMsg || 'unknown error'}. If this is a permission issue, allow the mic in Windows Settings → Privacy → Microphone; otherwise it'll retry automatically.`
-                    : 'Listening… start speaking and your words will appear here. The finished conversation will show up in your list automatically.'}
+                    ? t(
+                        "Couldn't start listening: {value}. If this is a permission issue, allow the mic in Windows Settings → Privacy → Microphone; otherwise it'll retry automatically.",
+                        { value: errorMsg || 'unknown error' }
+                      )
+                    : t(
+                        'Listening… start speaking and your words will appear here. The finished conversation will show up in your list automatically.'
+                      )}
                 </p>
               )}
             </div>

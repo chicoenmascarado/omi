@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import {
+  Languages,
   LayoutDashboard,
   MessageSquarePlus,
   MessagesSquare,
@@ -11,10 +12,16 @@ import {
   Zap
 } from 'lucide-react'
 import type { MeetingMode, RewindSettings } from '../../../../../shared/types'
-import { getPreferences, onPreferencesChange, setPreferences } from '../../../lib/preferences'
+import {
+  getPreferences,
+  onPreferencesChange,
+  setPreferences,
+  type UiLanguagePreference
+} from '../../../lib/preferences'
 import { SettingRow } from '../SettingRow'
 import { Toggle } from '../Toggle'
 import { FontSizeCard } from '../FontSizeCard'
+import { t, UI_LANGUAGES } from '../../../lib/i18n'
 
 export function GeneralTab(): React.JSX.Element {
   const [chatHistoryMode, setChatHistoryMode] = useState(getPreferences().chatHistoryMode)
@@ -28,8 +35,10 @@ export function GeneralTab(): React.JSX.Element {
       <ScreenAnalysisRow />
       <SettingRow
         icon={MessagesSquare}
-        title="Chat history"
-        subtitle="By default, one ongoing conversation (shared with the floating bar) that persists across launches — scroll up in chat to load older messages. Or start a fresh conversation each launch."
+        title={t('Chat history')}
+        subtitle={t(
+          'By default, one ongoing conversation (shared with the floating bar) that persists across launches — scroll up in chat to load older messages. Or start a fresh conversation each launch.'
+        )}
         keywords="conversation thread floating bar history infinite"
         control={
           <select
@@ -42,10 +51,10 @@ export function GeneralTab(): React.JSX.Element {
             className="rounded-md bg-white/10 px-2 py-1.5 text-sm text-white focus:outline-none"
           >
             <option value="infinite" className="bg-neutral-900">
-              One ongoing conversation (default)
+              {t('One ongoing conversation (default)')}
             </option>
             <option value="per-launch" className="bg-neutral-900">
-              New conversation each launch
+              {t('New conversation each launch')}
             </option>
           </select>
         }
@@ -54,6 +63,7 @@ export function GeneralTab(): React.JSX.Element {
       <LegacyHomeRow />
       <MeetingDetectionRow />
       <LaunchAtLoginRow />
+      <AppLanguageRow />
       <FontSizeCard />
     </>
   )
@@ -71,13 +81,13 @@ function ActionAutomationRow(): React.JSX.Element {
     <SettingRow
       icon={Zap}
       dot={automationAvailable && autoConsent ? 'on' : 'off'}
-      title="Let Omi take actions"
+      title={t('Let Omi take actions')}
       subtitle={
         !automationAvailable
-          ? 'Disabled in this build.'
+          ? t('Disabled in this build.')
           : autoConsent
-            ? 'Omi can click and type in your apps when you ask.'
-            : 'Turn on to let Omi act in your apps when you ask.'
+            ? t('Omi can click and type in your apps when you ask.')
+            : t('Turn on to let Omi act in your apps when you ask.')
       }
       keywords="automation actions desktop control agent take action flaui approve"
       control={
@@ -85,7 +95,7 @@ function ActionAutomationRow(): React.JSX.Element {
           on={automationAvailable && autoConsent}
           onChange={toggleAutomation}
           disabled={!automationAvailable}
-          label="Let Omi take actions"
+          label={t('Let Omi take actions')}
         />
       }
     />
@@ -116,11 +126,11 @@ function ScreenCaptureRow(): React.JSX.Element {
     <SettingRow
       icon={Monitor}
       dot={on ? 'on' : 'off'}
-      title="Screen Capture"
-      subtitle={on ? 'Capturing your screen for Rewind' : 'Screen capture is paused'}
+      title={t('Screen Capture')}
+      subtitle={on ? t('Capturing your screen for Rewind') : t('Screen capture is paused')}
       keywords="screen capture rewind record monitor recording"
       control={
-        <Toggle on={on} onChange={change} disabled={rewind === null} label="Screen Capture" />
+        <Toggle on={on} onChange={change} disabled={rewind === null} label={t('Screen Capture')} />
       }
     />
   )
@@ -143,10 +153,10 @@ function AudioRecordingRow(): React.JSX.Element {
     <SettingRow
       icon={Mic}
       dot={on ? 'on' : 'off'}
-      title="Audio Recording"
-      subtitle={on ? 'Recording and transcribing audio' : 'Audio recording is paused'}
+      title={t('Audio Recording')}
+      subtitle={on ? t('Recording and transcribing audio') : t('Audio recording is paused')}
       keywords="audio recording microphone transcribe listening voice"
-      control={<Toggle on={on} onChange={change} label="Audio Recording" />}
+      control={<Toggle on={on} onChange={change} label={t('Audio Recording')} />}
     />
   )
 }
@@ -175,11 +185,13 @@ export function ScreenAnalysisRow(): React.JSX.Element {
     <SettingRow
       icon={ScanEye}
       dot={on ? 'on' : 'off'}
-      title="Screen Analysis"
-      subtitle="Master switch for Omi's proactive screen features — Focus, memory and task extraction, and insights. When off, Omi never analyzes your screen. Separate from Screen Capture above, which only records your local Rewind timeline."
+      title={t('Screen Analysis')}
+      subtitle={t(
+        "Master switch for Omi's proactive screen features — Focus, memory and task extraction, and insights. When off, Omi never analyzes your screen. Separate from Screen Capture above, which only records your local Rewind timeline."
+      )}
       keywords="screen analysis proactive focus memory task insight vision master consent"
       control={
-        <Toggle on={!!on} onChange={change} disabled={on === null} label="Screen Analysis" />
+        <Toggle on={!!on} onChange={change} disabled={on === null} label={t('Screen Analysis')} />
       }
     />
   )
@@ -203,10 +215,12 @@ function MultiChatRow(): React.JSX.Element {
   return (
     <SettingRow
       icon={MessageSquarePlus}
-      title="Multiple Chat Sessions"
-      subtitle={on ? 'Create separate chat threads' : 'Single chat synced with the mobile app'}
+      title={t('Multiple Chat Sessions')}
+      subtitle={
+        on ? t('Create separate chat threads') : t('Single chat synced with the mobile app')
+      }
       keywords="multi chat sessions threads history switcher conversations separate"
-      control={<Toggle on={on} onChange={change} label="Multiple Chat Sessions" />}
+      control={<Toggle on={on} onChange={change} label={t('Multiple Chat Sessions')} />}
     />
   )
 }
@@ -225,11 +239,13 @@ function LegacyHomeRow(): React.JSX.Element {
     <SettingRow
       icon={LayoutDashboard}
       dot={legacy ? 'off' : 'on'}
-      title="New Home screen"
-      subtitle="The redesigned Home — one stage with your stats, an ask bar, and suggestions. Turn this off to go back to the previous Home."
+      title={t('New Home screen')}
+      subtitle={t(
+        'The redesigned Home — one stage with your stats, an ask bar, and suggestions. Turn this off to go back to the previous Home.'
+      )}
       keywords="hub home dashboard layout redesign legacy old classic"
       control={
-        <Toggle on={!legacy} onChange={(on) => change(!on)} label="Use the new Home screen" />
+        <Toggle on={!legacy} onChange={(on) => change(!on)} label={t('Use the new Home screen')} />
       }
     />
   )
@@ -253,8 +269,10 @@ function MeetingDetectionRow(): React.JSX.Element {
     <SettingRow
       icon={Presentation}
       dot={mode === 'off' ? 'off' : 'on'}
-      title="Meeting detection"
-      subtitle="When a meeting app is holding the microphone (Zoom, Teams, Meet, and more), Omi can capture and transcribe it — always with a visible notice, never silently."
+      title={t('Meeting detection')}
+      subtitle={t(
+        'When a meeting app is holding the microphone (Zoom, Teams, Meet, and more), Omi can capture and transcribe it — always with a visible notice, never silently.'
+      )}
       keywords="meeting zoom teams meet webex discord detect auto capture record"
       control={
         <select
@@ -264,14 +282,50 @@ function MeetingDetectionRow(): React.JSX.Element {
           className="rounded-md bg-white/10 px-2 py-1.5 text-sm text-white focus:outline-none"
         >
           <option value="ask" className="bg-neutral-900">
-            Ask before capturing (default)
+            {t('Ask before capturing (default)')}
           </option>
           <option value="auto" className="bg-neutral-900">
-            Capture automatically
+            {t('Capture automatically')}
           </option>
           <option value="off" className="bg-neutral-900">
-            Off
+            {t('Off')}
           </option>
+        </select>
+      }
+    />
+  )
+}
+
+// Interface language (separate from the spoken transcription language). Saving it
+// reloads the windows that show UI text — see lib/i18n installUiLanguageReload.
+function AppLanguageRow(): React.JSX.Element {
+  const [value, setValue] = useState<UiLanguagePreference>(
+    () => getPreferences().uiLanguage ?? 'system'
+  )
+
+  const change = (next: UiLanguagePreference): void => {
+    setValue(next)
+    setPreferences({ uiLanguage: next })
+  }
+
+  return (
+    <SettingRow
+      icon={Languages}
+      title={t('App language')}
+      subtitle={t('The language of menus and buttons. Transcription language is set separately.')}
+      keywords="language idioma spanish español interface translate locale"
+      control={
+        <select
+          value={value}
+          onChange={(e) => change(e.target.value as UiLanguagePreference)}
+          aria-label={t('App language')}
+          className="rounded-md bg-white/10 px-2 py-1.5 text-sm text-white focus:outline-none"
+        >
+          {UI_LANGUAGES.map((l) => (
+            <option key={l.code} value={l.code} className="bg-neutral-900">
+              {l.code === 'system' ? t('System default') : l.label}
+            </option>
+          ))}
         </select>
       }
     />
@@ -302,11 +356,13 @@ function LaunchAtLoginRow(): React.JSX.Element {
     <SettingRow
       icon={Power}
       dot={openAtLogin ? 'on' : 'off'}
-      title="Launch at login"
+      title={t('Launch at login')}
       subtitle={
         supported
-          ? 'Start Omi automatically when you sign in to Windows.'
-          : 'Start Omi automatically when you sign in to Windows. Available in installed builds only.'
+          ? t('Start Omi automatically when you sign in to Windows.')
+          : t(
+              'Start Omi automatically when you sign in to Windows. Available in installed builds only.'
+            )
       }
       keywords="startup autostart launch login boot start"
       control={
@@ -314,7 +370,7 @@ function LaunchAtLoginRow(): React.JSX.Element {
           on={!!openAtLogin}
           onChange={change}
           disabled={openAtLogin === null || !supported}
-          label="Launch at login"
+          label={t('Launch at login')}
         />
       }
     />

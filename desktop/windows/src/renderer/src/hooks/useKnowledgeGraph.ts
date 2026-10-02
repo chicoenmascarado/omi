@@ -2,6 +2,7 @@ import { useCallback, useEffect, useState } from 'react'
 import { fetchKnowledgeGraph, rebuildKnowledgeGraph } from '../lib/knowledgeGraphClient'
 import type { KnowledgeGraph } from '../../../shared/types'
 import { toast } from '../lib/toast'
+import { t } from '../lib/i18n'
 
 const cache = {
   graph: null as KnowledgeGraph | null,
@@ -117,7 +118,7 @@ export function useKnowledgeGraph(): {
         setGraph(g)
       } else {
         toast('Rebuild is still running', {
-          body: 'Your brain map will update once the rebuild finishes.'
+          body: t('Your brain map will update once the rebuild finishes.')
         })
       }
     } catch (e) {

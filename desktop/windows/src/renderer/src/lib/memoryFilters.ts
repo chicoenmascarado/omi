@@ -1,4 +1,5 @@
 import type { Memory } from '../hooks/useMemories'
+import { t, timeAgo, uiLocale } from './i18n'
 
 // Pure, framework-free filtering/derivation helpers for the Memories page, kept
 // out of the component so they're cheap to unit-test and reuse.
@@ -17,10 +18,18 @@ export const MEMORY_CATEGORIES: readonly MemoryCategory[] = [
 ]
 
 export const CATEGORY_LABEL: Record<MemoryCategory, string> = {
-  manual: 'Manual',
-  system: 'About You',
-  interesting: 'Insights',
-  workflow: 'Workflow'
+  get manual() {
+    return t('Manual')
+  },
+  get system() {
+    return t('About You')
+  },
+  get interesting() {
+    return t('Insights')
+  },
+  get workflow() {
+    return t('Workflow')
+  }
 }
 
 // Normalize a memory's raw category to one of the four product categories.
@@ -105,7 +114,7 @@ export function formatMemoryAssessmentDate(m: Memory): string | null {
   if (!value) return null
   const date = new Date(value)
   if (Number.isNaN(date.getTime())) return null
-  return date.toLocaleString(undefined, {
+  return date.toLocaleString(uiLocale(), {
     month: 'short',
     day: 'numeric',
     year: 'numeric',
@@ -120,7 +129,7 @@ export function formatMemoryEvidenceDate(m: Memory): string | null {
   if (!value) return null
   const date = new Date(value)
   if (Number.isNaN(date.getTime())) return null
-  return date.toLocaleString(undefined, {
+  return date.toLocaleString(uiLocale(), {
     month: 'short',
     day: 'numeric',
     year: 'numeric',
@@ -194,14 +203,9 @@ export function formatMemoryDate(created_at: string, now: number = Date.now()): 
   const mins = Math.floor(diff / 60_000)
   const hours = Math.floor(diff / 3_600_000)
   const days = Math.floor(diff / 86_400_000)
-  let rel: string
-  if (mins < 1) rel = 'just now'
-  else if (mins < 60) rel = `${mins}m ago`
-  else if (hours < 24) rel = `${hours}h ago`
-  else if (days < 7) rel = `${days}d ago`
-  else rel = ''
+  const rel = mins < 1 || hours < 24 || days < 7 ? timeAgo(diff) : ''
   const sameYear = d.getFullYear() === new Date(now).getFullYear()
-  const abs = d.toLocaleString(undefined, {
+  const abs = d.toLocaleString(uiLocale(), {
     month: 'short',
     day: 'numeric',
     ...(sameYear ? {} : { year: 'numeric' }),

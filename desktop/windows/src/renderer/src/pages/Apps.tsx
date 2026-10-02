@@ -37,6 +37,7 @@ import { AppDetailSheet } from '../components/apps/AppDetailSheet'
 import { auth } from '../lib/firebase'
 import { getE2EUser } from '../lib/dev/e2eAuth'
 import { useThrottledWindowFocus } from '../lib/focusRefetch'
+import { t as i18n } from '../lib/i18n'
 
 // Cap rendered search results so a broad query (e.g. "a") can't mount the whole
 // catalog at once. Users refine rather than scroll hundreds of cards.
@@ -173,7 +174,7 @@ const AppCard = memo(function AppCard({
           ) : (
             <Plus className="h-3 w-3" />
           )}
-          {isSettingUp ? 'Setting up…' : isOn ? 'Installed' : 'Install'}
+          {isSettingUp ? i18n('Setting up…') : isOn ? i18n('Installed') : i18n('Install')}
         </button>
       </div>
     </div>
@@ -475,9 +476,9 @@ export function Apps(): React.JSX.Element {
           try {
             await omiApi.post('/v1/apps/enable', null, { params: { app_id: a.id } })
             setEnabled((s) => new Set(s).add(a.id))
-            toast(`${a.name} is set up`, { tone: 'success' })
+            toast(i18n('{name} is set up', { name: a.name }), { tone: 'success' })
           } catch {
-            toast(`Couldn’t finish setting up ${a.name}`, { tone: 'error' })
+            toast(i18n('Couldn’t finish setting up {name}', { name: a.name }), { tone: 'error' })
           }
         })()
       },
@@ -506,7 +507,10 @@ export function Apps(): React.JSX.Element {
         } catch (e) {
           console.error('Disable app failed:', e)
           setEnabled((s) => new Set(s).add(a.id))
-          toast(`Couldn’t uninstall ${a.name}`, { tone: 'error', body: userSafeDetail(e) })
+          toast(i18n('Couldn’t uninstall {name}', { name: a.name }), {
+            tone: 'error',
+            body: userSafeDetail(e)
+          })
         } finally {
           setBusy((s) => {
             const next = new Set(s)
@@ -536,13 +540,16 @@ export function Apps(): React.JSX.Element {
           // macOS swallows this silently; surface it and point to the detail sheet's
           // purchase flow instead of a bare "Couldn't install".
           console.error('Enable paid app failed:', e)
-          toast(`${a.name} is a paid app`, {
+          toast(i18n('{name} is a paid app', { name: a.name }), {
             tone: 'error',
-            body: 'Open it to purchase before installing.'
+            body: i18n('Open it to purchase before installing.')
           })
         } else {
           console.error('Enable app failed:', e)
-          toast(`Couldn’t install ${a.name}`, { tone: 'error', body: userSafeDetail(e) })
+          toast(i18n('Couldn’t install {name}', { name: a.name }), {
+            tone: 'error',
+            body: userSafeDetail(e)
+          })
         }
       } finally {
         setBusy((s) => {
@@ -636,9 +643,14 @@ export function Apps(): React.JSX.Element {
   return (
     <div className="flex h-full flex-col">
       <PageHeader
-        title="Apps"
+        title={i18n('Apps')}
         subtitle={
-          loading ? 'Loading…' : `${allApps.length} available · ${installedApps.length} installed`
+          loading
+            ? i18n('Loading…')
+            : i18n('{count} available · {count2} installed', {
+                count: allApps.length,
+                count2: installedApps.length
+              })
         }
         actions={
           <div className="flex items-center gap-2">
@@ -651,7 +663,7 @@ export function Apps(): React.JSX.Element {
                     : 'text-white/55 hover:bg-white/5 hover:text-white/80'
                 }`}
               >
-                Marketplace
+                {i18n('Marketplace')}
               </button>
               <button
                 onClick={() => setTab('installed')}
@@ -661,14 +673,14 @@ export function Apps(): React.JSX.Element {
                     : 'text-white/55 hover:bg-white/5 hover:text-white/80'
                 }`}
               >
-                Installed
+                {i18n('Installed')}
               </button>
             </div>
             <button
               onClick={onRefresh}
               disabled={refreshing || loading}
               className="btn-ghost px-3 py-2 disabled:opacity-50"
-              title="Refresh"
+              title={i18n('Refresh')}
             >
               <RefreshCw className={`h-4 w-4 ${refreshing ? 'animate-spin' : ''}`} />
             </button>
@@ -702,9 +714,13 @@ export function Apps(): React.JSX.Element {
               <AlertTriangle className="h-5 w-5 text-white/60" />
             </div>
             <div className="space-y-1">
-              <div className="font-display font-semibold text-white/90">Couldn’t load apps</div>
+              <div className="font-display font-semibold text-white/90">
+                {i18n('Couldn’t load apps')}
+              </div>
               <p className="text-sm text-white/55">
-                Something went wrong reaching the marketplace. Check your connection and try again.
+                {i18n(
+                  'Something went wrong reaching the marketplace. Check your connection and try again.'
+                )}
               </p>
             </div>
             <button
@@ -717,7 +733,7 @@ export function Apps(): React.JSX.Element {
               ) : (
                 <RefreshCw className="h-4 w-4" />
               )}
-              Retry
+              {i18n('Retry')}
             </button>
           </div>
         )}
@@ -729,7 +745,7 @@ export function Apps(): React.JSX.Element {
                 <input
                   value={query}
                   onChange={(e) => setQuery(e.target.value)}
-                  placeholder="Search apps…"
+                  placeholder={i18n('Search apps…')}
                   className="flex-1 border-0 bg-transparent text-sm text-white placeholder:text-white/40 focus:outline-none focus:ring-0"
                 />
                 {query && (
@@ -737,7 +753,7 @@ export function Apps(): React.JSX.Element {
                     onClick={() => setQuery('')}
                     className="text-xs text-white/45 hover:text-white"
                   >
-                    Clear
+                    {i18n('Clear')}
                   </button>
                 )}
               </div>
@@ -750,10 +766,10 @@ export function Apps(): React.JSX.Element {
                       ? 'text-white'
                       : 'text-white/55 hover:text-white/80'
                   }`}
-                  title="Filter by category"
+                  title={i18n('Filter by category')}
                 >
                   <SlidersHorizontal className="h-4 w-4" />
-                  <span className="hidden sm:inline">Filter</span>
+                  <span className="hidden sm:inline">{i18n('Filter')}</span>
                   {selectedCats.size > 0 && (
                     <span className="flex h-5 min-w-[1.25rem] items-center justify-center rounded-full bg-white/20 px-1.5 text-[11px] font-semibold text-white">
                       {selectedCats.size}
@@ -765,19 +781,19 @@ export function Apps(): React.JSX.Element {
                   <div className="surface-card absolute right-0 z-30 mt-2 max-h-80 w-60 overflow-y-auto p-2 shadow-xl">
                     <div className="flex items-center justify-between px-2 py-1.5">
                       <span className="text-xs font-semibold uppercase tracking-wide text-white/45">
-                        Categories
+                        {i18n('Categories')}
                       </span>
                       {selectedCats.size > 0 && (
                         <button
                           onClick={() => setSelectedCats(new Set())}
                           className="text-[11px] text-white/45 hover:text-white"
                         >
-                          Clear
+                          {i18n('Clear')}
                         </button>
                       )}
                     </div>
                     {allCategories.length === 0 ? (
-                      <div className="px-2 py-2 text-xs text-white/45">No categories</div>
+                      <div className="px-2 py-2 text-xs text-white/45">{i18n('No categories')}</div>
                     ) : (
                       allCategories.map((cat) => {
                         const checked = selectedCats.has(cat)
@@ -824,13 +840,13 @@ export function Apps(): React.JSX.Element {
             {showSearchSpinner ? (
               <div className="flex items-center justify-center gap-2 py-10 text-sm text-white/45">
                 <Loader2 className="h-4 w-4 animate-spin" />
-                Searching…
+                {i18n('Searching…')}
               </div>
             ) : view.kind === 'grid' ? (
               <>
                 {searchFallback && isSearching && tab === 'all' && (
                   <div className="glass-subtle px-4 py-2.5 text-xs text-white/55">
-                    Showing local results — search is temporarily unavailable.
+                    {i18n('Showing local results — search is temporarily unavailable.')}
                   </div>
                 )}
                 {view.apps.length === 0 ? (
@@ -838,17 +854,17 @@ export function Apps(): React.JSX.Element {
                     icon={LayoutGrid}
                     title={
                       isSearching
-                        ? 'No apps match'
+                        ? i18n('No apps match')
                         : tab === 'installed'
-                          ? 'No apps installed'
-                          : 'No apps available'
+                          ? i18n('No apps installed')
+                          : i18n('No apps available')
                     }
                     description={
                       isSearching
-                        ? 'Try a different search.'
+                        ? i18n('Try a different search.')
                         : tab === 'installed'
-                          ? 'Browse the Marketplace tab to find apps to install.'
-                          : 'Try again later.'
+                          ? i18n('Browse the Marketplace tab to find apps to install.')
+                          : i18n('Try again later.')
                     }
                   />
                 ) : (
@@ -863,8 +879,8 @@ export function Apps(): React.JSX.Element {
                     />
                     {view.apps.length > SEARCH_LIMIT && (
                       <p className="mt-3 text-center text-xs text-white/45">
-                        Showing the first {SEARCH_LIMIT} of {view.apps.length}. Narrow with search
-                        or filters.
+                        {i18n('Showing the first')} {SEARCH_LIMIT} {i18n('of')} {view.apps.length}
+                        {i18n('. Narrow with search or filters.')}
                       </p>
                     )}
                   </>
@@ -873,8 +889,8 @@ export function Apps(): React.JSX.Element {
             ) : sections.length === 0 ? (
               <EmptyState
                 icon={LayoutGrid}
-                title="No apps available"
-                description="Try again later."
+                title={i18n('No apps available')}
+                description={i18n('Try again later.')}
               />
             ) : (
               sections.map((section) => {
@@ -890,12 +906,12 @@ export function Apps(): React.JSX.Element {
                         >
                           {isExpanded ? (
                             <>
-                              Show less
+                              {i18n('Show less')}
                               <ChevronUp className="h-3.5 w-3.5" />
                             </>
                           ) : (
                             <>
-                              See more
+                              {i18n('See more')}
                               <ChevronDown className="h-3.5 w-3.5" />
                             </>
                           )}
@@ -912,8 +928,8 @@ export function Apps(): React.JSX.Element {
                     />
                     {isExpanded && section.truncated && (
                       <p className="text-xs text-white/45">
-                        Showing {section.apps.length} of {section.total}. Use search to find the
-                        rest.
+                        {i18n('Showing')} {section.apps.length} {i18n('of')} {section.total}
+                        {i18n('. Use search to find the rest.')}
                       </p>
                     )}
                   </div>

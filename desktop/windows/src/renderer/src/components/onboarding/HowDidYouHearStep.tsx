@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { StepScaffold } from './StepScaffold'
+import { t } from '../../lib/i18n'
 
 type HowDidYouHearStepProps = {
   stepIndex: number
@@ -46,8 +47,8 @@ export function HowDidYouHearStep({
     <StepScaffold
       stepIndex={stepIndex}
       totalSteps={totalSteps}
-      eyebrow="QUICK QUESTION"
-      title="How did you hear about Omi?"
+      eyebrow={t('QUICK QUESTION')}
+      title={t('How did you hear about Omi?')}
       align="left"
       onBack={onBack}
       aside={aside}

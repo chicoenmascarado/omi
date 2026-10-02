@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { getPreferences } from '../../lib/preferences'
 import { shouldShowBackgroundConsent, persistBackgroundConsent } from '../../lib/backgroundConsent'
 import { BackgroundConsentControls } from './BackgroundConsentControls'
+import { t } from '../../lib/i18n'
 
 /**
  * One-time modal shown to existing users on the first launch after Omi becomes a
@@ -32,11 +33,12 @@ export function BackgroundConsentInterstitial(): React.JSX.Element | null {
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-bg-primary/50 p-6 backdrop-blur-md">
       <div className="glass w-full max-w-[480px] p-7">
         <h2 className="font-display text-2xl font-semibold text-white/95">
-          Omi now runs in the background
+          {t('Omi now runs in the background')}
         </h2>
         <p className="mt-2 text-sm leading-relaxed text-white/60">
-          Omi keeps working from your system tray so it’s always ready. Take a moment to confirm how
-          it should behave — you can change any of this later in Settings.
+          {t(
+            'Omi keeps working from your system tray so it’s always ready. Take a moment to confirm how it should behave — you can change any of this later in Settings.'
+          )}
         </p>
         <div className="mt-6">
           <BackgroundConsentControls
@@ -52,7 +54,7 @@ export function BackgroundConsentInterstitial(): React.JSX.Element | null {
             onClick={acknowledge}
             className="rounded-lg bg-white px-6 py-2.5 text-sm font-medium text-black transition-opacity hover:opacity-90"
           >
-            Got it
+            {t('Got it')}
           </button>
         </div>
       </div>

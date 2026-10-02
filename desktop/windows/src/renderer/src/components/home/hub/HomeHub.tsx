@@ -16,6 +16,7 @@ import { getHubHomeWidgets } from './hubHomeWidgetsSlot'
 import { useHubStats } from './useHubStats'
 import { nextStage, isPanelMode } from './hubStage'
 import type { HomeStageEvent, HomeStageMode } from './hubStage'
+import { t as i18n } from '../../../lib/i18n'
 
 // The Hub — the Home screen, ported from the macOS DashboardPage. One lit stage
 // with three modes: the resting `hub`, the `chat` panel, and `connect`.
@@ -263,7 +264,7 @@ export function HomeHub(): React.JSX.Element {
                 className="shrink-0 select-none font-display text-[58px] font-bold lowercase leading-none text-home-ink"
                 style={{ textShadow: '0 0 26px rgb(var(--home-stage-glow-rgb) / 0.46)' }}
               >
-                omi.
+                {i18n('omi.')}
               </h1>
 
               {/* Mac: Spacer(minLength: 24) — absorbs slack, docking the cluster. The
