@@ -4,6 +4,7 @@ import { useEffect, useRef, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Loader2, Trash2 } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { t } from '@/lib/i18n';
 
 interface DeleteConversationsDialogProps {
   isOpen: boolean;
@@ -123,7 +124,7 @@ export function DeleteConversationsDialog({
               id="delete-dialog-title"
               className="text-lg font-semibold text-text-primary mb-2"
             >
-              Delete {count} conversation{count !== 1 ? 's' : ''}?
+              {t('Delete')}{' '}{count} {t('conversation')}{count !== 1 ? 's' : ''}?
             </h2>
 
             {/* Description */}
@@ -131,9 +132,7 @@ export function DeleteConversationsDialog({
               id="delete-dialog-description"
               className="text-sm text-text-secondary mb-6"
             >
-              This will permanently delete the selected conversation
-              {count !== 1 ? 's' : ''}. This action cannot be undone.
-            </p>
+              {t('This will permanently delete the selected conversation')}{count !== 1 ? 's' : ''}{t('. This action cannot be undone.')}</p>
 
             {/* Actions */}
             <div className="flex gap-3">
@@ -149,8 +148,7 @@ export function DeleteConversationsDialog({
                   'disabled:opacity-50 disabled:cursor-not-allowed',
                 )}
               >
-                Cancel
-              </button>
+                {t('Cancel')}</button>
               <button
                 onClick={onConfirm}
                 disabled={isLoading}
@@ -164,7 +162,7 @@ export function DeleteConversationsDialog({
                 )}
               >
                 {isLoading ? <Loader2 className="w-4 h-4 animate-spin" /> : null}
-                <span>{isLoading ? 'Deleting...' : 'Delete'}</span>
+                <span>{isLoading ? t('Deleting...') : t('Delete')}</span>
               </button>
             </div>
           </motion.div>

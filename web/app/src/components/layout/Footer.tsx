@@ -2,6 +2,7 @@
 
 import { Twitter, Linkedin, Github } from 'lucide-react';
 import Image from '@tschk/moonshine-next/image';
+import { t } from '@/lib/i18n';
 
 export function Footer() {
   return (
@@ -10,15 +11,14 @@ export function Footer() {
         <div>
           <Image
             src="/omi-white.webp"
-            alt="Omi Logo"
+            alt={t('Omi Logo')}
             width={146}
             height={64}
             className="h-auto w-[70px]"
           />
-          <p className="mt-1 text-gray-500">Made in San Francisco</p>
+          <p className="mt-1 text-gray-500">{t('Made in San Francisco')}</p>
           <a href="mailto:team@basedhardware.com" className="hover:underline">
-            team@basedhardware.com
-          </a>
+            {t('team@basedhardware.com')}</a>
           <div className="mt-3 flex items-center gap-3">
             <a
               href="https://x.com/based_hardware"
@@ -49,7 +49,7 @@ export function Footer() {
 
         <div className="grid grid-cols-3 gap-10 md:gap-20">
           <ul className="flex flex-col gap-3">
-            <li className="font-bold">Products</li>
+            <li className="font-bold">{t('Products')}</li>
             <li>
               <a
                 className="text-zinc-400 hover:text-white hover:underline md:text-base"
@@ -57,8 +57,7 @@ export function Footer() {
                 target="_blank"
                 rel="noreferrer"
               >
-                OpenGlass
-              </a>
+                {t('OpenGlass')}</a>
             </li>
             <li>
               <a
@@ -67,8 +66,7 @@ export function Footer() {
                 target="_blank"
                 rel="noreferrer"
               >
-                Omi AI
-              </a>
+                {t('Omi AI')}</a>
             </li>
             <li>
               <a
@@ -77,12 +75,11 @@ export function Footer() {
                 target="_blank"
                 rel="noreferrer"
               >
-                Buy Omi
-              </a>
+                {t('Buy Omi')}</a>
             </li>
           </ul>
           <ul className="flex flex-col gap-3">
-            <li className="font-bold">Other</li>
+            <li className="font-bold">{t('Other')}</li>
             <li>
               <a
                 href="https://airtable.com/appyGfrqMxoUaD1mg/shrswR2uD1LRoFkFX"
@@ -90,8 +87,7 @@ export function Footer() {
                 rel="noreferrer"
                 className="text-zinc-400 hover:text-white hover:underline md:text-base"
               >
-                Residency
-              </a>
+                {t('Residency')}</a>
             </li>
             <li>
               <a
@@ -100,8 +96,7 @@ export function Footer() {
                 rel="noreferrer"
                 className="text-zinc-400 hover:text-white hover:underline md:text-base"
               >
-                Affiliate
-              </a>
+                {t('Affiliate')}</a>
             </li>
             <li>
               <a
@@ -110,8 +105,7 @@ export function Footer() {
                 rel="noreferrer"
                 className="text-zinc-400 hover:text-white hover:underline md:text-base"
               >
-                Privacy
-              </a>
+                {t('Privacy')}</a>
             </li>
             <li>
               <a
@@ -120,27 +114,24 @@ export function Footer() {
                 rel="noreferrer"
                 className="text-zinc-400 hover:text-white hover:underline md:text-base"
               >
-                Discord
-              </a>
+                {t('Discord')}</a>
             </li>
           </ul>
           <ul className="flex flex-col gap-3">
-            <li className="font-bold">Company</li>
+            <li className="font-bold">{t('Company')}</li>
             <li>
               <a
                 href="https://www.omi.me/pages/about"
                 className="text-zinc-400 hover:text-white hover:underline md:text-base"
               >
-                About
-              </a>
+                {t('About')}</a>
             </li>
             <li>
               <a
                 href="https://airtable.com/appyGfrqMxoUaD1mg/shrkALjXdq7mJMM1W"
                 className="text-zinc-400 hover:text-white hover:underline md:text-base"
               >
-                Invest
-              </a>
+                {t('Invest')}</a>
             </li>
           </ul>
         </div>

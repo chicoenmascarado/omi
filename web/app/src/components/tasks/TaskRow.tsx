@@ -8,6 +8,7 @@ import { formatDueBadge } from '@/lib/taskDue';
 import type { ActionItem } from '@/types/conversation';
 import { SuccessCheck } from '@/components/ui/SuccessCheck';
 import { formatDateInputValue } from '@/lib/dateInput';
+import { t } from '@/lib/i18n';
 
 interface TaskRowProps {
   task: ActionItem;
@@ -256,8 +257,7 @@ export function TaskRow({
               )}
             >
               <Calendar className="w-3 h-3" />
-              Add date
-            </button>
+              {t('Add date')}</button>
           ) : null}
 
           {/* Date picker popover */}
@@ -298,8 +298,7 @@ export function TaskRow({
                       }}
                       className="flex-1 px-2 py-1 text-xs bg-bg-tertiary hover:bg-white/20 rounded text-text-secondary"
                     >
-                      Today
-                    </button>
+                      {t('Today')}</button>
                     <button
                       onClick={(e) => {
                         e.stopPropagation();
@@ -312,8 +311,7 @@ export function TaskRow({
                       }}
                       className="flex-1 px-2 py-1 text-xs bg-bg-tertiary hover:bg-white/20 rounded text-text-secondary"
                     >
-                      Tmrw
-                    </button>
+                      {t('Tmrw')}</button>
                   </div>
                   {task.due_at && (
                     <button
@@ -327,8 +325,7 @@ export function TaskRow({
                       className="flex items-center justify-center gap-1 px-2 py-1 text-xs bg-error/10 hover:bg-error/20 rounded text-error"
                     >
                       <X className="w-3 h-3" />
-                      Clear
-                    </button>
+                      {t('Clear')}</button>
                   )}
                 </div>
               </motion.div>
@@ -364,7 +361,7 @@ export function TaskRow({
                 onSnooze(task.id, 1);
               }}
               className="px-1.5 py-0.5 text-xs rounded text-text-quaternary hover:text-white hover:bg-white/10"
-              title="Snooze 1 day"
+              title={t('Snooze 1 day')}
             >
               +1d
             </button>
@@ -374,7 +371,7 @@ export function TaskRow({
                 onDelete(task.id);
               }}
               className="p-1 rounded text-text-quaternary hover:text-error hover:bg-error/10"
-              title="Delete"
+              title={t('Delete')}
             >
               <Trash2 className="w-3.5 h-3.5" />
             </button>
@@ -390,7 +387,7 @@ export function TaskRow({
             onDelete(task.id);
           }}
           className="p-1 rounded text-text-quaternary hover:text-error hover:bg-error/10 opacity-0 group-hover:opacity-100 transition-opacity"
-          title="Delete"
+          title={t('Delete')}
         >
           <Trash2 className="w-3.5 h-3.5" />
         </button>

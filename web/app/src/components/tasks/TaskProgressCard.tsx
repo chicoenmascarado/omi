@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { Flame, TrendingUp } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { t } from '@/lib/i18n';
 
 interface TaskProgressCardProps {
   overdueCount: number;
@@ -150,8 +151,7 @@ export function TaskProgressCard({
                   'bg-error/10 text-error',
                 )}
               >
-                {overdueCount} overdue
-              </span>
+                {overdueCount} {t('overdue')}</span>
             </div>
           )}
 
@@ -159,8 +159,8 @@ export function TaskProgressCard({
 
           {/* Counts */}
           <div className="flex items-center gap-3 text-xs text-text-quaternary">
-            <span>{totalPending} pending</span>
-            <span>{totalCompleted} completed</span>
+            <span>{totalPending} {t('pending')}</span>
+            <span>{totalCompleted} {t('completed')}</span>
           </div>
         </div>
       </div>
@@ -177,7 +177,7 @@ export function TaskProgressCard({
           <div className="flex items-center justify-between mb-1.5">
             <div className="flex items-center gap-1.5">
               <TrendingUp className="w-3.5 h-3.5 text-white" />
-              <span className="text-xs font-medium text-text-secondary">This Week</span>
+              <span className="text-xs font-medium text-text-secondary">{t('This Week')}</span>
             </div>
             <span className="text-xs text-text-quaternary">
               {weekCompleted}/{weekTotal}
@@ -218,10 +218,10 @@ export function TaskProgressCard({
           </div>
           <span className="text-xs text-text-quaternary">
             {streak === 0
-              ? 'Complete a task to start!'
+              ? t('Complete a task to start!')
               : streak === 1
-                ? 'day streak'
-                : 'day streak'}
+                ? t('day streak')
+                : t('day streak')}
           </span>
         </div>
       </div>

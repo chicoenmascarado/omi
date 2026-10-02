@@ -11,6 +11,7 @@ import { ScrollableCategoryNav } from './ScrollableCategoryNav';
 import { SearchBar } from './SearchBar';
 import { useState, useMemo, useEffect, useRef, useCallback, memo } from 'react';
 import { DeveloperBanner } from './DeveloperBanner';
+import { t } from '@/lib/i18n';
 
 interface MarketplaceHeaderProps {
   minimized: boolean;
@@ -45,16 +46,14 @@ const MarketplaceHeader = memo(function MarketplaceHeader({
                   minimized ? 'text-xl sm:text-2xl' : 'sm:text-3xl md:text-4xl'
                 }`}
               >
-                Omi App Store
-              </h1>
+                {t('Omi App Store')}</h1>
               <div
                 className={`transform-gpu overflow-hidden transition-all duration-300 ${
                   minimized ? 'h-0 opacity-0' : 'h-auto opacity-100'
                 }`}
               >
                 <p className="mt-1 text-sm text-gray-400 sm:mt-2 sm:text-base">
-                  Discover our most popular AI-powered applications
-                </p>
+                  {t('Discover our most popular AI-powered applications')}</p>
               </div>
             </div>
 
@@ -202,8 +201,7 @@ export default function AppList({ initialPlugins, initialStats }: AppListProps) 
               <div className="mb-6 flex items-center">
                 <Sparkles className="mr-2 h-5 w-5 text-[#6C8EEF]" />
                 <h2 className="text-lg font-bold text-white sm:text-xl md:text-2xl">
-                  Featured Applications
-                </h2>
+                  {t('Featured Applications')}</h2>
               </div>
 
               <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -232,8 +230,7 @@ export default function AppList({ initialPlugins, initialStats }: AppListProps) 
                   <div className="flex items-center">
                     <Trophy className="mr-2 h-5 w-5 text-amber-400" />
                     <h2 className="text-xl font-bold text-white sm:text-2xl">
-                      Most Popular
-                    </h2>
+                      {t('Most Popular')}</h2>
                   </div>
                 </div>
                 <div className="mt-4 grid grid-cols-1 gap-y-2 sm:mt-6 sm:grid-cols-2 sm:gap-4 lg:grid-cols-3">
@@ -263,8 +260,7 @@ export default function AppList({ initialPlugins, initialStats }: AppListProps) 
                         href="/apps/category/productivity-and-organization"
                         className="flex items-center gap-1 text-sm font-medium text-[#6C8EEF] hover:underline"
                       >
-                        See all
-                        <ChevronRight className="h-4 w-4" />
+                        {t('See all')}<ChevronRight className="h-4 w-4" />
                       </Link>
                     )}
                   </div>
@@ -285,15 +281,13 @@ export default function AppList({ initialPlugins, initialStats }: AppListProps) 
                 <section className="rounded-xl bg-[#0F1420]/50 p-4 sm:p-6 md:p-8">
                   <div className="flex items-center justify-between">
                     <h3 className="text-lg font-semibold text-white sm:text-xl">
-                      Integration Apps
-                    </h3>
+                      {t('Integration Apps')}</h3>
                     {totalIntegrationApps > 9 && (
                       <Link
                         href="/apps/category/integration"
                         className="flex items-center gap-1 text-sm font-medium text-[#6C8EEF] hover:underline"
                       >
-                        See all
-                        <ChevronRight className="h-4 w-4" />
+                        {t('See all')}<ChevronRight className="h-4 w-4" />
                       </Link>
                     )}
                   </div>
@@ -329,8 +323,7 @@ export default function AppList({ initialPlugins, initialStats }: AppListProps) 
                           href={`/apps/category/${category}`}
                           className="flex items-center gap-1 text-sm font-medium text-[#6C8EEF] hover:underline"
                         >
-                          See all
-                          <ChevronRight className="h-4 w-4" />
+                          {t('See all')}<ChevronRight className="h-4 w-4" />
                         </a>
                       )}
                     </div>
@@ -352,7 +345,7 @@ export default function AppList({ initialPlugins, initialStats }: AppListProps) 
           <button
             onClick={scrollToTop}
             className="fixed bottom-6 right-6 z-50 flex h-10 w-10 items-center justify-center rounded-full bg-[#6C8EEF] text-white shadow-lg transition-all duration-300 hover:bg-[#5A7DD9]"
-            aria-label="Back to top"
+            aria-label={t('Back to top')}
           >
             <ChevronUp className="h-5 w-5" />
           </button>
