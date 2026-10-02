@@ -5,6 +5,7 @@
 
 import { startOfLocalDay } from '../localDay'
 import type { ConversationRow } from '../pageCache'
+import { uiLocale } from '../i18n'
 
 /** Windows-ahead type filter: chat threads vs recordings. Cloud conversations are
  *  recordings (they sync from local recordings), so they count as 'recording'. */
@@ -147,7 +148,7 @@ function sectionLabel(dayStart: number, todayStart: number): string {
   yesterday.setDate(yesterday.getDate() - 1)
   yesterday.setHours(0, 0, 0, 0)
   if (dayStart === yesterday.getTime()) return 'Yesterday'
-  return new Date(dayStart).toLocaleDateString(undefined, {
+  return new Date(dayStart).toLocaleDateString(uiLocale(), {
     month: 'short',
     day: 'numeric',
     year: 'numeric'

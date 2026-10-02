@@ -1,5 +1,6 @@
 import { Monitor } from 'lucide-react'
 import { PermissionStep } from './PermissionStep'
+import { t } from '../../lib/i18n'
 
 type ScreenPermissionStepProps = {
   stepIndex: number
@@ -66,11 +67,13 @@ export function ScreenPermissionStep({
       stepIndex={stepIndex}
       totalSteps={totalSteps}
       aside={aside}
-      eyebrow="SCREEN"
-      title="Let Omi read your screen"
-      subtitle="Omi keeps a private, local timeline of what's on your screen. It stays on this device, and you can turn it off any time in Settings."
+      eyebrow={t('SCREEN')}
+      title={t('Let Omi read your screen')}
+      subtitle={t(
+        "Omi keeps a private, local timeline of what's on your screen. It stays on this device, and you can turn it off any time in Settings."
+      )}
       icon={<Monitor className="h-5 w-5 text-white/60" />}
-      cardLabel="Screen capture"
+      cardLabel={t('Screen capture')}
       statusText={{
         idle: 'Off',
         waiting: 'Turning on',

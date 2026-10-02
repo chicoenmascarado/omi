@@ -11,6 +11,7 @@ import {
 import { ConnectorRow, PillButton } from './ConnectorRow'
 import { ConnectorBrandMark } from './ConnectorBrandMark'
 import { MemoryPreviewList } from './MemoryPreviewList'
+import { t } from '../../../../lib/i18n'
 
 // A ChatGPT / Claude memory-log paste connector, rendered once per source so the
 // panel shows the two distinct rows Mac does. Clicking the row's action reveals an
@@ -45,7 +46,7 @@ export function PasteImportConnector({ source }: { source: MemorySource }): Reac
       setProfile(r.profile)
       toastForExtractResult(r)
     } catch (e) {
-      toast('Could not extract memories', { tone: 'error', body: (e as Error).message })
+      toast(t('Could not extract memories'), { tone: 'error', body: (e as Error).message })
     } finally {
       setExtracting(false)
     }
@@ -73,10 +74,10 @@ export function PasteImportConnector({ source }: { source: MemorySource }): Reac
     <ConnectorRow
       iconNode={<ConnectorBrandMark brand={source} />}
       title={title}
-      description="Paste a memory export into Omi."
+      description={t('Paste a memory export into Omi.')}
       action={
         <PillButton tone={open ? 'ghost' : 'primary'} onClick={() => setOpen((v) => !v)}>
-          {open ? 'Close' : 'Connect'}
+          {open ? t('Close') : t('Connect')}
         </PillButton>
       }
     >
@@ -90,7 +91,9 @@ export function PasteImportConnector({ source }: { source: MemorySource }): Reac
               setProfile('')
             }}
             rows={4}
-            placeholder={`Paste ${title}’s “everything you remember about me” reply here…`}
+            placeholder={t('Paste {title}’s “everything you remember about me” reply here…', {
+              title
+            })}
             className="input-field resize-none text-[13px]"
           />
           <div className="flex items-center gap-2">
@@ -99,11 +102,11 @@ export function PasteImportConnector({ source }: { source: MemorySource }): Reac
               onClick={extract}
               disabled={!dump.trim() || extracting || importing}
             >
-              {extracting ? 'Extracting…' : 'Extract memories'}
+              {extracting ? t('Extracting…') : t('Extract memories')}
             </PillButton>
             {count > 0 && (
               <PillButton tone="primary" onClick={runImport} disabled={importing}>
-                {importing ? 'Importing…' : `Import ${count}`}
+                {importing ? t('Importing…') : t('Import {count}', { count })}
               </PillButton>
             )}
           </div>

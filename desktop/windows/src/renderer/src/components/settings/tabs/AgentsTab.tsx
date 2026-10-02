@@ -19,6 +19,7 @@ import type {
   CodingAgentAuthStatus,
   CodingAgentId
 } from '../../../../../shared/types'
+import { t as i18n } from '../../../lib/i18n'
 
 type ExternalAgentId = Exclude<CodingAgentId, 'acp'>
 
@@ -39,14 +40,14 @@ type AgentGuide = {
 
 const EXTERNAL_AGENT_GUIDES: Record<ExternalAgentId, AgentGuide> = {
   openclaw: {
-    description: 'Open-source AI coding assistant with its own gateway and model routing.',
+    description: i18n('Open-source AI coding assistant with its own gateway and model routing.'),
     installCommands: ['npm install -g openclaw@latest'],
     suggestedCommand: 'openclaw acp',
     docsUrl: 'https://docs.openclaw.ai/install',
     authNote: 'After installing, sign in: run `openclaw onboard` in a terminal.'
   },
   hermes: {
-    description: "Nous Research's Hermes agent, connected over its ACP server mode.",
+    description: i18n("Nous Research's Hermes agent, connected over its ACP server mode."),
     installCommands: [],
     installNote: 'Install the Hermes CLI from its documentation.',
     suggestedCommand: 'hermes acp',
@@ -54,7 +55,7 @@ const EXTERNAL_AGENT_GUIDES: Record<ExternalAgentId, AgentGuide> = {
     authNote: 'After installing, sign in: run `hermes login` in a terminal.'
   },
   codex: {
-    description: "OpenAI's Codex agent, driven through the official codex-acp bridge.",
+    description: i18n("OpenAI's Codex agent, driven through the official codex-acp bridge."),
     installCommands: ['npm install -g @openai/codex'],
     suggestedCommand: 'npx -y @agentclientprotocol/codex-acp',
     docsUrl: 'https://github.com/agentclientprotocol/codex-acp',
@@ -262,11 +263,11 @@ export function AgentsTab(): React.JSX.Element {
     if (!state?.verdict) return null
     return state.verdict === 'ok' ? (
       <div className="mt-2 text-sm text-emerald-400">
-        Connected — the agent answered the handshake.
+        {i18n('Connected — the agent answered the handshake.')}
       </div>
     ) : (
       <div className="mt-2 text-sm text-amber-400">
-        {state.detail ?? "Couldn't reach the agent."}
+        {state.detail ?? i18n("Couldn't reach the agent.")}
       </div>
     )
   }
@@ -294,10 +295,11 @@ export function AgentsTab(): React.JSX.Element {
           det ? (
             installed ? (
               <span className="text-sm text-emerald-400">
-                CLI installed{det.version ? ` · v${det.version}` : ''}
+                {i18n('CLI installed')}
+                {det.version ? ` · v${det.version}` : ''}
               </span>
             ) : (
-              <span className="text-sm text-text-tertiary">CLI not found on PATH</span>
+              <span className="text-sm text-text-tertiary">{i18n('CLI not found on PATH')}</span>
             )
           ) : null
         }
@@ -309,10 +311,10 @@ export function AgentsTab(): React.JSX.Element {
                 disabled={busy}
                 className="btn-ghost disabled:opacity-40"
               >
-                {busy ? 'Testing…' : 'Test'}
+                {busy ? i18n('Testing…') : i18n('Test')}
               </button>
               <button onClick={() => disconnect(id)} className="btn-ghost">
-                Disconnect
+                {i18n('Disconnect')}
               </button>
             </div>
           ) : (
@@ -321,7 +323,7 @@ export function AgentsTab(): React.JSX.Element {
               disabled={busy}
               className="btn-ghost disabled:opacity-40"
             >
-              {busy ? 'Connecting…' : 'Connect'}
+              {busy ? i18n('Connecting…') : i18n('Connect')}
             </button>
           )
         }
@@ -329,7 +331,9 @@ export function AgentsTab(): React.JSX.Element {
         {/* Install guidance when the CLI isn't detected. */}
         {!installed && (
           <div className="mb-3 rounded-lg bg-white/[0.04] p-3 text-sm text-text-tertiary">
-            <div className="mb-1 font-medium text-text-secondary">Install {displayName}</div>
+            <div className="mb-1 font-medium text-text-secondary">
+              {i18n('Install')} {displayName}
+            </div>
             {guide.installCommands.map((cmd) => (
               <code key={cmd} className="mb-1 block font-mono text-xs text-text-secondary">
                 {cmd}
@@ -339,7 +343,7 @@ export function AgentsTab(): React.JSX.Element {
             <div className="mt-2 flex items-center gap-4">
               {guide.installCommands.length > 0 && (
                 <button onClick={() => copyInstall(id)} className="text-xs underline">
-                  {copied[id] ? 'Copied' : 'Copy install command'}
+                  {copied[id] ? i18n('Copied') : i18n('Copy install command')}
                 </button>
               )}
               <a
@@ -348,7 +352,7 @@ export function AgentsTab(): React.JSX.Element {
                 rel="noreferrer"
                 className="text-xs underline"
               >
-                Setup guide
+                {i18n('Setup guide')}
               </a>
             </div>
           </div>
@@ -360,11 +364,15 @@ export function AgentsTab(): React.JSX.Element {
         {/* Codex-only: paste-your-OpenAI-key lane (validated, no browser sign-in). */}
         {guide.supportsApiKey && (
           <div className="mb-3 rounded-lg bg-white/[0.04] p-3">
-            <div className="mb-1 text-sm font-medium text-text-secondary">OpenAI API key</div>
+            <div className="mb-1 text-sm font-medium text-text-secondary">
+              {i18n('OpenAI API key')}
+            </div>
             <div className="mb-2 text-xs text-text-tertiary">
               {codexKey.hasKey
-                ? 'A key is saved — Codex will use it to authenticate.'
-                : "Paste your OpenAI API key and we'll validate it — no browser sign-in needed."}
+                ? i18n('A key is saved — Codex will use it to authenticate.')
+                : i18n(
+                    "Paste your OpenAI API key and we'll validate it — no browser sign-in needed."
+                  )}
             </div>
             <div className="flex items-center gap-2">
               <input
@@ -377,7 +385,7 @@ export function AgentsTab(): React.JSX.Element {
                     saveCodexKey()
                   }
                 }}
-                placeholder={codexKey.hasKey ? '•••••••••••• (saved)' : 'sk-…'}
+                placeholder={codexKey.hasKey ? i18n('•••••••••••• (saved)') : 'sk-…'}
                 className="glass-subtle w-full rounded-lg px-4 py-3 font-mono text-sm text-text-secondary focus:outline-none"
                 spellCheck={false}
                 autoComplete="off"
@@ -387,7 +395,7 @@ export function AgentsTab(): React.JSX.Element {
                 disabled={codexKey.saving || !codexKey.input.trim()}
                 className="btn-ghost shrink-0 disabled:opacity-40"
               >
-                {codexKey.saving ? 'Saving…' : 'Save'}
+                {codexKey.saving ? i18n('Saving…') : i18n('Save')}
               </button>
               {codexKey.hasKey && (
                 <button
@@ -395,7 +403,7 @@ export function AgentsTab(): React.JSX.Element {
                   disabled={codexKey.saving}
                   className="btn-ghost shrink-0 disabled:opacity-40"
                 >
-                  Remove
+                  {i18n('Remove')}
                 </button>
               )}
             </div>
@@ -414,7 +422,7 @@ export function AgentsTab(): React.JSX.Element {
           onClick={() => setAdvancedOpen((s) => ({ ...s, [id]: !s[id] }))}
           className="text-xs text-text-tertiary underline"
         >
-          {advancedOpen[id] ? 'Hide advanced' : 'Advanced: custom launch command'}
+          {advancedOpen[id] ? i18n('Hide advanced') : i18n('Advanced: custom launch command')}
         </button>
         {advancedOpen[id] && (
           <div className="mt-2 flex items-center gap-2">
@@ -427,12 +435,14 @@ export function AgentsTab(): React.JSX.Element {
                   saveCommand(id)
                 }
               }}
-              placeholder={`Launch command, e.g. ${guide.suggestedCommand}`}
+              placeholder={i18n('Launch command, e.g. {suggestedCommand}', {
+                suggestedCommand: guide.suggestedCommand
+              })}
               className="glass-subtle w-full rounded-lg px-4 py-3 font-mono text-sm text-text-secondary focus:outline-none"
               spellCheck={false}
             />
             <button onClick={() => saveCommand(id)} className="btn-ghost shrink-0">
-              Save
+              {i18n('Save')}
             </button>
           </div>
         )}
@@ -444,19 +454,18 @@ export function AgentsTab(): React.JSX.Element {
   return (
     <div>
       <p className="mb-2 text-sm text-text-tertiary">
-        Ask for an agent by name in chat or push-to-talk — “ask Codex to fix the failing test”, “use
-        Claude Code to add a readme” — and Omi hands the task over, streaming the agent’s progress
-        into the conversation. If the agent you named is down, Omi falls back to the next connected
-        one.
+        {i18n(
+          'Ask for an agent by name in chat or push-to-talk — “ask Codex to fix the failing test”, “use Claude Code to add a readme” — and Omi hands the task over, streaming the agent’s progress into the conversation. If the agent you named is down, Omi falls back to the next connected one.'
+        )}
       </p>
 
       <SettingRow
         icon={Bot}
-        title="Claude Code"
+        title={i18n('Claude Code')}
         subtitle={
           claudeConnected
-            ? 'Built in — signed in with your Claude account.'
-            : 'Built in — no install needed. Sign in with your Claude account to use it.'
+            ? i18n('Built in — signed in with your Claude account.')
+            : i18n('Built in — no install needed. Sign in with your Claude account to use it.')
         }
         keywords="claude code anthropic coding agent builtin sign in login authenticate"
         dot={claudeConnected ? 'on' : 'off'}
@@ -468,10 +477,10 @@ export function AgentsTab(): React.JSX.Element {
                 disabled={tests.acp?.running}
                 className="btn-ghost disabled:opacity-40"
               >
-                {tests.acp?.running ? 'Testing…' : 'Test'}
+                {tests.acp?.running ? i18n('Testing…') : i18n('Test')}
               </button>
               <button onClick={signOutOfClaude} className="btn-ghost">
-                Disconnect
+                {i18n('Disconnect')}
               </button>
             </div>
           ) : (
@@ -480,14 +489,14 @@ export function AgentsTab(): React.JSX.Element {
               disabled={claudeAuth.busy || claudeAuth.status === null}
               className="btn-ghost disabled:opacity-40"
             >
-              {claudeAuth.busy ? 'Signing in…' : 'Sign in to Claude'}
+              {claudeAuth.busy ? i18n('Signing in…') : i18n('Sign in to Claude')}
             </button>
           )
         }
       >
         {claudeAuth.busy && (
           <div className="mt-2 text-sm text-text-tertiary">
-            Finish signing in in your browser, then come back here.
+            {i18n('Finish signing in in your browser, then come back here.')}
           </div>
         )}
         {claudeAuth.error && <div className="mt-2 text-sm text-amber-400">{claudeAuth.error}</div>}

@@ -7,6 +7,7 @@ import {
   hasPaidSubscription
 } from '../../../lib/billing'
 import type { UserSubscriptionResponse } from '../../../lib/omiApi.generated'
+import { t } from '../../../lib/i18n'
 
 /**
  * Current-plan card (AccountBilling "planusage.current"): plan title + billing
@@ -38,7 +39,7 @@ export function CurrentPlanCard(props: {
             className="btn-ghost disabled:opacity-50"
           >
             {portalBusy ? <Loader2 className="h-4 w-4 animate-spin" /> : null}
-            Manage
+            {t('Manage')}
           </button>
         ) : (
           <button
@@ -47,7 +48,7 @@ export function CurrentPlanCard(props: {
             className="btn-ghost disabled:opacity-50"
           >
             <RefreshCw className={`h-4 w-4 ${refreshing ? 'animate-spin' : ''}`} />
-            Refresh
+            {t('Refresh')}
           </button>
         )
       }
@@ -55,15 +56,15 @@ export function CurrentPlanCard(props: {
       {periodText ? <div className="text-sm text-text-tertiary">{periodText}</div> : null}
       {subscription.features?.includes('byok') ? (
         <div className="space-y-1 text-sm text-text-tertiary">
-          <div>Chat and AI: BYOK supported — configure keys in Developer settings</div>
+          <div>{t('Chat and AI: BYOK supported — configure keys in Developer settings')}</div>
           <div>
             {sub.transcription_allowance?.reason === 'byok'
-              ? 'Transcription: Deepgram BYOK'
+              ? t('Transcription: Deepgram BYOK')
               : sub.transcription_allowance &&
                   sub.transcription_allowance.reason !== 'allowance_unavailable' &&
                   sub.transcription_allowance.reason !== 'usage_invalid'
-                ? 'Transcription: Omi plan allowance'
-                : 'Transcription allowance unavailable — refresh to check'}
+                ? t('Transcription: Omi plan allowance')
+                : t('Transcription allowance unavailable — refresh to check')}
           </div>
         </div>
       ) : null}

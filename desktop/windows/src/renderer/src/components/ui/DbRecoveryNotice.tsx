@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { DatabaseBackup, X } from 'lucide-react'
 import type { DbRecoveryStatus } from '../../../../shared/types'
+import { t, uiLocale } from '../../lib/i18n'
 
 // Shown once, at the top of the main window, when omi.db was found corrupt at
 // startup and repaired. macOS declares a didRecoverFromCorruption flag but never
@@ -18,7 +19,7 @@ function describe(s: DbRecoveryStatus): { title: string; body: string } {
   // plainly: nothing was touched, and nothing was thrown away.
   if (s.unrepairable) {
     return {
-      title: 'Omi found a problem with its local database',
+      title: t('Omi found a problem with its local database'),
       body:
         'Omi could not repair it safely, so it left your data exactly as it was. ' +
         'Some items may not load. Nothing has been deleted.'
@@ -26,7 +27,7 @@ function describe(s: DbRecoveryStatus): { title: string; body: string } {
   }
   if (s.reset) {
     return {
-      title: 'Omi reset its local database',
+      title: t('Omi reset its local database'),
       body:
         'It was damaged beyond repair, so Omi started a fresh one. ' +
         'A copy of the old file was saved, and anything synced to your account will load again.'
@@ -34,9 +35,9 @@ function describe(s: DbRecoveryStatus): { title: string; body: string } {
   }
   const n = s.rowsRecovered
   return {
-    title: `Omi repaired its local database`,
+    title: t('Omi repaired its local database'),
     body:
-      `A problem was found at startup and fixed automatically — ${n.toLocaleString()} ` +
+      `A problem was found at startup and fixed automatically — ${n.toLocaleString(uiLocale())} ` +
       `item${n === 1 ? '' : 's'} recovered. A copy of the old file was saved.`
   }
 }
@@ -86,7 +87,7 @@ function Notice({
       <button
         onClick={onDismiss}
         className="-mr-1 -mt-1 rounded-md p-1 text-white/45 hover:bg-white/10 hover:text-white"
-        aria-label="Dismiss"
+        aria-label={t('Dismiss')}
       >
         <X className="h-3.5 w-3.5" />
       </button>
@@ -133,11 +134,13 @@ export function DbRecoveryNotice(): React.JSX.Element | null {
   if (needsRestart && !dismissed) {
     return (
       <Notice
-        title="Omi hit a problem with its local database"
+        title={t('Omi hit a problem with its local database')}
         // Honest: nothing is lost yet, and the restart is a repair, not a wipe.
-        body="Restart Omi and it will repair the database automatically. Your data is still on disk."
+        body={t(
+          'Restart Omi and it will repair the database automatically. Your data is still on disk.'
+        )}
         onDismiss={() => setDismissed(true)}
-        actions={[{ label: 'Restart Omi', onClick: () => window.omi.relaunchApp() }]}
+        actions={[{ label: t('Restart Omi'), onClick: () => window.omi.relaunchApp() }]}
       />
     )
   }
@@ -166,7 +169,7 @@ export function DbRecoveryNotice(): React.JSX.Element | null {
         ? 'Rebuilding Rewind index…'
         : rebuild.phase === 'done'
           ? rebuild.count > 0
-            ? `Rebuilt Rewind index (${rebuild.count.toLocaleString()} recovered)`
+            ? `Rebuilt Rewind index (${rebuild.count.toLocaleString(uiLocale())} recovered)`
             : 'Rewind index up to date'
           : 'Rebuild Rewind Index'
     actions.push({

@@ -18,6 +18,7 @@ import {
 import { memorySourceLabel } from '../../lib/memoryProvenance'
 import { Badge } from '../ui/Badge'
 import { Toggle } from '../ui/Toggle'
+import { t as i18n } from '../../lib/i18n'
 
 type MemoryDetailSheetProps = {
   // The memory being viewed; null closes the sheet.
@@ -104,7 +105,7 @@ export function MemoryDetailSheet({
             aria-describedby={undefined}
             className="pointer-events-auto flex max-h-[85vh] w-full max-w-[450px] flex-col rounded-[var(--radius-card)] border border-white/10 bg-[var(--bg-secondary)] shadow-[0_16px_48px_rgba(0,0,0,0.5)] data-[state=open]:animate-modal-in"
           >
-            <Dialog.Title className="sr-only">Memory details</Dialog.Title>
+            <Dialog.Title className="sr-only">{i18n('Memory details')}</Dialog.Title>
 
             {/* Header: category + tier, then visibility toggle, delete, dismiss. */}
             <div className="flex items-center gap-2 border-b border-white/10 px-5 py-4">
@@ -123,12 +124,12 @@ export function MemoryDetailSheet({
               )}
               <div className="ml-auto flex items-center gap-3">
                 <label className="flex items-center gap-2 text-xs text-white/60">
-                  <span>{isPublic ? 'Public' : 'Private'}</span>
+                  <span>{isPublic ? i18n('Public') : i18n('Private')}</span>
                   <Toggle
                     checked={isPublic}
                     disabled={togglingVisibility}
                     onChange={() => void onToggleVisibility(memory)}
-                    ariaLabel="Toggle public visibility"
+                    ariaLabel={i18n('Toggle public visibility')}
                   />
                 </label>
                 {onUseAction && useFeedbackAllowed && (
@@ -139,15 +140,15 @@ export function MemoryDetailSheet({
                       onClick={() => onUseAction(memory.id, suppressed ? 'allow' : 'suppress')}
                       className="rounded-md px-1.5 py-1 text-[11px] text-white/50 transition-colors hover:bg-white/5 hover:text-white/80 disabled:opacity-40"
                     >
-                      {suppressed ? 'Allow use' : "Don't use"}
+                      {suppressed ? i18n('Allow use') : i18n("Don't use")}
                     </button>
                     <button
                       type="button"
                       disabled={useActionBusy}
                       onClick={() => onUseAction(memory.id, 'useful')}
                       className="rounded-md p-1.5 text-white/40 transition-colors hover:bg-white/5 hover:text-white/80 disabled:opacity-40"
-                      aria-label="Mark this memory useful"
-                      title="Mark useful"
+                      aria-label={i18n('Mark this memory useful')}
+                      title={i18n('Mark useful')}
                     >
                       <ThumbsUp className="h-3.5 w-3.5" />
                     </button>
@@ -157,14 +158,14 @@ export function MemoryDetailSheet({
                   type="button"
                   onClick={() => onDelete(memory)}
                   className="rounded-md p-1.5 text-white/40 transition-colors hover:bg-white/5 hover:text-error"
-                  aria-label="Delete memory"
-                  title="Delete memory"
+                  aria-label={i18n('Delete memory')}
+                  title={i18n('Delete memory')}
                 >
                   <Trash2 className="h-4 w-4" />
                 </button>
                 <Dialog.Close
                   className="rounded-md p-1.5 text-white/40 transition-colors hover:bg-white/5 hover:text-white/80"
-                  aria-label="Close"
+                  aria-label={i18n('Close')}
                 >
                   <X className="h-4 w-4" />
                 </Dialog.Close>
@@ -201,19 +202,19 @@ export function MemoryDetailSheet({
                       disabled={saving}
                       className="btn-ghost px-3 py-1.5 text-sm"
                     >
-                      Cancel
+                      {i18n('Cancel')}
                     </button>
                     <button
                       onClick={() => void saveEdit()}
                       disabled={saving || !draft.trim()}
                       className="btn-primary px-3 py-1.5 text-sm disabled:opacity-40"
                     >
-                      {saving ? <Loader2 className="h-4 w-4 animate-spin" /> : 'Save'}
+                      {saving ? <Loader2 className="h-4 w-4 animate-spin" /> : i18n('Save')}
                     </button>
                   </div>
                 </div>
               ) : protectedMem ? (
-                <p className="italic text-white/40">Protected memory</p>
+                <p className="italic text-white/40">{i18n('Protected memory')}</p>
               ) : (
                 <button
                   type="button"
@@ -222,7 +223,7 @@ export function MemoryDetailSheet({
                     setEditing(true)
                   }}
                   className="group flex w-full items-start gap-2 text-left text-[15px] leading-relaxed text-white/90"
-                  title="Click to edit"
+                  title={i18n('Click to edit')}
                 >
                   <span className="flex-1">{memory.content}</span>
                   <Pencil className="mt-1 h-3.5 w-3.5 shrink-0 text-white/25 opacity-0 transition-opacity group-hover:opacity-100" />
@@ -231,29 +232,29 @@ export function MemoryDetailSheet({
 
               {/* Metadata panel */}
               <div className="mt-5 rounded-xl bg-[var(--bg-tertiary)] px-4 py-2">
-                <MetaRow label="Learned from" value={source} />
+                <MetaRow label={i18n('Learned from')} value={source} />
                 {typeof memory.capture_confidence === 'number' && (
                   <MetaRow
-                    label="Confidence"
+                    label={i18n('Confidence')}
                     value={`${Math.round(memory.capture_confidence * 100)}%`}
                   />
                 )}
-                {memory.app_id && <MetaRow label="Source app" value={memory.app_id} />}
+                {memory.app_id && <MetaRow label={i18n('Source app')} value={memory.app_id} />}
                 {memory.primary_capture_device && (
-                  <MetaRow label="Device" value={memory.primary_capture_device} />
+                  <MetaRow label={i18n('Device')} value={memory.primary_capture_device} />
                 )}
-                <MetaRow label="Created" value={formatMemoryDate(memory.created_at)} />
-                {evidenceDate && <MetaRow label="Evidence from" value={evidenceDate} />}
-                {assessmentDate && <MetaRow label="Assessed" value={assessmentDate} />}
+                <MetaRow label={i18n('Created')} value={formatMemoryDate(memory.created_at)} />
+                {evidenceDate && <MetaRow label={i18n('Evidence from')} value={evidenceDate} />}
+                {assessmentDate && <MetaRow label={i18n('Assessed')} value={assessmentDate} />}
                 {memory.belief_class && (
-                  <MetaRow label="Belief class" value={memory.belief_class} />
+                  <MetaRow label={i18n('Belief class')} value={memory.belief_class} />
                 )}
                 {typeof memory.half_life_days === 'number' && (
-                  <MetaRow label="Half-life" value={`${memory.half_life_days} days`} />
+                  <MetaRow label={i18n('Half-life')} value={`${memory.half_life_days} days`} />
                 )}
                 {tags.length > 0 && (
                   <MetaRow
-                    label="Tags"
+                    label={i18n('Tags')}
                     value={
                       <span className="flex flex-wrap gap-1">
                         {tags.map((t) => (
@@ -276,7 +277,7 @@ export function MemoryDetailSheet({
                   onClick={() => onOpenConversation(memory.conversation_id as string)}
                   className="mt-4 flex w-full items-center justify-between rounded-xl border border-white/10 bg-white/[0.03] px-4 py-3 text-sm text-white/80 transition-colors hover:bg-white/[0.06]"
                 >
-                  <span>View source conversation</span>
+                  <span>{i18n('View source conversation')}</span>
                   <ArrowUpRight className="h-4 w-4 text-white/50" />
                 </button>
               )}

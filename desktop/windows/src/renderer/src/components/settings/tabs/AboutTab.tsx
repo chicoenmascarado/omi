@@ -29,14 +29,15 @@ import {
 import type { UpdateCheckResult } from '../../../../../shared/types'
 import { SettingRow } from '../SettingRow'
 import { Toggle } from '../Toggle'
+import { t } from '../../../lib/i18n'
 
 type Link = { label: string; icon: typeof Globe } & ({ href: string } | { onClick: () => void })
 
 const LINKS: Link[] = [
-  { label: 'Visit website', icon: Globe, href: 'https://omi.me' },
-  { label: 'Help center', icon: LifeBuoy, href: 'https://help.omi.me' },
-  { label: 'Terms of service', icon: FileText, href: 'https://omi.me/terms' },
-  { label: 'Release notes', icon: Newspaper, onClick: () => window.omi?.whatsNewOpenNotes?.() }
+  { label: t('Visit website'), icon: Globe, href: 'https://omi.me' },
+  { label: t('Help center'), icon: LifeBuoy, href: 'https://help.omi.me' },
+  { label: t('Terms of service'), icon: FileText, href: 'https://omi.me/terms' },
+  { label: t('Release notes'), icon: Newspaper, onClick: () => window.omi?.whatsNewOpenNotes?.() }
 ]
 
 function checkResultMessage(r: UpdateCheckResult): string {
@@ -119,19 +120,19 @@ export function AboutTab(): React.JSX.Element {
     <>
       <SettingRow
         icon={Info}
-        title="Omi for Windows"
+        title={t('Omi for Windows')}
         subtitle={
           version
             ? `Version ${version}${name && name.toLowerCase() !== 'omi' ? ` · ${name}` : ''}`
-            : 'Loading version…'
+            : t('Loading version…')
         }
         keywords="about version build app info omi"
       />
 
       <SettingRow
         icon={Globe}
-        title="Links"
-        subtitle="Learn more about Omi, get help, and read the terms."
+        title={t('Links')}
+        subtitle={t('Learn more about Omi, get help, and read the terms.')}
         keywords="website help support terms release notes links docs"
       >
         <div className="divide-y divide-white/[0.06] overflow-hidden rounded-xl border border-white/10 bg-white/[0.02]">
@@ -166,8 +167,8 @@ export function AboutTab(): React.JSX.Element {
 
       <SettingRow
         icon={RefreshCw}
-        title="Software updates"
-        subtitle="Omi updates itself in the background and installs the next time you restart."
+        title={t('Software updates')}
+        subtitle={t('Omi updates itself in the background and installs the next time you restart.')}
         keywords="update upgrade version check for updates release"
         note={checkMsg && <p className="text-xs text-white/60">{checkMsg}</p>}
         control={
@@ -177,7 +178,7 @@ export function AboutTab(): React.JSX.Element {
             disabled={checking}
             className="rounded-md border border-white/15 px-3 py-1.5 text-xs text-white transition-colors hover:bg-white/10 disabled:opacity-40"
           >
-            {checking ? 'Checking…' : 'Check for updates'}
+            {checking ? t('Checking…') : t('Check for updates')}
           </button>
         }
       />
@@ -185,15 +186,17 @@ export function AboutTab(): React.JSX.Element {
       <SettingRow
         icon={FlaskConical}
         dot={beta ? 'on' : 'off'}
-        title="Receive beta updates"
-        subtitle="Get pre-release versions early. Beta builds get new features first but may be less stable. Turn off to stay on stable releases."
+        title={t('Receive beta updates')}
+        subtitle={t(
+          'Get pre-release versions early. Beta builds get new features first but may be less stable. Turn off to stay on stable releases.'
+        )}
         keywords="beta prerelease pre-release channel early access insider unstable updates test"
         control={
           <Toggle
             on={!!beta}
             onChange={(on) => void toggleBeta(on)}
             disabled={beta === null}
-            label="Receive beta updates"
+            label={t('Receive beta updates')}
           />
         }
       />
@@ -202,8 +205,8 @@ export function AboutTab(): React.JSX.Element {
         <SettingRow
           icon={Download}
           dot="on"
-          title="Update ready"
-          subtitle={`Version ${pending} is ready. Restart Omi to apply it.`}
+          title={t('Update ready')}
+          subtitle={t('Version {pending} is ready. Restart Omi to apply it.', { pending })}
           keywords="update upgrade restart version release ready"
           control={
             <button
@@ -211,7 +214,7 @@ export function AboutTab(): React.JSX.Element {
               onClick={() => void restartToUpdate()}
               className="rounded-md bg-white px-3 py-1.5 text-xs font-medium text-black transition-opacity hover:opacity-90"
             >
-              Restart to update
+              {t('Restart to update')}
             </button>
           }
         />

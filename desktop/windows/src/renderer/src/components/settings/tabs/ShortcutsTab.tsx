@@ -36,14 +36,15 @@ import { SettingRow } from '../SettingRow'
 import { acceleratorToTokens, DEFAULT_OVERLAY_ACCELERATOR } from '../../../lib/overlayShortcut'
 import { useChordRecorder } from '../../../hooks/useChordRecorder'
 import { DEFAULT_RECORD_HOTKEY } from '../../../../../shared/hotkeyDefaults'
+import { t as i18n } from '../../../lib/i18n'
 
 export function ShortcutsTab(): React.JSX.Element {
   return (
     <>
       <ShortcutCard
         icon={MessageSquareText}
-        title="Summon hotkey"
-        subtitle="Global shortcut to reveal the floating bar and ask a question."
+        title={i18n('Summon hotkey')}
+        subtitle={i18n('Global shortcut to reveal the floating bar and ask a question.')}
         keywords="hotkey shortcut summon floating bar overlay ask accelerator keybinding rebind custom"
         defaultAccel={DEFAULT_OVERLAY_ACCELERATOR}
         load={() => window.omi?.getSummonHotkey?.() ?? Promise.resolve(null)}
@@ -55,8 +56,8 @@ export function ShortcutsTab(): React.JSX.Element {
       />
       <ShortcutCard
         icon={Keyboard}
-        title="Record hotkey"
-        subtitle="Global shortcut to start and stop recording."
+        title={i18n('Record hotkey')}
+        subtitle={i18n('Global shortcut to start and stop recording.')}
         keywords="hotkey shortcut record accelerator keybinding rebind mic custom"
         defaultAccel={DEFAULT_RECORD_HOTKEY}
         load={() => window.omi?.getRecordHotkey?.() ?? Promise.resolve(null)}
@@ -210,20 +211,20 @@ function ShortcutCard(props: {
           {/* Default preset chip. */}
           <Chip selected={isDefault} onClick={() => void selectDefault()}>
             <Keycaps accel={defaultAccel} />
-            <span className="text-white/50">Default</span>
+            <span className="text-white/50">{i18n('Default')}</span>
           </Chip>
 
           {/* Custom chip — shows the current custom chord, or records a new one. */}
           <Chip selected={isCustom} onClick={() => recorder.start()} disabled={recorder.recording}>
             {recorder.recording ? (
-              <span className="text-white/60">Press keys… (Esc to cancel)</span>
+              <span className="text-white/60">{i18n('Press keys… (Esc to cancel)')}</span>
             ) : isCustom && accel ? (
               <>
                 <Keycaps accel={accel} />
-                <span className="text-white/50">Custom</span>
+                <span className="text-white/50">{i18n('Custom')}</span>
               </>
             ) : (
-              <span>Custom…</span>
+              <span>{i18n('Custom…')}</span>
             )}
           </Chip>
 
@@ -231,16 +232,16 @@ function ShortcutCard(props: {
               chord entirely; the presets stay visible so the user can re-pick. */}
           {onSetEnabled && (
             <Chip selected={!enabled} onClick={() => void selectOff()}>
-              <span>Off</span>
+              <span>{i18n('Off')}</span>
             </Chip>
           )}
         </div>
 
         {!enabled ? (
-          <p className="text-xs text-white/40">Recording shortcut is off.</p>
+          <p className="text-xs text-white/40">{i18n('Recording shortcut is off.')}</p>
         ) : error || !registered ? (
           <p className="text-xs text-amber-300">
-            {error ?? 'This shortcut is held by another app — pick a different one.'}
+            {error ?? i18n('This shortcut is held by another app — pick a different one.')}
           </p>
         ) : null}
       </div>

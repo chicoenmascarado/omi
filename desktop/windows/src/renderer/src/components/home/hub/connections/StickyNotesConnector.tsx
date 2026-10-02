@@ -6,6 +6,7 @@ import { readAndExtractStickyNotes, importStickyMemories } from '../../../../lib
 import { ConnectorRow, PillButton } from './ConnectorRow'
 import { ConnectorBrandMark } from './ConnectorBrandMark'
 import { MemoryPreviewList } from './MemoryPreviewList'
+import { t } from '../../../../lib/i18n'
 
 // Sticky Notes import — the Windows-native stand-in for Mac's Apple Notes import
 // connector. Reads local Sticky Notes, synthesizes durable memories, previews them
@@ -25,9 +26,9 @@ export function StickyNotesConnector(): React.JSX.Element {
     try {
       const outcome = await readAndExtractStickyNotes(memories.map((m) => m.content))
       if (outcome.status === 'unavailable')
-        toast('No Sticky Notes found on this PC', { tone: 'warn' })
+        toast(t('No Sticky Notes found on this PC'), { tone: 'warn' })
       else if (outcome.status === 'error')
-        toast('Could not read Sticky Notes', { tone: 'error', body: outcome.error })
+        toast(t('Could not read Sticky Notes'), { tone: 'error', body: outcome.error })
       else if (outcome.status === 'empty')
         toast(
           outcome.reason === 'no-notes'
@@ -37,7 +38,7 @@ export function StickyNotesConnector(): React.JSX.Element {
         )
       else setPreview({ memories: outcome.memories, profile: outcome.profile })
     } catch (e) {
-      toast('Could not read Sticky Notes', { tone: 'error', body: (e as Error).message })
+      toast(t('Could not read Sticky Notes'), { tone: 'error', body: (e as Error).message })
     } finally {
       setReading(false)
     }
@@ -58,16 +59,16 @@ export function StickyNotesConnector(): React.JSX.Element {
   return (
     <ConnectorRow
       iconNode={<ConnectorBrandMark brand="sticky" />}
-      title="Sticky Notes"
-      description="Turn your Sticky Notes into durable memories — they never leave your PC."
+      title={t('Sticky Notes')}
+      description={t('Turn your Sticky Notes into durable memories — they never leave your PC.')}
       action={
         count > 0 ? (
           <PillButton tone="primary" onClick={runImport} disabled={importing}>
-            {importing ? 'Importing…' : `Import ${count}`}
+            {importing ? t('Importing…') : t('Import {count}', { count })}
           </PillButton>
         ) : (
           <PillButton tone="primary" onClick={read} disabled={reading}>
-            {reading ? 'Reading…' : 'Read notes'}
+            {reading ? t('Reading…') : t('Read notes')}
           </PillButton>
         )
       }

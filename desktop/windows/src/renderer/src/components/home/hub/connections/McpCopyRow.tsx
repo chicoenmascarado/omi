@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Check, Copy } from 'lucide-react'
 import type { McpCloudCopyRow } from '../../../../../../shared/mcpExports'
+import { t } from '../../../../lib/i18n'
 
 // One copy-row on the assisted cloud-connector guide card: a label, the value in
 // a monospace field, and a copy button. A `blank` field (e.g. the client secret)
@@ -25,7 +26,7 @@ export function McpCopyRow({ row }: { row: McpCloudCopyRow }): React.JSX.Element
         {row.label}
       </span>
       {row.blank ? (
-        <span className="flex-1 text-[13px] italic text-home-faint">Leave blank</span>
+        <span className="flex-1 text-[13px] italic text-home-faint">{t('Leave blank')}</span>
       ) : (
         <>
           <code className="min-w-0 flex-1 truncate rounded-md bg-white/[0.04] px-2 py-1 font-mono text-[12px] text-home-ink">
@@ -34,7 +35,7 @@ export function McpCopyRow({ row }: { row: McpCloudCopyRow }): React.JSX.Element
           <button
             type="button"
             onClick={copy}
-            aria-label={`Copy ${row.label}`}
+            aria-label={t('Copy {label}', { label: row.label })}
             className="focus-ring flex h-7 w-7 shrink-0 items-center justify-center rounded-md text-home-muted transition-colors hover:bg-white/10 hover:text-home-ink"
           >
             {copied ? (

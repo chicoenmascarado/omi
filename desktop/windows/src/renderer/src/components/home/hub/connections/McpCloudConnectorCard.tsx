@@ -12,6 +12,7 @@ import type {
 import { ConnectorRow, PillButton } from './ConnectorRow'
 import { ConnectorBrandMark } from './ConnectorBrandMark'
 import { McpCopyRow } from './McpCopyRow'
+import { t } from '../../../../lib/i18n'
 
 // The assisted cloud (OAuth) connector — ChatGPT or Claude. These connect over
 // the provider's OWN OAuth flow against Omi's public PKCE client (no hosted key).
@@ -56,18 +57,19 @@ export function McpCloudConnectorCard({ id }: { id: McpCloudConnectorId }): Reac
   return (
     <ConnectorRow
       iconNode={<ConnectorBrandMark brand={id} />}
-      title={info?.title ?? (id === 'claude' ? 'Claude' : 'ChatGPT')}
+      title={info?.title ?? (id === 'claude' ? t('Claude') : t('ChatGPT'))}
       description={description}
       action={
         <PillButton tone={opened ? 'neutral' : 'primary'} onClick={openGuide}>
-          {opened ? 'Reopen guide' : 'Open & guide'}
+          {opened ? t('Reopen guide') : t('Open & guide')}
         </PillButton>
       }
     >
       {open && info && (
         <div className="space-y-2 rounded-xl border border-home-hairline bg-white/[0.02] p-3">
           <p className="text-[12.5px] text-home-muted">
-            {info.title} opened in your browser. Add a custom connector and paste these values:
+            {info.title}{' '}
+            {t('opened in your browser. Add a custom connector and paste these values:')}
           </p>
           <div className="flex flex-col divide-y divide-home-hairline">
             {info.rows.map((row) => (

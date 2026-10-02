@@ -8,6 +8,7 @@ import {
   speakerIdOf,
   speakerLabel
 } from '../../lib/conversations/speakers'
+import { t } from '../../lib/i18n'
 
 // Mac's transcript panel (ConversationDetailView.swift:114-166): the root is an
 // `HStack(spacing: 0)` whose children are the content column
@@ -86,7 +87,7 @@ function SegmentBubble({
             <button
               onClick={() => onNameSpeaker(segment)}
               className="group flex items-center gap-1 text-[11px] font-medium text-text-tertiary transition-colors hover:text-white"
-              title={name ? `Rename ${name}` : 'Name this speaker'}
+              title={name ? t('Rename {name}', { name }) : t('Name this speaker')}
             >
               {label}
               <Pencil className="h-2.5 w-2.5 opacity-0 transition-opacity group-hover:opacity-100" />
@@ -157,14 +158,14 @@ export function TranscriptDrawer({
         style={{ width: DRAWER_WIDTH }}
       >
         <header className="flex shrink-0 items-center justify-between border-b border-border px-4 py-3">
-          <h2 className="font-display text-sm font-semibold text-white">Transcript</h2>
+          <h2 className="font-display text-sm font-semibold text-white">{t('Transcript')}</h2>
           {/* Named distinctly from the header's "Hide Transcript" pill — two buttons
               with the same accessible name is ambiguous for screen readers. */}
           <button
             onClick={onClose}
             className="btn-ghost p-1.5"
-            title="Close transcript"
-            aria-label="Close transcript"
+            title={t('Close transcript')}
+            aria-label={t('Close transcript')}
           >
             <X className="h-4 w-4" />
           </button>
@@ -172,7 +173,9 @@ export function TranscriptDrawer({
 
         <div className="min-h-0 flex-1 overflow-y-auto px-4 py-4">
           {segments.length === 0 ? (
-            <p className="mt-6 text-center text-xs text-text-quaternary">No transcript yet.</p>
+            <p className="mt-6 text-center text-xs text-text-quaternary">
+              {t('No transcript yet.')}
+            </p>
           ) : (
             <ul className="space-y-3.5">
               {segments.map((s, i) => (

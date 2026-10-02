@@ -3,6 +3,7 @@
 // in the node env and the popover just renders their output.
 
 import type { ChatSession } from '../../../shared/chatSessions'
+import { t as i18n } from './i18n'
 
 /** Normalize a wire timestamp (epoch-ms number OR ISO-8601 string) to epoch ms.
  *  Returns 0 for unparseable input so a bad row sorts to the bottom, never NaN. */
@@ -77,9 +78,9 @@ export function groupSessionsByDate(
   }
 
   const groups: SessionGroup[] = []
-  if (today.length) groups.push({ label: 'Today', sessions: today })
-  if (yesterday.length) groups.push({ label: 'Yesterday', sessions: yesterday })
-  if (thisWeek.length) groups.push({ label: 'This Week', sessions: thisWeek })
-  if (older.length) groups.push({ label: 'Older', sessions: older })
+  if (today.length) groups.push({ label: i18n('Today'), sessions: today })
+  if (yesterday.length) groups.push({ label: i18n('Yesterday'), sessions: yesterday })
+  if (thisWeek.length) groups.push({ label: i18n('This Week'), sessions: thisWeek })
+  if (older.length) groups.push({ label: i18n('Older'), sessions: older })
   return groups
 }

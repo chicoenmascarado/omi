@@ -19,6 +19,7 @@ import {
   parsePlanResponse,
   planDisplayName
 } from './billingPlans'
+import { t as i18n, uiLocale } from './i18n'
 
 /** Generated DTOs describe a closed union; runtime billing values do not. */
 export type BillingSubscription = Omit<Subscription, 'plan'> & { plan?: unknown }
@@ -229,7 +230,7 @@ export function currentPlanPeriodText(sub: BillingSubscription): string {
 
 export function formatMediumDate(epochSeconds: number | null | undefined): string {
   if (!epochSeconds) return ''
-  return new Date(epochSeconds * 1000).toLocaleDateString(undefined, {
+  return new Date(epochSeconds * 1000).toLocaleDateString(uiLocale(), {
     year: 'numeric',
     month: 'short',
     day: 'numeric'
@@ -283,8 +284,8 @@ export function chatQuotaView(quota: ChatUsageQuota, isOveragePlan = false): Quo
     valueText: formatUsageValue(quota),
     description:
       quota.unit === 'cost_usd'
-        ? `Chat spend on ${quota.plan} plan`
-        : `Chat questions on ${quota.plan} plan`,
+        ? i18n('Chat spend on {plan} plan', { plan: quota.plan })
+        : i18n('Chat questions on {plan} plan', { plan: quota.plan }),
     fraction: Math.max(0, Math.min(1, percent / 100)),
     percent,
     allowed,
@@ -365,8 +366,8 @@ const PLAN_FALLBACKS: Record<
 > = {
   unlimited: {
     eyebrow: 'Starter',
-    subtitle: '200 questions per month',
-    description: '200 chat questions per month. Shared with mobile and web.',
+    subtitle: i18n('200 questions per month'),
+    description: i18n('200 chat questions per month. Shared with mobile and web.'),
     features: [
       '200 chat questions per month',
       'Unlimited listening and transcription',
@@ -376,8 +377,8 @@ const PLAN_FALLBACKS: Record<
   },
   operator: {
     eyebrow: 'Most popular',
-    subtitle: '500 questions per month',
-    description: '500 chat questions per month. Shared with mobile and web.',
+    subtitle: i18n('500 questions per month'),
+    description: i18n('500 chat questions per month. Shared with mobile and web.'),
     features: [
       '500 chat questions per month',
       'Unlimited listening and transcription',
@@ -387,8 +388,8 @@ const PLAN_FALLBACKS: Record<
   },
   architect: {
     eyebrow: 'Automation + coding',
-    subtitle: 'Power-user AI — thousands of chats + agentic automations',
-    description: 'Power-user AI for heavy agentic workflows and vibe coding.',
+    subtitle: i18n('Power-user AI — thousands of chats + agentic automations'),
+    description: i18n('Power-user AI for heavy agentic workflows and vibe coding.'),
     features: [
       'Automations and vibe coding',
       'Unlimited listening, memories, and insights',

@@ -5,6 +5,7 @@ import { runAppIndexing } from '../../lib/appMemories'
 import { rankApps } from '../../lib/appSelection'
 import { addAppNodes } from '../../lib/onboardingGraph'
 import type { FileIndexStatus } from '../../../../shared/types'
+import { t, uiLocale } from '../../lib/i18n'
 
 type BuildProfileStepProps = {
   stepIndex: number
@@ -48,9 +49,9 @@ export function BuildProfileStep({
       stepIndex={stepIndex}
       totalSteps={totalSteps}
       align="left"
-      eyebrow="DISCOVERY"
-      title="Start building your profile"
-      subtitle="Omi scans projects and recent files"
+      eyebrow={t('DISCOVERY')}
+      title={t('Start building your profile')}
+      subtitle={t('Omi scans projects and recent files')}
       onContinue={phase === 'done' ? onContinue : undefined}
       onSkip={onSkip}
     >
@@ -58,11 +59,15 @@ export function BuildProfileStep({
         <OrbitScanner />
         <div className="flex flex-col items-center gap-1 text-center">
           <p className="text-sm font-medium text-white/85">
-            {phase === 'scanning' ? 'Scanning your projects and apps' : 'Your workspace is mapped'}
+            {phase === 'scanning'
+              ? t('Scanning your projects and apps')
+              : t('Your workspace is mapped')}
           </p>
           {/* Placeholder keeps the line's height before the count is known. */}
           <p className="text-xs text-white/40">
-            {fileCount == null ? ' ' : `${fileCount.toLocaleString()} files indexed`}
+            {fileCount == null
+              ? ' '
+              : t('{value} files indexed', { value: fileCount.toLocaleString(uiLocale()) })}
           </p>
         </div>
       </div>

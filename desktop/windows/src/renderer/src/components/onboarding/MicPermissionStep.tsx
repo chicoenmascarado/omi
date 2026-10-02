@@ -1,6 +1,7 @@
 import { Mic } from 'lucide-react'
 import { PermissionStep } from './PermissionStep'
 import { setPreferences } from '../../lib/preferences'
+import { t as i18n } from '../../lib/i18n'
 
 type MicPermissionStepProps = {
   stepIndex: number
@@ -76,11 +77,11 @@ export function MicPermissionStep({
       stepIndex={stepIndex}
       totalSteps={totalSteps}
       aside={aside}
-      eyebrow="PERMISSION"
-      title="Let Omi use your mic"
-      subtitle="This lets Omi transcribe meetings and voice notes"
+      eyebrow={i18n('PERMISSION')}
+      title={i18n('Let Omi use your mic')}
+      subtitle={i18n('This lets Omi transcribe meetings and voice notes')}
       icon={<Mic className="h-5 w-5 text-white/60" />}
-      cardLabel="Microphone"
+      cardLabel={i18n('Microphone')}
       statusText={{
         idle: 'Not granted yet',
         waiting: 'Waiting for Windows',
@@ -96,7 +97,7 @@ export function MicPermissionStep({
       onActivate={requestAccess}
       checkGranted={isMicGranted}
       onGranted={handleGranted}
-      recoveryLabel="Open Windows Settings"
+      recoveryLabel={i18n('Open Windows Settings')}
       onRecover={() => window.omi?.openMicPrivacySettings?.()}
       onContinue={onContinue}
       onBack={onBack}

@@ -6,6 +6,7 @@ import type { ChatApp } from '../../lib/chatApps'
 import { useChatApps } from '../../hooks/useChatApps'
 import { Popover, PopoverContent, PopoverTrigger } from '../ui/Popover'
 import { cn } from '../../lib/utils'
+import { t } from '../../lib/i18n'
 
 // The chat-app / persona picker (Mac ChatPage header picker parity). A compact
 // selector at the head of the Hub chat panel: pick an installed chat/persona app to
@@ -71,8 +72,8 @@ export function ChatAppPickerView(props: {
         <button
           type="button"
           className="focus-ring flex items-center gap-2 rounded-lg px-2 py-1 text-left transition-colors hover:bg-white/10"
-          title="Chat assistant"
-          aria-label="Select chat assistant"
+          title={t('Chat assistant')}
+          aria-label={t('Select chat assistant')}
         >
           <AppIcon image={selected?.image ?? ''} size={22} />
           <span className="max-w-[160px] truncate text-[13px] font-medium text-white/90">
@@ -84,13 +85,13 @@ export function ChatAppPickerView(props: {
       <PopoverContent align="start" className="w-72 p-0">
         <div className="max-h-[min(60vh,360px)] overflow-y-auto py-1">
           <div className="px-3 py-1.5 text-[10px] font-semibold uppercase tracking-wider text-white/30">
-            Select Assistant
+            {t('Select Assistant')}
           </div>
 
           {/* Default (no app) — the main Omi assistant. */}
           <AssistantRow
             name="omi"
-            author="Default assistant"
+            author={t('Default assistant')}
             image=""
             selected={selectedAppId === null}
             onSelect={() => pick(null)}

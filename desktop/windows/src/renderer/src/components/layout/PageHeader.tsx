@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { ArrowLeft, Pencil } from 'lucide-react'
+import { t } from '../../lib/i18n'
 
 export function PageHeader(props: {
   title: string
@@ -50,8 +51,8 @@ export function PageHeader(props: {
             <button
               onClick={onBack}
               className="btn-ghost -ml-1 shrink-0 p-2"
-              title="Back to conversations"
-              aria-label="Back"
+              title={t('Back to conversations')}
+              aria-label={t('Back')}
             >
               <ArrowLeft className="h-5 w-5" />
             </button>
@@ -74,7 +75,7 @@ export function PageHeader(props: {
             ) : onRename ? (
               <button
                 onClick={startEdit}
-                title="Rename"
+                title={t('Rename')}
                 className="group flex max-w-full items-center gap-2 text-left"
               >
                 <h1 className="truncate font-display text-2xl font-bold tracking-tight text-white">

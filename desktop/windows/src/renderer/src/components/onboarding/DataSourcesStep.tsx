@@ -19,6 +19,7 @@ import {
   type CalendarStatus
 } from '../../lib/calendarConnect'
 import { getImportedCounts, setImportedCount } from '../../lib/onboardingImportCounts'
+import { t, uiLocale } from '../../lib/i18n'
 
 // Onboarding "Data sources" step — the Windows port of macOS's
 // OnboardingDataSourcesStepView. A curated, fixed-order list (NOT the connectors
@@ -50,9 +51,9 @@ export function DataSourcesStep({
       totalSteps={totalSteps}
       align="left"
       widthClassName="w-full max-w-[440px]"
-      eyebrow="DATA SOURCES"
-      title="Your 2nd brain is live."
-      subtitle="Connect more of your context — or skip and add it later."
+      eyebrow={t('DATA SOURCES')}
+      title={t('Your 2nd brain is live.')}
+      subtitle={t('Connect more of your context — or skip and add it later.')}
       onContinue={onContinue}
       onSkip={onSkip}
     >
@@ -179,16 +180,16 @@ function CalendarRow(): React.JSX.Element {
       if (canceled.current) return
       if (ok) {
         setStatus(await getCalendarStatus())
-        toast('Google Calendar connected', { tone: 'success' })
+        toast(t('Google Calendar connected'), { tone: 'success' })
       } else {
-        toast('Still waiting for Google Calendar', {
+        toast(t('Still waiting for Google Calendar'), {
           tone: 'warn',
-          body: 'Finish the sign-in in your browser, then reopen this step to check.'
+          body: t('Finish the sign-in in your browser, then reopen this step to check.')
         })
       }
     } catch (e) {
       if (!canceled.current)
-        toast('Could not start Calendar sign-in', { tone: 'error', body: (e as Error).message })
+        toast(t('Could not start Calendar sign-in'), { tone: 'error', body: (e as Error).message })
     } finally {
       if (!canceled.current) setConnecting(false)
     }
@@ -200,9 +201,9 @@ function CalendarRow(): React.JSX.Element {
     try {
       await disconnectCalendar()
       setStatus({ connected: false })
-      toast('Google Calendar disconnected', { tone: 'success' })
+      toast(t('Google Calendar disconnected'), { tone: 'success' })
     } catch (e) {
-      toast('Could not disconnect', { tone: 'error', body: (e as Error).message })
+      toast(t('Could not disconnect'), { tone: 'error', body: (e as Error).message })
     } finally {
       setBusy(false)
     }
@@ -211,16 +212,16 @@ function CalendarRow(): React.JSX.Element {
   return (
     <Row
       brand="calendar"
-      title="Calendar"
-      status={status.connected ? 'Connected' : 'Import events and recurring routines.'}
+      title={t('Calendar')}
+      status={status.connected ? t('Connected') : t('Import events and recurring routines.')}
       action={
         status.connected ? (
           <Pill tone="ghost" onClick={disconnect} disabled={busy}>
-            Disconnect
+            {t('Disconnect')}
           </Pill>
         ) : (
           <Pill tone="primary" onClick={connect} disabled={connecting}>
-            {connecting ? 'Waiting…' : 'Connect'}
+            {connecting ? t('Waiting…') : t('Connect')}
           </Pill>
         )
       }
@@ -248,15 +249,15 @@ function LocalFilesRow(): React.JSX.Element {
 
   const status =
     fileCount && fileCount > 0
-      ? `On · ${fileCount.toLocaleString()} file${fileCount === 1 ? '' : 's'} indexed`
+      ? `On · ${fileCount.toLocaleString(uiLocale())} file${fileCount === 1 ? '' : 's'} indexed`
       : 'On · indexed on this device'
 
   return (
     <Row
       brand="omi"
-      title="Local files"
+      title={t('Local files')}
       status={status}
-      action={<span className="text-xs font-medium text-white/40">On</span>}
+      action={<span className="text-xs font-medium text-white/40">{t('On')}</span>}
     />
   )
 }
@@ -301,10 +302,10 @@ function MemoryLogRow({ source }: { source: MemorySource }): React.JSX.Element {
     try {
       await window.omi.openExternalUrl(prefilledUrl(source))
     } catch (e) {
-      toast(`Could not open ${title}`, { tone: 'error', body: (e as Error).message })
+      toast(t('Could not open {title}', { title }), { tone: 'error', body: (e as Error).message })
       return
     }
-    toast(`Prompt copied — paste it in ${title}`, { tone: 'success' })
+    toast(t('Prompt copied — paste it in {title}', { title }), { tone: 'success' })
   }
 
   const runImport = async (): Promise<void> => {
@@ -328,7 +329,7 @@ function MemoryLogRow({ source }: { source: MemorySource }): React.JSX.Element {
         setOpen(false)
       }
     } catch (e) {
-      toast('Could not import memories', { tone: 'error', body: (e as Error).message })
+      toast(t('Could not import memories'), { tone: 'error', body: (e as Error).message })
     } finally {
       setImporting(false)
     }
@@ -340,15 +341,15 @@ function MemoryLogRow({ source }: { source: MemorySource }): React.JSX.Element {
       title={title}
       status={
         connected
-          ? `${importedCount.toLocaleString()} memor${importedCount === 1 ? 'y' : 'ies'} imported`
-          : 'Paste your memory export.'
+          ? `${importedCount.toLocaleString(uiLocale())} memor${importedCount === 1 ? 'y' : 'ies'} imported`
+          : t('Paste your memory export.')
       }
       action={
         connected ? (
-          <span className="text-xs font-medium text-white/40">Imported</span>
+          <span className="text-xs font-medium text-white/40">{t('Imported')}</span>
         ) : (
           <Pill tone={open ? 'ghost' : 'primary'} onClick={() => setOpen((v) => !v)}>
-            {open ? 'Close' : 'Connect'}
+            {open ? t('Close') : t('Connect')}
           </Pill>
         )
       }
@@ -356,16 +357,17 @@ function MemoryLogRow({ source }: { source: MemorySource }): React.JSX.Element {
       {open && !connected && (
         <div className="space-y-3 px-4 pb-4">
           <p className="text-xs leading-relaxed text-white/50">
-            Open {title}, paste the copied prompt, then drop the full response here.
+            {t('Open')} {title}
+            {t(', paste the copied prompt, then drop the full response here.')}
           </p>
           <Pill tone="neutral" onClick={openAndCopyPrompt}>
-            Open {title} &amp; Copy Prompt
+            {t('Open')} {title} {t('& Copy Prompt')}
           </Pill>
           <textarea
             value={dump}
             onChange={(e) => setDump(e.target.value)}
             rows={4}
-            placeholder={`Paste ${title}’s full response here…`}
+            placeholder={t('Paste {title}’s full response here…', { title })}
             className="w-full resize-none rounded-xl border border-white/10 bg-white/[0.04] px-3 py-2.5 text-[13px] text-white/85 placeholder:text-white/30 focus:border-white/20 focus:outline-none"
           />
           <div className="flex items-center gap-2">
@@ -375,7 +377,7 @@ function MemoryLogRow({ source }: { source: MemorySource }): React.JSX.Element {
                 progressive reveal. "Open & Copy Prompt" stays the secondary CTA. */}
             {dump.trim() && (
               <Pill tone="primary" onClick={runImport} disabled={importing}>
-                {importing ? 'Importing…' : `Import ${title}`}
+                {importing ? t('Importing…') : t('Import {title}', { title })}
               </Pill>
             )}
             <Pill
@@ -385,7 +387,7 @@ function MemoryLogRow({ source }: { source: MemorySource }): React.JSX.Element {
                 setOpen(false)
               }}
             >
-              Cancel
+              {t('Cancel')}
             </Pill>
           </div>
         </div>

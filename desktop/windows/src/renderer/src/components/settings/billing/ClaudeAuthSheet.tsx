@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Modal } from '../../ui/Modal'
 import { onClaudeSignIn, dismissClaudeSignIn, OMI_PRICING_URL } from '../../../lib/claudeSignIn'
+import { t } from '../../../lib/i18n'
 
 // "Upgrade to Omi Pro" sheet — Windows port of macOS ClaudeAuthSheet. Shown
 // ONLY by the mid-turn `auth_required` event (Claude Code's token rejected
@@ -27,7 +28,7 @@ export function ClaudeAuthSheet(): React.JSX.Element {
       onOpenChange={(next) => {
         if (!next) dismissClaudeSignIn()
       }}
-      title="Upgrade to Omi Pro"
+      title={t('Upgrade to Omi Pro')}
       size="sm"
       footer={
         <>
@@ -35,22 +36,22 @@ export function ClaudeAuthSheet(): React.JSX.Element {
             onClick={dismissClaudeSignIn}
             className="rounded-2xl px-4 py-2 text-sm font-medium text-text-tertiary transition hover:text-text-secondary"
           >
-            Cancel
+            {t('Cancel')}
           </button>
           <button
             onClick={onUpgrade}
             className="rounded-2xl bg-white px-4 py-2 text-sm font-semibold text-black transition hover:opacity-90"
           >
-            Upgrade to Omi Pro
+            {t('Upgrade to Omi Pro')}
           </button>
         </>
       }
     >
-      <p className="text-text-secondary">Unlock Omi Pro for $199/month</p>
+      <p className="text-text-secondary">{t('Unlock Omi Pro for $199/month')}</p>
       <p className="mt-2 text-text-tertiary">
-        Your browser will open to the Omi Pro checkout. After subscribing, return to omi.
+        {t('Your browser will open to the Omi Pro checkout. After subscribing, return to omi.')}
       </p>
-      <p className="mt-3 text-xs text-text-tertiary">Complete sign-in in your browser…</p>
+      <p className="mt-3 text-xs text-text-tertiary">{t('Complete sign-in in your browser…')}</p>
     </Modal>
   )
 }

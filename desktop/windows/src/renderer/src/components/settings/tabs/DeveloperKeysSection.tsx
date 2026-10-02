@@ -22,32 +22,38 @@ import {
   type ByokProvider,
   type ByokValidationResults
 } from '../../../../../shared/byok'
+import { t } from '../../../lib/i18n'
 
 /** Field metadata per provider — titles/subtitles verbatim from the macOS view. */
 const PROVIDERS: { id: ByokProvider; title: string; subtitle: string; displayName: string }[] = [
   {
     id: 'openrouter',
-    title: 'OpenRouter API Key',
-    subtitle: 'For OpenRouter models.',
+    title: t('OpenRouter API Key'),
+    subtitle: t('For OpenRouter models.'),
     displayName: 'OpenRouter'
   },
-  { id: 'openai', title: 'OpenAI API Key', subtitle: 'For GPT calls.', displayName: 'OpenAI' },
+  {
+    id: 'openai',
+    title: t('OpenAI API Key'),
+    subtitle: t('For GPT calls.'),
+    displayName: 'OpenAI'
+  },
   {
     id: 'anthropic',
-    title: 'Anthropic API Key',
-    subtitle: 'For chat (Claude).',
+    title: t('Anthropic API Key'),
+    subtitle: t('For chat (Claude).'),
     displayName: 'Anthropic'
   },
   {
     id: 'gemini',
-    title: 'Gemini API Key',
-    subtitle: 'For proactive AI (memory, tasks, insights, focus).',
+    title: t('Gemini API Key'),
+    subtitle: t('For proactive AI (memory, tasks, insights, focus).'),
     displayName: 'Gemini'
   },
   {
     id: 'deepgram',
-    title: 'Deepgram API Key',
-    subtitle: 'For live transcription.',
+    title: t('Deepgram API Key'),
+    subtitle: t('For live transcription.'),
     displayName: 'Deepgram'
   }
 ]
@@ -191,7 +197,7 @@ export function DeveloperKeysSection(): React.JSX.Element {
       <div className="mb-4 mt-2 flex items-center gap-2 border-t border-white/[0.06] pt-6">
         <KeyRound className="h-4 w-4 text-white/45" strokeWidth={1.9} />
         <h3 className="text-sm font-semibold uppercase tracking-wide text-text-tertiary">
-          Developer API Keys
+          {t('Developer API Keys')}
         </h3>
       </div>
 
@@ -204,23 +210,26 @@ export function DeveloperKeysSection(): React.JSX.Element {
         )}
         <div className="min-w-0">
           <div className="text-[15px] font-semibold text-text-primary">
-            {hasActiveLLMByok ? 'Chat and AI: BYOK keys active' : 'Bring your own keys'}
+            {hasActiveLLMByok ? t('Chat and AI: BYOK keys active') : t('Bring your own keys')}
           </div>
           <div className="mt-0.5 text-sm text-text-tertiary">
             {hasActiveLLMByok
-              ? 'Your LLM keys cover supported chat and AI features. Keys stay on this PC.'
-              : 'Add an LLM key for supported chat and AI features. OpenRouter is preferred when configured. Keys stay on this PC — we never store them on our servers.'}
+              ? t('Your LLM keys cover supported chat and AI features. Keys stay on this PC.')
+              : t(
+                  'Add an LLM key for supported chat and AI features. OpenRouter is preferred when configured. Keys stay on this PC — we never store them on our servers.'
+                )}
           </div>
           <div className="mt-2 text-sm text-text-tertiary">
-            A validated Deepgram key is required for BYOK transcription. Without it, your Omi
-            transcription allowance and conversation locks still apply.
+            {t(
+              'A validated Deepgram key is required for BYOK transcription. Without it, your Omi transcription allowance and conversation locks still apply.'
+            )}
           </div>
           <div className="mt-2 text-sm text-text-tertiary">
             {hasTranscriptionByok
-              ? 'Transcription: Deepgram BYOK'
+              ? t('Transcription: Deepgram BYOK')
               : validatedProviders
-                ? 'Transcription: Omi plan allowance'
-                : 'Transcription status unavailable — reopen settings to check'}
+                ? t('Transcription: Omi plan allowance')
+                : t('Transcription status unavailable — reopen settings to check')}
           </div>
         </div>
       </div>
@@ -247,12 +256,12 @@ export function DeveloperKeysSection(): React.JSX.Element {
               showChecking ? (
                 <span className="flex items-center gap-1.5 text-sm text-text-tertiary">
                   <Loader2 className="h-3.5 w-3.5 animate-spin" />
-                  Checking…
+                  {t('Checking…')}
                 </span>
               ) : status?.ok ? (
-                <span className="text-sm font-semibold text-emerald-400">Valid</span>
+                <span className="text-sm font-semibold text-emerald-400">{t('Valid')}</span>
               ) : status && !status.ok ? (
-                <span className="text-sm font-semibold text-amber-400">Invalid</span>
+                <span className="text-sm font-semibold text-amber-400">{t('Invalid')}</span>
               ) : undefined
             }
           >
@@ -261,7 +270,7 @@ export function DeveloperKeysSection(): React.JSX.Element {
                 type={reveal[id] ? 'text' : 'password'}
                 value={keys[id]}
                 onChange={(e) => onFieldChange(id, e.target.value)}
-                placeholder="Leave blank for default"
+                placeholder={t('Leave blank for default')}
                 className="glass-subtle w-full rounded-lg px-4 py-3 pr-11 font-mono text-sm text-text-secondary focus:outline-none"
                 spellCheck={false}
                 autoComplete="off"
@@ -270,7 +279,9 @@ export function DeveloperKeysSection(): React.JSX.Element {
                 type="button"
                 onClick={() => setReveal((r) => ({ ...r, [id]: !r[id] }))}
                 className="absolute right-3 top-1/2 -translate-y-1/2 text-white/45 hover:text-white/75"
-                aria-label={reveal[id] ? `Hide ${title}` : `Show ${title}`}
+                aria-label={
+                  reveal[id] ? t('Hide {title}', { title }) : t('Show {title}', { title })
+                }
               >
                 {reveal[id] ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
               </button>
@@ -288,7 +299,7 @@ export function DeveloperKeysSection(): React.JSX.Element {
             onClick={() => void clearAll()}
             className="text-sm font-medium text-red-400 hover:text-red-300"
           >
-            Clear All Custom Keys
+            {t('Clear All Custom Keys')}
           </button>
         </div>
       )}

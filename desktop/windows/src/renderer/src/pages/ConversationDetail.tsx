@@ -53,6 +53,7 @@ import {
   formatDuration,
   formatWhen
 } from '../lib/conversations/detailFormat'
+import { t, uiLocale } from '../lib/i18n'
 
 // Mac's ConversationDetailView, ported: a FULL PAGE (not a modal/drawer) that
 // replaces the list, with a 450px transcript drawer that slides in from the right.
@@ -126,7 +127,7 @@ function InsightCard({
           <button
             onClick={() => setExpanded((v) => !v)}
             aria-expanded={expanded}
-            title={expanded ? 'Collapse' : 'Expand'}
+            title={expanded ? t('Collapse') : t('Expand')}
             className="btn-ghost shrink-0 p-1"
           >
             <ChevronDown
@@ -168,26 +169,26 @@ function RenameModal({
         }}
       >
         <h2 id="rename-conv-title" className="font-display text-lg font-semibold text-white">
-          Edit title
+          {t('Edit title')}
         </h2>
         {/* autoFocus is intentional: the modal only opens on an explicit user action */}
         <input
           autoFocus
           value={value}
           onChange={(e) => setValue(e.target.value)}
-          aria-label="Conversation title"
+          aria-label={t('Conversation title')}
           className="mt-4 w-full rounded-xl border border-white/15 bg-white/[0.04] px-3 py-2 text-sm text-white focus:border-white/40 focus:outline-none"
         />
         <div className="mt-5 flex justify-end gap-2">
           <button type="button" onClick={onClose} className="btn-ghost px-3 py-1.5 text-sm">
-            Cancel
+            {t('Cancel')}
           </button>
           <button
             type="submit"
             disabled={!value.trim()}
             className="rounded-lg bg-white px-3 py-1.5 text-sm font-medium text-bg-primary disabled:opacity-40"
           >
-            Save
+            {t('Save')}
           </button>
         </div>
       </form>
@@ -258,15 +259,19 @@ function ConversationDetailView({ conversationId }: { conversationId: string }):
             c.kind === 'chat'
               ? {
                   title: c.title || 'Chat with Omi',
-                  subtitle: `${new Date(c.startedAt).toLocaleString()} · ${c.messages?.length ?? 0} messages`,
+                  subtitle: t('{value} · {value2} messages', {
+                    value: new Date(c.startedAt).toLocaleString(uiLocale()),
+                    value2: c.messages?.length ?? 0
+                  }),
                   chatMessages: c.messages ?? [],
                   transcript: c.transcript
                 }
               : {
                   title: c.title || 'Recording',
-                  subtitle: `${new Date(c.startedAt).toLocaleString()} · ${Math.round(
-                    (c.endedAt - c.startedAt) / 1000
-                  )}s · local only`,
+                  subtitle: t('{value} · {value2}s · local only', {
+                    value: new Date(c.startedAt).toLocaleString(uiLocale()),
+                    value2: Math.round((c.endedAt - c.startedAt) / 1000)
+                  }),
                   transcript: c.transcript
                 }
           )
@@ -351,7 +356,7 @@ function ConversationDetailView({ conversationId }: { conversationId: string }):
       await navigator.clipboard.writeText(url)
       flash('link')
     } catch (e) {
-      toast('Could not copy link', { tone: 'error', body: (e as Error).message })
+      toast(t('Could not copy link'), { tone: 'error', body: (e as Error).message })
     }
   }
 
@@ -368,7 +373,7 @@ function ConversationDetailView({ conversationId }: { conversationId: string }):
     } catch (e) {
       if (conv) setConv((c) => (c ? { ...c, structured: { ...c.structured, title: prev } } : c))
       else setLocal((l) => (l ? { ...l, title: prev } : l))
-      toast('Rename failed', { tone: 'error', body: (e as Error).message })
+      toast(t('Rename failed'), { tone: 'error', body: (e as Error).message })
     }
   }
 
@@ -381,10 +386,10 @@ function ConversationDetailView({ conversationId }: { conversationId: string }):
       // evidence pin only after the server confirms the conversation is gone.
       await window.omi.deleteJitConversationKeyframe(id)
       invalidateConversationsCache()
-      toast('Conversation deleted', { tone: 'info' })
+      toast(t('Conversation deleted'), { tone: 'info' })
       navigate('/conversations')
     } catch (e) {
-      toast('Delete failed', { tone: 'error', body: (e as Error).message })
+      toast(t('Delete failed'), { tone: 'error', body: (e as Error).message })
     }
   }
 
@@ -397,7 +402,7 @@ function ConversationDetailView({ conversationId }: { conversationId: string }):
       invalidateConversationsCache()
     } catch (e) {
       setConv((c) => (c ? { ...c, folder_id: prev } : c))
-      toast('Could not move conversation', { tone: 'error', body: (e as Error).message })
+      toast(t('Could not move conversation'), { tone: 'error', body: (e as Error).message })
     }
   }
 
@@ -406,10 +411,10 @@ function ConversationDetailView({ conversationId }: { conversationId: string }):
     setReprocessing(true)
     try {
       await reprocessConversation(id, appId)
-      toast('Reprocessing', { tone: 'info', body: 'Omi is regenerating the summary.' })
+      toast(t('Reprocessing'), { tone: 'info', body: t('Omi is regenerating the summary.') })
       setConv((c) => (c ? { ...c, status: 'processing' } : c))
     } catch (e) {
-      toast('Reprocess failed', { tone: 'error', body: (e as Error).message })
+      toast(t('Reprocess failed'), { tone: 'error', body: (e as Error).message })
     } finally {
       setReprocessing(false)
     }
@@ -479,7 +484,7 @@ function ConversationDetailView({ conversationId }: { conversationId: string }):
       }
     } catch (e) {
       apply(!next)
-      toast('Could not update task', { tone: 'error', body: (e as Error).message })
+      toast(t('Could not update task'), { tone: 'error', body: (e as Error).message })
     }
   }
 
@@ -490,8 +495,8 @@ function ConversationDetailView({ conversationId }: { conversationId: string }):
         <button
           onClick={() => navigate('/conversations')}
           className="btn-ghost -ml-1 p-2"
-          title="Back"
-          aria-label="Back"
+          title={t('Back')}
+          aria-label={t('Back')}
         >
           <ArrowLeft className="h-5 w-5" />
         </button>
@@ -506,7 +511,7 @@ function ConversationDetailView({ conversationId }: { conversationId: string }):
       <div className="flex flex-1 flex-col items-center justify-center gap-3 px-10 text-center">
         <Loader2 className="h-6 w-6 animate-spin text-text-tertiary" aria-hidden />
         <p className="max-w-sm text-sm text-text-tertiary">
-          Omi is still processing this conversation. It’ll appear in your list shortly.
+          {t('Omi is still processing this conversation. It’ll appear in your list shortly.')}
         </p>
       </div>
     )
@@ -524,7 +529,7 @@ function ConversationDetailView({ conversationId }: { conversationId: string }):
           className="btn-ghost px-3 py-1.5 text-xs"
         >
           <RefreshCw className="h-3.5 w-3.5" />
-          Try again
+          {t('Try again')}
         </button>
       </div>
     )
@@ -537,9 +542,11 @@ function ConversationDetailView({ conversationId }: { conversationId: string }):
           <p className="text-sm text-text-tertiary">{local.subtitle}</p>
           <div className="surface-card p-6">
             <div className="mb-4 flex items-center justify-between">
-              <h2 className="section-label">{local.chatMessages ? 'Messages' : 'Transcript'}</h2>
+              <h2 className="section-label">
+                {local.chatMessages ? t('Messages') : t('Transcript')}
+              </h2>
               <button onClick={onCopyTranscript} className="btn-ghost px-2.5 py-1 text-[11px]">
-                {copied === 'transcript' ? 'Copied' : 'Copy'}
+                {copied === 'transcript' ? t('Copied') : t('Copy')}
               </button>
             </div>
             {local.chatMessages ? (
@@ -554,7 +561,7 @@ function ConversationDetailView({ conversationId }: { conversationId: string }):
                     }
                   >
                     <div className="mb-1 text-[10px] uppercase tracking-wide text-text-quaternary">
-                      {m.role === 'user' ? 'You' : 'Omi'}
+                      {m.role === 'user' ? t('You') : t('Omi')}
                     </div>
                     <div className="whitespace-pre-wrap">{m.content}</div>
                   </li>
@@ -562,7 +569,7 @@ function ConversationDetailView({ conversationId }: { conversationId: string }):
               </ul>
             ) : (
               <pre className="whitespace-pre-wrap font-body text-sm leading-relaxed text-text-secondary">
-                {local.transcript || '(no transcript)'}
+                {local.transcript || t('(no transcript)')}
               </pre>
             )}
           </div>
@@ -575,7 +582,7 @@ function ConversationDetailView({ conversationId }: { conversationId: string }):
   if (!conv) {
     return shell(
       <div className="flex flex-1 items-center justify-center">
-        <Spinner label="Loading conversation…" />
+        <Spinner label={t('Loading conversation…')} />
       </div>
     )
   }
@@ -604,8 +611,8 @@ function ConversationDetailView({ conversationId }: { conversationId: string }):
             <button
               onClick={() => navigate('/conversations')}
               className="btn-ghost -ml-1 mt-0.5 shrink-0 p-2"
-              title="Back"
-              aria-label="Back"
+              title={t('Back')}
+              aria-label={t('Back')}
             >
               <ArrowLeft className="h-5 w-5" />
             </button>
@@ -623,8 +630,8 @@ function ConversationDetailView({ conversationId }: { conversationId: string }):
                 <button
                   onClick={() => setRenaming(true)}
                   className="btn-ghost shrink-0 p-1"
-                  title="Edit title"
-                  aria-label="Edit title"
+                  title={t('Edit title')}
+                  aria-label={t('Edit title')}
                 >
                   <Pencil className="h-3.5 w-3.5" />
                 </button>
@@ -646,13 +653,13 @@ function ConversationDetailView({ conversationId }: { conversationId: string }):
                 ) : (
                   <PanelRightOpen className="h-3.5 w-3.5" />
                 )}
-                {drawerOpen ? 'Hide Transcript' : 'View Transcript'}
+                {drawerOpen ? t('Hide Transcript') : t('View Transcript')}
               </button>
 
-              <ToolbarButton onClick={onCopyLink} title="Copy link">
+              <ToolbarButton onClick={onCopyLink} title={t('Copy link')}>
                 {copied === 'link' ? <Check className="h-4 w-4" /> : <Link2 className="h-4 w-4" />}
               </ToolbarButton>
-              <ToolbarButton onClick={onCopyTranscript} title="Copy transcript">
+              <ToolbarButton onClick={onCopyTranscript} title={t('Copy transcript')}>
                 {copied === 'transcript' ? (
                   <Check className="h-4 w-4" />
                 ) : (
@@ -666,7 +673,10 @@ function ConversationDetailView({ conversationId }: { conversationId: string }):
                   onMove={onMoveToFolder}
                 />
               )}
-              <ToolbarButton onClick={() => setConfirmDelete(true)} title="Delete conversation">
+              <ToolbarButton
+                onClick={() => setConfirmDelete(true)}
+                title={t('Delete conversation')}
+              >
                 <Trash2 className="h-4 w-4" />
               </ToolbarButton>
             </div>
@@ -679,15 +689,17 @@ function ConversationDetailView({ conversationId }: { conversationId: string }):
             {enriching ? (
               <div className="surface-card flex flex-col items-center gap-2 p-8 text-center">
                 <Loader2 className="h-5 w-5 animate-spin text-text-tertiary" aria-hidden />
-                <p className="text-sm text-white">Processing conversation…</p>
-                <p className="text-xs text-text-tertiary">Generating summary and action items</p>
+                <p className="text-sm text-white">{t('Processing conversation…')}</p>
+                <p className="text-xs text-text-tertiary">
+                  {t('Generating summary and action items')}
+                </p>
               </div>
             ) : (
               overview && (
                 <section className="surface-card p-6">
                   <h2 className="section-label mb-3 flex items-center gap-2">
                     <Sparkles className="h-3.5 w-3.5" aria-hidden />
-                    Summary
+                    {t('Summary')}
                   </h2>
                   <div className="text-sm leading-relaxed text-text-secondary">
                     <Markdown text={overview} />
@@ -706,13 +718,13 @@ function ConversationDetailView({ conversationId }: { conversationId: string }):
             {insights.length > 0 && (
               <section className="space-y-2">
                 <div className="flex items-center justify-between">
-                  <h2 className="section-label">App Insights</h2>
+                  <h2 className="section-label">{t('App Insights')}</h2>
                   <button
                     onClick={openAppPicker}
                     disabled={reprocessing}
                     className="btn-ghost px-2.5 py-1 text-[11px] disabled:opacity-40"
                   >
-                    {reprocessing ? 'Reprocessing…' : 'Reprocess'}
+                    {reprocessing ? t('Reprocessing…') : t('Reprocess')}
                   </button>
                 </div>
                 {insights.map((r, i) => (
@@ -727,17 +739,17 @@ function ConversationDetailView({ conversationId }: { conversationId: string }):
 
             {/* Try with Apps — always rendered */}
             <section className="surface-card p-6">
-              <h2 className="section-label mb-3">Try with Apps</h2>
+              <h2 className="section-label mb-3">{t('Try with Apps')}</h2>
               {apps.length === 0 ? (
                 <div className="flex items-center justify-between gap-3">
                   <p className="text-xs text-text-tertiary">
-                    Run an Omi app over this conversation for extra insights.
+                    {t('Run an Omi app over this conversation for extra insights.')}
                   </p>
                   <button
                     onClick={openAppPicker}
                     className="shrink-0 rounded-lg border border-border px-3 py-1.5 text-xs text-white transition-colors hover:bg-white/10"
                   >
-                    Browse apps
+                    {t('Browse apps')}
                   </button>
                 </div>
               ) : (
@@ -759,14 +771,14 @@ function ConversationDetailView({ conversationId }: { conversationId: string }):
 
             {actionItems.length > 0 && (
               <section className="surface-card p-6">
-                <h2 className="section-label mb-3">Action Items</h2>
+                <h2 className="section-label mb-3">{t('Action Items')}</h2>
                 <ul className="space-y-1.5">
                   {actionItems.map((a, i) => (
                     <li key={i} className="flex items-start gap-3 py-1">
                       <button
                         onClick={() => onToggleActionItem(i)}
                         aria-pressed={!!a.completed}
-                        title={a.completed ? 'Mark as open' : 'Mark as done'}
+                        title={a.completed ? t('Mark as open') : t('Mark as done')}
                         className={`mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-md border transition-all ${
                           a.completed
                             ? 'border-white/30 bg-white/15 text-white'
@@ -818,14 +830,14 @@ function ConversationDetailView({ conversationId }: { conversationId: string }):
       {pickingApp && (
         <ModalShell onClose={() => setPickingApp(false)} labelledBy="pick-app-title">
           <h2 id="pick-app-title" className="font-display text-lg font-semibold text-white">
-            Reprocess with an app
+            {t('Reprocess with an app')}
           </h2>
           <div className="mt-4 max-h-[320px] space-y-1.5 overflow-y-auto">
             <button
               onClick={() => onReprocess()}
               className="w-full rounded-xl border border-white/10 bg-white/[0.04] px-3 py-2.5 text-left text-sm text-white hover:bg-white/10"
             >
-              Default summary
+              {t('Default summary')}
             </button>
             {apps.map((a) => (
               <button
@@ -843,23 +855,24 @@ function ConversationDetailView({ conversationId }: { conversationId: string }):
       {confirmDelete && (
         <ModalShell onClose={() => setConfirmDelete(false)} labelledBy="delete-conv-title">
           <h2 id="delete-conv-title" className="font-display text-lg font-semibold text-white">
-            Delete conversation?
+            {t('Delete conversation?')}
           </h2>
           <p className="mt-2 text-sm text-text-tertiary">
-            “{title}” will be permanently deleted. This cannot be undone.
+            “{title}
+            {t('” will be permanently deleted. This cannot be undone.')}
           </p>
           <div className="mt-5 flex justify-end gap-2">
             <button
               onClick={() => setConfirmDelete(false)}
               className="btn-ghost px-3 py-1.5 text-sm"
             >
-              Cancel
+              {t('Cancel')}
             </button>
             <button
               onClick={onDelete}
               className="rounded-lg bg-error px-3 py-1.5 text-sm font-medium text-white"
             >
-              Delete
+              {t('Delete')}
             </button>
           </div>
         </ModalShell>

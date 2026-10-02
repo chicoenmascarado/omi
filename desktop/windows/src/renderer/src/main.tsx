@@ -38,6 +38,7 @@ import { AppCrashScreen } from './components/ui/AppCrashScreen'
 import { scrubEventPii } from '../../shared/sentryScrub'
 import { isSecondaryWindow } from './lib/windowRole'
 import { initFontScale } from './lib/fontScale'
+import { installUiLanguageReload, uiLanguage } from './lib/i18n'
 
 // Renderer-side crash reporting. Only initializes when a DSN is configured, so
 // dev builds (and any build without the env var) stay entirely offline. Emails
@@ -65,6 +66,11 @@ if (IS_PRIMARY_WINDOW) window.omi?.perfMark('renderer:eval')
 // Apply the persisted UI font scale and register the Ctrl+font shortcuts before
 // first render — main window only (secondary windows are visually exempt).
 if (IS_PRIMARY_WINDOW) initFontScale()
+
+// Interface language is fixed per window load; a change in Settings (from any
+// window) reloads the main window and the bar so every string switches together.
+document.documentElement.lang = uiLanguage()
+installUiLanguageReload()
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>

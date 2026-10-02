@@ -1,6 +1,7 @@
 import { Zap } from 'lucide-react'
 import { getPreferences, setPreferences } from '../../lib/preferences'
 import { PermissionStep } from './PermissionStep'
+import { t } from '../../lib/i18n'
 
 type AutomationPermissionStepProps = {
   stepIndex: number
@@ -40,11 +41,11 @@ export function AutomationPermissionStep({
       stepIndex={stepIndex}
       totalSteps={totalSteps}
       aside={aside}
-      eyebrow="PERMISSION"
-      title="Let Omi act when asked"
-      subtitle="Automation lets Omi take actions for you"
+      eyebrow={t('PERMISSION')}
+      title={t('Let Omi act when asked')}
+      subtitle={t('Automation lets Omi take actions for you')}
       icon={<Zap className="h-5 w-5 text-white/60" />}
-      cardLabel="Automation"
+      cardLabel={t('Automation')}
       statusText={{
         idle: 'Not enabled yet',
         waiting: 'Enabling',

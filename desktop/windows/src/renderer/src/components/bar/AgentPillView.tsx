@@ -11,6 +11,7 @@ import { useLiveEdgeFollow } from '../../hooks/useLiveEdgeFollow'
 import { displayLabel, displayTintToken, isFinished, type AgentPill } from './agentPills'
 import { pillChipClasses } from './agentPillTranscript'
 import type { ChatMsg } from '../../hooks/useChat'
+import { t } from '../../lib/i18n'
 
 function ChevronLeft(): React.JSX.Element {
   return (
@@ -62,7 +63,7 @@ export function AgentPillView(props: AgentPillViewProps): React.JSX.Element {
         <button
           type="button"
           onClick={props.onBack}
-          aria-label="Back to list"
+          aria-label={t('Back to list')}
           className="flex h-6 w-6 shrink-0 items-center justify-center rounded-md text-neutral-400 transition-colors hover:bg-white/[0.06] hover:text-neutral-100"
         >
           <ChevronLeft />
@@ -75,7 +76,7 @@ export function AgentPillView(props: AgentPillViewProps): React.JSX.Element {
             displayTintToken(pill.displayStatus)
           )}`}
         >
-          {displayLabel(pill.displayStatus)}
+          {t(displayLabel(pill.displayStatus))}
         </span>
         {finished ? (
           <button
@@ -83,7 +84,7 @@ export function AgentPillView(props: AgentPillViewProps): React.JSX.Element {
             onClick={() => props.onDismiss(pill.id)}
             className="shrink-0 rounded-md px-2 py-1 text-xs font-medium text-neutral-400 transition-colors hover:bg-white/[0.06] hover:text-neutral-100"
           >
-            Dismiss
+            {t('Dismiss')}
           </button>
         ) : props.onStop ? (
           <button
@@ -91,13 +92,13 @@ export function AgentPillView(props: AgentPillViewProps): React.JSX.Element {
             onClick={() => props.onStop?.(pill)}
             className="shrink-0 rounded-md px-2 py-1 text-xs font-medium text-neutral-400 transition-colors hover:bg-white/[0.06] hover:text-neutral-100"
           >
-            Stop
+            {t('Stop')}
           </button>
         ) : null}
         <button
           type="button"
           onClick={props.onClose}
-          aria-label="Close"
+          aria-label={t('Close')}
           className="ml-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-md text-xs leading-none text-neutral-500 transition-colors hover:bg-neutral-700/50 hover:text-neutral-200"
         >
           ✕

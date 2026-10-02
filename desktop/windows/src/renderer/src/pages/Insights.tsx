@@ -4,6 +4,7 @@ import { PageHeader } from '../components/layout/PageHeader'
 import { EmptyState } from '../components/ui/EmptyState'
 import { toast } from '../lib/toast'
 import type { InsightCategory, InsightRecord } from '../../../shared/types'
+import { t as i18n, timeAgo, uiLocale } from '../lib/i18n'
 
 // Module-level cache so navigating away and back is instant (reads are local-first
 // SQLite via IPC; the cache just avoids a skeleton flash on revisit).
@@ -11,12 +12,12 @@ const cache = { items: null as InsightRecord[] | null, loaded: false }
 
 // Fixed filter set — the five InsightCategory values plus an "all" pseudo-tab.
 const CATEGORY_TABS: { id: 'all' | InsightCategory; label: string }[] = [
-  { id: 'all', label: 'All' },
-  { id: 'productivity', label: 'Productivity' },
-  { id: 'communication', label: 'Communication' },
-  { id: 'learning', label: 'Learning' },
-  { id: 'health', label: 'Health' },
-  { id: 'other', label: 'Other' }
+  { id: 'all', label: i18n('All') },
+  { id: 'productivity', label: i18n('Productivity') },
+  { id: 'communication', label: i18n('Communication') },
+  { id: 'learning', label: i18n('Learning') },
+  { id: 'health', label: i18n('Health') },
+  { id: 'other', label: i18n('Other') }
 ]
 
 const CATEGORY_LABEL: Record<InsightCategory, string> = {
@@ -31,16 +32,10 @@ const CATEGORY_LABEL: Record<InsightCategory, string> = {
 // to an absolute date past a week.
 function formatWhen(ts: number): string {
   const diff = Date.now() - ts
-  if (diff < 60_000) return 'just now'
-  const mins = Math.floor(diff / 60_000)
-  if (mins < 60) return `${mins}m ago`
-  const hours = Math.floor(mins / 60)
-  if (hours < 24) return `${hours}h ago`
-  const days = Math.floor(hours / 24)
-  if (days < 7) return `${days}d ago`
+  if (diff < 7 * 86_400_000) return timeAgo(diff)
   const d = new Date(ts)
   const sameYear = d.getFullYear() === new Date().getFullYear()
-  return d.toLocaleDateString(undefined, {
+  return d.toLocaleDateString(uiLocale(), {
     month: 'short',
     day: 'numeric',
     ...(sameYear ? {} : { year: 'numeric' })
@@ -98,7 +93,7 @@ export function Insights(): React.JSX.Element {
     try {
       await window.omi.insightDismissRecord(id)
     } catch {
-      toast('Could not dismiss insight', { tone: 'error' })
+      toast(i18n('Could not dismiss insight'), { tone: 'error' })
       await read()
     }
   }
@@ -109,7 +104,7 @@ export function Insights(): React.JSX.Element {
     try {
       await window.omi.insightDismissAll()
     } catch {
-      toast('Could not mark all read', { tone: 'error' })
+      toast(i18n('Could not mark all read'), { tone: 'error' })
       await read()
     }
   }
@@ -122,7 +117,7 @@ export function Insights(): React.JSX.Element {
     try {
       await window.omi.insightClearAll()
     } catch {
-      toast('Could not clear history', { tone: 'error' })
+      toast(i18n('Could not clear history'), { tone: 'error' })
       await read()
     }
   }
@@ -138,7 +133,7 @@ export function Insights(): React.JSX.Element {
           {!i.dismissed && (
             <span
               className="mt-1.5 h-2 w-2 shrink-0 rounded-full bg-white/70"
-              aria-label="Unread"
+              aria-label={i18n('Unread')}
             />
           )}
           <div className={`min-w-0 flex-1 ${i.dismissed ? 'pl-5' : ''}`}>
@@ -173,14 +168,16 @@ export function Insights(): React.JSX.Element {
             {i.reasoning && (
               <div className="mb-3">
                 <p className="mb-1 text-[11px] font-semibold uppercase tracking-wide text-white/35">
-                  Why
+                  {i18n('Why')}
                 </p>
                 <p className="text-sm leading-relaxed text-white/70">{i.reasoning}</p>
               </div>
             )}
             <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-[11px] text-white/40">
-              <span>Confidence: {Math.round(i.confidence * 100)}%</span>
-              <span>{new Date(i.ts).toLocaleString()}</span>
+              <span>
+                {i18n('Confidence:')} {Math.round(i.confidence * 100)}%
+              </span>
+              <span>{new Date(i.ts).toLocaleString(uiLocale())}</span>
             </div>
             {!i.dismissed && (
               <div className="mt-3">
@@ -188,7 +185,7 @@ export function Insights(): React.JSX.Element {
                   onClick={() => void dismissOne(i.id)}
                   className="btn-ghost px-3 py-1.5 text-xs"
                 >
-                  Dismiss
+                  {i18n('Dismiss')}
                 </button>
               </div>
             )}
@@ -201,11 +198,16 @@ export function Insights(): React.JSX.Element {
   return (
     <div className="flex h-full flex-col">
       <PageHeader
-        title="Insights"
+        title={i18n('Insights')}
         subtitle={
           loading
-            ? 'Loading…'
-            : `${items.length} total${unreadCount > 0 ? ` · ${unreadCount} unread` : ''}`
+            ? i18n('Loading…')
+            : unreadCount > 0
+              ? i18n('{count} total · {unread} unread', {
+                  count: items.length,
+                  unread: unreadCount
+                })
+              : i18n('{count} total', { count: items.length })
         }
         actions={
           <div className="flex items-center gap-2">
@@ -213,25 +215,25 @@ export function Insights(): React.JSX.Element {
               onClick={markAllRead}
               disabled={unreadCount === 0}
               className="btn-ghost px-3 py-2 disabled:opacity-40"
-              title="Mark all read"
+              title={i18n('Mark all read')}
             >
               <CheckCheck className="h-4 w-4" />
-              Mark all read
+              {i18n('Mark all read')}
             </button>
             <button
               onClick={clearHistory}
               disabled={items.length === 0}
               className="btn-ghost px-3 py-2 disabled:opacity-40"
-              title="Clear history"
+              title={i18n('Clear history')}
             >
               <Trash2 className="h-4 w-4" />
-              Clear
+              {i18n('Clear')}
             </button>
             <button
               onClick={onRefresh}
               disabled={refreshing || loading}
               className="btn-ghost px-3 py-2 disabled:opacity-50"
-              title="Refresh"
+              title={i18n('Refresh')}
             >
               <RefreshCw className={`h-4 w-4 ${refreshing ? 'animate-spin' : ''}`} />
             </button>
@@ -246,7 +248,7 @@ export function Insights(): React.JSX.Element {
               <input
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
-                placeholder="Search insights…"
+                placeholder={i18n('Search insights…')}
                 className="input-field pl-9"
               />
             </div>
@@ -285,15 +287,17 @@ export function Insights(): React.JSX.Element {
         {!loading && items.length === 0 && (
           <EmptyState
             icon={Lightbulb}
-            title="No insights yet"
-            description="Omi surfaces timely, private suggestions as you work. They'll collect here so you can revisit them anytime."
+            title={i18n('No insights yet')}
+            description={i18n(
+              "Omi surfaces timely, private suggestions as you work. They'll collect here so you can revisit them anytime."
+            )}
           />
         )}
 
         {!loading && items.length > 0 && visible.length === 0 && (
           <div className="flex flex-col items-center justify-center pt-16 text-center text-white/55">
             <Search className="mb-3 h-10 w-10 opacity-40" />
-            <p className="text-sm">No insights match your filters.</p>
+            <p className="text-sm">{i18n('No insights match your filters.')}</p>
           </div>
         )}
 

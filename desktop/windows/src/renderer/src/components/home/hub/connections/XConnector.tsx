@@ -6,6 +6,7 @@ import { ConnectorRow, PillButton } from './ConnectorRow'
 import { ConnectorBrandMark } from './ConnectorBrandMark'
 import { deriveView, friendlyError } from './xConnectorView'
 import type { XStatus, XRunState } from '../../../../../../shared/types'
+import { t } from '../../../../lib/i18n'
 
 // X (Twitter) connector row. The connect run lives in main (so it outlives this
 // panel); here we relay the session, kick it off, and reflect the streamed run
@@ -52,7 +53,7 @@ export function XConnector(): React.JSX.Element {
   const connect = async (): Promise<void> => {
     const session = await getXSession()
     if (!session) {
-      toast('Sign in to connect X', { tone: 'warn' })
+      toast(t('Sign in to connect X'), { tone: 'warn' })
       return
     }
     setRun(await window.omi.xConnect(session)) // seeds 'connecting'; progress streams in
@@ -64,14 +65,19 @@ export function XConnector(): React.JSX.Element {
     try {
       const r = await window.omi.xSync(session)
       if (r.success)
-        toast(`Synced X — ${r.newPosts} new post${r.newPosts === 1 ? '' : 's'}`, {
-          tone: 'success'
-        })
-      else toast('X sync failed', { tone: 'error', body: friendlyError(r.error) })
+        toast(
+          r.newPosts === 1
+            ? t('Synced X — {count} new post', { count: r.newPosts })
+            : t('Synced X — {count} new posts', { count: r.newPosts }),
+          {
+            tone: 'success'
+          }
+        )
+      else toast(t('X sync failed'), { tone: 'error', body: friendlyError(r.error) })
       await refreshStatus()
       if (r.memoriesCreated > 0) await refresh()
     } catch (e) {
-      toast('X sync failed', { tone: 'error', body: (e as Error).message })
+      toast(t('X sync failed'), { tone: 'error', body: (e as Error).message })
     }
   }
 
@@ -82,9 +88,9 @@ export function XConnector(): React.JSX.Element {
       await window.omi.xDisconnect(session)
       setStatus({ connected: false, postCount: 0, memoryCount: 0, syncing: false })
       setRun(IDLE_RUN)
-      toast('X disconnected', { tone: 'success' })
+      toast(t('X disconnected'), { tone: 'success' })
     } catch (e) {
-      toast('Could not disconnect', { tone: 'error', body: (e as Error).message })
+      toast(t('Could not disconnect'), { tone: 'error', body: (e as Error).message })
     }
   }
 
@@ -93,25 +99,25 @@ export function XConnector(): React.JSX.Element {
   return (
     <ConnectorRow
       iconNode={<ConnectorBrandMark brand="x" />}
-      title="X (Twitter)"
+      title={t('X (Twitter)')}
       description={view.description}
       action={
         view.state === 'connected' ? (
           <>
             <PillButton tone="neutral" onClick={sync} disabled={status?.syncing}>
-              {status?.syncing ? 'Syncing…' : 'Sync now'}
+              {status?.syncing ? t('Syncing…') : t('Sync now')}
             </PillButton>
             <PillButton tone="ghost" onClick={disconnect}>
-              Disconnect
+              {t('Disconnect')}
             </PillButton>
           </>
         ) : view.state === 'busy' ? (
           <PillButton tone="primary" disabled>
-            {run.phase === 'syncing' ? 'Importing…' : 'Waiting…'}
+            {run.phase === 'syncing' ? t('Importing…') : t('Waiting…')}
           </PillButton>
         ) : (
           <PillButton tone="primary" onClick={connect}>
-            Connect
+            {t('Connect')}
           </PillButton>
         )
       }

@@ -13,6 +13,7 @@ import {
   Info,
   type LucideIcon
 } from 'lucide-react'
+import { t } from '../../lib/i18n'
 
 export type SettingsTabId =
   | 'general'
@@ -29,16 +30,16 @@ export type SettingsTabId =
   | 'about'
 
 export const SETTINGS_TABS: { id: SettingsTabId; label: string; Icon: LucideIcon }[] = [
-  { id: 'general', label: 'General', Icon: SettingsIcon },
-  { id: 'memories', label: 'Memories', Icon: Brain },
-  { id: 'agents', label: 'Agents', Icon: Bot },
-  { id: 'transcription', label: 'Transcription', Icon: AudioLines },
-  { id: 'rewind', label: 'Rewind', Icon: History },
-  { id: 'notifications', label: 'Notifications', Icon: Bell },
-  { id: 'privacy', label: 'Privacy', Icon: ShieldCheck },
-  { id: 'account', label: 'Account', Icon: CircleUserRound },
-  { id: 'plan-usage', label: 'Plan & Usage', Icon: CreditCard },
-  { id: 'shortcuts', label: 'Shortcuts', Icon: Keyboard },
-  { id: 'advanced', label: 'Advanced', Icon: SlidersHorizontal },
-  { id: 'about', label: 'About', Icon: Info }
+  { id: 'general', label: t('General'), Icon: SettingsIcon },
+  { id: 'memories', label: t('Memories'), Icon: Brain },
+  { id: 'agents', label: t('Agents'), Icon: Bot },
+  { id: 'transcription', label: t('Transcription'), Icon: AudioLines },
+  { id: 'rewind', label: t('Rewind'), Icon: History },
+  { id: 'notifications', label: t('Notifications'), Icon: Bell },
+  { id: 'privacy', label: t('Privacy'), Icon: ShieldCheck },
+  { id: 'account', label: t('Account'), Icon: CircleUserRound },
+  { id: 'plan-usage', label: t('Plan & Usage'), Icon: CreditCard },
+  { id: 'shortcuts', label: t('Shortcuts'), Icon: Keyboard },
+  { id: 'advanced', label: t('Advanced'), Icon: SlidersHorizontal },
+  { id: 'about', label: t('About'), Icon: Info }
 ]

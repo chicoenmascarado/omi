@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { CheckCircle2, AlertCircle, Info, X, AlertTriangle } from 'lucide-react'
 import { onToast, dismissToast, type Toast } from '../../lib/toast'
+import { t as i18n } from '../../lib/i18n'
 
 const toneStyle: Record<Toast['tone'], { ring: string; Icon: typeof Info }> = {
   info: { ring: 'border-white/15', Icon: Info },
@@ -37,7 +38,7 @@ export function ToastHost(): React.JSX.Element | null {
             <button
               onClick={() => dismissToast(t.id)}
               className="-mr-1 -mt-1 rounded-md p-1 text-white/45 hover:bg-white/10 hover:text-white"
-              aria-label="Dismiss"
+              aria-label={i18n('Dismiss')}
             >
               <X className="h-3.5 w-3.5" />
             </button>

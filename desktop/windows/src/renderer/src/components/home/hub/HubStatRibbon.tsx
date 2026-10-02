@@ -2,6 +2,7 @@ import { useNavigate } from 'react-router-dom'
 import { Brain, GanttChartSquare, History, ListChecks } from 'lucide-react'
 import type { LucideIcon } from 'lucide-react'
 import { cn } from '../../../lib/utils'
+import { t } from '../../../lib/i18n'
 
 // The Hub's four-cell stat ribbon (macOS DashboardPage). Purely presentational —
 // the counts are passed in, so the ribbon has no opinion about where they come
@@ -28,10 +29,10 @@ type Cell = {
 }
 
 const CELLS: Cell[] = [
-  { key: 'conversations', label: 'Conversations', Icon: GanttChartSquare, to: '/conversations' },
-  { key: 'tasks', label: 'Tasks', Icon: ListChecks, to: '/tasks' },
-  { key: 'memories', label: 'Memories', Icon: Brain, to: '/memories' },
-  { key: 'screenshots', label: 'Screenshots', Icon: History, to: '/rewind' }
+  { key: 'conversations', label: t('Conversations'), Icon: GanttChartSquare, to: '/conversations' },
+  { key: 'tasks', label: t('Tasks'), Icon: ListChecks, to: '/tasks' },
+  { key: 'memories', label: t('Memories'), Icon: Brain, to: '/memories' },
+  { key: 'screenshots', label: t('Screenshots'), Icon: History, to: '/rewind' }
 ]
 
 export function HubStatRibbon({ counts }: { counts: HubStatCounts }): React.JSX.Element {

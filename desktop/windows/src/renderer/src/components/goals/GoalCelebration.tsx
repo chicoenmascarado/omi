@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
+import { t } from '../../lib/i18n'
 
 // Full-screen goal-completion celebration, ported from the macOS
 // `GoalCelebrationView` (frozen v0.12.72). Four phases over ~3.5s: dim → confetti
@@ -162,7 +163,7 @@ export function GoalCelebration({
             className="bg-gradient-to-r from-yellow-300 via-orange-400 to-yellow-300 bg-clip-text text-[32px] font-bold text-transparent"
             style={{ filter: 'drop-shadow(0 0 12px rgba(250, 204, 21, 0.6))' }}
           >
-            Goal Completed!
+            {t('Goal Completed!')}
           </span>
           <span className="text-[18px] font-medium text-white">{goal.title}</span>
           <span className="text-[14px] text-white/70">{caption}</span>

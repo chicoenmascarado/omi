@@ -11,6 +11,7 @@ import { useLiveEdgeFollow } from '../../hooks/useLiveEdgeFollow'
 import { displayLabel, displayTintToken, isFinished, type AgentPill } from './agentPills'
 import { pillChipClasses } from './agentPillTranscript'
 import type { BarChatState } from '../../../../shared/types'
+import { t } from '../../lib/i18n'
 
 function ChevronLeft(): React.JSX.Element {
   return (
@@ -73,7 +74,9 @@ function OmiChatRow({ onOpen }: { onOpen: () => void }): React.JSX.Element {
       >
         <ChatBubbleIcon />
       </span>
-      <span className="min-w-0 flex-1 truncate text-sm font-medium text-neutral-100">Omi Chat</span>
+      <span className="min-w-0 flex-1 truncate text-sm font-medium text-neutral-100">
+        {t('Omi Chat')}
+      </span>
       <span
         aria-hidden="true"
         className="shrink-0 text-neutral-600 transition-colors group-hover:text-neutral-300"
@@ -132,7 +135,7 @@ function PillRow({
                 displayTintToken(pill.displayStatus)
               )}`}
             >
-              {displayLabel(pill.displayStatus)}
+              {t(displayLabel(pill.displayStatus))}
             </span>
           </div>
           <div className="truncate text-xs text-neutral-500">{pill.latestActivity || '…'}</div>
@@ -142,21 +145,21 @@ function PillRow({
         <button
           type="button"
           onClick={() => onDismiss(pill.id)}
-          aria-label="Dismiss agent"
-          title="Dismiss"
+          aria-label={t('Dismiss agent')}
+          title={t('Dismiss')}
           className="shrink-0 rounded-md px-2 py-1 text-xs font-medium text-neutral-500 transition-colors hover:bg-white/[0.06] hover:text-neutral-200"
         >
-          Dismiss
+          {t('Dismiss')}
         </button>
       ) : onStop ? (
         <button
           type="button"
           onClick={() => onStop(pill)}
-          aria-label="Stop agent"
-          title="Stop"
+          aria-label={t('Stop agent')}
+          title={t('Stop')}
           className="shrink-0 rounded-md px-2 py-1 text-xs font-medium text-neutral-500 transition-colors hover:bg-white/[0.06] hover:text-neutral-200"
         >
-          Stop
+          {t('Stop')}
         </button>
       ) : null}
     </div>
@@ -220,7 +223,7 @@ const ChatComposer = memo(function ChatComposer({
         disabled={sendDisabled}
         className="rounded-xl bg-neutral-200 px-3 py-2 text-sm font-medium text-neutral-900 disabled:opacity-40"
       >
-        Send
+        {t('Send')}
       </button>
     </div>
   )
@@ -428,7 +431,7 @@ export function BarChatSurface(props: BarChatSurfaceProps): React.JSX.Element {
           onKeyUp={onComposerKeyUp}
           onSubmit={submit}
           sendDisabled={sendDisabled}
-          placeholder="Ask Omi anything…  ·  hold Space to talk"
+          placeholder={t('Ask Omi anything…  ·  hold Space to talk')}
           className="flex items-end gap-2 px-1 pb-1 pt-1"
         />
 
@@ -475,7 +478,7 @@ export function BarChatSurface(props: BarChatSurfaceProps): React.JSX.Element {
         <button
           type="button"
           onClick={props.onBack}
-          aria-label="Back to list"
+          aria-label={t('Back to list')}
           className="flex h-6 w-6 items-center justify-center rounded-md text-neutral-400 transition-colors hover:bg-white/[0.06] hover:text-neutral-100"
         >
           <ChevronLeft />
@@ -484,8 +487,8 @@ export function BarChatSurface(props: BarChatSurfaceProps): React.JSX.Element {
         <button
           type="button"
           onClick={props.onClose}
-          aria-label="Close"
-          title="Close (same as the shortcut)"
+          aria-label={t('Close')}
+          title={t('Close (same as the shortcut)')}
           className="ml-auto flex h-5 w-5 items-center justify-center rounded-md text-xs leading-none text-neutral-500 transition-colors hover:bg-neutral-700/50 hover:text-neutral-200"
         >
           ✕
@@ -504,7 +507,7 @@ export function BarChatSurface(props: BarChatSurfaceProps): React.JSX.Element {
         </div>
       ) : (
         <div className="px-4 pb-2 pt-1 text-sm text-neutral-500">
-          Ask Omi anything, or hold Space to talk.
+          {t('Ask Omi anything, or hold Space to talk.')}
         </div>
       )}
 
@@ -528,7 +531,7 @@ export function BarChatSurface(props: BarChatSurfaceProps): React.JSX.Element {
         onKeyUp={onComposerKeyUp}
         onSubmit={submit}
         sendDisabled={sendDisabled}
-        placeholder="Ask Omi…  ·  hold Space to talk"
+        placeholder={t('Ask Omi…  ·  hold Space to talk')}
         className="flex items-end gap-2 px-3 pb-3 pt-2"
       />
     </div>

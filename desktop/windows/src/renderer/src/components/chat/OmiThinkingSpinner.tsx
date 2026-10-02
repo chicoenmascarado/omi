@@ -1,3 +1,4 @@
+import { t } from '../../lib/i18n'
 // The bar chat's "waiting for Omi's reply" loader: the Omi dot-ring mark, spun
 // fast (see .omi-thinking-spin in globals.css). It stands ALONE — deliberately
 // NOT wrapped in a message bubble — left-aligned where the assistant reply will
@@ -25,7 +26,7 @@ const DOTS = Array.from({ length: 8 }, (_, i) => {
 
 export function OmiThinkingSpinner(): React.JSX.Element {
   return (
-    <div className="mr-auto flex items-center pl-1" role="status" aria-label="Omi is thinking">
+    <div className="mr-auto flex items-center pl-1" role="status" aria-label={t('Omi is thinking')}>
       <svg
         viewBox="0 0 24 24"
         className="omi-thinking-spin h-5 w-5"

@@ -9,6 +9,7 @@ import {
   formatGapDuration
 } from '../../lib/rewindStrip'
 import { useElementWidth } from '../../hooks/useElementWidth'
+import { t as i18n, uiLocale } from '../../lib/i18n'
 
 // Gap spacers are sized by duration so blank time is proportional.
 const GAP_PX_PER_MS = 0.001
@@ -51,7 +52,10 @@ const Thumb = memo(function Thumb({
     }
   }, [frame.imagePath, root])
 
-  const time = new Date(frame.ts).toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' })
+  const time = new Date(frame.ts).toLocaleTimeString(uiLocale(), {
+    hour: 'numeric',
+    minute: '2-digit'
+  })
   return (
     <button
       ref={elRef}
@@ -66,7 +70,7 @@ const Thumb = memo(function Thumb({
       <span className="leading-tight">
         <span className="block text-[11px] text-white/75">{time}</span>
         <span className="block truncate text-[10px] text-white/40">
-          {frame.app || 'Unknown app'}
+          {frame.app || i18n('Unknown app')}
         </span>
       </span>
     </button>
@@ -95,7 +99,7 @@ function GapSpacer({
           : 'border-white/10 text-white/30'
       }`}
     >
-      <span className="uppercase tracking-wide">no activity</span>
+      <span className="uppercase tracking-wide">{i18n('no activity')}</span>
       <span>{formatGapDuration(to - from)}</span>
     </button>
   )

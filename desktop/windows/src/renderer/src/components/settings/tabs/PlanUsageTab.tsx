@@ -27,6 +27,7 @@ import type {
   TrialMetadata,
   OverageInfoResponse
 } from '../../../lib/omiApi.generated'
+import { t } from '../../../lib/i18n'
 
 function apiError(e: unknown): string {
   return (
@@ -106,7 +107,7 @@ export function PlanUsageTab(): React.JSX.Element {
     try {
       await openCustomerPortal()
     } catch (e) {
-      toast('Could not open the billing portal', { tone: 'error', body: apiError(e) })
+      toast(t('Could not open the billing portal'), { tone: 'error', body: apiError(e) })
     } finally {
       setPortalBusy(false)
     }
@@ -135,21 +136,21 @@ export function PlanUsageTab(): React.JSX.Element {
           void load()
           return
         case 'refresh_lagging':
-          toast('Payment received', { tone: 'warn', body: REFRESH_LAGGING_MSG })
+          toast(t('Payment received'), { tone: 'warn', body: REFRESH_LAGGING_MSG })
           break
         case 'upgraded':
-          toast('Plan updated', { tone: 'success' })
+          toast(t('Plan updated'), { tone: 'success' })
           break
         case 'reactivated':
-          toast('Subscription reactivated', { tone: 'success' })
+          toast(t('Subscription reactivated'), { tone: 'success' })
           break
         default:
-          toast("You're all set", { tone: 'success' })
+          toast(t("You're all set"), { tone: 'success' })
       }
       setSelectedPlanId(null)
       await load()
     } catch (e) {
-      toast('Checkout failed', { tone: 'error', body: apiError(e) })
+      toast(t('Checkout failed'), { tone: 'error', body: apiError(e) })
     } finally {
       setActivePriceId(null)
     }
@@ -183,7 +184,7 @@ export function PlanUsageTab(): React.JSX.Element {
         <div className="glass-subtle mb-4 px-4 py-3 text-sm text-white/60">{error}</div>
         <button onClick={onRefresh} disabled={refreshing} className="btn-ghost">
           <RefreshCw className={`h-4 w-4 ${refreshing ? 'animate-spin' : ''}`} />
-          Try again
+          {t('Try again')}
         </button>
       </div>
     )
@@ -196,11 +197,11 @@ export function PlanUsageTab(): React.JSX.Element {
     return (
       <div>
         <div className="glass-subtle mb-4 px-4 py-3 text-sm text-white/60">
-          Couldn’t load your plan details.
+          {t('Couldn’t load your plan details.')}
         </div>
         <button onClick={onRefresh} disabled={refreshing} className="btn-ghost">
           <RefreshCw className={`h-4 w-4 ${refreshing ? 'animate-spin' : ''}`} />
-          Try again
+          {t('Try again')}
         </button>
       </div>
     )
@@ -223,15 +224,18 @@ export function PlanUsageTab(): React.JSX.Element {
           icon={AlertTriangle}
           iconTone="amber"
           className="border border-amber-400/25"
-          title="Plan Retiring"
+          title={t('Plan Retiring')}
           subtitle={
             subscription.deprecation_message ??
-            `Your Unlimited plan is being retired. Try the new Operator plan — same great features at ${OPERATOR_DEPRECATION_FALLBACK_PRICE}.`
+            t(
+              'Your Unlimited plan is being retired. Try the new Operator plan — same great features at {OPERATOR_DEPRECATION_FALLBACK_PRICE}.',
+              { OPERATOR_DEPRECATION_FALLBACK_PRICE }
+            )
           }
           trailing={
             showCatalog ? (
               <button onClick={jumpToOperator} className="btn-ghost">
-                Try Operator
+                {t('Try Operator')}
               </button>
             ) : undefined
           }

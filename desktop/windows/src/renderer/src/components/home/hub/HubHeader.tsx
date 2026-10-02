@@ -6,6 +6,7 @@ import type { LucideIcon } from 'lucide-react'
 import { getPreferences, onPreferencesChange, setPreferences } from '../../../lib/preferences'
 import { cn } from '../../../lib/utils'
 import type { RewindSettings } from '../../../../../shared/types'
+import { t } from '../../../lib/i18n'
 
 // The Hub's top-right controls: a screen-capture pill, a listening pill, and the
 // gear menu. Both pills drive the app's REAL capture state — the same
@@ -80,7 +81,7 @@ function GearMenu(): React.JSX.Element {
       <DropdownMenu.Trigger asChild>
         <button
           type="button"
-          aria-label="Home menu"
+          aria-label={t('Home menu')}
           className={cn(
             'focus-ring group flex h-[34px] w-[34px] items-center justify-center rounded-full',
             'border border-home-hairline/[0.68] bg-home-tile/[0.86] transition-colors duration-150',
@@ -148,16 +149,16 @@ export function HubHeader(): React.JSX.Element {
           toggle with no hint of WHICH control it is. */}
       <Pill
         Icon={Scan}
-        text="Capture"
+        text={t('Capture')}
         on={captureOn}
-        label={captureOn ? 'Turn screen capture off' : 'Turn screen capture on'}
+        label={captureOn ? t('Turn screen capture off') : t('Turn screen capture on')}
         onClick={toggleCapture}
       />
       <Pill
         Icon={micOn ? AudioWaveform : Mic}
-        text="Listening"
+        text={t('Listening')}
         on={micOn}
-        label={micOn ? 'Stop listening' : 'Start listening'}
+        label={micOn ? t('Stop listening') : t('Start listening')}
         onClick={toggleMic}
       />
       <GearMenu />

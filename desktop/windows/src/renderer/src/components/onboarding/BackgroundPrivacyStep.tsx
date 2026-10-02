@@ -3,6 +3,7 @@ import { StepScaffold } from './StepScaffold'
 import { getPreferences } from '../../lib/preferences'
 import { persistBackgroundConsent } from '../../lib/backgroundConsent'
 import { BackgroundConsentControls } from '../consent/BackgroundConsentControls'
+import { t } from '../../lib/i18n'
 
 type BackgroundPrivacyStepProps = {
   stepIndex: number
@@ -36,15 +37,16 @@ export function BackgroundPrivacyStep({
     <StepScaffold
       stepIndex={stepIndex}
       totalSteps={totalSteps}
-      eyebrow="BACKGROUND & PRIVACY"
-      title="How Omi runs on your PC"
+      eyebrow={t('BACKGROUND & PRIVACY')}
+      title={t('How Omi runs on your PC')}
       widthClassName="max-w-[440px]"
       onContinue={handleContinue}
       onBack={onBack}
     >
       <p className="text-center text-sm leading-relaxed text-white">
-        Omi works best as a quiet companion running in the background. You’re in control — change
-        any of this now or later in Settings.
+        {t(
+          'Omi works best as a quiet companion running in the background. You’re in control — change any of this now or later in Settings.'
+        )}
       </p>
       <div className="mt-6 w-full">
         <BackgroundConsentControls

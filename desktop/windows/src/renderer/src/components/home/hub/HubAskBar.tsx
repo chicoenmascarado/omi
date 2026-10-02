@@ -11,6 +11,7 @@ import { filesToPickedChatFiles } from '../../../lib/chatDropFiles'
 import { usePendingAttachments } from '../../../hooks/usePendingAttachments'
 import { AttachmentChip } from './AttachmentChip'
 import type { PickedChatFile } from '../../../../../shared/types'
+import { t } from '../../../lib/i18n'
 
 // A one-line summary of what the attachment layer rejected, so files never drop
 // silently (Mac surfaces these). Reasons are ranked by how actionable they are.
@@ -157,7 +158,11 @@ export function HubAskBar(props: {
           onClick={pickFiles}
           disabled={atCap}
           aria-label={
-            atCap ? `Attachment limit reached (${MAX_CHAT_ATTACHMENTS} files)` : 'Attach files'
+            atCap
+              ? t('Attachment limit reached ({MAX_CHAT_ATTACHMENTS} files)', {
+                  MAX_CHAT_ATTACHMENTS
+                })
+              : t('Attach files')
           }
           className={cn(
             'focus-ring mr-1 flex h-[34px] w-[34px] shrink-0 items-center justify-center rounded-full',
@@ -190,8 +195,8 @@ export function HubAskBar(props: {
             // the keystroke the user meant for the IME.
             if (e.key === 'Enter' && !e.nativeEvent.isComposing) onSubmit()
           }}
-          placeholder="Ask omi anything"
-          aria-label="Ask omi anything"
+          placeholder={t('Ask omi anything')}
+          aria-label={t('Ask omi anything')}
           className="mr-3 min-w-0 flex-1 border-0 bg-transparent text-[15px] text-home-ink placeholder:text-home-muted focus:outline-none focus:ring-0"
         />
 
@@ -209,7 +214,7 @@ export function HubAskBar(props: {
           <div
             role="status"
             aria-busy="true"
-            aria-label="Omi is replying"
+            aria-label={t('Omi is replying')}
             className="flex h-[34px] w-[34px] shrink-0 items-center justify-center"
           >
             <Loader2 className="h-4 w-4 animate-spin text-home-muted" strokeWidth={2.5} />
@@ -226,7 +231,7 @@ export function HubAskBar(props: {
               // then (inputRef.current is null or detached).
               requestAnimationFrame(() => inputRef.current?.focus())
             }}
-            aria-label="Send"
+            aria-label={t('Send')}
             className="focus-ring flex h-[34px] w-[34px] shrink-0 cursor-pointer items-center justify-center rounded-full bg-white text-home-paper transition-opacity duration-150 hover:opacity-90"
           >
             <ArrowUp className="h-[13px] w-[13px]" strokeWidth={2.75} />
@@ -245,7 +250,7 @@ export function HubAskBar(props: {
             )}
           >
             <LinkIcon className="h-[11px] w-[11px] shrink-0" strokeWidth={2.5} />
-            Connect
+            {t('Connect')}
           </button>
         )}
       </div>

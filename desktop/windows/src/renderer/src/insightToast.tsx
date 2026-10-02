@@ -20,6 +20,7 @@ import { InsightToast } from './components/insight/InsightToast'
 import { SandboxBadge } from './components/SandboxBadge'
 import { ErrorBoundary } from './components/ui/ErrorBoundary'
 import { scrubEventPii } from '../../shared/sentryScrub'
+import { installUiLanguageReload, uiLanguage } from './lib/i18n'
 
 // Renderer-side crash reporting — same init as the main entry (main.tsx). No-op
 // without a DSN (dev builds).
@@ -30,6 +31,9 @@ if (SENTRY_DSN) {
     beforeSend: (event) => scrubEventPii(event)
   })
 }
+
+document.documentElement.lang = uiLanguage()
+installUiLanguageReload()
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>

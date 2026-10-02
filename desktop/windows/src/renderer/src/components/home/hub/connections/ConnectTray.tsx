@@ -4,6 +4,7 @@ import { getCalendarStatus, type CalendarStatus } from '../../../../lib/calendar
 import { getXSession } from '../../../../lib/xSession'
 import type { XStatus } from '../../../../../../shared/types'
 import { TrayTile } from './TrayTile'
+import { t } from '../../../../lib/i18n'
 
 // The Connections tray — the top level of the Connect stage, and the faithful port
 // of macOS's homeConnectPanel (DashboardPage.swift): two rounded column cards under
@@ -104,7 +105,7 @@ export function ConnectTray(props: ConnectTrayCallbacks): React.JSX.Element {
       <button
         type="button"
         onClick={onDismiss}
-        aria-label="Close connect"
+        aria-label={t('Close connect')}
         data-testid="connect-tray-close"
         className="focus-ring absolute right-3 top-3 z-10 flex h-8 w-8 items-center justify-center rounded-full text-home-muted transition-colors hover:bg-white/10 hover:text-home-ink"
       >
@@ -115,28 +116,28 @@ export function ConnectTray(props: ConnectTrayCallbacks): React.JSX.Element {
         <div className="flex min-h-full items-center justify-center px-5 py-6">
           <div className="flex w-full max-w-[920px] items-stretch gap-2.5">
             <ColumnCard>
-              <ColumnHeader title="Connect data" subtitle="Sources Omi learns from." />
+              <ColumnHeader title={t('Connect data')} subtitle={t('Sources Omi learns from.')} />
               <div className="flex flex-col gap-2.5">
                 <TrayTile
-                  title="Calendar"
+                  title={t('Calendar')}
                   brand="calendar"
                   connected={calendar.connected}
                   onClick={() => onOpenSource('calendar')}
                 />
                 <TrayTile
-                  title="Sticky Notes"
+                  title={t('Sticky Notes')}
                   brand="sticky"
                   onClick={() => onOpenSource('sticky')}
                 />
                 <TrayTile
-                  title="X (Twitter)"
+                  title={t('X (Twitter)')}
                   brand="x"
                   connected={xConnected}
                   onClick={() => onOpenSource('x')}
                 />
-                <TrayTile title="Omi Device" brand="omi" onClick={onOpenDevice} />
+                <TrayTile title={t('Omi Device')} brand="omi" onClick={onOpenDevice} />
                 <TrayTile
-                  title="More"
+                  title={t('More')}
                   plus
                   testId="tray-tile-more-imports"
                   onClick={onOpenImports}
@@ -152,25 +153,33 @@ export function ConnectTray(props: ConnectTrayCallbacks): React.JSX.Element {
 
             <ColumnCard>
               <ColumnHeader
-                title="Use omi memory anywhere"
-                subtitle="Bring your memories to the apps you use"
+                title={t('Use omi memory anywhere')}
+                subtitle={t('Bring your memories to the apps you use')}
               />
               <div className="flex flex-col gap-2.5">
-                <TrayTile title="Ask Omi" brand="omi" onClick={onAskOmi} />
+                <TrayTile title={t('Ask Omi')} brand="omi" onClick={onAskOmi} />
                 <TrayTile
-                  title="Claude / Claude Code"
+                  title={t('Claude / Claude Code')}
                   brand="claude"
                   onClick={() => onOpenExport('claude')}
                 />
                 <TrayTile
-                  title="ChatGPT / Codex"
+                  title={t('ChatGPT / Codex')}
                   brand="chatgpt"
                   onClick={() => onOpenExport('chatgpt')}
                 />
-                <TrayTile title="OpenClaw" brand="openclaw" onClick={() => onOpenExport('openclaw')} />
-                <TrayTile title="Hermes" brand="hermes" onClick={() => onOpenExport('hermes')} />
                 <TrayTile
-                  title="More"
+                  title={t('OpenClaw')}
+                  brand="openclaw"
+                  onClick={() => onOpenExport('openclaw')}
+                />
+                <TrayTile
+                  title={t('Hermes')}
+                  brand="hermes"
+                  onClick={() => onOpenExport('hermes')}
+                />
+                <TrayTile
+                  title={t('More')}
                   plus
                   testId="tray-tile-more-exports"
                   onClick={onOpenExports}

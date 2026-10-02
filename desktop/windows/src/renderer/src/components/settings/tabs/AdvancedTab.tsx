@@ -24,6 +24,7 @@ import { IntegrationsTab } from './IntegrationsTab'
 import { DeveloperKeysSection } from './DeveloperKeysSection'
 import { AiProfileCard } from './AiProfileCard'
 import type { ExportMemory, FileIndexStatus, LocalKGStatus } from '../../../../../shared/types'
+import { t, uiLocale } from '../../../lib/i18n'
 
 export function AdvancedTab(): React.JSX.Element {
   const { memories, refresh } = useMemories()
@@ -42,10 +43,10 @@ export function AdvancedTab(): React.JSX.Element {
     setScanning(true)
     try {
       setFileIndex(await window.omi.indexFilesScan())
-      toast('File index updated', { tone: 'success' })
+      toast(t('File index updated'), { tone: 'success' })
       void buildLocalGraph().catch(() => {})
     } catch (e) {
-      toast('File indexing failed', { tone: 'error', body: (e as Error).message })
+      toast(t('File indexing failed'), { tone: 'error', body: (e as Error).message })
     } finally {
       setScanning(false)
     }
@@ -65,9 +66,9 @@ export function AdvancedTab(): React.JSX.Element {
     setRebuildingKg(true)
     try {
       setKgStatus(await buildLocalGraph())
-      toast('Knowledge graph rebuilt', { tone: 'success' })
+      toast(t('Knowledge graph rebuilt'), { tone: 'success' })
     } catch (e) {
-      toast('Knowledge graph rebuild failed', { tone: 'error', body: (e as Error).message })
+      toast(t('Knowledge graph rebuild failed'), { tone: 'error', body: (e as Error).message })
     } finally {
       setRebuildingKg(false)
     }
@@ -95,7 +96,7 @@ export function AdvancedTab(): React.JSX.Element {
       setProfile(r.profile)
       toastForExtractResult(r)
     } catch (e) {
-      toast('Could not extract memories', { tone: 'error', body: (e as Error).message })
+      toast(t('Could not extract memories'), { tone: 'error', body: (e as Error).message })
     } finally {
       setExtracting(false)
     }
@@ -129,11 +130,11 @@ export function AdvancedTab(): React.JSX.Element {
   const runExport = async (target: 'obsidian' | 'file' | 'notion'): Promise<void> => {
     if (exporting) return
     if (memories.length === 0) {
-      toast('No memories to export yet', { tone: 'warn' })
+      toast(t('No memories to export yet'), { tone: 'warn' })
       return
     }
     if (target === 'notion' && (!notionToken.trim() || !notionPage.trim())) {
-      toast('Enter your Notion token and parent page ID', { tone: 'warn' })
+      toast(t('Enter your Notion token and parent page ID'), { tone: 'warn' })
       return
     }
     setExporting(true)
@@ -146,13 +147,18 @@ export function AdvancedTab(): React.JSX.Element {
           : undefined
       )
       if (!r.canceled) {
-        toast(`Exported ${r.count} memor${r.count === 1 ? 'y' : 'ies'}`, {
-          tone: 'success',
-          body: r.location
-        })
+        toast(
+          r.count === 1
+            ? t('Exported {count} memory', { count: r.count })
+            : t('Exported {count} memories', { count: r.count }),
+          {
+            tone: 'success',
+            body: r.location
+          }
+        )
       }
     } catch (e) {
-      toast('Export failed', { tone: 'error', body: (e as Error).message })
+      toast(t('Export failed'), { tone: 'error', body: (e as Error).message })
     } finally {
       setExporting(false)
     }
@@ -173,7 +179,7 @@ export function AdvancedTab(): React.JSX.Element {
       setMemAllMemories(all)
       setMemBreakdown(summarizeMemories(all))
     } catch (e) {
-      toast('Could not load memories', { tone: 'error', body: (e as Error).message })
+      toast(t('Could not load memories'), { tone: 'error', body: (e as Error).message })
     } finally {
       setMemAuditing(false)
     }
@@ -190,7 +196,7 @@ export function AdvancedTab(): React.JSX.Element {
       return
     const token = await auth.currentUser?.getIdToken(true)
     if (!token) {
-      toast('Sign in required to delete memories', { tone: 'warn' })
+      toast(t('Sign in required to delete memories'), { tone: 'warn' })
       return
     }
     setMemDeleting(true)
@@ -202,14 +208,17 @@ export function AdvancedTab(): React.JSX.Element {
     const offProgress = window.omi.onMemoriesDeleteProgress((p) => setMemDeleteProgress(p.deleted))
     try {
       const result = await window.omi.memoriesBulkDelete({ token, ids })
-      toast(`Deleted ${result.deleted} of ${ids.length} memories`, {
-        tone: result.failed ? 'warn' : 'success',
-        body: result.failed
-          ? `${result.failed} failed${result.firstError ? ` — ${result.firstError}` : ''}. Analyze again to retry.`
-          : undefined
-      })
+      toast(
+        t('Deleted {deleted} of {count} memories', { deleted: result.deleted, count: ids.length }),
+        {
+          tone: result.failed ? 'warn' : 'success',
+          body: result.failed
+            ? `${result.failed} failed${result.firstError ? ` — ${result.firstError}` : ''}. Analyze again to retry.`
+            : undefined
+        }
+      )
     } catch (e) {
-      toast('Delete failed', { tone: 'error', body: (e as Error).message })
+      toast(t('Delete failed'), { tone: 'error', body: (e as Error).message })
     } finally {
       offProgress()
       setMemDeleting(false)
@@ -227,20 +236,22 @@ export function AdvancedTab(): React.JSX.Element {
     <>
       <SettingRow
         icon={Download}
-        title="Import memories"
-        subtitle="Paste a ChatGPT/Claude “everything you remember about me” reply; Omi extracts distinct, durable facts."
+        title={t('Import memories')}
+        subtitle={t(
+          'Paste a ChatGPT/Claude “everything you remember about me” reply; Omi extracts distinct, durable facts.'
+        )}
         keywords="import chatgpt claude memories paste extract"
       >
         <div className="space-y-3">
           <div className="flex items-center gap-2">
-            <span className="text-sm text-text-tertiary">Exported from</span>
+            <span className="text-sm text-text-tertiary">{t('Exported from')}</span>
             {(['chatgpt', 'claude'] as const).map((s) => (
               <button
                 key={s}
                 onClick={() => setSource(s)}
                 className={`rounded-md px-3 py-1 text-sm ${source === s ? 'btn-primary' : 'btn-ghost'}`}
               >
-                {s === 'chatgpt' ? 'ChatGPT' : 'Claude'}
+                {s === 'chatgpt' ? t('ChatGPT') : t('Claude')}
               </button>
             ))}
           </div>
@@ -252,7 +263,7 @@ export function AdvancedTab(): React.JSX.Element {
               setProfile('')
             }}
             rows={5}
-            placeholder="Paste the assistant’s full reply here…"
+            placeholder={t('Paste the assistant’s full reply here…')}
             className="input-field resize-none"
           />
           <div className="flex items-center gap-2">
@@ -261,7 +272,7 @@ export function AdvancedTab(): React.JSX.Element {
               disabled={!dump.trim() || extracting || importing}
               className="btn-ghost disabled:opacity-40"
             >
-              {extracting ? 'Extracting…' : 'Extract memories'}
+              {extracting ? t('Extracting…') : t('Extract memories')}
             </button>
             {parsed && parsed.length > 0 && (
               <button
@@ -270,8 +281,10 @@ export function AdvancedTab(): React.JSX.Element {
                 className="btn-primary px-4 py-2 disabled:opacity-40"
               >
                 {importing
-                  ? 'Importing…'
-                  : `Import ${parsed.length} memor${parsed.length === 1 ? 'y' : 'ies'}`}
+                  ? t('Importing…')
+                  : parsed.length === 1
+                    ? t('Import {count} memory', { count: parsed.length })
+                    : t('Import {count} memories', { count: parsed.length })}
               </button>
             )}
           </div>
@@ -294,8 +307,16 @@ export function AdvancedTab(): React.JSX.Element {
 
       <SettingRow
         icon={Upload}
-        title="Export memories"
-        subtitle={`Export your ${memories.length} memor${memories.length === 1 ? 'y' : 'ies'} as Markdown (Obsidian, a plain file, or Notion).`}
+        title={t('Export memories')}
+        subtitle={
+          memories.length === 1
+            ? t('Export your {count} memory as Markdown (Obsidian, a plain file, or Notion).', {
+                count: memories.length
+              })
+            : t('Export your {count} memories as Markdown (Obsidian, a plain file, or Notion).', {
+                count: memories.length
+              })
+        }
         keywords="export obsidian notion file markdown"
       >
         <div className="space-y-3">
@@ -305,30 +326,30 @@ export function AdvancedTab(): React.JSX.Element {
               disabled={exporting}
               className="btn-ghost disabled:opacity-40"
             >
-              Obsidian vault…
+              {t('Obsidian vault…')}
             </button>
             <button
               onClick={() => runExport('file')}
               disabled={exporting}
               className="btn-ghost disabled:opacity-40"
             >
-              Plain file…
+              {t('Plain file…')}
             </button>
           </div>
           <div className="border-t border-white/5 pt-3">
             <p className="mb-2 text-sm text-text-tertiary">
-              Notion — paste an internal-integration token and a page ID it can access.
+              {t('Notion — paste an internal-integration token and a page ID it can access.')}
             </p>
             <input
               value={notionToken}
               onChange={(e) => setNotionToken(e.target.value)}
-              placeholder="Notion integration token (secret_…)"
+              placeholder={t('Notion integration token (secret_…)')}
               className="glass-subtle mb-2 w-full rounded-lg px-4 py-3 text-sm text-text-secondary focus:outline-none"
             />
             <input
               value={notionPage}
               onChange={(e) => setNotionPage(e.target.value)}
-              placeholder="Parent page ID"
+              placeholder={t('Parent page ID')}
               className="glass-subtle mb-2 w-full rounded-lg px-4 py-3 text-sm text-text-secondary focus:outline-none"
             />
             <button
@@ -336,7 +357,7 @@ export function AdvancedTab(): React.JSX.Element {
               disabled={exporting}
               className="btn-ghost disabled:opacity-40"
             >
-              {exporting ? 'Exporting…' : 'Export to Notion'}
+              {exporting ? t('Exporting…') : t('Export to Notion')}
             </button>
           </div>
         </div>
@@ -344,8 +365,10 @@ export function AdvancedTab(): React.JSX.Element {
 
       <SettingRow
         icon={Wrench}
-        title="Memory maintenance"
-        subtitle="Find and remove legacy app/file-index memories (these belong in the knowledge graph, not memories). Analyze is read-only."
+        title={t('Memory maintenance')}
+        subtitle={t(
+          'Find and remove legacy app/file-index memories (these belong in the knowledge graph, not memories). Analyze is read-only.'
+        )}
         keywords="maintenance cleanup delete app file index memories audit"
       >
         <div className="space-y-3">
@@ -355,7 +378,7 @@ export function AdvancedTab(): React.JSX.Element {
               disabled={memAuditing || memDeleting}
               className="btn-ghost disabled:opacity-40"
             >
-              {memAuditing ? 'Analyzing…' : 'Analyze memories'}
+              {memAuditing ? t('Analyzing…') : t('Analyze memories')}
             </button>
             {memBreakdown && memBreakdown.appIndexCount > 0 && (
               <button
@@ -364,17 +387,22 @@ export function AdvancedTab(): React.JSX.Element {
                 className="btn-primary px-4 py-2 disabled:opacity-40"
               >
                 {memDeleting
-                  ? `Deleting ${memDeleteProgress}/${memBreakdown.appIndexCount}…`
-                  : `Delete ${memBreakdown.appIndexCount} app/file memories`}
+                  ? t('Deleting {memDeleteProgress}/{appIndexCount}…', {
+                      memDeleteProgress,
+                      appIndexCount: memBreakdown.appIndexCount
+                    })
+                  : t('Delete {appIndexCount} app/file memories', {
+                      appIndexCount: memBreakdown.appIndexCount
+                    })}
               </button>
             )}
           </div>
           {memBreakdown && (
             <div className="glass-subtle rounded-lg px-4 py-3 text-sm text-text-tertiary">
               <p className="mb-2 text-text-secondary">
-                {memBreakdown.total} total memories ·{' '}
+                {memBreakdown.total} {t('total memories ·')}{' '}
                 <span className="text-text-primary">{memBreakdown.appIndexCount}</span>{' '}
-                app/file-index matches
+                {t('app/file-index matches')}
               </p>
               {memBreakdown.appIndexCount > 0 && (
                 <ul className="mb-3 max-h-32 overflow-y-auto">
@@ -385,7 +413,7 @@ export function AdvancedTab(): React.JSX.Element {
                   ))}
                 </ul>
               )}
-              <p className="mb-1 text-text-secondary">Breakdown by tag (not deleted):</p>
+              <p className="mb-1 text-text-secondary">{t('Breakdown by tag (not deleted):')}</p>
               <ul className="max-h-40 overflow-y-auto">
                 {memBreakdown.groups.map((g) => (
                   <li key={g.key} className="py-0.5">
@@ -412,35 +440,37 @@ export function AdvancedTab(): React.JSX.Element {
 
       <SettingRow
         icon={FolderSearch}
-        title="File indexing"
+        title={t('File indexing')}
         subtitle={
           fileIndex
-            ? `${fileIndex.filesIndexed.toLocaleString()} items indexed${
+            ? `${fileIndex.filesIndexed.toLocaleString(uiLocale())} items indexed${
                 fileIndex.lastRunAt
-                  ? ` · last run ${new Date(fileIndex.lastRunAt).toLocaleString()}`
+                  ? ` · last run ${new Date(fileIndex.lastRunAt).toLocaleString(uiLocale())}`
                   : ''
               }`
-            : 'Indexes file names/metadata locally (contents never read or uploaded).'
+            : t('Indexes file names/metadata locally (contents never read or uploaded).')
         }
         keywords="file index scan rescan local"
         control={
           <button onClick={rescan} disabled={scanning} className="btn-ghost disabled:opacity-40">
-            {scanning ? 'Indexing…' : 'Re-scan now'}
+            {scanning ? t('Indexing…') : t('Re-scan now')}
           </button>
         }
       />
 
       <SettingRow
         icon={Network}
-        title="Knowledge graph"
+        title={t('Knowledge graph')}
         subtitle={
           kgStatus
-            ? `${kgStatus.nodeCount.toLocaleString()} nodes · ${kgStatus.edgeCount.toLocaleString()} relationships${
+            ? `${kgStatus.nodeCount.toLocaleString(uiLocale())} nodes · ${kgStatus.edgeCount.toLocaleString(uiLocale())} relationships${
                 kgStatus.lastBuiltAt
-                  ? ` · last built ${new Date(kgStatus.lastBuiltAt).toLocaleString()}`
+                  ? ` · last built ${new Date(kgStatus.lastBuiltAt).toLocaleString(uiLocale())}`
                   : ''
               }`
-            : 'A local graph of your projects, tech, people, and apps — used to ground chat answers.'
+            : t(
+                'A local graph of your projects, tech, people, and apps — used to ground chat answers.'
+              )
         }
         keywords="knowledge graph rebuild kg nodes"
         control={
@@ -449,19 +479,19 @@ export function AdvancedTab(): React.JSX.Element {
             disabled={rebuildingKg}
             className="btn-ghost disabled:opacity-40"
           >
-            {rebuildingKg ? 'Rebuilding…' : 'Rebuild now'}
+            {rebuildingKg ? t('Rebuilding…') : t('Rebuild now')}
           </button>
         }
       />
 
       <SettingRow
         icon={RotateCcw}
-        title="Replay onboarding"
-        subtitle="Run the startup wizard again from the beginning."
+        title={t('Replay onboarding')}
+        subtitle={t('Run the startup wizard again from the beginning.')}
         keywords="onboarding wizard replay reset"
         control={
           <button onClick={replayOnboarding} className="btn-ghost">
-            Replay
+            {t('Replay')}
           </button>
         }
       />

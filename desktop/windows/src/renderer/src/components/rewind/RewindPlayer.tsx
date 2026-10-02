@@ -5,7 +5,7 @@ import {
   REWIND_ACTIVITY_GAP_MS,
   REWIND_COVER_PAD_MS
 } from '../../../../shared/timelineGeometry'
-import { relativeTime, isSameDay } from '../../../../shared/relativeTime'
+import { isSameDay } from '../../../../shared/relativeTime'
 import { parseWindowTitle } from '../../lib/windowTitle'
 import {
   containedImageRect,
@@ -14,6 +14,7 @@ import {
   normalizedBoxToRect
 } from '../../lib/rewindOverlay'
 import { MAC_PURPLE, macPurple } from '../../lib/macPalette'
+import { t, timeAgo, uiLocale } from '../../lib/i18n'
 
 // Purple search-highlight per the Track 4 UI ruling (Mac ports its purple as-is
 // for the Rewind bounding-box overlay — a deliberate exception to the
@@ -111,7 +112,7 @@ export function RewindPlayer({
           src ? (
             <img
               src={src}
-              alt="screen frame"
+              alt={t('screen frame')}
               onClick={() => setExpanded(true)}
               onLoad={(e) =>
                 setNatural({
@@ -122,17 +123,17 @@ export function RewindPlayer({
               className="max-h-full max-w-full cursor-pointer object-contain"
             />
           ) : (
-            <div className="text-white/40 text-sm">Loading…</div>
+            <div className="text-white/40 text-sm">{t('Loading…')}</div>
           )
         ) : loading && frames.length === 0 ? (
           // Still loading the local frame set — show a neutral placeholder, not the
           // misleading "enable capture" message (the frames may already exist).
-          <div className="text-white/40 text-sm">Loading…</div>
+          <div className="text-white/40 text-sm">{t('Loading…')}</div>
         ) : (
           <div className="text-white/50 text-sm">
             {frames.length === 0
-              ? 'No frames yet — enable Rewind capture in Settings.'
-              : 'No screenshot at this moment.'}
+              ? t('No frames yet — enable Rewind capture in Settings.')
+              : t('No screenshot at this moment.')}
           </div>
         )}
         {contained &&
@@ -160,7 +161,7 @@ export function RewindPlayer({
           onClick={() => setExpanded(false)}
           className="fixed inset-0 z-50 flex cursor-pointer items-center justify-center bg-black/90 p-6"
         >
-          <img src={src} alt="screen frame" className="max-h-full max-w-full object-contain" />
+          <img src={src} alt={t('screen frame')} className="max-h-full max-w-full object-contain" />
         </div>
       )}
     </div>
@@ -172,13 +173,13 @@ function FrameMeta({ frame }: { frame: RewindFrame }): React.JSX.Element {
   // eslint-disable-next-line react-hooks/purity -- display-only timestamp, intentionally recomputed each render so relative labels stay current
   const now = Date.now()
   const when = isSameDay(frame.ts, now)
-    ? new Date(frame.ts).toLocaleTimeString()
-    : new Date(frame.ts).toLocaleString()
-  const { app, title } = parseWindowTitle(frame.windowTitle, frame.app || 'Unknown app')
+    ? new Date(frame.ts).toLocaleTimeString(uiLocale())
+    : new Date(frame.ts).toLocaleString(uiLocale())
+  const { app, title } = parseWindowTitle(frame.windowTitle, frame.app || t('Unknown app'))
   return (
     <div className="shrink-0 py-2 text-sm leading-snug">
       <div className="text-white/90">
-        <span className="font-medium">{relativeTime(frame.ts, now)}</span>
+        <span className="font-medium">{timeAgo(now - frame.ts, { seconds: true })}</span>
         <span className="text-white/50"> · </span>
         <span className="text-white/70">{when}</span>
       </div>

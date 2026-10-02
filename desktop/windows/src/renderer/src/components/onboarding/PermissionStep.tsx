@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { StepScaffold } from './StepScaffold'
+import { t } from '../../lib/i18n'
 
 export type PermissionStatus = 'idle' | 'waiting' | 'granted' | 'denied'
 
@@ -246,7 +247,7 @@ export function PermissionStep({
             onClick={onBack}
             className="rounded-xl bg-white/10 px-5 py-3 text-sm font-medium text-white/80 transition-colors hover:bg-white/[0.16]"
           >
-            Back
+            {t('Back')}
           </button>
         )}
         <button
@@ -271,7 +272,7 @@ export function PermissionStep({
             onClick={handleContinue}
             className="rounded-xl bg-white px-8 py-3 text-sm font-medium text-black transition-opacity hover:opacity-90"
           >
-            Continue
+            {t('Continue')}
           </button>
         )}
         {denied && recoveryLabel && onRecover && (

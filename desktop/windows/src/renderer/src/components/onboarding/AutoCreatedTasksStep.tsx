@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { Check, ListChecks } from 'lucide-react'
+import { t as i18n } from '../../lib/i18n'
 
 type AutoCreatedTasksStepProps = {
   /** Complete onboarding and jump straight to the Tasks tab. */
@@ -11,9 +12,9 @@ type AutoCreatedTasksStepProps = {
 // hasn't had yet). "Getting started" starts completed; the rows are clickable so
 // the user can check the others off too.
 const SAMPLE_TASKS = [
-  { title: 'Task 1', subtitle: 'From today’s meeting' },
-  { title: 'Task 2', subtitle: 'Mentioned in Slack' },
-  { title: 'Task 3', subtitle: 'Getting started' }
+  { title: i18n('Task 1'), subtitle: i18n('From today’s meeting') },
+  { title: i18n('Task 2'), subtitle: i18n('Mentioned in Slack') },
+  { title: i18n('Task 3'), subtitle: i18n('Getting started') }
 ]
 
 function TaskRow({
@@ -80,10 +81,13 @@ export function AutoCreatedTasksStep({ onFinish }: AutoCreatedTasksStepProps): R
         </div>
       </div>
 
-      <h1 className="font-display text-3xl font-semibold text-white/95">Auto-created Tasks</h1>
+      <h1 className="font-display text-3xl font-semibold text-white/95">
+        {i18n('Auto-created Tasks')}
+      </h1>
       <p className="mt-3 text-sm leading-relaxed text-white/50">
-        omi listens to your conversations and automatically creates tasks, action items, and
-        follow-ups for you.
+        {i18n(
+          'omi listens to your conversations and automatically creates tasks, action items, and follow-ups for you.'
+        )}
       </p>
 
       <div className="mt-7 flex w-full flex-col gap-2">
@@ -108,7 +112,7 @@ export function AutoCreatedTasksStep({ onFinish }: AutoCreatedTasksStepProps): R
         disabled={finishing}
         className="mt-8 rounded-xl bg-white px-8 py-3 text-sm font-semibold text-black transition-opacity hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-60"
       >
-        Take me to my tasks
+        {i18n('Take me to my tasks')}
       </button>
     </div>
   )

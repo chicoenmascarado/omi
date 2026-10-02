@@ -3,6 +3,7 @@ import { BillingCard } from './BillingCard'
 import { cn } from '../../../lib/utils'
 import { trialCountdownText, trialProgress, trialTimeTone } from '../../../lib/billing'
 import type { TrialMetadata } from '../../../lib/omiApi.generated'
+import { t } from '../../../lib/i18n'
 
 const RING_STROKE: Record<'amber' | 'yellow' | 'green', string> = {
   amber: 'stroke-amber-400',
@@ -57,11 +58,11 @@ export function TrialCard(props: {
       <BillingCard
         icon={AlertCircle}
         iconTone="amber"
-        title="Trial Ended"
-        subtitle="Upgrade to keep unlimited access"
+        title={t('Trial Ended')}
+        subtitle={t('Upgrade to keep unlimited access')}
         trailing={
           <button onClick={onViewPlans} className="btn-primary">
-            View Plans
+            {t('View Plans')}
           </button>
         }
       />
@@ -75,12 +76,12 @@ export function TrialCard(props: {
     <BillingCard
       icon={Clock}
       iconTone={tone}
-      title="Premium Trial Active"
+      title={t('Premium Trial Active')}
       subtitle={trialCountdownText(remaining)}
       trailing={<ProgressRing progress={trialProgress(trial)} tone={tone} />}
     >
       <div className="border-t border-white/[0.06] pt-3">
-        <div className="mb-2 text-xs font-medium text-white/45">Included in your trial</div>
+        <div className="mb-2 text-xs font-medium text-white/45">{t('Included in your trial')}</div>
         <ul className="space-y-1.5">
           {TRIAL_INCLUDED.map((f) => (
             <li key={f} className="flex items-start gap-2 text-sm text-white/75">

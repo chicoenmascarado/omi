@@ -9,6 +9,7 @@ import {
 } from '../../../../lib/calendarConnect'
 import { ConnectorRow, PillButton } from './ConnectorRow'
 import { ConnectorBrandMark } from './ConnectorBrandMark'
+import { t, uiLocale } from '../../../../lib/i18n'
 
 // Google Calendar via the BACKEND-mediated lane — works out of the box with no
 // client-side Google credentials. Connect opens the system browser, then we POLL
@@ -50,16 +51,16 @@ export function CalendarConnector(): React.JSX.Element {
       if (canceled.current) return
       if (ok) {
         setStatus(await getCalendarStatus())
-        toast('Google Calendar connected', { tone: 'success' })
+        toast(t('Google Calendar connected'), { tone: 'success' })
       } else {
-        toast('Still waiting for Google Calendar', {
+        toast(t('Still waiting for Google Calendar'), {
           tone: 'warn',
-          body: 'Finish the sign-in in your browser, then reopen this panel to check.'
+          body: t('Finish the sign-in in your browser, then reopen this panel to check.')
         })
       }
     } catch (e) {
       if (!canceled.current)
-        toast('Could not start Calendar sign-in', { tone: 'error', body: (e as Error).message })
+        toast(t('Could not start Calendar sign-in'), { tone: 'error', body: (e as Error).message })
     } finally {
       if (!canceled.current) setConnecting(false)
     }
@@ -71,31 +72,31 @@ export function CalendarConnector(): React.JSX.Element {
     try {
       await disconnectCalendar()
       setStatus({ connected: false })
-      toast('Google Calendar disconnected', { tone: 'success' })
+      toast(t('Google Calendar disconnected'), { tone: 'success' })
     } catch (e) {
-      toast('Could not disconnect', { tone: 'error', body: (e as Error).message })
+      toast(t('Could not disconnect'), { tone: 'error', body: (e as Error).message })
     } finally {
       setBusy(false)
     }
   }
 
   const description = status.connected
-    ? `Connected${status.lastSyncAt ? ` · synced ${new Date(status.lastSyncAt).toLocaleDateString()}` : ''}`
+    ? `Connected${status.lastSyncAt ? ` · synced ${new Date(status.lastSyncAt).toLocaleDateString(uiLocale())}` : ''}`
     : 'Import events and recurring routines.'
 
   return (
     <ConnectorRow
       iconNode={<ConnectorBrandMark brand="calendar" />}
-      title="Calendar"
+      title={t('Calendar')}
       description={description}
       action={
         status.connected ? (
           <PillButton tone="ghost" onClick={disconnect} disabled={busy}>
-            Disconnect
+            {t('Disconnect')}
           </PillButton>
         ) : (
           <PillButton tone="primary" onClick={connect} disabled={connecting}>
-            {connecting ? 'Waiting…' : 'Connect'}
+            {connecting ? t('Waiting…') : t('Connect')}
           </PillButton>
         )
       }

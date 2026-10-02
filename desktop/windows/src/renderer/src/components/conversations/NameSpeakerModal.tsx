@@ -10,6 +10,7 @@ import {
 import { toast } from '../../lib/toast'
 import { ModalShell } from './ModalShell'
 import { AVATAR_UNNAMED } from '../../lib/macPalette'
+import { t } from '../../lib/i18n'
 
 // Mac's NameSpeakerSheet (NameSpeakerSheet.swift), rendered as a centered Windows
 // modal per the Track 4 ruling. Mac's sheet is a fixed 400x450 whose height is
@@ -98,7 +99,7 @@ export function NameSpeakerModal({
       onSaved()
       onClose()
     } catch (e) {
-      toast('Could not name speaker', { tone: 'error', body: (e as Error).message })
+      toast(t('Could not name speaker'), { tone: 'error', body: (e as Error).message })
       setSaving(false)
     }
   }
@@ -129,9 +130,14 @@ export function NameSpeakerModal({
       <div className="-m-6 flex max-h-[min(450px,80vh)] flex-col">
         <header className="flex shrink-0 items-center justify-between px-5 pb-3 pt-5">
           <h2 id="name-speaker-title" className="font-display text-base font-semibold text-white">
-            Name Speaker
+            {t('Name Speaker')}
           </h2>
-          <button onClick={onClose} className="btn-ghost p-1" title="Close" aria-label="Close">
+          <button
+            onClick={onClose}
+            className="btn-ghost p-1"
+            title={t('Close')}
+            aria-label={t('Close')}
+          >
             <X className="h-4 w-4" />
           </button>
         </header>
@@ -149,26 +155,31 @@ export function NameSpeakerModal({
               >
                 {speakerId}
               </span>
-              <span className="text-sm font-medium text-white">Speaker {speakerId}</span>
+              <span className="text-sm font-medium text-white">
+                {t('Speaker')} {speakerId}
+              </span>
             </div>
             <p className="mt-2 line-clamp-3 text-[13px] italic text-text-secondary">“{preview}”</p>
           </div>
 
           {unaddressable ? (
             <div className="rounded-lg border border-warning/25 bg-warning/10 px-3 py-2 text-xs leading-relaxed text-warning">
-              This conversation is still syncing, so these segments can’t be named yet. Try again in
-              a moment.
+              {t(
+                'This conversation is still syncing, so these segments can’t be named yet. Try again in a moment.'
+              )}
             </div>
           ) : partiallySynced ? (
             <div className="rounded-lg border border-white/10 bg-white/[0.04] px-3 py-2 text-xs leading-relaxed text-text-tertiary">
-              {speaker.unsyncedCount} of this speaker’s {speaker.total} segments are still syncing
-              and will keep their current label.
+              {speaker.unsyncedCount} {t('of this speaker’s')} {speaker.total}{' '}
+              {t('segments are still syncing and will keep their current label.')}
             </div>
           ) : null}
 
           {/* Mac's peopleSelectionSection: a wrapping row of chips, not full-width rows */}
           <div>
-            <p className="mb-2.5 text-[13px] font-medium text-text-secondary">Who is this?</p>
+            <p className="mb-2.5 text-[13px] font-medium text-text-secondary">
+              {t('Who is this?')}
+            </p>
             <div className="flex flex-wrap gap-2">
               {chip('You', selection.kind === 'user', () => setSelection({ kind: 'user' }))}
               {people.map((p) =>
@@ -185,8 +196,8 @@ export function NameSpeakerModal({
                 autoFocus
                 value={newName}
                 onChange={(e) => setNewName(e.target.value)}
-                placeholder="Person name"
-                aria-label="New person name"
+                placeholder={t('Person name')}
+                aria-label={t('New person name')}
                 disabled={saving}
                 className="mt-3 w-full rounded-lg border border-white/15 bg-bg-secondary px-2.5 py-2 text-[13px] text-white placeholder:text-text-quaternary focus:border-white/40 focus:outline-none"
               />
@@ -211,8 +222,8 @@ export function NameSpeakerModal({
               >
                 {applyToAll && <Check className="h-3 w-3" strokeWidth={3} />}
               </span>
-              Also tag {speaker.total - 1} other segment
-              {speaker.total - 1 === 1 ? '' : 's'} from this speaker
+              {t('Also tag')} {speaker.total - 1} {t('other segment')}
+              {speaker.total - 1 === 1 ? '' : 's'} {t('from this speaker')}
             </label>
           )}
         </div>
@@ -225,7 +236,7 @@ export function NameSpeakerModal({
             disabled={saving}
             className="btn-ghost px-4 py-1.5 text-sm text-text-secondary"
           >
-            Cancel
+            {t('Cancel')}
           </button>
           <button
             onClick={save}
@@ -233,7 +244,7 @@ export function NameSpeakerModal({
             className="flex items-center gap-1.5 rounded-full bg-white px-5 py-1.5 text-sm font-medium text-bg-primary disabled:bg-white/15 disabled:text-text-tertiary"
           >
             {saving && <Loader2 className="h-3.5 w-3.5 animate-spin" />}
-            Save
+            {t('Save')}
           </button>
         </footer>
       </div>
