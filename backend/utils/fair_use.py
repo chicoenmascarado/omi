@@ -23,6 +23,7 @@ from utils.subscription import has_transcription_credits, is_paid_plan
 from utils.executors import db_executor, postprocess_executor, run_blocking
 from utils.llm.fair_use_classifier import classify_user_purpose
 from utils.notifications import send_notification
+from utils.notification_copy import notification_copy, user_copy_language
 from utils.observability.fallback import record_fallback
 
 # Patchable lazy-held callables keep tests at a production seam without using
@@ -864,35 +865,16 @@ async def trigger_classifier_if_needed(uid: str, triggered_caps: List[Dict[str, 
 
 
 async def _send_fair_use_notification(uid: str, action: str, case_ref: str = '') -> None:
-    """Send in-app push notification about fair-use enforcement."""
-    titles = {
-        'warning': 'Fair Use Notice',
-        'throttle': 'Transcription Quality Reduced',
-        'restrict': 'Transcription Limit Reached',
-    }
+    """Send in-app push notification about fair-use enforcement, in the user's language."""
+    language = await run_blocking(db_executor, user_copy_language, uid, users_db.get_user_language_preference)
+    if action not in ('warning', 'throttle', 'restrict'):
+        title = notification_copy('fair_use.warning.title', language)
+        body = ''
+    else:
+        ref_suffix = notification_copy('fair_use.reference', language, case_ref=case_ref) if case_ref else ''
+        title = notification_copy(f'fair_use.{action}.title', language)
+        body = notification_copy(f'fair_use.{action}.body', language, ref_suffix=ref_suffix)
 
-    ref_suffix = f' Reference: {case_ref}' if case_ref else ''
-
-    bodies = {
-        'warning': (
-            'Your speech usage is unusually high. Omi is designed for personal conversations. '
-            'If this continues, transcription quality may be reduced. '
-            f'Check Settings > Plan & Usage for details.{ref_suffix}'
-        ),
-        'throttle': (
-            'Due to high non-conversational usage, your transcription quality has been temporarily reduced. '
-            'This will reset automatically. Contact team@basedhardware.com if you believe this is an error. '
-            f'Quote your case reference when contacting support.{ref_suffix}'
-        ),
-        'restrict': (
-            'Your cloud transcription has been temporarily limited due to repeated fair-use violations. '
-            'On-device transcription continues normally. Contact team@basedhardware.com to resolve. '
-            f'Quote your case reference when contacting support.{ref_suffix}'
-        ),
-    }
-
-    title = titles.get(action, 'Fair Use Notice')
-    body = bodies.get(action, '')
     if body:
         data = {'type': 'fair_use', 'action': action}
         if case_ref:

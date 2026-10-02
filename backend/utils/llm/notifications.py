@@ -1,6 +1,7 @@
 import random
 from typing import Any, List, Protocol, Tuple, cast
 from .clients import get_llm
+from utils.notification_copy import silent_user_messages
 from .usage_tracker import track_usage, Features
 from database._client import db as firestore_db
 from utils.executors import db_executor, run_blocking
@@ -181,21 +182,9 @@ async def generate_credit_limit_notification(uid: str, name: str) -> Tuple[str, 
     )
 
 
-def generate_silent_user_notification(name: str) -> Tuple[str, str]:
+def generate_silent_user_notification(name: str, language: str = 'en') -> Tuple[str, str]:
     """
-    Generate a funny notification for a user who has been silent for a while.
+    Generate a funny notification for a user who has been silent for a while, in the user's language.
     """
-    messages = [
-        f"Hey {name}, just checking in! My ears are open if you've got something to say.",
-        f"Is this thing on? Tapping my mic here, {name}. Let me know when you're ready to chat!",
-        f"Quiet on the set! {name}, are we rolling? Just waiting for your cue.",
-        f"The sound of silence... is nice, but I'm here for the words, {name}! What's on your mind?",
-        f"{name}, you've gone quiet! Just a heads up, I'm still here listening and using up your free minutes.",
-        f"Psst, {name}... My virtual ears are getting a little lonely. Anything to share?",
-        f"Enjoying the quiet time, {name}? Just remember, I'm on the clock, ready to transcribe!",
-        f"Hello from the other side... of silence! {name}, ready to talk again?",
-        f"I'm all ears, {name}! Just letting you know the recording is still live.",
-        f"Silence is golden, but words are what I live for, {name}! Let's chat when you're ready.",
-    ]
-    body = random.choice(messages)
+    body = random.choice(silent_user_messages(language)).format(name=name)
     return "omi", body
