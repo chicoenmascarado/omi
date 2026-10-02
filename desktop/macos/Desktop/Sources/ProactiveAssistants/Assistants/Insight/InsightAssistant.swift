@@ -39,8 +39,6 @@ actor InsightAssistant: ProactiveAssistant {
   private let maxInsightsInPrompt = 30  // Only include first 30 in prompt to keep token count reasonable
   private var currentApp: String?
   private var pendingFrame: CapturedFrame?
-  private var cachedLanguage: String?
-  private var languageFetchedAt: Date = .distantPast
   private var processingTask: Task<Void, Never>?
   private let frameSignal: AsyncStream<Void>
   private let frameSignalContinuation: AsyncStream<Void>.Continuation
@@ -557,26 +555,6 @@ actor InsightAssistant: ProactiveAssistant {
 
   // MARK: - Helpers
 
-  /// Get user's preferred language, cached for 1 hour
-  private func getUserLanguage() async -> String? {
-    // Return cached value if fresh (< 1 hour)
-    if let cached = cachedLanguage, Date().timeIntervalSince(languageFetchedAt) < 3600 {
-      return cached
-    }
-
-    do {
-      let response = try await APIClient.shared.getUserLanguage()
-      let lang = response.language
-      cachedLanguage = lang
-      languageFetchedAt = Date()
-      return lang.isEmpty ? nil : lang
-    } catch {
-      // Fall back to transcription language setting
-      let fallback = await MainActor.run { AssistantSettings.shared.transcriptionLanguage }
-      return fallback.isEmpty || fallback == "en" ? nil : fallback
-    }
-  }
-
   // MARK: - Analysis
 
   private func processFrame(_ frame: CapturedFrame, since previousAnalysisTime: Date) async {
@@ -698,8 +676,8 @@ actor InsightAssistant: ProactiveAssistant {
 
     // Build system prompt
     var currentSystemPrompt = await systemPrompt
-    if let language = await getUserLanguage(), language != "en" {
-      currentSystemPrompt += "\n\nIMPORTANT: Respond in the user's preferred language: \(language)"
+    if let languageInstruction = await AssistantOutputLanguage.shared.instruction() {
+      currentSystemPrompt += "\n\n" + languageInstruction
     }
     currentSystemPrompt +=
       "\n\nDATABASE SCHEMA for execute_sql:\nscreenshots table columns: id INTEGER, timestamp TEXT, appName TEXT, windowTitle TEXT, ocrText TEXT, focusStatus TEXT"

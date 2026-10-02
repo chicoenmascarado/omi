@@ -412,7 +412,10 @@ actor SuggestionAssistant: ProactiveAssistant {
 
   private func evaluate(frame: CapturedFrame, grounding: SuggestionGrounding) async throws -> SuggestionResult? {
     let prompt = buildPrompt(frame: frame, grounding: grounding)
-    let systemPrompt = await systemPrompt
+    var systemPrompt = await systemPrompt
+    if let languageInstruction = await AssistantOutputLanguage.shared.instruction() {
+      systemPrompt += "\n\n" + languageInstruction
+    }
     let preview = SuggestionFramePreview.downscaledJPEG(from: frame.jpegData)
     let identity = SuggestionAssistantTelemetry.Identity()
     let shape = SuggestionAssistantTelemetry.EvaluationShape(

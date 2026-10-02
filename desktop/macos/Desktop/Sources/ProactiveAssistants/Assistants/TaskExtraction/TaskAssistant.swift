@@ -933,7 +933,10 @@ actor TaskAssistant: ProactiveAssistant {
     let todayStr = dateFormatter.string(from: Date())
 
     let profileText = await AIUserProfileService.shared.getLatestProfile()?.profileText
-    let currentSystemPrompt = await systemPrompt
+    var currentSystemPrompt = await systemPrompt
+    if let languageInstruction = await AssistantOutputLanguage.shared.instruction() {
+      currentSystemPrompt += "\n\n" + languageInstruction
+    }
     let prompts = Self.requestPrompts(
       baseSystemPrompt: currentSystemPrompt,
       appName: appName,
