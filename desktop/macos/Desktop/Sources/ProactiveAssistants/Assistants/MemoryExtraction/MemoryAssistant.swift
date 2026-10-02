@@ -428,7 +428,10 @@ actor MemoryAssistant: ProactiveAssistant {
     }
 
     // Get current system prompt from settings
-    let currentSystemPrompt = await systemPrompt
+    var currentSystemPrompt = await systemPrompt
+    if let languageInstruction = await AssistantOutputLanguage.shared.instruction() {
+      currentSystemPrompt += "\n\n" + languageInstruction
+    }
 
     // Build response schema for memory extraction
     let subjectGateEnabled = await MainActor.run { NegativeFeedbackRemediationFeature.isEnabled }

@@ -66,11 +66,13 @@ extension APIClient {
       let language: String
     }
     let body = UpdateRequest(language: language)
-    return try await patch(
+    let response: SetUserLanguageResponse = try await patch(
       "v1/users/language",
       body: body,
       expectedOwnerId: expectedOwnerId,
       authorizationSnapshot: authorizationSnapshot)
+    await AssistantOutputLanguage.shared.record(language)
+    return response
   }
 
   /// Persists the "how did you hear about Omi" answer to the user's backend

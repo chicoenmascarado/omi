@@ -279,8 +279,8 @@ actor GoalsAIService {
     // Call Gemini
     let responseText = try await client.sendRequest(
       prompt: prompt,
-      systemPrompt:
-        "You are a goal coach. Generate one meaningful, achievable goal based on the user's full context.",
+      systemPrompt: await Self.withOutputLanguage(
+        "You are a goal coach. Generate one meaningful, achievable goal based on the user's full context."),
       responseSchema: goalSuggestionSchema
     )
 
@@ -376,8 +376,8 @@ actor GoalsAIService {
     // 3. Call Gemini (text response, no schema)
     let response = try await client.sendTextRequest(
       prompt: prompt,
-      systemPrompt:
-        "You are a strategic advisor. Give specific, actionable advice based on user context. Be concise."
+      systemPrompt: await Self.withOutputLanguage(
+        "You are a strategic advisor. Give specific, actionable advice based on user context. Be concise.")
     )
 
     return
@@ -470,6 +470,14 @@ actor GoalsAIService {
     }
 
     return result
+  }
+}
+
+extension GoalsAIService {
+  /// Goals and goal advice are shown to the user, so they follow the preferred language.
+  fileprivate static func withOutputLanguage(_ systemPrompt: String) async -> String {
+    guard let languageInstruction = await AssistantOutputLanguage.shared.instruction() else { return systemPrompt }
+    return systemPrompt + "\n\n" + languageInstruction
   }
 }
 
