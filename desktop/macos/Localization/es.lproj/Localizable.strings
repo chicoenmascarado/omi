@@ -1,0 +1,2701 @@
+/* Spanish (es) translations for the Omi macOS app.
+   Keys are the English SwiftUI string literals used in Desktop/Sources.
+   Keys listed by scripts/l10n/extract_strings.py; translations written by hand. */
+
+/* Auth/SessionRecoveryView.swift:23 */
+"We couldn't verify your session" = "No pudimos verificar tu sesión";
+
+/* Auth/SessionRecoveryView.swift:28 */
+"Your local data and setup are safe. Check your connection and retry, or sign in again." = "Tus datos locales y tu configuración están a salvo. Revisa tu conexión y vuelve a intentarlo, o inicia sesión de nuevo.";
+
+/* Auth/SessionRecoveryView.swift:49 */
+"Try Again" = "Reintentar";
+
+/* Auth/SessionRecoveryView.swift:56 */
+"Sign In Again" = "Iniciar sesión de nuevo";
+
+/* BrowserExtensionSetup.swift:90 */
+"Skip for now" = "Omitir por ahora";
+
+/* BrowserExtensionSetup.swift:120 */
+"Set up browser access" = "Configurar el acceso al navegador";
+
+/* BrowserExtensionSetup.swift:154 */
+"Connect the extension" = "Conecta la extensión";
+
+/* BrowserExtensionSetup.swift:195 */
+"Install the Playwright MCP Bridge extension" = "Instala la extensión Playwright MCP Bridge";
+
+/* BrowserExtensionSetup.swift:224 */
+"Open the extension and copy the auth token" = "Abre la extensión y copia el token de autenticación";
+
+/* BrowserExtensionSetup.swift:255 */
+"Paste it here" = "Pégalo aquí";
+
+/* BrowserExtensionSetup.swift:259 */
+"Paste token here…" = "Pega el token aquí…";
+
+/* BrowserExtensionSetup.swift:313 */
+"Browser" = "Navegador";
+
+/* BrowserExtensionSetup.swift:335 */
+"Default" = "Predeterminado";
+
+/* BrowserExtensionSetup.swift:381 */
+"Testing connection…" = "Probando la conexión…";
+
+/* BrowserExtensionSetup.swift:385 */
+"Sending a test request to verify the extension is working." = "Enviando una solicitud de prueba para comprobar que la extensión funciona.";
+
+/* BrowserExtensionSetup.swift:395 */
+"Connected" = "Conectado";
+
+/* BrowserExtensionSetup.swift:409 */
+"Connection failed" = "La conexión falló";
+
+/* BrowserExtensionSetup.swift:435 */
+"All set" = "Todo listo";
+
+/* Chat/ChatResource.swift:764 */
+"Open" = "Abrir";
+
+/* Chat/ChatResource.swift:767 */
+"Reveal in Finder" = "Mostrar en Finder";
+
+/* Chat/ChatResource.swift:770 */
+"Copy Path" = "Copiar ruta";
+
+/* Chat/ClaudeAuthSheet.swift:15 */
+"Upgrade to Omi Pro" = "Mejora a Omi Pro";
+
+/* Chat/ClaudeAuthSheet.swift:39 */
+"Unlock Omi Pro for $199/month" = "Desbloquea Omi Pro por 199 $/mes";
+
+/* Chat/ClaudeAuthSheet.swift:44 */
+"Your browser will open to the Omi Pro checkout. After subscribing, return to Omi." = "Tu navegador se abrirá en la página de pago de Omi Pro. Después de suscribirte, vuelve a Omi.";
+
+/* Chat/ClaudeAuthSheet.swift:57 */
+"Complete sign-in in your browser…" = "Completa el inicio de sesión en tu navegador…";
+
+/* Chat/ClaudeAuthSheet.swift:96 */
+"Cancel" = "Cancelar";
+
+/* CloudConnectorGuidanceOverlay.swift:1209 */
+"Finish in Claude" = "Terminar en Claude";
+
+/* DesktopUpdatePolicyManager.swift:151 */
+"Dismiss" = "Descartar";
+
+/* FeedbackView.swift:83 */
+"Report sent" = "Informe enviado";
+
+/* FeedbackView.swift:86 */
+"We'll look into this issue." = "Revisaremos este problema.";
+
+/* FeedbackView.swift:89 */
+"Close" = "Cerrar";
+
+/* FeedbackView.swift:97 */
+"Report an Issue" = "Informar de un problema";
+
+/* FeedbackView.swift:112 */
+"Name (optional)" = "Nombre (opcional)";
+
+/* FeedbackView.swift:114 */
+"Your name" = "Tu nombre";
+
+/* FeedbackView.swift:119 */
+"Email" = "Correo electrónico";
+
+/* FeedbackView.swift:121 */
+"your@email.com" = "tu@correo.com";
+
+/* FeedbackView.swift:132 */
+"Save Diagnostics…" = "Guardar diagnóstico…";
+
+/* FeedbackView.swift:135 */
+"Save a redacted diagnostics report locally — works offline, nothing is uploaded." = "Guarda localmente un informe de diagnóstico anonimizado: funciona sin conexión y no se sube nada.";
+
+/* FeedbackView.swift:139 */
+"Send Report" = "Enviar informe";
+
+/* FileIndexing/FileIndexingView.swift:81 */
+"All data is secure and belongs to you. Open-source verified." = "Todos los datos están protegidos y te pertenecen. Código abierto verificado.";
+
+/* FileIndexing/FileIndexingView.swift:113 */
+"Skip" = "Omitir";
+
+/* FileIndexing/FileIndexingView.swift:129 */
+"Behind the scenes" = "Entre bastidores";
+
+/* FileIndexing/FileIndexingView.swift:196 */
+"Your knowledge graph will grow as Omi learns more about you" = "Tu grafo de conocimiento crecerá a medida que Omi aprenda más sobre ti";
+
+/* FileIndexing/FileIndexingView.swift:206 */
+"Here's what I know about you" = "Esto es lo que sé de ti";
+
+/* FileIndexing/FileIndexingView.swift:219 */
+"Continue" = "Continuar";
+
+/* FloatingControlBar/AIResponseView.swift:172 */
+"thinking" = "pensando";
+
+/* FloatingControlBar/AIResponseView.swift:176 */
+"Omi says" = "Omi dice";
+
+/* FloatingControlBar/AIResponseView.swift:185 */
+"Clear" = "Borrar";
+
+/* FloatingControlBar/AIResponseView.swift:193 */
+"Clear this conversation" = "Borrar esta conversación";
+
+/* FloatingControlBar/AIResponseView.swift:406 */
+"Copy" = "Copiar";
+
+/* FloatingControlBar/AIResponseView.swift:460 */
+"Copy Question & Answer" = "Copiar pregunta y respuesta";
+
+/* FloatingControlBar/AIResponseView.swift:495 */
+"Copy share link" = "Copiar enlace para compartir";
+
+/* FloatingControlBar/AIResponseView.swift:500 */
+"Continue in Omi" = "Continuar en Omi";
+
+/* FloatingControlBar/AIResponseView.swift:515 */
+"Open the Omi app to keep chatting" = "Abre la app de Omi para seguir chateando";
+
+/* FloatingControlBar/AIResponseView.swift:527 */
+"Share link copied to your clipboard" = "Enlace copiado al portapapeles";
+
+/* FloatingControlBar/AIResponseView.swift:665 */
+"Helpful response" = "Respuesta útil";
+
+/* FloatingControlBar/AIResponseView.swift:683 */
+"Not helpful" = "No es útil";
+
+/* FloatingControlBar/AIResponseView.swift:702 */
+"Copy response" = "Copiar respuesta";
+
+/* FloatingControlBar/AIResponseView.swift:712 */
+"View response context" = "Ver el contexto de la respuesta";
+
+/* FloatingControlBar/AIResponseView.swift:720 */
+"Thank you" = "Gracias";
+
+/* FloatingControlBar/AIResponseView.swift:771 */
+"Response Context" = "Contexto de la respuesta";
+
+/* FloatingControlBar/AIResponseView.swift:795 */
+"Context admitted" = "Contexto admitido";
+
+/* FloatingControlBar/FloatingControlBarReceiptCard.swift:17 */
+"Suggested task" = "Tarea sugerida";
+
+/* FloatingControlBar/FloatingControlBarReceiptCard.swift:30 */
+"Review" = "Revisar";
+
+/* FloatingControlBar/FloatingControlBarView.swift:780 */
+"Suggested by Omi" = "Sugerida por Omi";
+
+/* FloatingControlBar/FloatingControlBarView.swift:845 */
+"Not Now" = "Ahora no";
+
+/* FloatingControlBar/FloatingControlBarView.swift:1026 */
+"Hide for 2 hours" = "Ocultar durante 2 horas";
+
+/* FloatingControlBar/FloatingControlBarView.swift:1084 */
+"Omi Chat" = "Chat de Omi";
+
+/* FloatingControlBar/FloatingControlBarView.swift:1410 */
+"Execute" = "Ejecutar";
+
+/* FloatingControlBar/FloatingControlBarView.swift:1420 */
+"Spawn an agent to handle this" = "Lanzar un agente para que se encargue";
+
+/* FloatingControlBar/FloatingControlBarView.swift:1677 */
+"LOCKED" = "BLOQUEADO";
+
+/* FloatingControlBar/FloatingControlBarView.swift:2029 */
+"Back to chats" = "Volver a los chats";
+
+/* FloatingControlBar/FloatingControlBarView.swift:2053 */
+"Dismiss agent" = "Descartar agente";
+
+/* FloatingControlBar/FloatingControlBarView.swift:2078 */
+"Stop subagent" = "Detener subagente";
+
+/* FloatingControlBar/FloatingControlBarView.swift:2338 */
+"Open the Omi app to steer this agent" = "Abre la app de Omi para dirigir a este agente";
+
+/* FloatingControlBar/FloatingControlBarView.swift:3016 */
+"Share" = "Compartir";
+
+/* FloatingControlBar/FloatingControlBarView.swift:3026 */
+"Email these notes to someone" = "Enviar estas notas por correo a alguien";
+
+/* FloatingControlBar/FloatingControlBarView.swift:3047 */
+"Copy the share link" = "Copiar el enlace para compartir";
+
+/* FloatingControlBar/FloatingControlBarView.swift:3055 */
+"See summary" = "Ver resumen";
+
+/* FloatingControlBar/FloatingControlBarView.swift:3072 */
+"name@company.com" = "nombre@empresa.com";
+
+/* FloatingControlBar/FloatingControlBarView.swift:3091 */
+"Send" = "Enviar";
+
+/* FloatingControlBar/NotchDismissButton.swift:30 */
+"Dismiss (Esc)" = "Descartar (Esc)";
+
+/* FloatingControlBar/NotchSystemControlsView.swift:168 */
+"Hide" = "Ocultar";
+
+/* FloatingControlBar/NotchSystemControlsView.swift:182 */
+"Hide the notch — bring it back from the menu bar (Show Floating Bar)" = "Oculta el notch; vuelve a mostrarlo desde la barra de menús (Mostrar barra flotante)";
+
+/* FloatingControlBar/VoiceTyping/PTTRecoveryActions.swift:36 */
+"Review your offline question in Chat without sending it" = "Revisa tu pregunta sin conexión en el chat sin enviarla";
+
+/* FloatingControlBar/VoiceTyping/PTTRecoveryActions.swift:43 */
+"Copy your offline question" = "Copiar tu pregunta sin conexión";
+
+/* FloatingControlBar/VoiceTyping/PTTRecoveryActions.swift:60 */
+"Undo Last Dictation" = "Deshacer el último dictado";
+
+/* FloatingControlBar/VoiceTyping/PTTRecoveryActions.swift:62 */
+"Undo a recent dictation while its text and caret are unchanged" = "Deshace un dictado reciente mientras su texto y el cursor no hayan cambiado";
+
+/* FloatingControlBar/VoiceTyping/PTTRecoveryActions.swift:64 */
+"Review Offline Question" = "Revisar pregunta sin conexión";
+
+/* FloatingControlBar/VoiceTyping/PTTRecoveryActions.swift:65 */
+"Copy Offline Question" = "Copiar pregunta sin conexión";
+
+/* FloatingControlBar/VoiceTyping/PTTRecoveryActions.swift:66 */
+"Dismiss Offline Question" = "Descartar pregunta sin conexión";
+
+/* IntegrationNudges/IntegrationNudgeCard.swift:57 */
+"Connect" = "Conectar";
+
+/* IntegrationNudges/IntegrationNudgeCard.swift:80 */
+"Never" = "Nunca";
+
+/* IntegrationNudges/IntegrationValueSection.swift:17 */
+"What you get" = "Lo que obtienes";
+
+/* Integrations/GmailAccountPickerView.swift:14 */
+"Gmail account" = "Cuenta de Gmail";
+
+/* Integrations/GmailAccountPickerView.swift:27 */
+"Automatic" = "Automático";
+
+/* Integrations/GmailAccountPickerView.swift:29 */
+"First readable browser account" = "Primera cuenta de navegador legible";
+
+/* MainWindow/ChatFirst/Blocks/ChatFirstContentBlockViews.swift:72 */
+"Question" = "Pregunta";
+
+/* MainWindow/ChatFirst/Blocks/ChatFirstContentBlockViews.swift:116 */
+"Answering is unavailable right now" = "No es posible responder en este momento";
+
+/* MainWindow/ChatFirst/Blocks/ChatFirstContentBlockViews.swift:287 */
+"Task" = "Tarea";
+
+/* MainWindow/ChatFirst/Blocks/ChatFirstContentBlockViews.swift:926 */
+"Recommended next steps" = "Próximos pasos recomendados";
+
+/* MainWindow/ChatFirst/ChatFirstGoalsPage.swift:110 */
+"Other active goals" = "Otros objetivos activos";
+
+/* MainWindow/ChatFirst/ChatFirstGoalsPage.swift:143 */
+"Talk to Omi About a Goal" = "Hablar con Omi sobre un objetivo";
+
+/* MainWindow/ChatFirst/ChatFirstGoalsPage.swift:240 */
+"Focused goal" = "Objetivo en foco";
+
+/* MainWindow/ChatFirst/ChatFirstGoalsPage.swift:262 */
+"Progress" = "Progreso";
+
+/* MainWindow/ChatFirst/ChatFirstGoalsPage.swift:274 */
+"Next up" = "A continuación";
+
+/* MainWindow/ChatFirst/ChatFirstGoalsPage.swift:288 */
+"View related tasks" = "Ver tareas relacionadas";
+
+/* MainWindow/ChatFirst/ChatFirstGoalsPage.swift:292 */
+"Continue in Chat" = "Continuar en el chat";
+
+/* MainWindow/ChatFirst/ChatFirstGoalsPage.swift:377 */
+"Discuss" = "Comentar";
+
+/* MainWindow/ChatFirst/ChatFirstGoalsPage.swift:386 */
+"Set as focus" = "Poner en foco";
+
+/* MainWindow/ChatFirst/ChatFirstShell.swift:444 */
+"Loading apps…" = "Cargando apps…";
+
+/* MainWindow/ChatFirst/ConversationCapturePlaybackSection.swift:20 */
+"Audio" = "Audio";
+
+/* MainWindow/ChatFirst/ConversationCapturePlaybackSection.swift:42 */
+"Preparing audio" = "Preparando el audio";
+
+/* MainWindow/ChatFirst/ConversationCapturePlaybackSection.swift:64 */
+"Check audio" = "Comprobar el audio";
+
+/* MainWindow/ChatFirst/ConversationCapturePlaybackSection.swift:92 */
+"Buffering audio…" = "Cargando audio…";
+
+/* MainWindow/ChatFirst/ConversationCapturePlaybackSection.swift:96 */
+"Playing" = "Reproduciendo";
+
+/* MainWindow/ChatFirst/ConversationCapturePlaybackSection.swift:108 */
+"Refresh" = "Actualizar";
+
+/* MainWindow/ChatFirst/ConversationCapturePlaybackSection.swift:114 */
+"Prepare audio" = "Preparar audio";
+
+/* MainWindow/Components/AudioLevelWaveformView.swift:104 */
+"Idle:" = "Inactivo:";
+
+/* MainWindow/Components/AudioLevelWaveformView.swift:111 */
+"Low:" = "Bajo:";
+
+/* MainWindow/Components/AudioLevelWaveformView.swift:118 */
+"Medium:" = "Medio:";
+
+/* MainWindow/Components/AudioLevelWaveformView.swift:125 */
+"High:" = "Alto:";
+
+/* MainWindow/Components/AudioSourceSelector.swift:80 */
+"Mic" = "Micro";
+
+/* MainWindow/Components/ChatBubble.swift:366 */
+"Copy Message" = "Copiar mensaje";
+
+/* MainWindow/Components/ChatBubble.swift:415 */
+"Duplicate message" = "Mensaje duplicado";
+
+/* MainWindow/Components/ChatBubble.swift:474 */
+"This turn didn't finish" = "Este turno no terminó";
+
+/* MainWindow/Components/ChatBubble.swift:478 */
+"Session expired" = "La sesión ha caducado";
+
+/* MainWindow/Components/ChatBubble.swift:485 */
+"Interrupted" = "Interrumpido";
+
+/* MainWindow/Components/ChatBubble.swift:540 */
+"Show more" = "Mostrar más";
+
+/* MainWindow/Components/ChatBubble.swift:553 */
+"Show less" = "Mostrar menos";
+
+/* MainWindow/Components/ChatBubble.swift:821 */
+"Copy message" = "Copiar mensaje";
+
+/* MainWindow/Components/ChatBubble.swift:886 */
+"Background agent" = "Agente en segundo plano";
+
+/* MainWindow/Components/ChatBubble.swift:928 */
+"Agent unavailable — it may have been dismissed." = "Agente no disponible: puede que se haya descartado.";
+
+/* MainWindow/Components/ChatBubble.swift:1727 */
+"Input" = "Entrada";
+
+/* MainWindow/Components/ChatBubble.swift:1740 */
+"Output" = "Salida";
+
+/* MainWindow/Components/ChatBubble.swift:1819 */
+"Open agent" = "Abrir agente";
+
+/* MainWindow/Components/ChatBubble.swift:2016 */
+"This is taking longer than usual." = "Esto está tardando más de lo habitual.";
+
+/* MainWindow/Components/ChatBubble.swift:2064 */
+"Thinking" = "Pensando";
+
+/* MainWindow/Components/ChatBubbleSupport.swift:699 */
+"That didn't sync. Try again." = "No se sincronizó. Inténtalo de nuevo.";
+
+/* MainWindow/Components/ChatFeedbackReasonPicker.swift:21 */
+"What went wrong?" = "¿Qué salió mal?";
+
+/* MainWindow/Components/ChatInputView.swift:138 */
+"Attach files" = "Adjuntar archivos";
+
+/* MainWindow/Components/ChatInputView.swift:459 */
+"Failed" = "Error";
+
+/* MainWindow/Components/ChatMessagesView.swift:1211 */
+"Loading…" = "Cargando…";
+
+/* MainWindow/Components/ChatMessagesView.swift:1304 */
+"Failed to load chats" = "No se pudieron cargar los chats";
+
+/* MainWindow/Components/ChatQuotaBannerView.swift:88 */
+"View plan" = "Ver plan";
+
+/* MainWindow/Components/CitationCardView.swift:61 */
+"Sources" = "Fuentes";
+
+/* MainWindow/Components/ConversationCaptureRecordings.swift:238 */
+"Recorded by " = "Grabado por ";
+
+/* MainWindow/Components/ConversationCaptureRecordings.swift:256 */
+"Recordings of this conversation" = "Grabaciones de esta conversación";
+
+/* MainWindow/Components/ConversationCaptureRecordings.swift:271 */
+"Couldn’t separate. Try again." = "No se pudo separar. Inténtalo de nuevo.";
+
+/* MainWindow/Components/ConversationCaptureRecordings.swift:322 */
+"You’re viewing this recording" = "Estás viendo esta grabación";
+
+/* MainWindow/Components/ConversationCaptureRecordings.swift:340 */
+"Separate…" = "Separar…";
+
+/* MainWindow/Components/ConversationCaptureRecordings.swift:349 */
+"Show this recording as its own conversation" = "Mostrar esta grabación como una conversación independiente";
+
+/* MainWindow/Components/ConversationPhotoGallery.swift:73 */
+"Photo unavailable" = "Foto no disponible";
+
+/* MainWindow/Components/ConversationPhotoGallery.swift:111 */
+"Photos" = "Fotos";
+
+/* MainWindow/Components/ConversationRowView.swift:123 */
+"Run the title and summary again" = "Volver a generar el título y el resumen";
+
+/* MainWindow/Components/ConversationRowView.swift:155 */
+"Adding memories & tasks…" = "Añadiendo recuerdos y tareas…";
+
+/* MainWindow/Components/ConversationRowView.swift:295 */
+"Edit Title…" = "Editar título…";
+
+/* MainWindow/Components/ConversationRowView.swift:301 */
+"Copy Transcript" = "Copiar transcripción";
+
+/* MainWindow/Components/ConversationRowView.swift:319 */
+"Remove from Folder" = "Quitar de la carpeta";
+
+/* MainWindow/Components/ConversationRowView.swift:337 */
+"Move to Folder" = "Mover a carpeta";
+
+/* MainWindow/Components/ConversationRowView.swift:346 */
+"Delete Conversation…" = "Eliminar conversación…";
+
+/* MainWindow/Components/ConversationSummarySections.swift:178 */
+"Open the supporting transcript" = "Abrir la transcripción de apoyo";
+
+/* MainWindow/Components/DailyTaskCreationSheet.swift:22 */
+"Create Daily Task" = "Crear tarea diaria";
+
+/* MainWindow/Components/DailyTaskCreationSheet.swift:36 */
+"This task will repeat every day until completed" = "Esta tarea se repetirá cada día hasta que se complete";
+
+/* MainWindow/Components/DailyTaskCreationSheet.swift:43 */
+"Task Description" = "Descripción de la tarea";
+
+/* MainWindow/Components/DailyTaskCreationSheet.swift:47 */
+"What needs to be done daily?" = "¿Qué hay que hacer cada día?";
+
+/* MainWindow/Components/DailyTaskCreationSheet.swift:58 */
+"Priority" = "Prioridad";
+
+/* MainWindow/Components/FolderManagementViews.swift:87 */
+"Edit" = "Editar";
+
+/* MainWindow/Components/FolderManagementViews.swift:92 */
+"Delete" = "Eliminar";
+
+/* MainWindow/Components/FolderManagementViews.swift:173 */
+"Name" = "Nombre";
+
+/* MainWindow/Components/FolderManagementViews.swift:176 */
+"Folder name" = "Nombre de la carpeta";
+
+/* MainWindow/Components/FolderManagementViews.swift:194 */
+"Description" = "Descripción";
+
+/* MainWindow/Components/FolderManagementViews.swift:197 */
+"Optional description" = "Descripción opcional";
+
+/* MainWindow/Components/FolderManagementViews.swift:215 */
+"Color" = "Color";
+
+/* MainWindow/Components/FolderManagementViews.swift:333 */
+"Delete Folder" = "Eliminar carpeta";
+
+/* MainWindow/Components/GoalCelebrationView.swift:35 */
+"Goal completed" = "Objetivo completado";
+
+/* MainWindow/Components/LiveNameSpeakerSheet.swift:34 */
+"Name Speaker" = "Nombrar al hablante";
+
+/* MainWindow/Components/LiveNameSpeakerSheet.swift:78 */
+"Save" = "Guardar";
+
+/* MainWindow/Components/LiveNameSpeakerSheet.swift:138 */
+"Who is this?" = "¿Quién es?";
+
+/* MainWindow/Components/LiveNameSpeakerSheet.swift:172 */
+"Person name" = "Nombre de la persona";
+
+/* MainWindow/Components/LiveNameSpeakerSheet.swift:201 */
+"Add" = "Añadir";
+
+/* MainWindow/Components/LiveNotesView.swift:72 */
+"Notes" = "Notas";
+
+/* MainWindow/Components/LiveNotesView.swift:155 */
+"Add a note…" = "Añade una nota…";
+
+/* MainWindow/Components/LiveTranscriptView.swift:27 */
+"Live Transcript" = "Transcripción en directo";
+
+/* MainWindow/Components/LiveTranscriptView.swift:30 */
+"Start speaking and your transcript will appear here" = "Empieza a hablar y tu transcripción aparecerá aquí";
+
+/* MainWindow/Components/LiveTranscriptView.swift:105 */
+"Listening" = "Escuchando";
+
+/* MainWindow/Components/LiveTranscriptView.swift:135 */
+"Live" = "En directo";
+
+/* MainWindow/Components/LiveTranscriptView.swift:145 */
+"Listening…" = "Escuchando…";
+
+/* MainWindow/Components/LiveTranscriptView.swift:188 */
+"Saving" = "Guardando";
+
+/* MainWindow/Components/LiveTranscriptView.swift:199 */
+"Adding to your conversations…" = "Añadiendo a tus conversaciones…";
+
+/* MainWindow/Components/LiveTranscriptView.swift:253 */
+"Expand live transcript" = "Ampliar la transcripción en directo";
+
+/* MainWindow/Components/LiveTranscriptView.swift:288 */
+"Collapse" = "Contraer";
+
+/* MainWindow/Components/NameSpeakerSheet.swift:107 */
+"Unassign" = "Desasignar";
+
+/* MainWindow/Components/NavigationControls.swift:142 */
+"Close (Esc)" = "Cerrar (Esc)";
+
+/* MainWindow/Components/OmiMarkdown.swift:914 */
+"Copied" = "Copiado";
+
+/* MainWindow/Components/OmiToast.swift:53 */
+"Undo" = "Deshacer";
+
+/* MainWindow/Components/PageQueryToolbar.swift:260 */
+"Active filters" = "Filtros activos";
+
+/* MainWindow/Components/PageQueryToolbar.swift:268 */
+"Clear all filters" = "Borrar todos los filtros";
+
+/* MainWindow/Components/TaskChatPanel.swift:32 */
+"Setting up chat…" = "Preparando el chat…";
+
+/* MainWindow/Components/TaskChatPanel.swift:202 */
+"Open a task thread" = "Abrir un hilo de tarea";
+
+/* MainWindow/Components/TaskChatPanel.swift:206 */
+"Choose Work on this with Omi on a task, or open one that already has a thread." = "Elige «Trabajar en esto con Omi» en una tarea, o abre una que ya tenga un hilo.";
+
+/* MainWindow/Components/TaskChatPanel.swift:225 */
+"Work on this with Omi" = "Trabajar en esto con Omi";
+
+/* MainWindow/Components/TaskChatPanel.swift:229 */
+"Continue the same work as context changes, without starting over." = "Continúa el mismo trabajo a medida que cambia el contexto, sin empezar de cero.";
+
+/* MainWindow/Components/TaskChatPanel.swift:306 */
+"Original" = "Original";
+
+/* MainWindow/Components/TaskChatPanel.swift:312 */
+"Open artifact" = "Abrir artefacto";
+
+/* MainWindow/Components/TaskChatPanel.swift:326 */
+"Ongoing work" = "Trabajo en curso";
+
+/* MainWindow/Components/TaskChatPanel.swift:398 */
+"Task Chat" = "Chat de la tarea";
+
+/* MainWindow/Components/TranscriptFindField.swift:48 */
+"Find in transcript (⌘F)" = "Buscar en la transcripción (⌘F)";
+
+/* MainWindow/Components/TranscriptFindField.swift:51 */
+"Find in transcript" = "Buscar en la transcripción";
+
+/* MainWindow/Dashboard/ChatDailyRecapRow.swift:79 */
+"Open the daily recap" = "Abrir el resumen diario";
+
+/* MainWindow/Dashboard/DailyRecapPage.swift:70 */
+"Ask about this day" = "Preguntar sobre este día";
+
+/* MainWindow/Dashboard/DailyRecapPage.swift:108 */
+"Couldn't open that conversation." = "No se pudo abrir esa conversación.";
+
+/* MainWindow/Dashboard/DailyRecapPage.swift:312 */
+"Opening the recap…" = "Abriendo el resumen…";
+
+/* MainWindow/Dashboard/DailyRecapPage.swift:323 */
+"This recap isn't available." = "Este resumen no está disponible.";
+
+/* MainWindow/Dashboard/DailyRecapPage.swift:326 */
+"It may have been removed, or it belongs to a different account." = "Puede que se haya eliminado o que pertenezca a otra cuenta.";
+
+/* MainWindow/DesktopHomeView.swift:112 */
+"Restoring your session…" = "Restaurando tu sesión…";
+
+/* MainWindow/DesktopHomeView.swift:135 */
+"Finishing setup…" = "Terminando la configuración…";
+
+/* MainWindow/DesktopTopBar.swift:131 */
+"Navigate" = "Navegar";
+
+/* MainWindow/Pages/AgentConnectPickerSheet.swift:66 */
+"Pick how to connect." = "Elige cómo conectarte.";
+
+/* MainWindow/Pages/AgentConnectPickerSheet.swift:188 */
+"Use this only when your workspace requires a developer-mode custom app." = "Úsalo solo si tu espacio de trabajo requiere una app personalizada en modo desarrollador.";
+
+/* MainWindow/Pages/AgentExtensionsSections.swift:25 */
+"MCP Servers" = "Servidores MCP";
+
+/* MainWindow/Pages/AgentExtensionsSections.swift:28 */
+"Connect remote MCP servers or local commands; their tools become available in chat" = "Conecta servidores MCP remotos o comandos locales; sus herramientas estarán disponibles en el chat";
+
+/* MainWindow/Pages/AgentExtensionsSections.swift:119 */
+"Skills" = "Habilidades";
+
+/* MainWindow/Pages/AgentExtensionsSections.swift:122 */
+"Teach the assistant reusable instructions it loads when relevant" = "Enséñale al asistente instrucciones reutilizables que carga cuando son relevantes";
+
+/* MainWindow/Pages/AgentExtensionsSections.swift:214 */
+"Marketplace" = "Marketplace";
+
+/* MainWindow/Pages/AgentExtensionsSections.swift:321 */
+"Required" = "Obligatorio";
+
+/* MainWindow/Pages/AgentExtensionsSections.swift:327 */
+"Open publisher page" = "Abrir la página del editor";
+
+/* MainWindow/Pages/AgentExtensionsSections.swift:655 */
+"Add MCP Server" = "Añadir servidor MCP";
+
+/* MainWindow/Pages/AgentExtensionsSections.swift:658 */
+"Its tools become available to the assistant in chat" = "Sus herramientas estarán disponibles para el asistente en el chat";
+
+/* MainWindow/Pages/AgentExtensionsSections.swift:935 */
+"The assistant reads the name and description, and loads the full instructions when relevant" = "El asistente lee el nombre y la descripción, y carga las instrucciones completas cuando son relevantes";
+
+/* MainWindow/Pages/AgentExtensionsSections.swift:948 */
+"e.g. Weekly Report Format" = "p. ej., Formato del informe semanal";
+
+/* MainWindow/Pages/AgentExtensionsSections.swift:963 */
+"Instructions (Markdown)" = "Instrucciones (Markdown)";
+
+/* MainWindow/Pages/AgentExtensionsSections.swift:972 */
+"Import .md file" = "Importar archivo .md";
+
+/* MainWindow/Pages/AgentExtensionsSections.swift:1002 */
+"Paste your SKILL.md here, or drop a .md file" = "Pega aquí tu SKILL.md o suelta un archivo .md";
+
+/* MainWindow/Pages/AgentExtensionsSections.swift:1049 */
+"Save Skill" = "Guardar habilidad";
+
+/* MainWindow/Pages/AgentExtensionsSections.swift:1207 */
+"Or paste an API key" = "O pega una clave de API";
+
+/* MainWindow/Pages/AgentExtensionsSections.swift:1209 */
+"Save Key" = "Guardar clave";
+
+/* MainWindow/Pages/AppsPage.swift:452 */
+"Choose which app catalog to show" = "Elige qué catálogo de apps mostrar";
+
+/* MainWindow/Pages/AppsPage.swift:457 */
+"Connection" = "Conexión";
+
+/* MainWindow/Pages/AppsPage.swift:461 */
+"All apps" = "Todas las apps";
+
+/* MainWindow/Pages/AppsPage.swift:466 */
+"Installed" = "Instaladas";
+
+/* MainWindow/Pages/AppsPage.swift:470 */
+"Category" = "Categoría";
+
+/* MainWindow/Pages/AppsPage.swift:501 */
+"Filter apps by connection or category" = "Filtrar apps por conexión o categoría";
+
+/* MainWindow/Pages/AppsPage.swift:568 */
+"Build an app…" = "Crear una app…";
+
+/* MainWindow/Pages/AppsPage.swift:812 */
+"Clear Search" = "Borrar búsqueda";
+
+/* MainWindow/Pages/AppsPage.swift:820 */
+"Searching marketplace apps…" = "Buscando apps en el marketplace…";
+
+/* MainWindow/Pages/AppsPage.swift:828 */
+"Marketplace apps couldn't be loaded." = "No se pudieron cargar las apps del marketplace.";
+
+/* MainWindow/Pages/AppsPage.swift:922 */
+"Loading more…" = "Cargando más…";
+
+/* MainWindow/Pages/AppsPage.swift:1829 */
+"Disconnect…" = "Desconectar…";
+
+/* MainWindow/Pages/AppsPage.swift:1837 */
+"Local files are indexed on-device and used to build your memory graph." = "Los archivos locales se indexan en el dispositivo y se usan para construir tu grafo de memoria.";
+
+/* MainWindow/Pages/AppsPage.swift:2174 */
+"Disconnecting Google Calendar" = "Desconectando Google Calendar";
+
+/* MainWindow/Pages/AppsPage.swift:2178 */
+"Revoking Omi's future Calendar access. Imported memories will remain." = "Revocando el acceso futuro de Omi a Calendar. Los recuerdos importados se conservarán.";
+
+/* MainWindow/Pages/AppsPage.swift:2210 */
+"You can close this window now. Omi keeps importing in the background." = "Ya puedes cerrar esta ventana. Omi sigue importando en segundo plano.";
+
+/* MainWindow/Pages/AppsPage.swift:2228 */
+"Current import status" = "Estado actual de la importación";
+
+/* MainWindow/Pages/AppsPage.swift:2342 */
+"See more" = "Ver más";
+
+/* MainWindow/Pages/AppsPage.swift:2360 */
+"View all" = "Ver todo";
+
+/* MainWindow/Pages/AppsPage.swift:2397 */
+"See all" = "Ver todo";
+
+/* MainWindow/Pages/AppsPage.swift:2646 */
+"Filters" = "Filtros";
+
+/* MainWindow/Pages/AppsPage.swift:2653 */
+"Clear All" = "Borrar todo";
+
+/* MainWindow/Pages/AppsPage.swift:2695 */
+"Capability" = "Capacidad";
+
+/* MainWindow/Pages/AppsPage.swift:2718 */
+"Other" = "Otros";
+
+/* MainWindow/Pages/AppsPage.swift:2722 */
+"Show installed only" = "Mostrar solo las instaladas";
+
+/* MainWindow/Pages/AppsPage.swift:2926 */
+"Setting up…" = "Configurando…";
+
+/* MainWindow/Pages/AppsPage.swift:2939 */
+"Disable" = "Desactivar";
+
+/* MainWindow/Pages/AppsPage.swift:2943 */
+"Disable this app. You can enable it again any time." = "Desactiva esta app. Puedes volver a activarla cuando quieras.";
+
+/* MainWindow/Pages/AppsPage.swift:2953 */
+"About" = "Acerca de";
+
+/* MainWindow/Pages/AppsPage.swift:3018 */
+"Capabilities" = "Capacidades";
+
+/* MainWindow/Pages/AppsPage.swift:3047 */
+"Reviews" = "Reseñas";
+
+/* MainWindow/Pages/AppsPage.swift:3058 */
+"Add Review" = "Añadir reseña";
+
+/* MainWindow/Pages/AppsPage.swift:3071 */
+"Your Review" = "Tu reseña";
+
+/* MainWindow/Pages/AppsPage.swift:3096 */
+"No reviews yet. Be the first to review this app." = "Aún no hay reseñas. Sé el primero en reseñar esta app.";
+
+/* MainWindow/Pages/AppsPage.swift:3356 */
+"Your Rating" = "Tu valoración";
+
+/* MainWindow/Pages/AppsPage.swift:3397 */
+"Share your experience with this app…" = "Comparte tu experiencia con esta app…";
+
+/* MainWindow/Pages/AppsPage.swift:3593 */
+"Developer Response" = "Respuesta del desarrollador";
+
+/* MainWindow/Pages/ChatLabView.swift:591 */
+"Prompt Version History" = "Historial de versiones del prompt";
+
+/* MainWindow/Pages/ChatLabView.swift:617 */
+"Loading git history & ratings…" = "Cargando el historial de git y las valoraciones…";
+
+/* MainWindow/Pages/ChatLabView.swift:624 */
+"No prompt history found" = "No se encontró historial del prompt";
+
+/* MainWindow/Pages/ChatLabView.swift:634 */
+"Date" = "Fecha";
+
+/* MainWindow/Pages/ChatLabView.swift:636 */
+"Change" = "Cambio";
+
+/* MainWindow/Pages/ChatLabView.swift:642 */
+"Score" = "Puntuación";
+
+/* MainWindow/Pages/ChatLabView.swift:767 */
+"Prompt Editor" = "Editor de prompts";
+
+/* MainWindow/Pages/ChatLabView.swift:791 */
+"Anthropic API Key" = "Clave de API de Anthropic";
+
+/* MainWindow/Pages/ChatLabView.swift:803 */
+"Enter your own Anthropic API key to use ChatLab evaluation features." = "Introduce tu propia clave de API de Anthropic para usar las funciones de evaluación de ChatLab.";
+
+/* MainWindow/Pages/ChatLabView.swift:811 */
+"Floating Bar Prefix" = "Prefijo de la barra flotante";
+
+/* MainWindow/Pages/ChatLabView.swift:827 */
+"Main Prompt" = "Prompt principal";
+
+/* MainWindow/Pages/ChatLabView.swift:846 */
+"Save as New Version" = "Guardar como nueva versión";
+
+/* MainWindow/Pages/ChatLabView.swift:863 */
+"Generate Next Version" = "Generar la siguiente versión";
+
+/* MainWindow/Pages/ChatLabView.swift:873 */
+"Version name" = "Nombre de la versión";
+
+/* MainWindow/Pages/ChatLabView.swift:889 */
+"Evaluation" = "Evaluación";
+
+/* MainWindow/Pages/ChatLabView.swift:907 */
+"Run All Questions" = "Ejecutar todas las preguntas";
+
+/* MainWindow/Pages/ChatLabView.swift:925 */
+"Context" = "Contexto";
+
+/* MainWindow/Pages/ChatLabView.swift:930 */
+"Response" = "Respuesta";
+
+/* MainWindow/Pages/ChatLabView.swift:935 */
+"AI" = "IA";
+
+/* MainWindow/Pages/ChatLabView.swift:940 */
+"You" = "Tú";
+
+/* MainWindow/Pages/ChatLabView.swift:974 */
+"Running…" = "Ejecutando…";
+
+/* MainWindow/Pages/ChatLabView.swift:980 */
+"Not evaluated" = "Sin evaluar";
+
+/* MainWindow/Pages/ChatLabView.swift:1037 */
+"Version Comparison" = "Comparación de versiones";
+
+/* MainWindow/Pages/ChatLabView.swift:1058 */
+"Human" = "Humano";
+
+/* MainWindow/Pages/ConversationAppSelectorSheet.swift:22 */
+"Select App" = "Seleccionar app";
+
+/* MainWindow/Pages/ConversationAppSelectorSheet.swift:42 */
+"No Apps Available" = "No hay apps disponibles";
+
+/* MainWindow/Pages/ConversationAppSelectorSheet.swift:46 */
+"Enable apps with memory capability to reprocess conversations" = "Activa apps con capacidad de memoria para volver a procesar conversaciones";
+
+/* MainWindow/Pages/ConversationDetailHeader.swift:248 */
+"Rename…" = "Renombrar…";
+
+/* MainWindow/Pages/ConversationDetailSections.swift:131 */
+"Run this conversation through another app" = "Procesar esta conversación con otra app";
+
+/* MainWindow/Pages/ConversationDetailSections.swift:156 */
+"Enable apps with memory capability to get more insights from your conversations." = "Activa apps con capacidad de memoria para obtener más información de tus conversaciones.";
+
+/* MainWindow/Pages/ConversationDetailSections.swift:221 */
+"App" = "App";
+
+/* MainWindow/Pages/ConversationDetailView.swift:230 */
+"Couldn't assign this speaker" = "No se pudo asignar este hablante";
+
+/* MainWindow/Pages/ConversationDetailView.swift:233 */
+"Retry" = "Reintentar";
+
+/* MainWindow/Pages/ConversationDetailView.swift:925 */
+"Refresh transcript and re-sync it to the audio" = "Actualizar la transcripción y volver a sincronizarla con el audio";
+
+/* MainWindow/Pages/ConversationDetailView.swift:951 */
+"Loading transcript…" = "Cargando la transcripción…";
+
+/* MainWindow/Pages/ConversationDetailView.swift:1230 */
+"Choose the app that summarizes this conversation" = "Elige la app que resume esta conversación";
+
+/* MainWindow/Pages/ConversationsPage.swift:478 */
+"Load older conversations" = "Cargar conversaciones anteriores";
+
+/* MainWindow/Pages/ConversationsPage.swift:638 */
+"Searching…" = "Buscando…";
+
+/* MainWindow/Pages/ConversationsPage.swift:648 */
+"Couldn't search conversations. Check your connection and try again." = "No se pudieron buscar las conversaciones. Revisa tu conexión y vuelve a intentarlo.";
+
+/* MainWindow/Pages/ConversationsPage.swift:660 */
+"No search results" = "Sin resultados";
+
+/* MainWindow/Pages/ConversationsPage.swift:790 */
+"Collection" = "Colección";
+
+/* MainWindow/Pages/ConversationsPage.swift:795 */
+"All collections" = "Todas las colecciones";
+
+/* MainWindow/Pages/ConversationsPage.swift:822 */
+"Refine" = "Afinar";
+
+/* MainWindow/Pages/ConversationsPage.swift:843 */
+"Collections" = "Colecciones";
+
+/* MainWindow/Pages/ConversationsPage.swift:847 */
+"New collection…" = "Nueva colección…";
+
+/* MainWindow/Pages/ConversationsPage.swift:851 */
+"Manage collections" = "Gestionar colecciones";
+
+/* MainWindow/Pages/ConversationsPage.swift:854 */
+"Edit…" = "Editar…";
+
+/* MainWindow/Pages/ConversationsPage.swift:855 */
+"Delete…" = "Eliminar…";
+
+/* MainWindow/Pages/ConversationsPage.swift:876 */
+"Filter conversations by collection, starred status, or date" = "Filtrar conversaciones por colección, destacadas o fecha";
+
+/* MainWindow/Pages/ConversationsPage.swift:888 */
+"Select Conversations" = "Seleccionar conversaciones";
+
+/* MainWindow/Pages/ConversationsPage.swift:896 */
+"Start Recording" = "Empezar a grabar";
+
+/* MainWindow/Pages/ConversationsPage.swift:946 */
+"No matching conversations" = "No hay conversaciones que coincidan";
+
+/* MainWindow/Pages/ConversationsPage.swift:1059 */
+"Merge" = "Combinar";
+
+/* MainWindow/Pages/HomeAskBarControls.swift:121 */
+"Stop" = "Detener";
+
+/* MainWindow/Pages/HomeAskBarControls.swift:159 */
+"Connect data & use Omi anywhere" = "Conecta tus datos y usa Omi en cualquier lugar";
+
+/* MainWindow/Pages/MemoriesPage.swift:2422 */
+"New memory (⌘N)" = "Nuevo recuerdo (⌘N)";
+
+/* MainWindow/Pages/MemoriesPage.swift:2433 */
+"Lifecycle" = "Ciclo de vida";
+
+/* MainWindow/Pages/MemoriesPage.swift:2451 */
+"Memory view" = "Vista de recuerdos";
+
+/* MainWindow/Pages/MemoriesPage.swift:2468 */
+"Source" = "Fuente";
+
+/* MainWindow/Pages/MemoriesPage.swift:2478 */
+"Type" = "Tipo";
+
+/* MainWindow/Pages/MemoriesPage.swift:2510 */
+"Filter memories by lifecycle, source, or type" = "Filtrar recuerdos por ciclo de vida, fuente o tipo";
+
+/* MainWindow/Pages/MemoriesPage.swift:2619 */
+"Search categories…" = "Buscar categorías…";
+
+/* MainWindow/Pages/MemoriesPage.swift:2650 */
+"All" = "Todo";
+
+/* MainWindow/Pages/MemoriesPage.swift:2735 */
+"Apply" = "Aplicar";
+
+/* MainWindow/Pages/MemoriesPage.swift:2754 */
+"Visibility" = "Visibilidad";
+
+/* MainWindow/Pages/MemoriesPage.swift:2758 */
+"Make Default Memories Private" = "Hacer privados los recuerdos predeterminados";
+
+/* MainWindow/Pages/MemoriesPage.swift:2765 */
+"Make Default Memories Public" = "Hacer públicos los recuerdos predeterminados";
+
+/* MainWindow/Pages/MemoriesPage.swift:2775 */
+"Delete Default Memories…" = "Eliminar los recuerdos predeterminados…";
+
+/* MainWindow/Pages/MemoriesPage.swift:2841 */
+"Load more memories" = "Cargar más recuerdos";
+
+/* MainWindow/Pages/MemoriesPage.swift:2924 */
+"New Memory" = "Nuevo recuerdo";
+
+/* MainWindow/Pages/MemoriesPage.swift:2941 */
+"Clear Filters" = "Borrar filtros";
+
+/* MainWindow/Pages/MemoriesPage.swift:3055 */
+"Protected memory" = "Recuerdo protegido";
+
+/* MainWindow/Pages/MemoriesPage.swift:3146 */
+"Copy Text" = "Copiar texto";
+
+/* MainWindow/Pages/MemoriesPage.swift:3151 */
+"Delete Memory" = "Eliminar recuerdo";
+
+/* MainWindow/Pages/MemoriesPage.swift:3396 */
+"Edit Text" = "Editar texto";
+
+/* MainWindow/Pages/MemoriesPage.swift:3401 */
+"Make Private" = "Hacer privado";
+
+/* MainWindow/Pages/MemoriesPage.swift:3405 */
+"Make Public…" = "Hacer público…";
+
+/* MainWindow/Pages/MemoriesPage.swift:3485 */
+"Click to edit" = "Haz clic para editar";
+
+/* MainWindow/Pages/MemoryEditorSheets.swift:111 */
+"Edit Memory" = "Editar recuerdo";
+
+/* MainWindow/Pages/MemoryExportDestinationSheet.swift:720 */
+"Test hosted and local Omi access" = "Probar el acceso a Omi alojado y local";
+
+/* MainWindow/Pages/MemoryExportDestinationSheet.swift:728 */
+"New key" = "Nueva clave";
+
+/* MainWindow/Pages/MemoryExportDestinationSheet.swift:732 */
+"Create fresh hosted and local connection keys" = "Crear nuevas claves de conexión alojada y local";
+
+/* MainWindow/Pages/MemoryExportDestinationSheet.swift:740 */
+"Let your agent do it" = "Deja que tu agente lo haga";
+
+/* MainWindow/Pages/MemoryExportDestinationSheet.swift:743 */
+"MCP + CLI" = "MCP + CLI";
+
+/* MainWindow/Pages/MemoryExportDestinationSheet.swift:1006 */
+"Copy these fields into Claude's Add custom connector form." = "Copia estos campos en el formulario «Añadir conector personalizado» de Claude.";
+
+/* MainWindow/Pages/MemoryExportDestinationSheet.swift:1019 */
+"Advanced settings" = "Ajustes avanzados";
+
+/* MainWindow/Pages/MemoryExportDestinationSheet.swift:1029 */
+"Leave OAuth Client Secret blank." = "Deja en blanco el secreto de cliente OAuth.";
+
+/* MainWindow/Pages/MemoryExportDestinationSheet.swift:1039 */
+"Copy these fields only when creating a ChatGPT developer-mode custom app." = "Copia estos campos solo al crear una app personalizada de ChatGPT en modo desarrollador.";
+
+/* MainWindow/Pages/MemoryExportDestinationSheet.swift:1051 */
+"Advanced OAuth settings" = "Ajustes avanzados de OAuth";
+
+/* MainWindow/Pages/MemoryExportDestinationSheet.swift:1165 */
+"Disconnect" = "Desconectar";
+
+/* MainWindow/Pages/MemoryGraph/CanonicalMemoryAtlasView.swift:66 */
+"Brain map will appear once enough linked memories are available." = "El mapa mental aparecerá cuando haya suficientes recuerdos enlazados.";
+
+/* MainWindow/Pages/MemoryGraph/CanonicalMemoryAtlasView.swift:672 */
+"Search your entities" = "Buscar tus entidades";
+
+/* MainWindow/Pages/MemoryGraph/CanonicalMemoryAtlasView.swift:743 */
+"Try a different search or clear the search above." = "Prueba otra búsqueda o borra la búsqueda de arriba.";
+
+/* MainWindow/Pages/MemoryGraph/CanonicalMemoryAtlasView.swift:766 */
+"Legend" = "Leyenda";
+
+/* MainWindow/Pages/MemoryGraph/CanonicalMemoryAtlasView.swift:1557 */
+"Focus" = "Foco";
+
+/* MainWindow/Pages/MemoryGraph/CanonicalMemoryAtlasView.swift:1646 */
+"Now" = "Ahora";
+
+/* MainWindow/Pages/MemoryGraph/CanonicalMemoryAtlasView.swift:1866 */
+"Return to overview" = "Volver a la vista general";
+
+/* MainWindow/Pages/MemoryGraph/MemoryAtlasInspector.swift:139 */
+"Reading your memories…" = "Leyendo tus recuerdos…";
+
+/* MainWindow/Pages/MemoryGraph/MemoryAtlasInspector.swift:144 */
+"Source memories are still being linked for this entity." = "Todavía se están enlazando los recuerdos de origen de esta entidad.";
+
+/* MainWindow/Pages/MemoryGraph/MemoryAtlasInspector.swift:177 */
+"Back to the previous entity" = "Volver a la entidad anterior";
+
+/* MainWindow/Pages/MemoryGraph/MemoryAtlasInspector.swift:207 */
+"Center the map on this entity" = "Centrar el mapa en esta entidad";
+
+/* MainWindow/Pages/MemoryGraph/MemoryAtlasInspector.swift:329 */
+"Open this memory on the Memories page" = "Abrir este recuerdo en la página Recuerdos";
+
+/* MainWindow/Pages/MemoryGraph/MemoryGraphPage.swift:71 */
+"Rebuild graph" = "Reconstruir el grafo";
+
+/* MainWindow/Pages/PermissionsPage.swift:462 */
+"Microphone access was previously denied. Reset the permission to try again:" = "El acceso al micrófono se denegó anteriormente. Restablece el permiso para volver a intentarlo:";
+
+/* MainWindow/Pages/PermissionsPage.swift:468 */
+"Option 1: Quick Reset" = "Opción 1: Restablecimiento rápido";
+
+/* MainWindow/Pages/PermissionsPage.swift:500 */
+"Option 2: Reset via Terminal" = "Opción 2: Restablecer desde Terminal";
+
+/* MainWindow/Pages/PermissionsPage.swift:508 */
+"Open Terminal" = "Abrir Terminal";
+
+/* MainWindow/Pages/PermissionsPage.swift:525 */
+"Option 3: Manual" = "Opción 3: Manual";
+
+/* MainWindow/Pages/PermissionsPage.swift:536 */
+"Open System Settings" = "Abrir Ajustes del Sistema";
+
+/* MainWindow/Pages/PermissionsPage.swift:544 */
+"Open Privacy Settings" = "Abrir ajustes de privacidad";
+
+/* MainWindow/Pages/PermissionsPage.swift:566 */
+"Find \"Omi\" and toggle it ON" = "Busca \"Omi\" y actívalo";
+
+/* MainWindow/Pages/PermissionsPage.swift:593 */
+"How to grant microphone access:" = "Cómo conceder acceso al micrófono:";
+
+/* MainWindow/Pages/PermissionsPage.swift:614 */
+"Grant Access" = "Conceder acceso";
+
+/* MainWindow/Pages/PermissionsPage.swift:721 */
+"Screen recording needs to be re-enabled after an app update." = "Hay que volver a activar la grabación de pantalla tras actualizar la app.";
+
+/* MainWindow/Pages/PermissionsPage.swift:735 */
+"Open Screen Recording settings" = "Abrir ajustes de Grabación de pantalla";
+
+/* MainWindow/Pages/PermissionsPage.swift:745 */
+"Open Settings" = "Abrir ajustes";
+
+/* MainWindow/Pages/PermissionsPage.swift:772 */
+"Come back to Omi and grant the permission" = "Vuelve a Omi y concede el permiso";
+
+/* MainWindow/Pages/PermissionsPage.swift:785 */
+"Grant" = "Conceder";
+
+/* MainWindow/Pages/PermissionsPage.swift:811 */
+"How to grant screen recording access:" = "Cómo conceder acceso a la grabación de pantalla:";
+
+/* MainWindow/Pages/PermissionsPage.swift:986 */
+"System audio capture requires macOS 14.4 or later." = "La captura del audio del sistema requiere macOS 14.4 o posterior.";
+
+/* MainWindow/Pages/PermissionsPage.swift:990 */
+"How to grant system audio access:" = "Cómo conceder acceso al audio del sistema:";
+
+/* MainWindow/Pages/PermissionsPage.swift:1011 */
+"Test Access" = "Probar acceso";
+
+/* MainWindow/Pages/PermissionsPage.swift:1122 */
+"Notification access was previously denied. Enable it in System Settings:" = "El acceso a las notificaciones se denegó anteriormente. Actívalo en Ajustes del Sistema:";
+
+/* MainWindow/Pages/PermissionsPage.swift:1156 */
+"How to grant notification access:" = "Cómo conceder acceso a las notificaciones:";
+
+/* MainWindow/Pages/PermissionsPage.swift:1249 */
+"Without this, Omi can see that you were in an app, but not which page or file." = "Sin esto, Omi puede ver que estabas en una app, pero no en qué página o archivo.";
+
+/* MainWindow/Pages/PermissionsPage.swift:1254 */
+"How to grant accessibility access:" = "Cómo conceder acceso de accesibilidad:";
+
+/* MainWindow/Pages/PermissionsPage.swift:1289 */
+"Accessibility looks enabled, but the permission stopped working after an app update." = "La accesibilidad parece activada, pero el permiso dejó de funcionar tras una actualización de la app.";
+
+/* MainWindow/Pages/PermissionsPage.swift:1303 */
+"Open Accessibility settings" = "Abrir ajustes de Accesibilidad";
+
+/* MainWindow/Pages/PersonaPage.swift:102 */
+"AI Persona" = "Persona de IA";
+
+/* MainWindow/Pages/PersonaPage.swift:106 */
+"Create an AI clone of yourself that others can chat with" = "Crea un clon de ti con IA con el que otros puedan chatear";
+
+/* MainWindow/Pages/PersonaPage.swift:123 */
+"Refresh Persona" = "Actualizar persona";
+
+/* MainWindow/Pages/PersonaPage.swift:157 */
+"No Persona Yet" = "Aún no hay persona";
+
+/* MainWindow/Pages/PersonaPage.swift:173 */
+"Create Persona" = "Crear persona";
+
+/* MainWindow/Pages/PersonaPage.swift:182 */
+"Make memories public in the Memories page to enhance your persona" = "Haz públicos tus recuerdos en la página Recuerdos para mejorar tu persona";
+
+/* MainWindow/Pages/PersonaPage.swift:313 */
+"Actions" = "Acciones";
+
+/* MainWindow/Pages/PersonaPage.swift:329 */
+"Save Changes" = "Guardar cambios";
+
+/* MainWindow/Pages/PersonaPage.swift:395 */
+"Persona Prompt" = "Prompt de la persona";
+
+/* MainWindow/Pages/PersonaPage.swift:579 */
+"Create AI Persona" = "Crear persona de IA";
+
+/* MainWindow/Pages/PersonaPage.swift:600 */
+"Your display name" = "Tu nombre visible";
+
+/* MainWindow/Pages/PersonaPage.swift:615 */
+"Username (optional)" = "Nombre de usuario (opcional)";
+
+/* MainWindow/Pages/PersonaPage.swift:624 */
+"username" = "nombredeusuario";
+
+/* MainWindow/Pages/PersonaPage.swift:651 */
+"3-30 characters, lowercase letters, numbers, and underscores only" = "De 3 a 30 caracteres: solo minúsculas, números y guiones bajos";
+
+/* MainWindow/Pages/PersonaPage.swift:661 */
+"Your persona will be built from your public memories. Make more memories public to improve it." = "Tu persona se construirá a partir de tus recuerdos públicos. Haz públicos más recuerdos para mejorarla.";
+
+/* MainWindow/Pages/Settings/Components/AppRuleEditorView.swift:68 */
+"Currently Running Apps" = "Apps en ejecución";
+
+/* MainWindow/Pages/Settings/Components/AppRuleEditorView.swift:72 */
+"Refresh running apps" = "Actualizar las apps en ejecución";
+
+/* MainWindow/Pages/Settings/Components/AppRuleEditorView.swift:138 */
+"Filter keywords…" = "Filtrar palabras clave…";
+
+/* MainWindow/Pages/Settings/Components/AppRuleEditorView.swift:142 */
+"Clear keyword filter" = "Borrar el filtro de palabras clave";
+
+/* MainWindow/Pages/Settings/Components/AppRuleEditorView.swift:184 */
+"Add keyword…" = "Añadir palabra clave…";
+
+/* MainWindow/Pages/Settings/Components/SearchableDropdown.swift:191 */
+"Search" = "Buscar";
+
+/* MainWindow/Pages/Settings/Components/SearchableDropdown.swift:219 */
+"No matches" = "Sin coincidencias";
+
+/* MainWindow/Pages/Settings/Components/SettingsContentView+BillingHelpers.swift:378 */
+"starting price" = "precio inicial";
+
+/* MainWindow/Pages/Settings/Components/SettingsContentView+BillingHelpers.swift:422 */
+"Promo code" = "Código promocional";
+
+/* MainWindow/Pages/Settings/Components/SettingsContentView+BillingHelpers.swift:433 */
+"Enter promo code" = "Introduce el código promocional";
+
+/* MainWindow/Pages/Settings/Components/SettingsContentView+BillingHelpers.swift:454 */
+"Choose billing" = "Elige la facturación";
+
+/* MainWindow/Pages/Settings/Components/SettingsContentView+BillingHelpers.swift:487 */
+"Current Plan" = "Plan actual";
+
+/* MainWindow/Pages/Settings/Components/SettingsContentView+Controls.swift:173 */
+"Voice playback speed" = "Velocidad de reproducción de voz";
+
+/* MainWindow/Pages/Settings/Components/SettingsContentView+Controls.swift:247 */
+"Slow" = "Lenta";
+
+/* MainWindow/Pages/Settings/Components/SettingsContentView+Controls.swift:251 */
+"Max" = "Máx.";
+
+/* MainWindow/Pages/Settings/Components/SettingsContentView+Controls.swift:273 */
+"Frequency" = "Frecuencia";
+
+/* MainWindow/Pages/Settings/Components/SettingsContentView+Controls.swift:276 */
+"How often to receive notifications" = "Con qué frecuencia recibir notificaciones";
+
+/* MainWindow/Pages/Settings/Components/SettingsContentView+Controls.swift:376 */
+"Not one of these steps — the handle shows the nearest one. Move it to choose a step." = "No es ninguno de estos pasos: el control muestra el más cercano. Muévelo para elegir un paso.";
+
+/* MainWindow/Pages/Settings/Components/SettingsContentView+Controls.swift:598 */
+"Privacy Policy" = "Política de privacidad";
+
+/* MainWindow/Pages/Settings/Components/SettingsContentView+Controls.swift:630 */
+"Software Updates" = "Actualizaciones de software";
+
+/* MainWindow/Pages/Settings/Components/SettingsContentView+Controls.swift:693 */
+"Update Needs Attention" = "La actualización necesita atención";
+
+/* MainWindow/Pages/Settings/Components/SettingsContentView+Controls.swift:705 */
+"Open Applications" = "Abrir Aplicaciones";
+
+/* MainWindow/Pages/Settings/Components/SettingsContentView+Controls.swift:712 */
+"Download Latest" = "Descargar la última versión";
+
+/* MainWindow/Pages/Settings/Components/SettingsContentView+Controls.swift:755 */
+"Release builds always auto-check and auto-install updates in the background." = "Las versiones de lanzamiento siempre buscan e instalan actualizaciones automáticamente en segundo plano.";
+
+/* MainWindow/Pages/Settings/Components/SettingsContentView+Controls.swift:759 */
+"Named developer bundles do not use shared Sparkle updates. Run omi-dev update instead." = "Los bundles de desarrollo con nombre no usan las actualizaciones compartidas de Sparkle. Ejecuta omi-dev update en su lugar.";
+
+/* MainWindow/Pages/Settings/Components/SettingsContentView+Controls.swift:778 */
+"Get Omi Beta" = "Obtener Omi Beta";
+
+/* MainWindow/Pages/Settings/Components/SettingsContentView+Controls.swift:804 */
+"Community" = "Comunidad";
+
+/* MainWindow/Pages/Settings/Components/SettingsContentView+Controls.swift:808 */
+"Get help from the Omi community and team" = "Obtén ayuda de la comunidad y el equipo de Omi";
+
+/* MainWindow/Pages/Settings/Components/SettingsContentView+Controls.swift:815 */
+"Join Discord" = "Unirse a Discord";
+
+/* MainWindow/Pages/Settings/Components/SettingsContentView+Controls.swift:833 */
+"Help us improve Omi" = "Ayúdanos a mejorar Omi";
+
+/* MainWindow/Pages/Settings/Components/SettingsContentView+Controls.swift:840 */
+"Report" = "Informar";
+
+/* MainWindow/Pages/Settings/Sections/MicrophonePickerCard.swift:102 */
+"Microphone" = "Micrófono";
+
+/* MainWindow/Pages/Settings/Sections/SettingsContentView+AccountBilling.swift:37 */
+"Sign Out" = "Cerrar sesión";
+
+/* MainWindow/Pages/Settings/Sections/SettingsContentView+AccountBilling.swift:55 */
+"Delete Account & Data" = "Eliminar cuenta y datos";
+
+/* MainWindow/Pages/Settings/Sections/SettingsContentView+AccountBilling.swift:109 */
+"Upgrade to Pro" = "Mejora a Pro";
+
+/* MainWindow/Pages/Settings/Sections/SettingsContentView+AccountBilling.swift:113 */
+"Unlock all features and unlimited usage" = "Desbloquea todas las funciones y uso ilimitado";
+
+/* MainWindow/Pages/Settings/Sections/SettingsContentView+AccountBilling.swift:120 */
+"Upgrade" = "Mejorar";
+
+/* MainWindow/Pages/Settings/Sections/SettingsContentView+AccountBilling.swift:145 */
+"Premium Trial Active" = "Prueba Premium activa";
+
+/* MainWindow/Pages/Settings/Sections/SettingsContentView+AccountBilling.swift:174 */
+"Included in your trial" = "Incluido en tu prueba";
+
+/* MainWindow/Pages/Settings/Sections/SettingsContentView+AccountBilling.swift:195 */
+"Trial Ended" = "La prueba ha terminado";
+
+/* MainWindow/Pages/Settings/Sections/SettingsContentView+AccountBilling.swift:199 */
+"Upgrade to keep unlimited access" = "Mejora tu plan para mantener el acceso ilimitado";
+
+/* MainWindow/Pages/Settings/Sections/SettingsContentView+AccountBilling.swift:212 */
+"View Plans" = "Ver planes";
+
+/* MainWindow/Pages/Settings/Sections/SettingsContentView+AccountBilling.swift:297 */
+"Manage" = "Gestionar";
+
+/* MainWindow/Pages/Settings/Sections/SettingsContentView+AccountBilling.swift:337 */
+"Plan Retiring" = "Plan en retirada";
+
+/* MainWindow/Pages/Settings/Sections/SettingsContentView+AccountBilling.swift:353 */
+"Try Operator" = "Probar Operator";
+
+/* MainWindow/Pages/Settings/Sections/SettingsContentView+AccountBilling.swift:471 */
+"Your current cycle" = "Tu ciclo actual";
+
+/* MainWindow/Pages/Settings/Sections/SettingsContentView+AccountBilling.swift:560 */
+"Usage this month" = "Uso este mes";
+
+/* MainWindow/Pages/Settings/Sections/SettingsContentView+AccountBilling.swift:592 */
+"You're past your included limit — extra usage is billed as overage at end of cycle." = "Has superado tu límite incluido: el uso adicional se factura como excedente al final del ciclo.";
+
+/* MainWindow/Pages/Settings/Sections/SettingsContentView+AccountBilling.swift:596 */
+"You've reached this month's limit. Upgrade your plan or wait until the next reset." = "Has alcanzado el límite de este mes. Mejora tu plan o espera al próximo reinicio.";
+
+/* MainWindow/Pages/Settings/Sections/SettingsContentView+AccountBilling.swift:601 */
+"You're close to your monthly limit." = "Estás cerca de tu límite mensual.";
+
+/* MainWindow/Pages/Settings/Sections/SettingsContentView+AccountBilling.swift:611 */
+"Loading usage…" = "Cargando el uso…";
+
+/* MainWindow/Pages/Settings/Sections/SettingsContentView+Advanced.swift:69 */
+"Advanced" = "Avanzado";
+
+/* MainWindow/Pages/Settings/Sections/SettingsContentView+Advanced.swift:108 */
+"Enhanced Diagnostics" = "Diagnóstico ampliado";
+
+/* MainWindow/Pages/Settings/Sections/SettingsContentView+Advanced.swift:137 */
+"Chat Prompt Lab" = "Laboratorio de prompts del chat";
+
+/* MainWindow/Pages/Settings/Sections/SettingsContentView+Advanced.swift:140 */
+"Iterate on chat system prompts with real questions, AI grading, and production ratings" = "Itera los prompts de sistema del chat con preguntas reales, evaluación por IA y valoraciones de producción";
+
+/* MainWindow/Pages/Settings/Sections/SettingsContentView+Advanced.swift:165 */
+"Voice Model" = "Modelo de voz";
+
+/* MainWindow/Pages/Settings/Sections/SettingsContentView+Advanced.swift:206 */
+"AI Provider" = "Proveedor de IA";
+
+/* MainWindow/Pages/Settings/Sections/SettingsContentView+Advanced.swift:247 */
+"Connected to Claude" = "Conectado a Claude";
+
+/* MainWindow/Pages/Settings/Sections/SettingsContentView+Advanced.swift:273 */
+"Workspace" = "Espacio de trabajo";
+
+/* MainWindow/Pages/Settings/Sections/SettingsContentView+Advanced.swift:279 */
+"Browse…" = "Explorar…";
+
+/* MainWindow/Pages/Settings/Sections/SettingsContentView+Advanced.swift:314 */
+"No workspace set. Choose a project directory for desktop chat context." = "No hay espacio de trabajo. Elige una carpeta de proyecto como contexto para el chat de escritorio.";
+
+/* MainWindow/Pages/Settings/Sections/SettingsContentView+Advanced.swift:328 */
+"Browser Extension" = "Extensión del navegador";
+
+/* MainWindow/Pages/Settings/Sections/SettingsContentView+Advanced.swift:351 */
+"Lets the AI use your Chrome browser with all your logged-in sessions." = "Permite que la IA use tu navegador Chrome con todas tus sesiones iniciadas.";
+
+/* MainWindow/Pages/Settings/Sections/SettingsContentView+Advanced.swift:363 */
+"Set Up" = "Configurar";
+
+/* MainWindow/Pages/Settings/Sections/SettingsContentView+Advanced.swift:370 */
+"Token" = "Token";
+
+/* MainWindow/Pages/Settings/Sections/SettingsContentView+Advanced.swift:387 */
+"Reconfigure" = "Reconfigurar";
+
+/* MainWindow/Pages/Settings/Sections/SettingsContentView+Advanced.swift:400 */
+"Reset" = "Restablecer";
+
+/* MainWindow/Pages/Settings/Sections/SettingsContentView+Advanced.swift:418 */
+"Dev Mode" = "Modo desarrollador";
+
+/* MainWindow/Pages/Settings/Sections/SettingsContentView+Advanced.swift:433 */
+"Let the AI modify the app's source code, rebuild it, and add custom features." = "Permite que la IA modifique el código fuente de la app, la recompile y añada funciones personalizadas.";
+
+/* MainWindow/Pages/Settings/Sections/SettingsContentView+Advanced.swift:451 */
+"Profile and Stats" = "Perfil y estadísticas";
+
+/* MainWindow/Pages/Settings/Sections/SettingsContentView+Advanced.swift:454 */
+"Keep the generated profile and usage stats hidden until you need them." = "Mantén ocultos el perfil generado y las estadísticas de uso hasta que los necesites.";
+
+/* MainWindow/Pages/Settings/Sections/SettingsContentView+Advanced.swift:495 */
+"AI User Profile" = "Perfil de usuario de IA";
+
+/* MainWindow/Pages/Settings/Sections/SettingsContentView+Advanced.swift:599 */
+"Generating profile…" = "Generando el perfil…";
+
+/* MainWindow/Pages/Settings/Sections/SettingsContentView+Advanced.swift:642 */
+"Your Stats" = "Tus estadísticas";
+
+/* MainWindow/Pages/Settings/Sections/SettingsContentView+Advanced.swift:656 */
+"AI Chat Messages" = "Mensajes del chat de IA";
+
+/* MainWindow/Pages/Settings/Sections/SettingsContentView+Advanced.swift:685 */
+"Unable to load stats" = "No se pudieron cargar las estadísticas";
+
+/* MainWindow/Pages/Settings/Sections/SettingsContentView+Advanced.swift:709 */
+"Feature Tiers" = "Niveles de funciones";
+
+/* MainWindow/Pages/Settings/Sections/SettingsContentView+Assistants.swift:17 */
+"Task Assistant" = "Asistente de tareas";
+
+/* MainWindow/Pages/Settings/Sections/SettingsContentView+Assistants.swift:33 */
+"Extract tasks and action items from your screen" = "Extrae tareas y pendientes de tu pantalla";
+
+/* MainWindow/Pages/Settings/Sections/SettingsContentView+Assistants.swift:43 */
+"Task Agent" = "Agente de tareas";
+
+/* MainWindow/Pages/Settings/Sections/SettingsContentView+Assistants.swift:46 */
+"Investigate button and sidebar chat for tasks" = "Botón de investigar y chat lateral para tareas";
+
+/* MainWindow/Pages/Settings/Sections/SettingsContentView+Assistants.swift:64 */
+"Working Directory" = "Directorio de trabajo";
+
+/* MainWindow/Pages/Settings/Sections/SettingsContentView+Assistants.swift:110 */
+"Extraction Interval" = "Intervalo de extracción";
+
+/* MainWindow/Pages/Settings/Sections/SettingsContentView+Assistants.swift:113 */
+"How often to scan for new tasks" = "Con qué frecuencia buscar tareas nuevas";
+
+/* MainWindow/Pages/Settings/Sections/SettingsContentView+Assistants.swift:154 */
+"Minimum Confidence" = "Confianza mínima";
+
+/* MainWindow/Pages/Settings/Sections/SettingsContentView+Assistants.swift:157 */
+"Only show tasks above this confidence level" = "Mostrar solo tareas por encima de este nivel de confianza";
+
+/* MainWindow/Pages/Settings/Sections/SettingsContentView+Assistants.swift:192 */
+"Test Run" = "Ejecución de prueba";
+
+/* MainWindow/Pages/Settings/Sections/SettingsContentView+Assistants.swift:217 */
+"Allowed Apps" = "Apps permitidas";
+
+/* MainWindow/Pages/Settings/Sections/SettingsContentView+Assistants.swift:282 */
+"Browser Window Keywords" = "Palabras clave de ventanas del navegador";
+
+/* MainWindow/Pages/Settings/Sections/SettingsContentView+Assistants.swift:328 */
+"Re-score" = "Volver a puntuar";
+
+/* MainWindow/Pages/Settings/Sections/SettingsContentView+Assistants.swift:350 */
+"Insight Assistant" = "Asistente de ideas";
+
+/* MainWindow/Pages/Settings/Sections/SettingsContentView+Assistants.swift:366 */
+"Get proactive insights and suggestions" = "Recibe ideas y sugerencias proactivas";
+
+/* MainWindow/Pages/Settings/Sections/SettingsContentView+Assistants.swift:380 */
+"How often to check for insight opportunities" = "Con qué frecuencia buscar oportunidades de ideas";
+
+/* MainWindow/Pages/Settings/Sections/SettingsContentView+Assistants.swift:424 */
+"Only show insights above this confidence level" = "Mostrar solo ideas por encima de este nivel de confianza";
+
+/* MainWindow/Pages/Settings/Sections/SettingsContentView+Assistants.swift:484 */
+"Excluded Apps" = "Apps excluidas";
+
+/* MainWindow/Pages/Settings/Sections/SettingsContentView+Assistants.swift:487 */
+"Advice won't be generated from these apps" = "No se generarán consejos a partir de estas apps";
+
+/* MainWindow/Pages/Settings/Sections/SettingsContentView+Assistants.swift:560 */
+"Memory Assistant" = "Asistente de memoria";
+
+/* MainWindow/Pages/Settings/Sections/SettingsContentView+Assistants.swift:576 */
+"Extract facts and wisdom from your screen" = "Extrae datos y aprendizajes de tu pantalla";
+
+/* MainWindow/Pages/Settings/Sections/SettingsContentView+Assistants.swift:590 */
+"How often to scan for new memories" = "Con qué frecuencia buscar recuerdos nuevos";
+
+/* MainWindow/Pages/Settings/Sections/SettingsContentView+Assistants.swift:634 */
+"Only save memories above this confidence level" = "Guardar solo recuerdos por encima de este nivel de confianza";
+
+/* MainWindow/Pages/Settings/Sections/SettingsContentView+Assistants.swift:684 */
+"Memories won't be extracted from these apps" = "No se extraerán recuerdos de estas apps";
+
+/* MainWindow/Pages/Settings/Sections/SettingsContentView+Assistants.swift:754 */
+"Analysis Throttle" = "Limitación del análisis";
+
+/* MainWindow/Pages/Settings/Sections/SettingsContentView+Assistants.swift:757 */
+"Wait before analyzing after switching apps" = "Esperar antes de analizar tras cambiar de app";
+
+/* MainWindow/Pages/Settings/Sections/SettingsContentView+Assistants.swift:806 */
+"Goals" = "Objetivos";
+
+/* MainWindow/Pages/Settings/Sections/SettingsContentView+Assistants.swift:813 */
+"Track personal goals with AI-powered progress detection from your conversations" = "Haz seguimiento de tus objetivos personales con detección de progreso por IA a partir de tus conversaciones";
+
+/* MainWindow/Pages/Settings/Sections/SettingsContentView+Assistants.swift:846 */
+"Speak Notifications Aloud" = "Leer las notificaciones en voz alta";
+
+/* MainWindow/Pages/Settings/Sections/SettingsContentView+Assistants.swift:850 */
+"Read proactive notifications out loud when they arrive, using your chat voice" = "Lee en voz alta las notificaciones proactivas cuando lleguen, con tu voz del chat";
+
+/* MainWindow/Pages/Settings/Sections/SettingsContentView+Assistants.swift:872 */
+"Launch at Login" = "Abrir al iniciar sesión";
+
+/* MainWindow/Pages/Settings/Sections/SettingsContentView+Assistants.swift:916 */
+"Report Issue" = "Informar de un problema";
+
+/* MainWindow/Pages/Settings/Sections/SettingsContentView+Assistants.swift:920 */
+"Send app logs and report a problem" = "Envía los registros de la app e informa de un problema";
+
+/* MainWindow/Pages/Settings/Sections/SettingsContentView+Assistants.swift:950 */
+"Reset Integration Suggestions" = "Restablecer las sugerencias de integraciones";
+
+/* MainWindow/Pages/Settings/Sections/SettingsContentView+Assistants.swift:954 */
+"Clears every integration's suggestion history, including ones you hid, so Omi can offer them again" = "Borra el historial de sugerencias de todas las integraciones, incluidas las que ocultaste, para que Omi pueda volver a ofrecerlas";
+
+/* MainWindow/Pages/Settings/Sections/SettingsContentView+Assistants.swift:961 */
+"Reset…" = "Restablecer…";
+
+/* MainWindow/Pages/Settings/Sections/SettingsContentView+Assistants.swift:991 */
+"Reset Onboarding" = "Restablecer la introducción";
+
+/* MainWindow/Pages/Settings/Sections/SettingsContentView+Assistants.swift:995 */
+"Restart setup wizard for this app build only" = "Reinicia el asistente de configuración solo para esta versión de la app";
+
+/* MainWindow/Pages/Settings/Sections/SettingsContentView+Assistants.swift:1145 */
+"Rescan Files" = "Volver a escanear archivos";
+
+/* MainWindow/Pages/Settings/Sections/SettingsContentView+Assistants.swift:1161 */
+"Rescan" = "Volver a escanear";
+
+/* MainWindow/Pages/Settings/Sections/SettingsContentView+DeveloperKeys.swift:56 */
+"Language model" = "Modelo de lenguaje";
+
+/* MainWindow/Pages/Settings/Sections/SettingsContentView+DeveloperKeys.swift:59 */
+"Choose a provider for supported memory and insight features. Desktop chat supports Anthropic keys." = "Elige un proveedor para las funciones de memoria e ideas compatibles. El chat de escritorio admite claves de Anthropic.";
+
+/* MainWindow/Pages/Settings/Sections/SettingsContentView+DeveloperKeys.swift:62 */
+"LLM provider" = "Proveedor de LLM";
+
+/* MainWindow/Pages/Settings/Sections/SettingsContentView+DeveloperKeys.swift:96 */
+"Clear All Custom Keys" = "Borrar todas las claves personalizadas";
+
+/* MainWindow/Pages/Settings/Sections/SettingsContentView+DeveloperKeys.swift:350 */
+"Leave blank for default" = "Déjalo en blanco para usar el valor predeterminado";
+
+/* MainWindow/Pages/Settings/Sections/SettingsContentView+DeveloperKeys.swift:370 */
+"Checking…" = "Comprobando…";
+
+/* MainWindow/Pages/Settings/Sections/SettingsContentView+DeveloperKeys.swift:373 */
+"Valid" = "Válida";
+
+/* MainWindow/Pages/Settings/Sections/SettingsContentView+DeveloperKeys.swift:375 */
+"Invalid" = "No válida";
+
+/* MainWindow/Pages/Settings/Sections/SettingsContentView+FloatingBarAndChat.swift:12 */
+"Show floating bar" = "Mostrar la barra flotante";
+
+/* MainWindow/Pages/Settings/Sections/SettingsContentView+FloatingBarAndChat.swift:40 */
+"Notification Previews" = "Vista previa de notificaciones";
+
+/* MainWindow/Pages/Settings/Sections/SettingsContentView+FloatingBarAndChat.swift:57 */
+"Background Style" = "Estilo de fondo";
+
+/* MainWindow/Pages/Settings/Sections/SettingsContentView+FloatingBarAndChat.swift:62 */
+"Transparent" = "Transparente";
+
+/* MainWindow/Pages/Settings/Sections/SettingsContentView+FloatingBarAndChat.swift:71 */
+"Solid Dark" = "Oscuro sólido";
+
+/* MainWindow/Pages/Settings/Sections/SettingsContentView+FloatingBarAndChat.swift:84 */
+"Draggable Floating Bar" = "Barra flotante arrastrable";
+
+/* MainWindow/Pages/Settings/Sections/SettingsContentView+FloatingBarAndChat.swift:87 */
+"Allow repositioning the floating bar by dragging it." = "Permite recolocar la barra flotante arrastrándola.";
+
+/* MainWindow/Pages/Settings/Sections/SettingsContentView+FloatingBarAndChat.swift:100 */
+"Typed Questions" = "Preguntas escritas";
+
+/* MainWindow/Pages/Settings/Sections/SettingsContentView+FloatingBarAndChat.swift:103 */
+"Speak answers aloud when you submit a typed question from the floating bar." = "Lee las respuestas en voz alta cuando envíes una pregunta escrita desde la barra flotante.";
+
+/* MainWindow/Pages/Settings/Sections/SettingsContentView+FloatingBarAndChat.swift:116 */
+"Screen Sharing in Chat" = "Compartir pantalla en el chat";
+
+/* MainWindow/Pages/Settings/Sections/SettingsContentView+FloatingBarAndChat.swift:119 */
+"Let Ask Omi capture your screen when you ask about what's on it." = "Permite que Pregunta a Omi capture tu pantalla cuando preguntes por lo que hay en ella.";
+
+/* MainWindow/Pages/Settings/Sections/SettingsContentView+FloatingBarAndChat.swift:144 */
+"Voice" = "Voz";
+
+/* MainWindow/Pages/Settings/Sections/SettingsContentView+FloatingBarAndChat.swift:248 */
+"Ask Mode" = "Modo pregunta";
+
+/* MainWindow/Pages/Settings/Sections/SettingsContentView+FloatingBarAndChat.swift:321 */
+"Project-level CLAUDE.md and skills will be discovered from this directory" = "Desde este directorio se detectarán el CLAUDE.md y las habilidades del proyecto";
+
+/* MainWindow/Pages/Settings/Sections/SettingsContentView+FloatingBarAndChat.swift:349 */
+"Reference only — CLAUDE.md content is never injected into chat instructions." = "Solo de referencia: el contenido de CLAUDE.md nunca se inyecta en las instrucciones del chat.";
+
+/* MainWindow/Pages/Settings/Sections/SettingsContentView+FloatingBarAndChat.swift:356 */
+"Global" = "Global";
+
+/* MainWindow/Pages/Settings/Sections/SettingsContentView+FloatingBarAndChat.swift:369 */
+"View" = "Ver";
+
+/* MainWindow/Pages/Settings/Sections/SettingsContentView+FloatingBarAndChat.swift:386 */
+"No CLAUDE.md found at ~/.claude/CLAUDE.md" = "No se encontró CLAUDE.md en ~/.claude/CLAUDE.md";
+
+/* MainWindow/Pages/Settings/Sections/SettingsContentView+FloatingBarAndChat.swift:398 */
+"Project" = "Proyecto";
+
+/* MainWindow/Pages/Settings/Sections/SettingsContentView+FloatingBarAndChat.swift:471 */
+"No skills found in ~/.claude/skills/" = "No se encontraron habilidades en ~/.claude/skills/";
+
+/* MainWindow/Pages/Settings/Sections/SettingsContentView+FloatingBarAndChat.swift:475 */
+"Skill descriptions are included in the AI chat system prompt" = "Las descripciones de las habilidades se incluyen en el prompt de sistema del chat de IA";
+
+/* MainWindow/Pages/Settings/Sections/SettingsContentView+FloatingBarAndChat.swift:485 */
+"Search skills…" = "Buscar habilidades…";
+
+/* MainWindow/Pages/Settings/Sections/SettingsContentView+FloatingBarAndChat.swift:716 */
+"AI can modify UI, add features, create custom SQLite tables" = "La IA puede modificar la interfaz, añadir funciones y crear tablas SQLite personalizadas";
+
+/* MainWindow/Pages/Settings/Sections/SettingsContentView+FloatingBarAndChat.swift:724 */
+"Backend API, auth, and sync logic are read-only" = "La API del backend, la autenticación y la lógica de sincronización son de solo lectura";
+
+/* MainWindow/Pages/Settings/Sections/SettingsContentView+General.swift:29 */
+"Screen Capture" = "Captura de pantalla";
+
+/* MainWindow/Pages/Settings/Sections/SettingsContentView+General.swift:76 */
+"Audio Recording" = "Grabación de audio";
+
+/* MainWindow/Pages/Settings/Sections/SettingsContentView+General.swift:100 */
+"Notifications" = "Notificaciones";
+
+/* MainWindow/Pages/Settings/Sections/SettingsContentView+General.swift:184 */
+"Font Size" = "Tamaño de letra";
+
+/* MainWindow/Pages/Settings/Sections/SettingsContentView+General.swift:221 */
+"The quick brown fox jumps over the lazy dog" = "El veloz murciélago hindú comía feliz cardillo y kiwi";
+
+/* MainWindow/Pages/Settings/Sections/SettingsContentView+General.swift:250 */
+"Window Size" = "Tamaño de la ventana";
+
+/* MainWindow/Pages/Settings/Sections/SettingsContentView+General.swift:254 */
+"Return the main window to its default dimensions" = "Devuelve la ventana principal a sus dimensiones predeterminadas";
+
+/* MainWindow/Pages/Settings/Sections/SettingsContentView+General.swift:283 */
+"Transparency" = "Transparencia";
+
+/* MainWindow/Pages/Settings/Sections/SettingsContentView+General.swift:314 */
+"Solid" = "Sólido";
+
+/* MainWindow/Pages/Settings/Sections/SettingsContentView+General.swift:456 */
+"Interface Sounds" = "Sonidos de la interfaz";
+
+/* MainWindow/Pages/Settings/Sections/SettingsContentView+General.swift:460 */
+"Sounds for important arrivals and completions." = "Sonidos para llegadas y finalizaciones importantes.";
+
+/* MainWindow/Pages/Settings/Sections/SettingsContentView+Integrations.swift:19 */
+"Email account" = "Cuenta de correo";
+
+/* MainWindow/Pages/Settings/Sections/SettingsContentView+Integrations.swift:38 */
+"Choose…" = "Elegir…";
+
+/* MainWindow/Pages/Settings/Sections/SettingsContentView+Integrations.swift:56 */
+"Read Gmail" = "Leer Gmail";
+
+/* MainWindow/Pages/Settings/Sections/SettingsContentView+Integrations.swift:65 */
+"Reads recent emails using browser cookies — no OAuth needed" = "Lee los correos recientes con las cookies del navegador, sin necesidad de OAuth";
+
+/* MainWindow/Pages/Settings/Sections/SettingsContentView+Integrations.swift:249 */
+"Sync Calendar" = "Sincronizar calendario";
+
+/* MainWindow/Pages/Settings/Sections/SettingsContentView+Integrations.swift:257 */
+"Reads Google Calendar using browser cookies — no OAuth needed" = "Lee Google Calendar con las cookies del navegador, sin necesidad de OAuth";
+
+/* MainWindow/Pages/Settings/Sections/SettingsContentView+NotificationsPrivacy.swift:26 */
+"Control how often you receive notifications" = "Controla con qué frecuencia recibes notificaciones";
+
+/* MainWindow/Pages/Settings/Sections/SettingsContentView+NotificationsPrivacy.swift:159 */
+"Receive a daily summary of your conversations and activities" = "Recibe un resumen diario de tus conversaciones y actividades";
+
+/* MainWindow/Pages/Settings/Sections/SettingsContentView+NotificationsPrivacy.swift:225 */
+"Use Omi with Siri & Apple Intelligence" = "Usar Omi con Siri y Apple Intelligence";
+
+/* MainWindow/Pages/Settings/Sections/SettingsContentView+NotificationsPrivacy.swift:228 */
+"Make conversation summaries, memories and tasks available to Siri on this Mac" = "Pon los resúmenes de conversaciones, los recuerdos y las tareas a disposición de Siri en este Mac";
+
+/* MainWindow/Pages/Settings/Sections/SettingsContentView+NotificationsPrivacy.swift:282 */
+"Export All Data…" = "Exportar todos los datos…";
+
+/* MainWindow/Pages/Settings/Sections/SettingsContentView+NotificationsPrivacy.swift:305 */
+"Server-side encryption" = "Cifrado en el servidor";
+
+/* MainWindow/Pages/Settings/Sections/SettingsContentView+NotificationsPrivacy.swift:309 */
+"Active" = "Activo";
+
+/* MainWindow/Pages/Settings/Sections/SettingsContentView+NotificationsPrivacy.swift:318 */
+"Your data is encrypted and stored securely with Google Cloud infrastructure." = "Tus datos se cifran y se almacenan de forma segura en la infraestructura de Google Cloud.";
+
+/* MainWindow/Pages/Settings/Sections/SettingsContentView+NotificationsPrivacy.swift:338 */
+"What We Track" = "Qué registramos";
+
+/* MainWindow/Pages/Settings/Sections/SettingsContentView+NotificationsPrivacy.swift:379 */
+"Privacy Guarantees" = "Garantías de privacidad";
+
+/* MainWindow/Pages/Settings/Sections/SettingsContentView+Rewind.swift:45 */
+"Storage" = "Almacenamiento";
+
+/* MainWindow/Pages/Settings/Sections/SettingsContentView+Rewind.swift:59 */
+"Couldn't read Rewind storage" = "No se pudo leer el almacenamiento de Rewind";
+
+/* MainWindow/Pages/Settings/Sections/SettingsContentView+Rewind.swift:106 */
+"Meeting Screenshots" = "Capturas de reuniones";
+
+/* MainWindow/Pages/Settings/Sections/SettingsContentView+Rewind.swift:110 */
+"Add a few screenshots of what was on screen to a meeting's note" = "Añade algunas capturas de lo que había en pantalla a la nota de una reunión";
+
+/* MainWindow/Pages/Settings/Sections/SettingsContentView+Rewind.swift:141 */
+"Screen capture is paused when these apps are active" = "La captura de pantalla se pausa cuando estas apps están activas";
+
+/* MainWindow/Pages/Settings/Sections/SettingsContentView+Rewind.swift:148 */
+"Reset to Defaults" = "Restablecer valores predeterminados";
+
+/* MainWindow/Pages/Settings/Sections/SettingsContentView+Rewind.swift:164 */
+"No apps excluded" = "No hay apps excluidas";
+
+/* MainWindow/Pages/Settings/Sections/SettingsContentView+Rewind.swift:215 */
+"Battery Optimization" = "Optimización de batería";
+
+/* MainWindow/Pages/Settings/Sections/SettingsContentView+Rewind.swift:244 */
+"Data Retention" = "Conservación de datos";
+
+/* MainWindow/Pages/Settings/Sections/SettingsContentView+Rewind.swift:260 */
+"3 days" = "3 días";
+
+/* MainWindow/Pages/Settings/Sections/SettingsContentView+Rewind.swift:261 */
+"7 days" = "7 días";
+
+/* MainWindow/Pages/Settings/Sections/SettingsContentView+Rewind.swift:262 */
+"14 days" = "14 días";
+
+/* MainWindow/Pages/Settings/Sections/SettingsContentView+Rewind.swift:263 */
+"30 days" = "30 días";
+
+/* MainWindow/Pages/Settings/Sections/SettingsContentView+Rewind.swift:264 */
+"Keep everything" = "Conservarlo todo";
+
+/* MainWindow/Pages/Settings/Sections/SettingsContentView+Transcription.swift:23 */
+"Language Mode" = "Modo de idioma";
+
+/* MainWindow/Pages/Settings/Sections/SettingsContentView+Transcription.swift:45 */
+"Auto-Detect (Multi-Language)" = "Detección automática (varios idiomas)";
+
+/* MainWindow/Pages/Settings/Sections/SettingsContentView+Transcription.swift:49 */
+"Automatically detects and transcribes:" = "Detecta y transcribe automáticamente:";
+
+/* MainWindow/Pages/Settings/Sections/SettingsContentView+Transcription.swift:108 */
+"Single Language (Better Accuracy)" = "Un solo idioma (más precisión)";
+
+/* MainWindow/Pages/Settings/Sections/SettingsContentView+Transcription.swift:112 */
+"Best for speaking in one specific language" = "Ideal si hablas en un idioma concreto";
+
+/* MainWindow/Pages/Settings/Sections/SettingsContentView+Transcription.swift:119 */
+"Language:" = "Idioma:";
+
+/* MainWindow/Pages/Settings/Sections/SettingsContentView+Transcription.swift:185 */
+"Custom Vocabulary" = "Vocabulario personalizado";
+
+/* MainWindow/Pages/Settings/Sections/SettingsContentView+Transcription.swift:189 */
+"Improve recognition of names, brands, and technical terms" = "Mejora el reconocimiento de nombres, marcas y términos técnicos";
+
+/* MainWindow/Pages/Settings/Sections/SettingsContentView+Transcription.swift:235 */
+"Add a word…" = "Añade una palabra…";
+
+/* MainWindow/Pages/Settings/Sections/SettingsContentView+Transcription.swift:254 */
+"Press Enter or click + to add • Click × to remove" = "Pulsa Intro o haz clic en + para añadir • Haz clic en × para quitar";
+
+/* MainWindow/Pages/Settings/Sections/SettingsContentView+Transcription.swift:269 */
+"Local VAD Gate" = "Filtro VAD local";
+
+/* MainWindow/Pages/Settings/Sections/SettingsContentView+Transcription.swift:302 */
+"Silent Type" = "Escritura silenciosa";
+
+/* MainWindow/Pages/Settings/Sections/SettingsContentView+Transcription.swift:306 */
+"Keeps what you dictate with Omi Type out of the chat." = "Mantiene fuera del chat lo que dictas con Omi Type.";
+
+/* MainWindow/Pages/Settings/Sections/SettingsContentView+Transcription.swift:329 */
+"Ignore Dictation Apps" = "Ignorar apps de dictado";
+
+/* MainWindow/Pages/Settings/Sections/SettingsContentView+Transcription.swift:518 */
+"Voice Assistant Languages" = "Idiomas del asistente de voz";
+
+/* MainWindow/Pages/ShortcutsSettingsSection.swift:58 */
+"Open Omi Shortcut" = "Atajo para abrir Omi";
+
+/* MainWindow/Pages/ShortcutsSettingsSection.swift:61 */
+"Global shortcut to open the Omi app from anywhere." = "Atajo global para abrir la app de Omi desde cualquier lugar.";
+
+/* MainWindow/Pages/ShortcutsSettingsSection.swift:119 */
+"Push to Talk" = "Pulsar para hablar";
+
+/* MainWindow/Pages/ShortcutsSettingsSection.swift:122 */
+"Hold the key to speak, release to send your question to AI." = "Mantén pulsada la tecla para hablar y suéltala para enviar tu pregunta a la IA.";
+
+/* MainWindow/Pages/ShortcutsSettingsSection.swift:195 */
+"Double-tap for Locked Mode" = "Doble pulsación para el modo bloqueado";
+
+/* MainWindow/Pages/ShortcutsSettingsSection.swift:225 */
+"Push-to-Talk Sounds" = "Sonidos de pulsar para hablar";
+
+/* MainWindow/Pages/ShortcutsSettingsSection.swift:228 */
+"Play audio feedback when starting and ending voice input." = "Reproduce un aviso sonoro al empezar y terminar la entrada de voz.";
+
+/* MainWindow/Pages/ShortcutsSettingsSection.swift:251 */
+"Mute Audio While Talking" = "Silenciar el audio mientras hablas";
+
+/* MainWindow/Pages/ShortcutsSettingsSection.swift:254 */
+"Silence music and other playback while holding push-to-talk, then restore it on release." = "Silencia la música y otras reproducciones mientras mantienes pulsado para hablar, y las restaura al soltar.";
+
+/* MainWindow/Pages/ShortcutsSettingsSection.swift:276 */
+"Keyboard Shortcuts" = "Atajos de teclado";
+
+/* MainWindow/Pages/ShortcutsSettingsSection.swift:325 */
+"Custom" = "Personalizado";
+
+/* MainWindow/Pages/TasksPage.swift:3951 */
+"Nothing here" = "No hay nada aquí";
+
+/* MainWindow/Pages/TasksPage.swift:3976 */
+"New task (⌘N)" = "Nueva tarea (⌘N)";
+
+/* MainWindow/Pages/TasksPage.swift:3987 */
+"To Do" = "Pendientes";
+
+/* MainWindow/Pages/TasksPage.swift:3993 */
+"Completed" = "Completadas";
+
+/* MainWindow/Pages/TasksPage.swift:4006 */
+"Filter tasks by status" = "Filtrar tareas por estado";
+
+/* MainWindow/Pages/TasksPage.swift:4083 */
+"Done" = "Hecho";
+
+/* MainWindow/Pages/TasksPage.swift:4087 */
+"Exit selection (Esc)" = "Salir de la selección (Esc)";
+
+/* MainWindow/Pages/TasksPage.swift:4098 */
+"Select Tasks" = "Seleccionar tareas";
+
+/* MainWindow/Pages/TasksPage.swift:4706 */
+"Remove today from all…" = "Quitar «hoy» de todas…";
+
+/* MainWindow/Pages/TasksPage.swift:4718 */
+"More Today actions" = "Más acciones de Hoy";
+
+/* MainWindow/Pages/TasksPage.swift:4972 */
+"New reply" = "Nueva respuesta";
+
+/* MainWindow/Pages/TasksPage.swift:4978 */
+"Open chat — new reply available" = "Abrir chat: hay una nueva respuesta";
+
+/* MainWindow/Pages/TasksPage.swift:5216 */
+"Drag to reorder" = "Arrastra para reordenar";
+
+/* MainWindow/Pages/TasksPage.swift:5319 */
+"Release to delete" = "Suelta para eliminar";
+
+/* MainWindow/Pages/TasksPage.swift:5337 */
+"Release to indent" = "Suelta para aumentar la sangría";
+
+/* MainWindow/Pages/TasksPage.swift:5356 */
+"Release to outdent" = "Suelta para reducir la sangría";
+
+/* MainWindow/Pages/TasksPage.swift:5513 */
+"Task description" = "Descripción de la tarea";
+
+/* MainWindow/Pages/TasksPage.swift:5611 */
+"Open thread" = "Abrir hilo";
+
+/* MainWindow/Pages/TasksPage.swift:5617 */
+"Resume this task's ongoing work" = "Retoma el trabajo en curso de esta tarea";
+
+/* MainWindow/Pages/TasksPage.swift:5631 */
+"Create ongoing work only when you choose" = "Crea trabajo en curso solo cuando tú lo decidas";
+
+/* MainWindow/Pages/TasksPage.swift:5670 */
+"Add due date…" = "Añadir fecha límite…";
+
+/* MainWindow/Pages/TasksPage.swift:5680 */
+"Decrease indent" = "Reducir sangría";
+
+/* MainWindow/Pages/TasksPage.swift:5690 */
+"Increase indent" = "Aumentar sangría";
+
+/* MainWindow/Pages/TasksPage.swift:5708 */
+"Delete task" = "Eliminar tarea";
+
+/* MainWindow/Pages/TasksPage.swift:5720 */
+"More actions for this task" = "Más acciones para esta tarea";
+
+/* MainWindow/Pages/TasksPage.swift:5847 */
+"Sharing link copied" = "Enlace para compartir copiado";
+
+/* MainWindow/Pages/TasksPage.swift:5891 */
+"Repeat" = "Repetir";
+
+/* MainWindow/Pages/TasksPage.swift:5899 */
+"Daily" = "Cada día";
+
+/* MainWindow/Pages/TasksPage.swift:5900 */
+"Weekdays" = "Días laborables";
+
+/* MainWindow/Pages/TasksPage.swift:5901 */
+"Weekly" = "Cada semana";
+
+/* MainWindow/Pages/TasksPage.swift:5902 */
+"Every 2 Weeks" = "Cada 2 semanas";
+
+/* MainWindow/Pages/TasksPage.swift:5903 */
+"Monthly" = "Cada mes";
+
+/* MainWindow/Pages/TasksPage.swift:6055 */
+"Tag" = "Etiqueta";
+
+/* MainWindow/Pages/TasksPage.swift:6081 */
+"Tags" = "Etiquetas";
+
+/* MainWindow/Pages/TasksPage.swift:6160 */
+"New" = "Nuevo";
+
+/* MainWindow/Pages/TasksPage.swift:6200 */
+"New Task" = "Nueva tarea";
+
+/* MainWindow/Pages/TasksPage.swift:6221 */
+"What needs to be done?" = "¿Qué hay que hacer?";
+
+/* MainWindow/Pages/TasksPage.swift:6239 */
+"Due Date" = "Fecha límite";
+
+/* MainWindow/Pages/TasksPage.swift:6333 */
+"Create" = "Crear";
+
+/* MainWindow/Pages/TasksPage.swift:6399 */
+"New task…" = "Nueva tarea…";
+
+/* MainWindow/Pages/TasksPage.swift:6421 */
+"Today" = "Hoy";
+
+/* MainWindow/Pages/TasksPage.swift:6432 */
+"Create task due today" = "Crear tarea para hoy";
+
+/* MainWindow/QueryShell/QueryHeroBar.swift:238 */
+"Stop this response" = "Detener esta respuesta";
+
+/* MainWindow/QueryShell/QueryHeroBar.swift:244 */
+"Send (⏎)" = "Enviar (⏎)";
+
+/* MainWindow/QueryShell/QueryHeroBar.swift:454 */
+"Attach Files…" = "Adjuntar archivos…";
+
+/* MainWindow/QueryShell/QueryHeroBar.swift:476 */
+"Attach files or a recent screen frame" = "Adjunta archivos o una captura reciente de la pantalla";
+
+/* MainWindow/QueryShell/QueryResultsPanel.swift:146 */
+"Time" = "Hora";
+
+/* MainWindow/QueryShell/QueryResultsPanel.swift:194 */
+"Results" = "Resultados";
+
+/* MainWindow/QueryShell/QueryResultsPanel.swift:205 */
+"Back to what you captured — esc" = "Volver a lo que capturaste: esc";
+
+/* MainWindow/QueryShell/QuerySearchBar.swift:67 */
+"Clear the search" = "Borrar la búsqueda";
+
+/* MainWindow/QueryShell/QueryShellHome.swift:396 */
+"Clear Chat…" = "Borrar chat…";
+
+/* MainWindow/QueryShell/QueryShellHome.swift:409 */
+"Chat actions" = "Acciones del chat";
+
+/* MainWindow/Referrals/ReferralProgramView.swift:64 */
+"Give a friend one free month of Operator" = "Regala a un amigo un mes gratis de Operator";
+
+/* MainWindow/Referrals/ReferralProgramView.swift:69 */
+"Share your unique link. When a friend joins Omi, they'll get one month of Operator free." = "Comparte tu enlace único. Cuando un amigo se una a Omi, recibirá un mes de Operator gratis.";
+
+/* MainWindow/Referrals/ReferralProgramView.swift:115 */
+"We couldn't get your referral link." = "No pudimos obtener tu enlace de invitación.";
+
+/* MainWindow/Referrals/ReferralProgramView.swift:166 */
+"Refer" = "Invitar";
+
+/* MainWindow/Referrals/ReferralProgramView.swift:186 */
+"Refer a friend" = "Invita a un amigo";
+
+/* MainWindow/RewindOnlyView.swift:88 */
+"Rewind Settings" = "Ajustes de Rewind";
+
+/* MainWindow/RewindOnlyView.swift:96 */
+"Open Full Omi App" = "Abrir la app completa de Omi";
+
+/* MainWindow/RewindOnlyView.swift:104 */
+"Quit" = "Salir";
+
+/* MainWindow/RewindOnlyView.swift:118 */
+"Settings" = "Ajustes";
+
+/* MainWindow/RewindOnlyView.swift:209 */
+"Configure screen capture and storage" = "Configura la captura de pantalla y el almacenamiento";
+
+/* MainWindow/RewindOnlyView.swift:233 */
+"1 day" = "1 día";
+
+/* MainWindow/RewindOnlyView.swift:289 */
+"Screenshots stored locally" = "Capturas almacenadas localmente";
+
+/* MainWindow/RewindOnlyView.swift:300 */
+"Show in Finder" = "Mostrar en Finder";
+
+/* MainWindow/RewindOnlyView.swift:316 */
+"Permissions" = "Permisos";
+
+/* MainWindow/RewindOnlyView.swift:329 */
+"Screen Recording" = "Grabación de pantalla";
+
+/* MainWindow/RewindOnlyView.swift:333 */
+"Required for Rewind to capture your screen" = "Necesario para que Rewind capture tu pantalla";
+
+/* MainWindow/SettingsSidebar.swift:520 */
+"No results" = "Sin resultados";
+
+/* MainWindow/Spine/SpineDayRecapRow.swift:86 */
+"Generate recap" = "Generar resumen";
+
+/* MainWindow/Spine/SpineDayRecapRow.swift:158 */
+"Open the full recap for this day" = "Abrir el resumen completo de este día";
+
+/* MainWindow/Spine/SpineRowViews.swift:432 */
+"Show all of this hour in Rewind" = "Mostrar toda esta hora en Rewind";
+
+/* MainWindow/Spine/SpineRowViews.swift:433 */
+"Opens Rewind" = "Abre Rewind";
+
+/* MainWindow/Spine/SpineRowViews.swift:547 */
+"Quick Look" = "Vista rápida";
+
+/* MainWindow/Spine/SpineRowViews.swift:549 */
+"Show All in Rewind" = "Mostrar todo en Rewind";
+
+/* MainWindow/Spine/SpineRowViews.swift:552 */
+"Opens this moment in Quick Look" = "Abre este momento en Vista rápida";
+
+/* MainWindow/Spine/SpineStream.swift:670 */
+"Load earlier days" = "Cargar días anteriores";
+
+/* MainWindow/Spine/SpineStream.swift:677 */
+"Retry loading the rest of your history" = "Reintentar la carga del resto de tu historial";
+
+/* MainWindow/Tasks/SuggestedTasksSection.swift:76 */
+"Checking Suggested" = "Revisando sugeridas";
+
+/* MainWindow/Tasks/SuggestedTasksSection.swift:152 */
+"Suggested" = "Sugeridas";
+
+/* MainWindow/Tasks/SuggestedTasksSection.swift:500 */
+"Why" = "Por qué";
+
+/* MainWindow/Tasks/SuggestedTasksSection.swift:535 */
+"Why Omi added this" = "Por qué Omi añadió esto";
+
+/* MainWindow/Tasks/TaskDetailPanel.swift:74 */
+"Task Details" = "Detalles de la tarea";
+
+/* MainWindow/Tasks/TaskDetailPanel.swift:166 */
+"No navigable source was attached to this task." = "Esta tarea no tiene ninguna fuente navegable adjunta.";
+
+/* MainWindow/Tasks/TaskDetailPanel.swift:314 */
+"Delete Task" = "Eliminar tarea";
+
+/* MeetingScreenshots/MeetingNoteScreenshotViews.swift:195 */
+"Opens this screenshot in Quick Look" = "Abre esta captura en Vista rápida";
+
+/* MeetingScreenshots/MeetingNoteScreenshotViews.swift:298 */
+"What was on screen" = "Lo que había en pantalla";
+
+/* MeetingScreenshots/MeetingNoteScreenshotViews.swift:433 */
+"Delete Screenshot…" = "Eliminar captura…";
+
+/* OmiApp.swift:167 */
+"Increase Font Size" = "Aumentar el tamaño de letra";
+
+/* OmiApp.swift:173 */
+"Decrease Font Size" = "Reducir el tamaño de letra";
+
+/* OmiApp.swift:179 */
+"Reset Font Size" = "Restablecer el tamaño de letra";
+
+/* OmiApp.swift:186 */
+"Reset Window Size" = "Restablecer el tamaño de la ventana";
+
+/* OmiApp.swift:193 */
+"Chat" = "Chat";
+
+/* OmiApp.swift:195 */
+"Memories" = "Recuerdos";
+
+/* OmiApp.swift:197 */
+"Tasks" = "Tareas";
+
+/* OmiApp.swift:199 */
+"Apps" = "Apps";
+
+/* OmiApp.swift:202 */
+"Go to in Memories" = "Ir a Recuerdos";
+
+/* Onboarding/FirstUseCasePreview.swift:294 */
+"What's happening?" = "¿Qué está pasando?";
+
+/* Onboarding/FirstUseCasePreview.swift:309 */
+"Post" = "Publicar";
+
+/* Onboarding/SecondBrain/SBOnboardingView.swift:128 */
+"Omi is typing…" = "Omi está escribiendo…";
+
+/* Onboarding/SecondBrain/SBOnboardingView.swift:204 */
+"‹ Back" = "‹ Atrás";
+
+/* Onboarding/SecondBrain/SBOnboardingView.swift:210 */
+"Go back and change an earlier answer" = "Vuelve atrás y cambia una respuesta anterior";
+
+/* Onboarding/SecondBrain/SBOnboardingView.swift:218 */
+"Skip Setup" = "Omitir configuración";
+
+/* Onboarding/SecondBrain/SBOnboardingView.swift:224 */
+"Skip onboarding and go to your second brain" = "Omite la introducción y ve a tu segundo cerebro";
+
+/* Onboarding/SecondBrain/SBOnboardingView.swift:306 */
+"Every line of me is on " = "Cada línea de mí está en ";
+
+/* Onboarding/SecondBrain/SBOnboardingView.swift:315 */
+"Your data is encrypted, and only yours." = "Tus datos están cifrados y son solo tuyos.";
+
+/* Onboarding/SecondBrain/SBOnboardingView.swift:317 */
+"Pause me anytime. Delete anything, forever." = "Ponme en pausa cuando quieras. Borra lo que sea, para siempre.";
+
+/* Onboarding/SecondBrain/SBOnboardingView.swift:339 */
+"your name" = "tu nombre";
+
+/* Onboarding/SecondBrain/SBOnboardingView.swift:391 */
+"Type a language…" = "Escribe un idioma…";
+
+/* Onboarding/SecondBrain/SBOnboardingView.swift:431 */
+"or just say it in your own words…" = "o simplemente dilo con tus palabras…";
+
+/* Onboarding/SecondBrain/SBOnboardingView.swift:468 */
+"Reopen Omi" = "Volver a abrir Omi";
+
+/* Onboarding/SecondBrain/SBOnboardingView.swift:482 */
+"Continue →" = "Continuar →";
+
+/* Onboarding/SecondBrain/SBOnboardingView.swift:529 */
+"Building your local profile" = "Creando tu perfil local";
+
+/* Onboarding/SecondBrain/SBOnboardingView.swift:532 */
+"Scanning your projects and recent files…" = "Escaneando tus proyectos y archivos recientes…";
+
+/* Onboarding/SecondBrain/SBOnboardingView.swift:540 */
+"Your local profile is ready" = "Tu perfil local está listo";
+
+/* Onboarding/SecondBrain/SBOnboardingView.swift:573 */
+"I couldn't finish scanning your files" = "No pude terminar de escanear tus archivos";
+
+/* Onboarding/SecondBrain/SBOnboardingView.swift:580 */
+"Continue without a scan" = "Continuar sin escanear";
+
+/* Onboarding/SecondBrain/SBOnboardingView.swift:666 */
+"Custom shortcut" = "Atajo personalizado";
+
+/* Onboarding/SecondBrain/SBOnboardingView.swift:733 */
+"Three doors. Three riddles. They open in your browser." = "Tres puertas. Tres acertijos. Se abren en tu navegador.";
+
+/* Onboarding/SecondBrain/SBOnboardingView.swift:737 */
+"Get stuck, then hold" = "Atáscate y luego mantén pulsado";
+
+/* Onboarding/SecondBrain/SBOnboardingView.swift:739 */
+"and say what the page tells you." = "y di lo que te indica la página.";
+
+/* Onboarding/SecondBrain/SBOnboardingView.swift:741 */
+"I can see the page, and I answer at the top of your screen." = "Puedo ver la página y respondo en la parte superior de tu pantalla.";
+
+/* Onboarding/SecondBrain/SBOnboardingView.swift:745 */
+"Open the doors again" = "Abrir las puertas de nuevo";
+
+/* Onboarding/SecondBrain/SBOnboardingView.swift:753 */
+"Voice setup isn't available yet. You can retry, or skip for now." = "La configuración de voz aún no está disponible. Puedes reintentar u omitirla por ahora.";
+
+/* Onboarding/SecondBrain/SBOnboardingView.swift:764 */
+"Preparing voice…" = "Preparando la voz…";
+
+/* Onboarding/SecondBrain/SBOnboardingView.swift:796 */
+"AI assistants" = "Asistentes de IA";
+
+/* Onboarding/SecondBrain/SBOnboardingView.swift:899 */
+"✓ on" = "✓ activado";
+
+/* Onboarding/SecondBrain/SBOnboardingView.swift:901 */
+"checking…" = "comprobando…";
+
+/* Onboarding/SecondBrain/SBOnboardingView.swift:902 */
+"not installed" = "no instalado";
+
+/* Onboarding/SecondBrain/SBOnboardingView.swift:924 */
+"Only Meetings" = "Solo reuniones";
+
+/* Onboarding/SecondBrain/SBOnboardingView.swift:931 */
+"Always On" = "Siempre activo";
+
+/* PostOnboardingPromptViews.swift:79 */
+"You're set up" = "Ya está todo listo";
+
+/* PostOnboardingPromptViews.swift:90 */
+"How would you like to use Omi first?" = "¿Cómo quieres empezar a usar Omi?";
+
+/* PostOnboardingPromptViews.swift:106 */
+"Try it now" = "Pruébalo ahora";
+
+/* PostOnboardingPromptViews.swift:118 */
+"Bring me back anytime with" = "Vuelve a llamarme cuando quieras con";
+
+/* PostOnboardingPromptViews.swift:221 */
+"Next step → Ask Omi" = "Siguiente paso → Pregunta a Omi";
+
+/* ProactiveAssistants/ContextReminders/ContextReminderCard.swift:63 */
+"Remind me tomorrow" = "Recuérdamelo mañana";
+
+/* ProactiveAssistants/UI/AssistantPromptEditor.swift:153 */
+"Unsaved changes" = "Cambios sin guardar";
+
+/* ProactiveAssistants/UI/AssistantPromptEditor.swift:168 */
+"Reset to Default" = "Restablecer valor predeterminado";
+
+/* ProactiveAssistants/UI/GlowDemoWindow.swift:124 */
+"Watch the border effect" = "Mira el efecto del borde";
+
+/* ProactiveAssistants/UI/InsightTestRunnerWindow.swift:98 */
+"Insight Extraction Test Runner" = "Banco de pruebas de extracción de ideas";
+
+/* ProactiveAssistants/UI/InsightTestRunnerWindow.swift:122 */
+"From:" = "Desde:";
+
+/* ProactiveAssistants/UI/InsightTestRunnerWindow.swift:132 */
+"To:" = "Hasta:";
+
+/* ProactiveAssistants/UI/InsightTestRunnerWindow.swift:163 */
+"Run Test" = "Ejecutar prueba";
+
+/* ProactiveAssistants/UI/InsightTestRunnerWindow.swift:196 */
+"Window" = "Ventana";
+
+/* ProactiveAssistants/UI/InsightTestRunnerWindow.swift:198 */
+"Decision" = "Decisión";
+
+/* ProactiveAssistants/UI/InsightTestRunnerWindow.swift:202 */
+"Details" = "Detalles";
+
+/* ProactiveAssistants/UI/InsightTestRunnerWindow.swift:204 */
+"Conf" = "Conf.";
+
+/* ProactiveAssistants/UI/InsightTestRunnerWindow.swift:332 */
+"Error" = "Error";
+
+/* ProactiveAssistants/UI/InsightTestRunnerWindow.swift:341 */
+"Insights" = "Ideas";
+
+/* ProactiveAssistants/UI/InsightTestRunnerWindow.swift:349 */
+"No Insight" = "Sin idea";
+
+/* ProactiveAssistants/UI/InsightTestRunnerWindow.swift:405 */
+"Select a time range and click Run Test" = "Selecciona un intervalo de tiempo y haz clic en Ejecutar prueba";
+
+/* ProactiveAssistants/UI/TaskTestRunnerWindow.swift:98 */
+"Task Extraction Test Runner" = "Banco de pruebas de extracción de tareas";
+
+/* ProactiveAssistants/UI/TaskTestRunnerWindow.swift:102 */
+"Replay departing frames from context switches through the extraction pipeline" = "Vuelve a pasar por el proceso de extracción los fotogramas de salida de los cambios de contexto";
+
+/* ProactiveAssistants/UI/TaskTestRunnerWindow.swift:348 */
+"No Task" = "Sin tarea";
+
+/* RatingPrompt.swift:522 */
+"Tell us more (optional)" = "Cuéntanos más (opcional)";
+
+/* RatingPrompt.swift:526 */
+"What can we improve?" = "¿Qué podemos mejorar?";
+
+/* Rewind/UI/RewindPage.swift:467 */
+"No results found" = "No se encontraron resultados";
+
+/* Rewind/UI/RewindPage.swift:471 */
+"Try a different search term" = "Prueba con otro término de búsqueda";
+
+/* Rewind/UI/RewindPage.swift:581 */
+"Rewind settings…" = "Ajustes de Rewind…";
+
+/* Rewind/UI/RewindPage.swift:636 */
+"Rewind" = "Rewind";
+
+/* Rewind/UI/RewindPage.swift:652 */
+"Press ⌘⌥R from anywhere to open Rewind" = "Pulsa ⌘⌥R desde cualquier lugar para abrir Rewind";
+
+/* Rewind/UI/RewindPage.swift:679 */
+"List view" = "Vista de lista";
+
+/* Rewind/UI/RewindPage.swift:696 */
+"Timeline view" = "Vista de línea de tiempo";
+
+/* Rewind/UI/RewindPage.swift:945 */
+"Older" = "Más antiguo";
+
+/* Rewind/UI/RewindPage.swift:955 */
+"Newer" = "Más reciente";
+
+/* Rewind/UI/RewindPage.swift:967 */
+"Oldest capture" = "Captura más antigua";
+
+/* Rewind/UI/RewindPage.swift:1024 */
+"Open this frame in Quick Look" = "Abrir este fotograma en Vista rápida";
+
+/* Rewind/UI/RewindPage.swift:1041 */
+"No frame" = "Sin fotograma";
+
+/* Rewind/UI/RewindPage.swift:1259 */
+"Screen Recording Needs Reset" = "Hay que restablecer la grabación de pantalla";
+
+/* Rewind/UI/RewindPage.swift:1277 */
+"Reset & Restart" = "Restablecer y reiniciar";
+
+/* Rewind/UI/RewindPage.swift:1298 */
+"Screen Recording Permission Required" = "Se necesita permiso de grabación de pantalla";
+
+/* Rewind/UI/RewindPage.swift:1302 */
+"Rewind needs Screen Recording permission to capture your screen." = "Rewind necesita permiso de grabación de pantalla para capturar tu pantalla.";
+
+/* Rewind/UI/RewindPage.swift:1313 */
+"Grant Permission" = "Conceder permiso";
+
+/* Rewind/UI/RewindPage.swift:1334 */
+"No Screenshots Yet" = "Aún no hay capturas";
+
+/* Rewind/UI/RewindPage.swift:1351 */
+"Tip: Use search to find anything you've seen on screen" = "Consejo: usa la búsqueda para encontrar cualquier cosa que hayas visto en pantalla";
+
+/* Rewind/UI/RewindPage.swift:1373 */
+"Database Recovered" = "Base de datos recuperada";
+
+/* Rewind/UI/RewindPage.swift:1382 */
+"Database was corrupted and has been reset. Your video files are intact." = "La base de datos estaba dañada y se ha restablecido. Tus archivos de vídeo están intactos.";
+
+/* Rewind/UI/RewindPage.swift:1394 */
+"Rebuild Index" = "Reconstruir el índice";
+
+/* Rewind/UI/RewindPage.swift:1592 */
+"Saving conversation…" = "Guardando la conversación…";
+
+/* Rewind/UI/RewindPage.swift:1632 */
+"Saves current conversation and starts a new one" = "Guarda la conversación actual y empieza una nueva";
+
+/* Rewind/UI/RewindPlaybackChrome.swift:322 */
+"Jump to a day" = "Ir a un día";
+
+/* Rewind/UI/RewindPlaybackChrome.swift:412 */
+"match" = "coincidencia";
+
+/* Rewind/UI/RewindPlaybackChrome.swift:426 */
+"scroll or drag to navigate" = "desplázate o arrastra para navegar";
+
+/* Rewind/UI/RewindTimelineView.swift:582 */
+"Extracted Text" = "Texto extraído";
+
+/* Rewind/UI/ScreenshotThumbnailView.swift:211 */
+"Open on Timeline" = "Abrir en la línea de tiempo";
+
+/* Rewind/UI/SearchResultsFilmstrip.swift:139 */
+"Filter" = "Filtrar";
+
+/* SignInView.swift:43 */
+"A second brain you trust\nmore than your first" = "Un segundo cerebro en el que confías\nmás que en el primero";
+
+/* SignInView.swift:49 */
+"It remembers every conversation — and does the follow-ups." = "Recuerda cada conversación y se encarga de los seguimientos.";
+
+/* SignInView.swift:100 */
+"open source · runs on your Mac · pause anytime" = "código abierto · funciona en tu Mac · pausa cuando quieras";
+
+/* WAL/StorageSyncView.swift:26 */
+"Storage Sync" = "Sincronización del almacenamiento";
+
+/* WAL/StorageSyncView.swift:129 */
+"No device connected" = "No hay ningún dispositivo conectado";
+
+/* WAL/StorageSyncView.swift:204 */
+"Storage sync couldn't finish. Try again." = "No se pudo completar la sincronización del almacenamiento. Inténtalo de nuevo.";
+
+/* WAL/StorageSyncView.swift:234 */
+"BLE Sync" = "Sincronización BLE";
+
+/* WAL/StorageSyncView.swift:254 */
+"WiFi Sync" = "Sincronización WiFi";
+
+/* WAL/StorageSyncView.swift:293 */
+"WiFi Sync Setup" = "Configuración de la sincronización WiFi";
+
+/* WAL/StorageSyncView.swift:301 */
+"Network Name (SSID)" = "Nombre de la red (SSID)";
+
+/* WAL/StorageSyncView.swift:305 */
+"Enter WiFi network name" = "Introduce el nombre de la red WiFi";
+
+/* WAL/StorageSyncView.swift:310 */
+"Password" = "Contraseña";
+
+/* WAL/StorageSyncView.swift:314 */
+"Enter WiFi password" = "Introduce la contraseña de la WiFi";
+
+/* WAL/StorageSyncView.swift:327 */
+"Start Sync" = "Iniciar sincronización";
+
+/* WhatsNewToast.swift:106 */
+"Omi updated" = "Omi se ha actualizado";
+
+/* WhatsNewToast.swift:117 */
+"See what's new" = "Descubre las novedades";
+
+/* ---- Interpolated strings ----
+   SwiftUI turns Text("\(n) tasks") into the format key "%lld tasks" (Int) or "%@" (String).
+   Specifiers are inferred from each source expression; a wrong guess only falls back to English. */
+
+/* BrowserExtensionSetup.swift:179 */
+"Download %@" = "Descargar %@";
+
+/* BrowserExtensionSetup.swift:359 */
+"Install %@ to get started" = "Instala %@ para empezar";
+
+/* BrowserExtensionSetup.swift:399 */
+"The browser extension is working. The AI can now use %@." = "La extensión del navegador funciona. La IA ya puede usar %@.";
+
+/* BrowserExtensionSetup.swift:419 */
+"Make sure %@ is open and the extension page shows \"Connected\"." = "Asegúrate de que %@ esté abierto y de que la página de la extensión muestre \"Conectado\".";
+
+/* CloudConnectorGuidanceOverlay.swift:1212 */
+"Click the %@ button." = "Haz clic en el botón %@.";
+
+/* FileIndexing/FileIndexingView.swift:76 */
+"%@ files indexed" = "%@ archivos indexados";
+
+/* FileIndexing/FileIndexingView.swift:140 */
+"Scanning ~/%@" = "Escaneando ~/%@";
+
+/* FloatingControlBar/AIResponseView.swift:777 */
+"Tools used (%lld)" = "Herramientas usadas (%lld)";
+
+/* MainWindow/ChatFirst/Blocks/ChatFirstContentBlockViews.swift:1086 */
+"%@ is no longer available" = "%@ ya no está disponible";
+
+/* MainWindow/ChatFirst/Blocks/ChatFirstContentBlockViews.swift:1110 */
+"Loading %@" = "Cargando %@";
+
+/* MainWindow/ChatFirst/ChatFirstGoalsPage.swift:264 */
+"%lld of %lld tasks" = "%lld de %lld tareas";
+
+/* MainWindow/Components/ChatConversationReferencePill.swift:20 */
+"Open %@" = "Abrir %@";
+
+/* MainWindow/Components/FolderManagementViews.swift:344 */
+"Are you sure you want to delete \"%@\"?" = "¿Seguro que quieres eliminar \"%@\"?";
+
+/* MainWindow/Components/LiveNameSpeakerSheet.swift:115 */
+"Speaker %lld" = "Hablante %lld";
+
+/* MainWindow/Components/NameSpeakerSheet.swift:112 */
+"Return this speaker to %@" = "Devolver este hablante a %@";
+
+/* MainWindow/Components/NameSpeakerSheet.swift:176 */
+"Currently: %@" = "Actualmente: %@";
+
+/* MainWindow/Components/OmiMarkdown.swift:1308 */
+"Source %lld: %@" = "Fuente %lld: %@";
+
+/* MainWindow/Components/PageQueryToolbar.swift:262 */
+"Remove %@" = "Quitar %@";
+
+/* MainWindow/Components/PageQueryToolbar.swift:281 */
+"Show %lld more active filters" = "Mostrar %lld filtros activos más";
+
+/* MainWindow/Components/PageQueryToolbar.swift:311 */
+"Remove %@ filter" = "Quitar el filtro %@";
+
+/* MainWindow/Components/SpeakerBubbleView.swift:145 */
+"Play from %@" = "Reproducir desde %@";
+
+/* MainWindow/Components/TaskChatPanel.swift:329 */
+"%lld tasks · %lld artifacts" = "%lld tareas · %lld artefactos";
+
+/* MainWindow/Dashboard/ChatDailyRecapRow.swift:80 */
+"Open the full recap for %@" = "Abrir el resumen completo de %@";
+
+/* MainWindow/Pages/AgentConnectPickerSheet.swift:63 */
+"Connect %@" = "Conectar %@";
+
+/* MainWindow/Pages/AppsPage.swift:635 */
+"Search Results (%lld)" = "Resultados de búsqueda (%lld)";
+
+/* MainWindow/Pages/AppsPage.swift:1846 */
+"Open %@, paste the copied prompt, then drop the full response here." = "Abre %@, pega el prompt copiado y luego suelta aquí la respuesta completa.";
+
+/* MainWindow/Pages/AppsPage.swift:1869 */
+"Paste the full %@ response here…" = "Pega aquí la respuesta completa de %@…";
+
+/* MainWindow/Pages/AppsPage.swift:2875 */
+"%lld installs" = "%lld instalaciones";
+
+/* MainWindow/Pages/ChatLabView.swift:716 */
+"Commit: %@" = "Commit: %@";
+
+/* MainWindow/Pages/ConversationDetailSections.swift:260 */
+"Generated by %@" = "Generado por %@";
+
+/* MainWindow/Pages/ConversationsPage.swift:950 */
+"Nothing matches %@." = "Nada coincide con %@.";
+
+/* MainWindow/Pages/ConversationsPage.swift:1019 */
+"%lld selected" = "%lld seleccionadas";
+
+/* MainWindow/Pages/MemoriesPage.swift:3092 */
+"From %@" = "De %@";
+
+/* MainWindow/Pages/Settings/Components/AppRuleEditorView.swift:193 */
+"%lld keywords" = "%lld palabras clave";
+
+/* MainWindow/Pages/Settings/Components/SettingsContentView+Controls.swift:420 */
+"Tier %lld" = "Nivel %lld";
+
+/* MainWindow/Pages/Settings/Components/SettingsContentView+Controls.swift:579 */
+"Version %@ (%@)" = "Versión %@ (%@)";
+
+/* MainWindow/Pages/Settings/Components/SettingsGlassKit.swift:138 */
+"Keyboard shortcut %@" = "Atajo de teclado %@";
+
+/* MainWindow/Pages/Settings/Sections/SettingsContentView+Advanced.swift:188 */
+"%@ · currently %@" = "%@ · actualmente %@";
+
+/* MainWindow/Pages/Settings/Sections/SettingsContentView+Advanced.swift:573 */
+"Data sources: %lld items" = "Fuentes de datos: %lld elementos";
+
+/* MainWindow/Pages/Settings/Sections/SettingsContentView+FloatingBarAndChat.swift:428 */
+"No CLAUDE.md found at %@/CLAUDE.md" = "No se encontró CLAUDE.md en %@/CLAUDE.md";
+
+/* MainWindow/Pages/Settings/Sections/SettingsContentView+FloatingBarAndChat.swift:446 */
+"Skills (%lld discovered)" = "Habilidades (%lld detectadas)";
+
+/* MainWindow/Pages/Settings/Sections/SettingsContentView+General.swift:188 */
+"Scale: %lld%%" = "Escala: %lld %%";
+
+/* MainWindow/Pages/Settings/Sections/SettingsContentView+Integrations.swift:111 */
+"%lld emails saved as memories" = "%lld correos guardados como recuerdos";
+
+/* MainWindow/Pages/Settings/Sections/SettingsContentView+Transcription.swift:69 */
+"%@ — pick one of the ten above to use it." = "%@: elige uno de los diez de arriba para usarlo.";
+
+/* MainWindow/Pages/Settings/Sections/SettingsContentView+Transcription.swift:197 */
+"%lld terms" = "%lld términos";
+
+/* MainWindow/Pages/TasksPage.swift:3905 */
+"%@ view" = "Vista %@";
+
+/* MainWindow/Pages/TasksPage.swift:4075 */
+"Delete %lld" = "Eliminar %lld";
+
+/* MainWindow/Tasks/TaskDetailPanel.swift:126 */
+"Set %@ priority" = "Fijar prioridad %@";
+
+/* Onboarding/SecondBrain/SBOnboardingView.swift:462 */
+"%@ is on, but macOS only hands it to a fresh launch. Reopen me and I'll pick up right here." = "%@ está activado, pero macOS solo lo aplica al volver a abrir la app. Vuelve a abrirme y seguiré justo aquí.";
+
+/* Onboarding/SecondBrain/SBOnboardingView.swift:480 */
+"✓  %@ on" = "✓  %@ activado";
+
+/* Onboarding/SecondBrain/SBOnboardingView.swift:541 */
+"%@ files indexed · %lld profile memories saved" = "%@ archivos indexados · %lld recuerdos de perfil guardados";
+
+/* PostOnboardingPromptViews.swift:111 */
+"Opens %@." = "Abre %@.";
+
+/* ProactiveAssistants/UI/AssistantPromptEditor.swift:174 */
+"%lld characters" = "%lld caracteres";
+
+/* ProactiveAssistants/UI/InsightTestRunnerWindow.swift:384 */
+"%lld insights" = "%lld ideas";
+
+/* ProactiveAssistants/UI/InsightTestRunnerWindow.swift:388 */
+"%lld SQL queries" = "%lld consultas SQL";
+
+/* ProactiveAssistants/UI/InsightTestRunnerWindow.swift:393 */
+"%lld errors" = "%lld errores";
+
+/* ProactiveAssistants/UI/TaskTestRunnerWindow.swift:375 */
+"%lld tasks" = "%lld tareas";
+
+/* ProactiveAssistants/UI/TaskTestRunnerWindow.swift:379 */
+"%lld searches" = "%lld búsquedas";
+
+/* Rewind/UI/RewindPage.swift:571 */
+"Show search %@" = "Mostrar búsqueda %@";
+
+/* Rewind/UI/RewindPage.swift:1378 */
+"%lld screenshots recovered from corrupted database" = "%lld capturas recuperadas de la base de datos dañada";
+
+/* WAL/StorageSyncView.swift:33 */
+"%lld pending" = "%lld pendientes";
+
+/* WAL/StorageSyncView.swift:160 */
+"of %@" = "de %@";

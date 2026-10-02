@@ -98,6 +98,7 @@ for path in [
     "scripts/prepare-desktop-bundle-native-deps.sh",
     "scripts/prepare-local-dev-entitlements.sh",
     "scripts/audit-desktop-bundle-deps.sh",
+    "scripts/l10n/install-localizations.sh",
     "agent/package.json",
     "agent/package-lock.json",
     "agent/tsconfig.json",
@@ -111,6 +112,7 @@ for path, excluded in [
     ("Desktop/CWebP", set()),
     ("Desktop/ObjCExceptionCatcher", set()),
     ("Desktop/Sources/Resources", {"node"}),
+    ("Localization", set()),
     ("agent/src", set()),
     ("agent/scripts", set()),
 ]:

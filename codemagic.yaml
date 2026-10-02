@@ -2240,6 +2240,10 @@ workflows:
             echo "WARNING: SPM resource bundle not found (non-fatal)"
           fi
 
+          # Interface translations (Localization/*.lproj) go in the app's own
+          # Resources, where SwiftUI looks up Text("…") literals.
+          scripts/l10n/install-localizations.sh "$APP_BUNDLE"
+
           # Copy agent (Claude Code integration)
           if [ -d "agent/dist" ]; then
             mkdir -p "$APP_BUNDLE/Contents/Resources/agent"
