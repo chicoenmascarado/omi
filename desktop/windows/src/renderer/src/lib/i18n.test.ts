@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest'
 import { resolveUiLanguage, setUiLanguageForTesting, t, tc, translate } from './i18n'
 import es from './i18n/es.json'
+import ptBR from './i18n/pt-BR.json'
 
 const placeholders = (s: string): string[] => (s.match(/\{\w+\}/g) ?? []).sort()
 
@@ -14,6 +15,12 @@ describe('resolveUiLanguage', () => {
     expect(resolveUiLanguage('system', ['es-419', 'en-US'])).toBe('es')
     expect(resolveUiLanguage(undefined, ['fr-FR', 'es_ES'])).toBe('es')
     expect(resolveUiLanguage(undefined, ['en-GB', 'es-ES'])).toBe('en')
+  })
+
+  it('maps any Portuguese OS language to the Brazilian catalog', () => {
+    expect(resolveUiLanguage('pt-BR', ['en-US'])).toBe('pt-BR')
+    expect(resolveUiLanguage(undefined, ['pt-BR'])).toBe('pt-BR')
+    expect(resolveUiLanguage('system', ['pt-PT', 'en-US'])).toBe('pt-BR')
   })
 
   it('falls back to English for unsupported or missing OS languages', () => {
@@ -48,11 +55,18 @@ describe('tc', () => {
   })
 })
 
-describe('Spanish catalog', () => {
+describe.each([
+  ['Spanish', es],
+  ['Brazilian Portuguese', ptBR]
+])('%s catalog', (_name, catalog) => {
   it('has a non-empty translation with the same placeholders for every key', () => {
-    for (const [key, value] of Object.entries(es as Record<string, string>)) {
+    for (const [key, value] of Object.entries(catalog as Record<string, string>)) {
       expect(value.trim(), key).not.toBe('')
       expect(placeholders(value), key).toEqual(placeholders(key.split('|').pop() ?? key))
     }
+  })
+
+  it('covers the same keys as the Spanish catalog', () => {
+    expect(Object.keys(catalog).sort()).toEqual(Object.keys(es).sort())
   })
 })

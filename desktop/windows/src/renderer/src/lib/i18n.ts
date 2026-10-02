@@ -8,25 +8,32 @@
 // plain function instead of a hook threaded through every component.
 import { getPreferences, onPreferencesChange, type UiLanguagePreference } from './preferences'
 import es from './i18n/es.json'
+import ptBR from './i18n/pt-BR.json'
 
-export type UiLanguage = 'en' | 'es'
+export type UiLanguage = 'en' | 'es' | 'pt-BR'
 
 export const UI_LANGUAGES: { code: UiLanguagePreference; label: string }[] = [
   { code: 'system', label: 'System default' },
   { code: 'en', label: 'English' },
-  { code: 'es', label: 'Español' }
+  { code: 'es', label: 'Español' },
+  { code: 'pt-BR', label: 'Português (Brasil)' }
 ]
 
-const catalogs: Record<Exclude<UiLanguage, 'en'>, Record<string, string>> = { es }
+const catalogs: Record<Exclude<UiLanguage, 'en'>, Record<string, string>> = {
+  es,
+  'pt-BR': ptBR
+}
 
 export function resolveUiLanguage(
   preference: UiLanguagePreference | undefined,
   systemLanguages: readonly string[]
 ): UiLanguage {
-  if (preference === 'en' || preference === 'es') return preference
+  if (preference === 'en' || preference === 'es' || preference === 'pt-BR') return preference
   for (const tag of systemLanguages) {
     const base = tag.split(/[-_]/)[0]?.toLowerCase()
     if (base === 'es') return 'es'
+    // Brazilian Portuguese is the only Portuguese catalog; it reads well enough for pt-PT too.
+    if (base === 'pt') return 'pt-BR'
     if (base === 'en') return 'en'
   }
   return 'en'

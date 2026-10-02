@@ -27,7 +27,7 @@ function normalizeFontScale(p: Preferences): void {
 }
 
 // Interface language. 'system' (the default when unset) follows the OS language.
-export type UiLanguagePreference = 'system' | 'en' | 'es'
+export type UiLanguagePreference = 'system' | 'en' | 'es' | 'pt-BR'
 
 export type Preferences = {
   captionIntervalMs: number
