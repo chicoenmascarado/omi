@@ -6918,12 +6918,12 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String addAppErrorOpeningFilePicker(String message) {
-    return 'Kesalahan membuka pemilih file';
+    return 'Kesalahan membuka pemilih file: $message';
   }
 
   @override
   String addAppErrorSelectingImage(String error) {
-    return 'Kesalahan memilih gambar';
+    return 'Kesalahan memilih gambar: $error';
   }
 
   @override
@@ -6934,7 +6934,7 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String addAppErrorSelectingThumbnail(String error) {
-    return 'Kesalahan memilih thumbnail';
+    return 'Kesalahan memilih thumbnail: $error';
   }
 
   @override
@@ -7060,12 +7060,12 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String importErrorOpeningFilePicker(String message) {
-    return 'Kesalahan membuka pemilih file';
+    return 'Kesalahan membuka pemilih file: $message';
   }
 
   @override
   String importErrorGeneric(String error) {
-    return 'Kesalahan mengimpor file';
+    return 'Kesalahan: $error';
   }
 
   @override
@@ -7073,7 +7073,7 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String mergeConversationsSuccessBody(int count) {
-    return 'Percakapan Anda telah berhasil digabungkan';
+    return '$count percakapan berhasil digabungkan';
   }
 
   @override
@@ -7081,12 +7081,12 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String deviceDisconnectedTitle(String deviceName) {
-    return 'Perangkat Terputus';
+    return '$deviceName Terputus';
   }
 
   @override
   String deviceDisconnectedBody(String deviceName) {
-    return 'Perangkat Omi Anda telah terputus';
+    return 'Silakan hubungkan kembali untuk terus menggunakan $deviceName Anda.';
   }
 
   @override
@@ -7142,7 +7142,7 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String failedToConnectServiceWithError(String serviceName, String error) {
-    return 'Gagal terhubung ke layanan: $error';
+    return 'Gagal terhubung ke $serviceName: $error';
   }
 
   @override
