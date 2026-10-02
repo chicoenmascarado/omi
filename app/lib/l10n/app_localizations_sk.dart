@@ -5791,7 +5791,7 @@ class AppLocalizationsSk extends AppLocalizations {
 
   @override
   String sdCardProcessingMessage(int count) {
-    return 'Spracovávajú sa súbory z SD karty';
+    return 'Spracováva sa $count nahrávok. Súbory sa potom odstránia z SD karty.';
   }
 
   @override
@@ -6487,7 +6487,7 @@ class AppLocalizationsSk extends AppLocalizations {
 
   @override
   String tagSpeaker(int speakerId) {
-    return 'Označiť rečníka';
+    return 'Označiť rečníka $speakerId';
   }
 
   @override
@@ -6679,7 +6679,7 @@ class AppLocalizationsSk extends AppLocalizations {
 
   @override
   String transferFailedMessage(String error) {
-    return 'Prenos zlyhal. Skúste to prosím znova.';
+    return 'Prenos zlyhal: $error';
   }
 
   @override
@@ -6797,7 +6797,7 @@ class AppLocalizationsSk extends AppLocalizations {
 
   @override
   String dataProtectedWithSettings(String level) {
-    return 'Vaše údaje sú chránené vašimi nastaveniami';
+    return 'Vaše údaje sú teraz chránené novými nastaveniami $level.';
   }
 
   @override
@@ -7126,7 +7126,7 @@ class AppLocalizationsSk extends AppLocalizations {
 
   @override
   String failedToConnectServiceWithError(String serviceName, String error) {
-    return 'Nepodarilo sa pripojiť k službe: $error';
+    return 'Nepodarilo sa pripojiť k $serviceName: $error';
   }
 
   @override
