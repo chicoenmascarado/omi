@@ -10,9 +10,27 @@ type CompletionStatus = 'succeeded' | 'stopped' | 'failed'
 
 const STATUS: Record<CompletionStatus, { label: string; dot: string; Icon: typeof CheckCircle2 }> =
   {
-    succeeded: { label: t('Done'), dot: 'text-emerald-400', Icon: CheckCircle2 },
-    stopped: { label: t('Stopped'), dot: 'text-white/50', Icon: CircleSlash },
-    failed: { label: t('Failed'), dot: 'text-red-400', Icon: AlertCircle }
+    succeeded: {
+      get label() {
+        return t('Done')
+      },
+      dot: 'text-emerald-400',
+      Icon: CheckCircle2
+    },
+    stopped: {
+      get label() {
+        return t('Stopped')
+      },
+      dot: 'text-white/50',
+      Icon: CircleSlash
+    },
+    failed: {
+      get label() {
+        return t('Failed')
+      },
+      dot: 'text-red-400',
+      Icon: AlertCircle
+    }
   }
 
 function coerceStatus(status: string): CompletionStatus {

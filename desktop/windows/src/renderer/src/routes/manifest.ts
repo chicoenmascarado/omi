@@ -131,7 +131,13 @@ export const routeManifest: RouteEntry[] = [
     kind: 'panel',
     path: '/home',
     Component: HomePanel,
-    nav: { label: t('Home'), Icon: House, order: 0 },
+    nav: {
+      get label() {
+        return t('Home')
+      },
+      Icon: House,
+      order: 0
+    },
     shortcut: '1'
   },
   {
@@ -139,7 +145,13 @@ export const routeManifest: RouteEntry[] = [
     kind: 'panel',
     path: CONVERSATIONS_PATH,
     Component: ConversationsPanel,
-    nav: { label: t('Conversations'), Icon: GanttChartSquare, order: 1 },
+    nav: {
+      get label() {
+        return t('Conversations')
+      },
+      Icon: GanttChartSquare,
+      order: 1
+    },
     shortcut: '2',
     escapeToHome: true
   },
@@ -157,7 +169,14 @@ export const routeManifest: RouteEntry[] = [
     kind: 'panel',
     path: '/tasks',
     Component: TasksPanel,
-    nav: { label: t('Tasks'), Icon: ListChecks, order: 2, activeFor: ['/goals'] },
+    nav: {
+      get label() {
+        return t('Tasks')
+      },
+      Icon: ListChecks,
+      order: 2,
+      activeFor: ['/goals']
+    },
     shortcut: '4',
     escapeToHome: true
   },
@@ -167,7 +186,13 @@ export const routeManifest: RouteEntry[] = [
     kind: 'panel',
     path: '/apps',
     Component: AppsPanel,
-    nav: { label: t('Apps'), Icon: LayoutGrid, order: 4 },
+    nav: {
+      get label() {
+        return t('Apps')
+      },
+      Icon: LayoutGrid,
+      order: 4
+    },
     shortcut: '6'
   },
   {
@@ -175,7 +200,13 @@ export const routeManifest: RouteEntry[] = [
     kind: 'panel',
     path: '/rewind',
     Component: RewindPanel,
-    nav: { label: t('Rewind'), Icon: History, order: 3 },
+    nav: {
+      get label() {
+        return t('Rewind')
+      },
+      Icon: History,
+      order: 3
+    },
     shortcut: '5',
     escapeToHome: true
   },
@@ -184,7 +215,13 @@ export const routeManifest: RouteEntry[] = [
     kind: 'panel',
     path: '/insights',
     Component: InsightsPanel,
-    nav: { label: t('Insights'), Icon: Lightbulb, order: 5 },
+    nav: {
+      get label() {
+        return t('Insights')
+      },
+      Icon: Lightbulb,
+      order: 5
+    },
     escapeToHome: true
   }
 ]

@@ -366,8 +366,12 @@ const PLAN_FALLBACKS: Record<
 > = {
   unlimited: {
     eyebrow: 'Starter',
-    subtitle: i18n('200 questions per month'),
-    description: i18n('200 chat questions per month. Shared with mobile and web.'),
+    get subtitle() {
+      return i18n('200 questions per month')
+    },
+    get description() {
+      return i18n('200 chat questions per month. Shared with mobile and web.')
+    },
     features: [
       '200 chat questions per month',
       'Unlimited listening and transcription',
@@ -377,8 +381,12 @@ const PLAN_FALLBACKS: Record<
   },
   operator: {
     eyebrow: 'Most popular',
-    subtitle: i18n('500 questions per month'),
-    description: i18n('500 chat questions per month. Shared with mobile and web.'),
+    get subtitle() {
+      return i18n('500 questions per month')
+    },
+    get description() {
+      return i18n('500 chat questions per month. Shared with mobile and web.')
+    },
     features: [
       '500 chat questions per month',
       'Unlimited listening and transcription',
@@ -388,8 +396,12 @@ const PLAN_FALLBACKS: Record<
   },
   architect: {
     eyebrow: 'Automation + coding',
-    subtitle: i18n('Power-user AI — thousands of chats + agentic automations'),
-    description: i18n('Power-user AI for heavy agentic workflows and vibe coding.'),
+    get subtitle() {
+      return i18n('Power-user AI — thousands of chats + agentic automations')
+    },
+    get description() {
+      return i18n('Power-user AI for heavy agentic workflows and vibe coding.')
+    },
     features: [
       'Automations and vibe coding',
       'Unlimited listening, memories, and insights',

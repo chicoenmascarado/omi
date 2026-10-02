@@ -12,12 +12,42 @@ const cache = { items: null as InsightRecord[] | null, loaded: false }
 
 // Fixed filter set — the five InsightCategory values plus an "all" pseudo-tab.
 const CATEGORY_TABS: { id: 'all' | InsightCategory; label: string }[] = [
-  { id: 'all', label: i18n('All') },
-  { id: 'productivity', label: i18n('Productivity') },
-  { id: 'communication', label: i18n('Communication') },
-  { id: 'learning', label: i18n('Learning') },
-  { id: 'health', label: i18n('Health') },
-  { id: 'other', label: i18n('Other') }
+  {
+    id: 'all',
+    get label() {
+      return i18n('All')
+    }
+  },
+  {
+    id: 'productivity',
+    get label() {
+      return i18n('Productivity')
+    }
+  },
+  {
+    id: 'communication',
+    get label() {
+      return i18n('Communication')
+    }
+  },
+  {
+    id: 'learning',
+    get label() {
+      return i18n('Learning')
+    }
+  },
+  {
+    id: 'health',
+    get label() {
+      return i18n('Health')
+    }
+  },
+  {
+    id: 'other',
+    get label() {
+      return i18n('Other')
+    }
+  }
 ]
 
 const CATEGORY_LABEL: Record<InsightCategory, string> = {

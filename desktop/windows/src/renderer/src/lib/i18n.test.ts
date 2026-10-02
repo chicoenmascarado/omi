@@ -1,7 +1,12 @@
-import { describe, expect, it } from 'vitest'
-import { resolveUiLanguage, setUiLanguageForTesting, t, tc, translate } from './i18n'
+import { beforeAll, describe, expect, it } from 'vitest'
+import { loadUiCatalog, resolveUiLanguage, setUiLanguageForTesting, t, tc, translate } from './i18n'
 import es from './i18n/es.json'
 import ptBR from './i18n/pt-BR.json'
+
+beforeAll(async () => {
+  await loadUiCatalog('es')
+  await loadUiCatalog('pt-BR')
+})
 
 const placeholders = (s: string): string[] => (s.match(/\{\w+\}/g) ?? []).sort()
 

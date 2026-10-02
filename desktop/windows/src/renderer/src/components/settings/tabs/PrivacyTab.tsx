@@ -6,11 +6,36 @@ import type { UsageSettings } from '../../../../../shared/types'
 import { t } from '../../../lib/i18n'
 
 const RETENTION_OPTIONS: ReadonlyArray<{ days: number; label: string }> = [
-  { days: 30, label: t('30 days') },
-  { days: 45, label: t('45 days (recommended)') },
-  { days: 60, label: t('60 days') },
-  { days: 90, label: t('90 days') },
-  { days: 180, label: t('180 days') }
+  {
+    days: 30,
+    get label() {
+      return t('30 days')
+    }
+  },
+  {
+    days: 45,
+    get label() {
+      return t('45 days (recommended)')
+    }
+  },
+  {
+    days: 60,
+    get label() {
+      return t('60 days')
+    }
+  },
+  {
+    days: 90,
+    get label() {
+      return t('90 days')
+    }
+  },
+  {
+    days: 180,
+    get label() {
+      return t('180 days')
+    }
+  }
 ]
 
 export function PrivacyTab(): React.JSX.Element {

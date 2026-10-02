@@ -76,9 +76,26 @@ function isDefaultView(folder: FolderFilter, dateRange: DateRange): boolean {
 
 // Chat/recording type filter — a client-side segmented control over the merged rows.
 const TYPE_TABS: { value: FilterKind; label: string; icon?: LucideIcon }[] = [
-  { value: 'all', label: t('All') },
-  { value: 'chat', label: t('Chats'), icon: MessageSquare },
-  { value: 'recording', label: t('Recordings'), icon: Radio }
+  {
+    value: 'all',
+    get label() {
+      return t('All')
+    }
+  },
+  {
+    value: 'chat',
+    get label() {
+      return t('Chats')
+    },
+    icon: MessageSquare
+  },
+  {
+    value: 'recording',
+    get label() {
+      return t('Recordings')
+    },
+    icon: Radio
+  }
 ]
 
 function summarize(segments: { text: string }[] | undefined): string {

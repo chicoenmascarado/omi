@@ -22,9 +22,24 @@ export interface CatalogSectionDef {
 }
 
 export const CATALOG_SECTIONS: CatalogSectionDef[] = [
-  { capabilityId: 'popular', title: t('Other') },
-  { capabilityId: 'external_integration', title: t('Integrations') },
-  { capabilityId: 'proactive_notification', title: t('Realtime Notifications') }
+  {
+    capabilityId: 'popular',
+    get title() {
+      return t('Other')
+    }
+  },
+  {
+    capabilityId: 'external_integration',
+    get title() {
+      return t('Integrations')
+    }
+  },
+  {
+    capabilityId: 'proactive_notification',
+    get title() {
+      return t('Realtime Notifications')
+    }
+  }
 ]
 
 export interface CatalogSection extends CatalogSectionDef {

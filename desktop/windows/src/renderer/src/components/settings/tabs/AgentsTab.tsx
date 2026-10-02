@@ -40,14 +40,18 @@ type AgentGuide = {
 
 const EXTERNAL_AGENT_GUIDES: Record<ExternalAgentId, AgentGuide> = {
   openclaw: {
-    description: i18n('Open-source AI coding assistant with its own gateway and model routing.'),
+    get description() {
+      return i18n('Open-source AI coding assistant with its own gateway and model routing.')
+    },
     installCommands: ['npm install -g openclaw@latest'],
     suggestedCommand: 'openclaw acp',
     docsUrl: 'https://docs.openclaw.ai/install',
     authNote: 'After installing, sign in: run `openclaw onboard` in a terminal.'
   },
   hermes: {
-    description: i18n("Nous Research's Hermes agent, connected over its ACP server mode."),
+    get description() {
+      return i18n("Nous Research's Hermes agent, connected over its ACP server mode.")
+    },
     installCommands: [],
     installNote: 'Install the Hermes CLI from its documentation.',
     suggestedCommand: 'hermes acp',
@@ -55,7 +59,9 @@ const EXTERNAL_AGENT_GUIDES: Record<ExternalAgentId, AgentGuide> = {
     authNote: 'After installing, sign in: run `hermes login` in a terminal.'
   },
   codex: {
-    description: i18n("OpenAI's Codex agent, driven through the official codex-acp bridge."),
+    get description() {
+      return i18n("OpenAI's Codex agent, driven through the official codex-acp bridge.")
+    },
     installCommands: ['npm install -g @openai/codex'],
     suggestedCommand: 'npx -y @agentclientprotocol/codex-acp',
     docsUrl: 'https://github.com/agentclientprotocol/codex-acp',

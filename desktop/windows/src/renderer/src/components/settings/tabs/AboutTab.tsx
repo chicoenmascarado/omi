@@ -34,10 +34,34 @@ import { t } from '../../../lib/i18n'
 type Link = { label: string; icon: typeof Globe } & ({ href: string } | { onClick: () => void })
 
 const LINKS: Link[] = [
-  { label: t('Visit website'), icon: Globe, href: 'https://omi.me' },
-  { label: t('Help center'), icon: LifeBuoy, href: 'https://help.omi.me' },
-  { label: t('Terms of service'), icon: FileText, href: 'https://omi.me/terms' },
-  { label: t('Release notes'), icon: Newspaper, onClick: () => window.omi?.whatsNewOpenNotes?.() }
+  {
+    get label() {
+      return t('Visit website')
+    },
+    icon: Globe,
+    href: 'https://omi.me'
+  },
+  {
+    get label() {
+      return t('Help center')
+    },
+    icon: LifeBuoy,
+    href: 'https://help.omi.me'
+  },
+  {
+    get label() {
+      return t('Terms of service')
+    },
+    icon: FileText,
+    href: 'https://omi.me/terms'
+  },
+  {
+    get label() {
+      return t('Release notes')
+    },
+    icon: Newspaper,
+    onClick: () => window.omi?.whatsNewOpenNotes?.()
+  }
 ]
 
 function checkResultMessage(r: UpdateCheckResult): string {

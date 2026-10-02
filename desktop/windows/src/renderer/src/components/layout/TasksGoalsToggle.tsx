@@ -7,8 +7,18 @@ import { t } from '../../lib/i18n'
 // tab via this toggle. Both pages stay mounted in MainViews, so switching here
 // is just a route change (instant, state preserved).
 const tabs = [
-  { label: t('Tasks'), to: '/tasks' },
-  { label: t('Goals'), to: '/goals' }
+  {
+    get label() {
+      return t('Tasks')
+    },
+    to: '/tasks'
+  },
+  {
+    get label() {
+      return t('Goals')
+    },
+    to: '/goals'
+  }
 ]
 
 export function TasksGoalsToggle(): React.JSX.Element {

@@ -12,9 +12,30 @@ type AutoCreatedTasksStepProps = {
 // hasn't had yet). "Getting started" starts completed; the rows are clickable so
 // the user can check the others off too.
 const SAMPLE_TASKS = [
-  { title: i18n('Task 1'), subtitle: i18n('From today’s meeting') },
-  { title: i18n('Task 2'), subtitle: i18n('Mentioned in Slack') },
-  { title: i18n('Task 3'), subtitle: i18n('Getting started') }
+  {
+    get title() {
+      return i18n('Task 1')
+    },
+    get subtitle() {
+      return i18n('From today’s meeting')
+    }
+  },
+  {
+    get title() {
+      return i18n('Task 2')
+    },
+    get subtitle() {
+      return i18n('Mentioned in Slack')
+    }
+  },
+  {
+    get title() {
+      return i18n('Task 3')
+    },
+    get subtitle() {
+      return i18n('Getting started')
+    }
+  }
 ]
 
 function TaskRow({

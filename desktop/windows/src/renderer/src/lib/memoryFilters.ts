@@ -18,10 +18,18 @@ export const MEMORY_CATEGORIES: readonly MemoryCategory[] = [
 ]
 
 export const CATEGORY_LABEL: Record<MemoryCategory, string> = {
-  manual: t('Manual'),
-  system: t('About You'),
-  interesting: t('Insights'),
-  workflow: t('Workflow')
+  get manual() {
+    return t('Manual')
+  },
+  get system() {
+    return t('About You')
+  },
+  get interesting() {
+    return t('Insights')
+  },
+  get workflow() {
+    return t('Workflow')
+  }
 }
 
 // Normalize a memory's raw category to one of the four product categories.

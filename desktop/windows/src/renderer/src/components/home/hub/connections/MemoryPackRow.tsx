@@ -16,9 +16,24 @@ import { t } from '../../../../lib/i18n'
 // Each provider renders its real brand mark (the same marks the macOS app shows):
 // Gemini ships the true four-colour spark, ChatGPT/Claude their logomarks.
 const LABEL: Record<'gemini' | 'chatgpt' | 'claude', { title: string; brand: ConnectorBrand }> = {
-  gemini: { title: t('Gemini'), brand: 'gemini' },
-  chatgpt: { title: t('ChatGPT'), brand: 'chatgpt' },
-  claude: { title: t('Claude'), brand: 'claude' }
+  gemini: {
+    get title() {
+      return t('Gemini')
+    },
+    brand: 'gemini'
+  },
+  chatgpt: {
+    get title() {
+      return t('ChatGPT')
+    },
+    brand: 'chatgpt'
+  },
+  claude: {
+    get title() {
+      return t('Claude')
+    },
+    brand: 'claude'
+  }
 }
 
 export function MemoryPackRow({

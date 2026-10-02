@@ -20,7 +20,7 @@ import { InsightToast } from './components/insight/InsightToast'
 import { SandboxBadge } from './components/SandboxBadge'
 import { ErrorBoundary } from './components/ui/ErrorBoundary'
 import { scrubEventPii } from '../../shared/sentryScrub'
-import { installUiLanguageReload, uiLanguage } from './lib/i18n'
+import { installUiLanguageReload, loadUiCatalog, uiLanguage } from './lib/i18n'
 
 // Renderer-side crash reporting — same init as the main entry (main.tsx). No-op
 // without a DSN (dev builds).
@@ -35,13 +35,18 @@ if (SENTRY_DSN) {
 document.documentElement.lang = uiLanguage()
 installUiLanguageReload()
 
-createRoot(document.getElementById('root')!).render(
-  <StrictMode>
-    <ErrorBoundary label="insight-toast-root" fallback={null}>
-      <HashRouter>
-        <InsightToast />
-      </HashRouter>
-    </ErrorBoundary>
-    <SandboxBadge />
-  </StrictMode>
-)
+function renderToast(): void {
+  createRoot(document.getElementById('root')!).render(
+    <StrictMode>
+      <ErrorBoundary label="insight-toast-root" fallback={null}>
+        <HashRouter>
+          <InsightToast />
+        </HashRouter>
+      </ErrorBoundary>
+      <SandboxBadge />
+    </StrictMode>
+  )
+}
+
+if (uiLanguage() === 'en') renderToast()
+else void loadUiCatalog().then(renderToast, renderToast)

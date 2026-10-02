@@ -6,9 +6,10 @@
 // preference, or the OS language when it is 'system' (the default). Changing it
 // reloads every window that called installUiLanguageReload(), so `t()` can stay a
 // plain function instead of a hook threaded through every component.
+//
+// Catalogs are separate lazy chunks: a window awaits loadUiCatalog() before its
+// first render, and English (the default) loads nothing at all.
 import { getPreferences, onPreferencesChange, type UiLanguagePreference } from './preferences'
-import es from './i18n/es.json'
-import ptBR from './i18n/pt-BR.json'
 
 export type UiLanguage = 'en' | 'es' | 'pt-BR'
 
@@ -19,9 +20,23 @@ export const UI_LANGUAGES: { code: UiLanguagePreference; label: string }[] = [
   { code: 'pt-BR', label: 'Português (Brasil)' }
 ]
 
-const catalogs: Record<Exclude<UiLanguage, 'en'>, Record<string, string>> = {
-  es,
-  'pt-BR': ptBR
+type Catalog = Record<string, string>
+
+const catalogLoaders = import.meta.glob<{ default: Catalog }>('./i18n/*.json')
+const catalogs: Partial<Record<UiLanguage, Catalog>> = {}
+
+/** Load the catalog for `language` (default: this window's language). Resolves
+ *  immediately for English and for an already-loaded catalog; a missing or failed
+ *  catalog leaves the UI in English rather than blocking startup. */
+export async function loadUiCatalog(language: UiLanguage = current): Promise<void> {
+  if (language === 'en' || catalogs[language]) return
+  const load = catalogLoaders[`./i18n/${language}.json`]
+  if (!load) return
+  try {
+    catalogs[language] = (await load()).default
+  } catch {
+    // English fallback.
+  }
 }
 
 export function resolveUiLanguage(
@@ -69,7 +84,7 @@ export function translate(
   text: string,
   vars?: Record<string, unknown>
 ): string {
-  const translated = language === 'en' ? text : (catalogs[language][text] ?? text)
+  const translated = language === 'en' ? text : (catalogs[language]?.[text] ?? text)
   if (!vars) return translated
   return translated.replace(/\{(\w+)\}/g, (match, name: string) =>
     name in vars ? String(vars[name]) : match
@@ -108,7 +123,7 @@ export function t(text: string, vars?: Record<string, unknown>): string {
  */
 export function tc(context: string, text: string, vars?: Record<string, unknown>): string {
   const key = `${context}|${text}`
-  const hasEntry = current !== 'en' && key in catalogs[current]
+  const hasEntry = current !== 'en' && key in (catalogs[current] ?? {})
   return hasEntry ? translate(current, key, vars) : translate('en', text, vars)
 }
 

@@ -28,32 +28,52 @@ import { t } from '../../../lib/i18n'
 const PROVIDERS: { id: ByokProvider; title: string; subtitle: string; displayName: string }[] = [
   {
     id: 'openrouter',
-    title: t('OpenRouter API Key'),
-    subtitle: t('For OpenRouter models.'),
+    get title() {
+      return t('OpenRouter API Key')
+    },
+    get subtitle() {
+      return t('For OpenRouter models.')
+    },
     displayName: 'OpenRouter'
   },
   {
     id: 'openai',
-    title: t('OpenAI API Key'),
-    subtitle: t('For GPT calls.'),
+    get title() {
+      return t('OpenAI API Key')
+    },
+    get subtitle() {
+      return t('For GPT calls.')
+    },
     displayName: 'OpenAI'
   },
   {
     id: 'anthropic',
-    title: t('Anthropic API Key'),
-    subtitle: t('For chat (Claude).'),
+    get title() {
+      return t('Anthropic API Key')
+    },
+    get subtitle() {
+      return t('For chat (Claude).')
+    },
     displayName: 'Anthropic'
   },
   {
     id: 'gemini',
-    title: t('Gemini API Key'),
-    subtitle: t('For proactive AI (memory, tasks, insights, focus).'),
+    get title() {
+      return t('Gemini API Key')
+    },
+    get subtitle() {
+      return t('For proactive AI (memory, tasks, insights, focus).')
+    },
     displayName: 'Gemini'
   },
   {
     id: 'deepgram',
-    title: t('Deepgram API Key'),
-    subtitle: t('For live transcription.'),
+    get title() {
+      return t('Deepgram API Key')
+    },
+    get subtitle() {
+      return t('For live transcription.')
+    },
     displayName: 'Deepgram'
   }
 ]

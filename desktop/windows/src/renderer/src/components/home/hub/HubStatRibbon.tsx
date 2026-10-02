@@ -29,10 +29,38 @@ type Cell = {
 }
 
 const CELLS: Cell[] = [
-  { key: 'conversations', label: t('Conversations'), Icon: GanttChartSquare, to: '/conversations' },
-  { key: 'tasks', label: t('Tasks'), Icon: ListChecks, to: '/tasks' },
-  { key: 'memories', label: t('Memories'), Icon: Brain, to: '/memories' },
-  { key: 'screenshots', label: t('Screenshots'), Icon: History, to: '/rewind' }
+  {
+    key: 'conversations',
+    get label() {
+      return t('Conversations')
+    },
+    Icon: GanttChartSquare,
+    to: '/conversations'
+  },
+  {
+    key: 'tasks',
+    get label() {
+      return t('Tasks')
+    },
+    Icon: ListChecks,
+    to: '/tasks'
+  },
+  {
+    key: 'memories',
+    get label() {
+      return t('Memories')
+    },
+    Icon: Brain,
+    to: '/memories'
+  },
+  {
+    key: 'screenshots',
+    get label() {
+      return t('Screenshots')
+    },
+    Icon: History,
+    to: '/rewind'
+  }
 ]
 
 export function HubStatRibbon({ counts }: { counts: HubStatCounts }): React.JSX.Element {

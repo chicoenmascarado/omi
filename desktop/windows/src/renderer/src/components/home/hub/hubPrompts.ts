@@ -3,7 +3,8 @@
 // for the feed the day one exists.
 import { t } from '../../../lib/i18n'
 
-export const HUB_SUGGESTIONS = [
+// A function, not a constant, so the text is translated after the UI catalog loads.
+export const hubSuggestions = (): string[] => [
   t('What should I focus on today to achieve my goals?'),
   t('What did I spend my time on this week?'),
   t("What's the highest-leverage thing I can do next?")

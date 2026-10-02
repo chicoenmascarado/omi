@@ -15,18 +15,30 @@ const SOURCE_URL = 'https://github.com/BasedHardware/omi'
 const PERMISSIONS: { icon: LucideIcon; title: string; detail: string }[] = [
   {
     icon: Monitor,
-    title: t('Screen + recording'),
-    detail: t('Build context for what you’re working on.')
+    get title() {
+      return t('Screen + recording')
+    },
+    get detail() {
+      return t('Build context for what you’re working on.')
+    }
   },
   {
     icon: Mic,
-    title: t('Microphone'),
-    detail: t('Capture voice notes and meeting context.')
+    get title() {
+      return t('Microphone')
+    },
+    get detail() {
+      return t('Capture voice notes and meeting context.')
+    }
   },
   {
     icon: Sparkles,
-    title: t('Take actions in your apps'),
-    detail: t('See the active window and, with your approval each time, click and type for you.')
+    get title() {
+      return t('Take actions in your apps')
+    },
+    get detail() {
+      return t('See the active window and, with your approval each time, click and type for you.')
+    }
   }
 ]
 
