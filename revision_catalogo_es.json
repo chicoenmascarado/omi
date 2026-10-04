@@ -1,0 +1,16 @@
+{
+  "Settings": "Configuración",
+  "Advanced settings": "Configuración avanzada",
+  "Live Transcript": "Transcripción en vivo",
+  "Live transcription with speaker identification, straight from your browser.": "Transcripción en vivo con identificación de hablantes, directamente desde tu navegador.",
+  "Start a live conversation": "Iniciar una conversación en vivo",
+  "Talk with Omi live...": "Habla con Omi en vivo...",
+  "Omi live": "Omi en vivo",
+  "Omi is designed for personal conversations, meetings, and live interactions. Usage is measured by real speech time detected, not connection time. If usage significantly exceeds normal patterns for non-personal content, adjustments may apply.": "Omi está pensado para conversaciones personales, reuniones e interacciones en vivo. El uso se mide por el tiempo real de voz detectado, no por el tiempo de conexión. Si el uso supera mucho los patrones normales con contenido no personal, pueden aplicarse ajustes.",
+  "Live MCP or memory pack": "MCP en tiempo real o paquete de recuerdos",
+  "Connect over MCP so Claude reads your memories live, or copy a memory pack. Each field below maps to Claude’s {path} form.": "Conéctate por MCP para que Claude lea tus recuerdos en tiempo real, o copia un paquete de recuerdos. Cada campo de abajo corresponde al formulario {path} de Claude.",
+  "Mic": "Micrófono",
+  "Upgrade to Unlimited": "Mejorar al plan Ilimitado",
+  "Clear filter": "Quitar filtro",
+  "Clear date filter": "Quitar el filtro de fecha"
+}
