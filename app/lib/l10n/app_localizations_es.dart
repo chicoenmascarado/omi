@@ -892,10 +892,10 @@ class AppLocalizationsEs extends AppLocalizations {
   String get oauth => 'OAuth';
 
   @override
-  String get clientId => 'Client ID';
+  String get clientId => 'ID de cliente';
 
   @override
-  String get clientSecret => 'Client Secret';
+  String get clientSecret => 'Secreto de cliente';
 
   @override
   String get useMcpApiKey => 'Usa tu clave API MCP';
@@ -1652,7 +1652,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get whatShouldWeMake => '¿Qué deberíamos hacer?';
 
   @override
-  String get appName => 'App Name';
+  String get appName => 'Nombre de la aplicación';
 
   @override
   String get description => 'Descripción';
@@ -2768,7 +2768,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get browseInstallCreateApps => 'Explora, instala y crea aplicaciones';
 
   @override
-  String get all => 'All';
+  String get all => 'Todos';
 
   @override
   String get open => 'Abrir';
@@ -5746,7 +5746,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get thisCannotBeUndone => 'Esta acción no se puede deshacer.';
 
   @override
-  String get sdCard => 'SD Card';
+  String get sdCard => 'Tarjeta SD';
 
   @override
   String get fromSd => 'Desde SD';
@@ -6772,7 +6772,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get almostDone => 'Casi listo…';
 
   @override
-  String get omiSays => 'Omi says';
+  String get omiSays => 'Omi dice';
 
   @override
   String get analyzingYourData => 'Analizando tus datos…';
@@ -7436,7 +7436,7 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String timeMinsPlural(int count) {
-    return '$count mins';
+    return '$count min';
   }
 
   @override
@@ -7762,7 +7762,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get connectExternalAiTools => 'Conectar herramientas de IA externas';
 
   @override
-  String get mcpServerUrl => 'MCP Server URL';
+  String get mcpServerUrl => 'URL del servidor MCP';
 
   @override
   String mcpServerConnected(int count) {
@@ -7815,7 +7815,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get appStore => 'App Store';
 
   @override
-  String get googleSearch => 'Google Search';
+  String get googleSearch => 'Búsqueda de Google';
 
   @override
   String get audioPlaybackUnavailable => 'El archivo de audio no está disponible para reproducción';
@@ -7985,7 +7985,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get enterWifiPassword => 'Ingrese la contraseña WiFi';
 
   @override
-  String get appIconLabel => 'App Icon';
+  String get appIconLabel => 'Icono de la aplicación';
 
   @override
   String get onboardingWhatIKnowAboutYouTitle => 'Esto es lo que sé sobre ti';
@@ -9055,7 +9055,7 @@ class AppLocalizationsEs extends AppLocalizations {
   }
 
   @override
-  String get chatQuotaSubtitle => 'AI chat messages used with Omi this month.';
+  String get chatQuotaSubtitle => 'Mensajes de chat con IA usados en Omi este mes.';
 
   @override
   String get chatQuotaExceededReply =>
@@ -9089,7 +9089,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get startCallRecording => 'Iniciar grabación de llamada';
 
   @override
-  String get mindMap => 'Mind Map';
+  String get mindMap => 'Mapa mental';
 
   @override
   String get voiceMode => 'Modo de voz';
@@ -10050,53 +10050,57 @@ class AppLocalizationsEs extends AppLocalizations {
     String _temp0 = intl.Intl.selectLogic(
       part,
       {
-        'title': 'Let Omi get to know you',
+        'title': 'Deja que Omi te conozca',
         'intro':
-            'Finish four short sentences out loud. This helps Omi recognize your voice and remember what matters to you. Share only what you want.',
-        'hint': 'Say the whole sentence and finish it in your own words.',
-        'name': 'My name is ___, and I spend most of my time ___.',
-        'work': 'Right now, I am working on ___.',
-        'enjoy': 'Outside of that, I really enjoy ___.',
-        'food': 'My favorite food is ___.',
-        'remember': 'Something I would like help remembering is ___.',
-        'day': 'A good day for me includes ___.',
-        'another': 'Try Another Prompt',
-        'start': 'Start Speaking',
-        'skipPrompt': 'Skip Question',
-        'captured': 'Voice sample captured',
-        'silence': 'Take your time. Speak toward your phone microphone.',
-        'audio': 'Audio detected',
-        'review': 'Here is what I heard',
-        'reviewHint': 'Uncheck anything you don\'t want saved.',
-        'saveVoice': 'Save Voice Profile',
-        'savingVoice': 'Saving your voice profile…',
-        'savedVoice': 'Voice profile saved',
-        'voiceLater': 'Set Up My Voice Later',
-        'keep': 'Save Selected Answers',
-        'without': 'Continue Without Saving Answers',
-        'savedMemories': 'Your memories are saved',
-        'short': 'We need a little more audio. Add one more sentence; your earlier answers are safe.',
-        'addSample': 'Add Another Sentence',
-        'uploadError': 'Your voice profile could not be saved. Retry with the same recording, or set it up later.',
-        'memoryError': 'Some answers could not be saved. Saved items are safe; retry to save the rest.',
-        'transcriptionError': 'We could not transcribe that answer. Try again, keep speaking, or skip this question.',
-        'noMemories': 'You can tell Omi more about yourself whenever you like.',
-        'voiceOnlyHint': 'You can skip any personal prompt and talk about something else.',
-        'goalPrompt': 'Right now my number one goal is to ___.',
-        'savedGoal': 'Your goal is saved',
+            'Completa cuatro frases cortas en voz alta. Así Omi reconoce tu voz y recuerda lo que te importa. Comparte solo lo que quieras.',
+        'hint': 'Di la frase completa y termínala con tus palabras.',
+        'name': 'Me llamo ___ y paso la mayor parte de mi tiempo ___.',
+        'work': 'Ahora mismo estoy trabajando en ___.',
+        'enjoy': 'Aparte de eso, disfruto mucho ___.',
+        'food': 'Mi comida favorita es ___.',
+        'remember': 'Algo que me gustaría que me ayudaras a recordar es ___.',
+        'day': 'Un buen día para mí incluye ___.',
+        'another': 'Probar con otra frase',
+        'start': 'Empieza a hablar',
+        'skipPrompt': 'Saltar pregunta',
+        'captured': 'Muestra de voz capturada',
+        'silence': 'Tómate tu tiempo. Habla hacia el micrófono del teléfono.',
+        'audio': 'Audio detectado',
+        'review': 'Esto es lo que escuché',
+        'reviewHint':
+            'Edita o desmarca lo que quieras. Los datos personales se convierten en recuerdos; tu objetivo se guarda aparte.',
+        'saveVoice': 'Guardar perfil de voz',
+        'savingVoice': 'Guardando tu perfil de voz…',
+        'savedVoice': 'Perfil de voz guardado',
+        'voiceLater': 'Configurar mi voz más tarde',
+        'keep': 'Guardar las respuestas seleccionadas',
+        'without': 'Continuar sin guardar las respuestas',
+        'savedMemories': 'Tus recuerdos están guardados',
+        'short': 'Necesitamos un poco más de audio. Añade una frase más; tus respuestas anteriores están a salvo.',
+        'addSample': 'Añadir otra frase',
+        'uploadError':
+            'No se pudo guardar tu perfil de voz. Reinténtalo con la misma grabación o configúralo más tarde.',
+        'memoryError':
+            'Algunas respuestas no se pudieron guardar. Lo guardado está a salvo; reinténtalo para guardar el resto.',
+        'transcriptionError':
+            'No pudimos transcribir esa respuesta. Inténtalo de nuevo, sigue hablando o salta esta pregunta.',
+        'noMemories': 'Puedes contarle más a Omi sobre ti cuando quieras.',
+        'voiceOnlyHint': 'Puedes saltar cualquier pregunta personal y hablar de otra cosa.',
+        'goalPrompt': 'Ahora mismo, mi objetivo número uno es ___.',
+        'savedGoal': 'Tu objetivo está guardado',
         'goalError':
-            'Your goal could not be saved. Retry to save the same goal without duplicating it. Any memories already saved are safe.',
-        'goalLong': 'Shorten your goal to 500 characters or fewer, then try again.',
+            'No se pudo guardar tu objetivo. Reinténtalo para guardar el mismo objetivo sin duplicarlo. Los recuerdos ya guardados están a salvo.',
+        'goalLong': 'Acorta tu objetivo a 500 caracteres o menos y vuelve a intentarlo.',
         'voiceUnavailable':
-            'Voice setup is temporarily unavailable. Saved answers are safe. Retry, or continue and set up your voice later.',
-        'saveFinish': 'Save and Finish',
-        'retryRemaining': 'Retry Remaining',
-        'saveHint': 'Saves your voice profile and checked answers.',
-        'savedAll': 'Your introduction is saved.',
-        'continueSaved': 'Continue With What Is Saved',
-        'reviewAnswers': 'Review Answers',
-        'originalGoal': 'Use Original Wording',
-        'savingAnswers': 'Saving your answers…',
+            'La configuración de voz no está disponible temporalmente. Las respuestas guardadas están a salvo. Reinténtalo o continúa y configura tu voz más tarde.',
+        'saveFinish': 'Guardar y terminar',
+        'retryRemaining': 'Reintentar las pendientes',
+        'saveHint': 'Guarda tu perfil de voz y las respuestas marcadas.',
+        'savedAll': 'Tu presentación está guardada.',
+        'continueSaved': 'Continuar con lo guardado',
+        'reviewAnswers': 'Revisar respuestas',
+        'originalGoal': 'Usar el texto original',
+        'savingAnswers': 'Guardando tus respuestas…',
         'other': '',
       },
     );
@@ -10592,7 +10596,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get phoneCalls => 'Llamadas';
 
   @override
-  String get vadGate => 'VAD Gate';
+  String get vadGate => 'Filtro VAD';
 
   @override
   String get vadGateDescription => 'Filtro de voz en el servidor para reducir el coste de la transcripción';
@@ -11379,31 +11383,31 @@ class AppLocalizationsEs extends AppLocalizations {
   String get deviceOnboardingVoiceReplyGenericHeadphones => 'auriculares';
 
   @override
-  String get usageListened => 'Listened';
+  String get usageListened => 'Escuchado';
 
   @override
-  String get usageWordsHeard => 'Words heard';
+  String get usageWordsHeard => 'Palabras escuchadas';
 
   @override
-  String get usageTasksNotes => 'Tasks & notes';
+  String get usageTasksNotes => 'Tareas y notas';
 
   @override
-  String get usagePeakHour => 'Peak hour';
+  String get usagePeakHour => 'Hora de más actividad';
 
   @override
-  String get usageBestDay => 'Best day';
+  String get usageBestDay => 'Mejor día';
 
   @override
-  String get usageBestMonth => 'Best month';
+  String get usageBestMonth => 'Mejor mes';
 
   @override
-  String get usageBestYear => 'Best year';
+  String get usageBestYear => 'Mejor año';
 
   @override
   String get usageMinutes => 'minutos';
 
   @override
-  String get usageWords => 'Words';
+  String get usageWords => 'Palabras';
 
   @override
   String get usageTasks => 'Tareas';
@@ -11418,10 +11422,10 @@ class AppLocalizationsEs extends AppLocalizations {
   String get usageAll => 'Todo el tiempo';
 
   @override
-  String get usageNow => 'now';
+  String get usageNow => 'ahora';
 
   @override
-  String get usageChatThisMonth => 'Chat this month';
+  String get usageChatThisMonth => 'Chat este mes';
 
   @override
   String get appearance => 'Apariencia';
