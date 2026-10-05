@@ -54,6 +54,7 @@ def lane(monkeypatch):
     claim = AsyncMock(return_value=item)
     model = AsyncMock()
     publish, push, close = AsyncMock(), AsyncMock(), AsyncMock()
+    monkeypatch.setattr(integration, 'get_user_language_preference', lambda uid: 'en')
     monkeypatch.setattr(producers.spine, 'claim_item', claim)
     monkeypatch.setattr(producers.spine, 'run_proactivity_model', model)
     monkeypatch.setattr(producers.spine, 'publish_item', publish)
@@ -268,6 +269,41 @@ async def test_followup_one_call_feed_only_idempotent_no_task_mutation(lane):
         mutation.assert_not_called()
     assert task['completed'] is False
     assert lane.claim.call_args.kwargs['source']['source_event_id'] == 'due'
+
+
+async def _followup_prompt(lane, language):
+    due = datetime.now(timezone.utc) - timedelta(minutes=1)
+    task = {'conversation_id': 'c', 'description': 'Call Alex', 'due_at': due, 'completed': False}
+    lane.monkeypatch.setattr(producers.tasks, 'get_action_item', MagicMock(return_value=task))
+    lane.monkeypatch.setattr(integration, 'get_user_language_preference', language)
+    await producers.produce_followup('u', 't', due.isoformat())
+    request = lane.model.await_args.kwargs['request']
+    return request({})['messages'][0]['content'] if callable(request) else request['messages'][0]['content']
+
+
+@pytest.mark.asyncio
+async def test_followup_is_written_in_the_users_language(lane):
+    prompt = await _followup_prompt(lane, lambda uid: 'es')
+    assert "Task: 'Call Alex'" in prompt
+    assert "Write the notification entirely in the user's language (language/locale code: es)" in prompt
+
+
+@pytest.mark.asyncio
+@pytest.mark.parametrize('language', [lambda uid: 'en', lambda uid: 'en-GB', lambda uid: None])
+async def test_followup_english_or_unset_language_adds_no_instruction(lane, language):
+    prompt = await _followup_prompt(lane, language)
+    assert 'language/locale code' not in prompt
+    assert prompt.endswith("Task: 'Call Alex'")
+
+
+@pytest.mark.asyncio
+async def test_followup_language_lookup_failure_is_fail_open(lane):
+    def broken(uid):
+        raise RuntimeError('firestore unavailable')
+
+    prompt = await _followup_prompt(lane, broken)
+    assert 'language/locale code' not in prompt
+    lane.publish.assert_awaited_once()
 
 
 @pytest.mark.asyncio
