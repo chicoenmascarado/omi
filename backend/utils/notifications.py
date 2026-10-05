@@ -18,6 +18,7 @@ from database.redis_db import (
 from database.auth import get_user_from_uid
 from utils.integration_telemetry import emit_posthog_event
 from utils.notification_text import to_plain_text
+from utils.notification_copy import notification_copy, user_copy_language
 from .llm.notifications import (
     generate_notification_message,
     generate_credit_limit_notification,
@@ -512,20 +513,22 @@ async def send_silent_user_notification(user_id: str) -> None:
         logger.info(f"Silent user notification already sent recently for user {user_id}")
         return
 
-    name: str = "there"
+    language = await run_blocking(db_executor, user_copy_language, user_id)
+    fallback_name = notification_copy('fallback_name', language)
+    name: str = fallback_name
     try:
         user = await run_blocking(postprocess_executor, _get_user, user_id)
         name = user.display_name
         if not name and user.email:
             name = user.email.split('@')[0].capitalize()
         if not name:
-            name = "there"
+            name = fallback_name
     except Exception as e:
         logger.error(f"Error getting user info from Firebase Auth: {e}")
-        name = "there"
+        name = fallback_name
 
     # Generate personalized credit limit message
-    title, body = generate_silent_user_notification(name)
+    title, body = generate_silent_user_notification(name, language)
 
     # Send notification
     await send_notification_async(user_id, title, body)
@@ -872,7 +875,7 @@ def send_action_item_created_notification(user_id: str, action_item_description:
         else action_item_description
     )
 
-    title = "Task Added"
+    title = notification_copy('action_item_created.title', user_copy_language(user_id))
     body = display_description
 
     send_notification(user_id, title, body)
@@ -892,7 +895,7 @@ def send_action_item_completed_notification(user_id: str, action_item_descriptio
         else action_item_description
     )
 
-    title = "Task Complete! 🎉"
+    title = notification_copy('action_item_completed.title', user_copy_language(user_id))
     body = display_description
 
     send_notification(user_id, title, body)

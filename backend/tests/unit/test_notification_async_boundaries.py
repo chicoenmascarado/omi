@@ -82,7 +82,7 @@ def _loaded_notifications() -> Iterator[tuple[ModuleType, ModuleType, ModuleType
         'utils.llm.notifications',
         generate_notification_message=generate_notification_message,
         generate_credit_limit_notification=generate_credit_limit_notification,
-        generate_silent_user_notification=lambda _name: ('We miss you', 'Capture something today'),
+        generate_silent_user_notification=lambda _name, _language='en': ('We miss you', 'Capture something today'),
     )
     stubs = {
         'firebase_admin': firebase_admin,
